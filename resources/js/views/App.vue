@@ -5,7 +5,7 @@
        <img src="img/fablo.svg" alt="">
 
         <h1 class="text-white fw-bold display-4">Scegli anche tu a quale casa di fabio dare Fuoco </h1>
-
+        creato il dev
     </div>
 
 </div>
