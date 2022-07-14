@@ -21,6 +21,7 @@ class CreateApartmentsTable extends Migration
             $table->tinyInteger('bathrooms');
             $table->smallInteger('square_meters');
             $table->string('cover_img');
+            $table->string('slug');
             $table->boolean('visible');
             $table->text('description')->nullable();
             $table->string('address');
