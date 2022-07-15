@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
 
@@ -14,8 +14,9 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $apartments = Apartment::all();
+        return view ('admin.apartments.index', compact('apartments'));
     }
 
     /**

@@ -75,6 +75,26 @@
             </div>
         </nav>
 
+        <!-- navbar menu admin -->
+
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.apartments.index')}}">
+                            Dashboard
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.apartments.create')}}">
+                            Create New Post
+                        </a>
+                    </li> -->
+                    
+                </ul>
+            </div>
+        </nav>
+
         <main class="py-4">
             @yield('content')
         </main>
