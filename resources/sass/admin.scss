@@ -4,3 +4,12 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+.card {
+    height: 25rem;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

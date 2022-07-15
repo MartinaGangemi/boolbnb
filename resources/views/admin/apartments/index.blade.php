@@ -13,12 +13,13 @@
                     <img src="{{$apartment->cover_img}}" class="card-img-top" alt="$apartment->slug">
                     <div class="card-body">
 
-                        <p class="card-text">
-                            <strong>{{$apartment->summary}}</strong>
-                        </p>
+                        <div class="card-text">
+                            <h5>{{$apartment->summary}}</h5>
+                            <small>Indirizzo: {{$apartment->address}}</small>
+                        </div>
 
                         <p class="card-text">
-                            <small>Indirizzo: {{$apartment->address}}</small>
+                            
                         </p>
 
                         <div class="options text-center">

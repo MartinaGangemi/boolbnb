@@ -10212,3 +10212,12 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.card {
+  height: 25rem;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
