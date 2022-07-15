@@ -7,22 +7,21 @@
 
     <a class="btn btn-primary text-white my-3" href="{{route('admin.apartments.create')}}">Crea un nuovo appartamento</a>
 
-    <div class="row row-cols-4 gy-3">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5  gy-3">
         @foreach($apartments as $apartment)
 
             <div class="col px-2">
                 <div class="card">
-                    <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="card-img-top" alt="$apartment->slug">
+                    <div class="card-img">
+                        <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="card-img-top" alt="$apartment->slug">
+                    </div>
+                    
                     <div class="card-body">
 
                         <div class="card-text">
                             <h5>{{$apartment->summary}}</h5>
                             <small>Indirizzo: {{$apartment->address}}</small>
                         </div>
-
-                        <p class="card-text">
-
-                        </p>
 
                         <div class="options text-center">
                             <!-- view -->

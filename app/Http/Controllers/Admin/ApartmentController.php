@@ -175,7 +175,7 @@ class ApartmentController extends Controller
         $data['user_id'] = Auth::user()->id;
         $slug = Apartment::generateSlug($request->summary);
         $data['slug'] = $slug;
-        $path = Storage::put('storage', $request->cover_img);
+        $data['cover_img'] = Storage::put('storage', $request->cover_img);
         $apartment->update($data);
 
         return redirect()->route('admin.apartments.show', compact('apartment'));
@@ -190,7 +190,8 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Apartment $apartment)
-    {
+    {   
+        Storage::delete($apartment->cover_img);
         $apartment->delete();
         return redirect()->route('admin.apartments.index')->with('message', 'Il tuo appartamento è stato eliminato!');
     }
