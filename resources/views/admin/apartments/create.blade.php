@@ -3,7 +3,7 @@
 @section('content')
     <section id="apartment-form" class="p-3 bg-container">
         <div class="container">
-            <h4>Insert your apartment's info.</h4>
+            <h4 class="text-center">Insert your apartment's info.</h4>
 
             <div class="create-edit-wrapper p-3">
                 <div class="container create-container">
@@ -25,7 +25,7 @@
                             <input type="text" class="form-control" id="summary" name="summary" placeholder="Add a summary" value="{{old('summary', $newApartment->summary)}}">
                         </div>
 
-                        <div class="row mt-4 ml-2">
+                        <div class="row mt-4 ms-2">
                             <div class="form-check col-sm-12 col-lg-6 mb-3">
                                 <input class="form-check-input" type="hidden" value="0" id="visible" name="visible">
                                 <input class="form-check-input" type="checkbox" value="1" id="visible" name="visible">
@@ -73,18 +73,18 @@
                                 <input class="form-control" id="address" name="address" value="{{old('address',  $newApartment->address)}}" placeholder="Choose a address">
                             </div>
 
-                            <div class="row mt-3">
+
                                 <div class=" col-sm-12 col-lg-6">
                                     <label for="lat" class="form-label">lat</label>
                                     <input class="form-control" id="lat" name="lat" value="{{old('lat',  $newApartment->lat)}}" placeholder="Choose a lat">
                                 </div>
 
 
-                                <div class="row mt-3">
-                                    <div class=" col-sm-12 col-lg-6">
+
+                              <div class=" col-sm-12 col-lg-6">
                                         <label for="lon" class="form-label">lon</label>
                                         <input class="form-control" id="lon" name="lon" value="{{old('lon',  $newApartment->lon)}}" placeholder="Choose a lon">
-                                    </div>
+                              </div>
 
 
 
@@ -116,14 +116,14 @@
                             </div>
                         </div>
                         {{-- Questo deve stare qui se no il form non funziona --}}
-                        <button type="submit" class="btn btn-custom mt-5">Add your new apartment</button>
+                        <button type="submit" class="btn btn-success mt-5 w-100" >Add your new apartment</button>
                     </form>
 
 
 
                 </div>
             </div>
-            <h5><a href="{{ route('admin.apartments.index') }}" class="font-italic">Click here to go back to your apartments.</a></h5>
+            <h5 class="text-center"><a href="{{ route('admin.apartments.index') }}" class="font-italic">Click here to go back to your apartments.</a></h5>
 
         </div>
     </section>
