@@ -5125,8 +5125,8 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "my_back"
-  }, [_vm._v("\r\n\r\n   parte guest\r\n")]);
+    staticClass: "my_back text-center"
+  }, [_vm._v("\n\n   parte guest\n\n\n")]);
 };
 
 var staticRenderFns = [];

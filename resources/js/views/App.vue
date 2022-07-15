@@ -1,7 +1,9 @@
 <template>
-<div class="my_back">
+<div class="my_back text-center">
 
    parte guest
+
+
 </div>
 </template>
 
