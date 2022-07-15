@@ -5142,7 +5142,7 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("h1", {
     staticClass: "text-white fw-bold display-4"
-  }, [_vm._v("Scegli anche tu a quale casa di fabio dare Fuoco ")])])]);
+  }, [_vm._v("Scegli anche tu a quale casa di fabio dare Fuoco ")]), _vm._v("\r\n        creato il dev\r\n    ")])]);
 }];
 render._withStripped = true;
 
@@ -54097,9 +54097,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
