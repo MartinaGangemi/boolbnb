@@ -17,7 +17,7 @@ class CreateApartmentSponsorshipTable extends Migration
             $table->unsignedBigInteger('apartment_id')->nullable();
             $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete();
             $table->unsignedBigInteger('sponsorship_id')->nullable();
-            $table->foreign('sponsorship_id')->references('id')->on('sponsorship')->cascadeOnDelete();
+            $table->foreign('sponsorship_id')->references('id')->on('sponsorships')->cascadeOnDelete();
         });
     }
 
