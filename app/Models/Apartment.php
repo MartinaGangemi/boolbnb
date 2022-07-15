@@ -1,12 +1,18 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Apartment extends Model
 {
     protected $fillable = ['user_id', 'summary', 'rooms', 'beds', 'bathrooms', 'square_meters', 'cover_img', 'slug', 'visible','description','address','lat','lon'];
+
+    public static function generateSlug($summary)
+    {
+        # code...
+        return Str::slug($summary, '-');
+    }
 
   public function services() {
     return $this->belongsToMany(Service::class);

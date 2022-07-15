@@ -22,13 +22,13 @@ class CreateApartmentsTable extends Migration
             $table->smallInteger('square_meters');
             $table->string('cover_img');
             $table->string('slug');
-            $table->boolean('visible');
+            $table->boolean('visible')->default(false);
             $table->text('description')->nullable();
             $table->string('address');
             $table->decimal('lat', 10 , 8);
             $table->decimal('lon', 10, 8);
             $table->timestamps();
-           
+
         });
     }
 
@@ -40,6 +40,6 @@ class CreateApartmentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('apartments');
-        
+
     }
 }
