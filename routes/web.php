@@ -22,9 +22,12 @@ Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function (){
     Route::get('/', 'HomeController@index')->name('dashboard');
-    Route::resource('apartments', 'ApartmentController');
 
-    //qui mettiamo le altre rotte di admin 
+    Route::resource('apartments', 'ApartmentController')->parameters ([
+        'apartments' => 'apartment:slug'
+    ]);
+
+    //qui mettiamo le altre rotte di admin
 });
 
 

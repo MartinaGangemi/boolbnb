@@ -7,8 +7,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Service;
+
 
 class ApartmentController extends Controller
 {
@@ -114,6 +113,7 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         //
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
@@ -123,7 +123,7 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Apartment $apartment)
-    {   
+    {
         $services = Service::all();
         return view('admin.apartments.edit', compact('apartment','services'));
     }
