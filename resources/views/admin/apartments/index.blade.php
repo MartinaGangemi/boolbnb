@@ -5,6 +5,8 @@
 
 <div class="container">
 
+    <a class="btn btn-primary text-white my-3" href="{{route('admin.apartments.create')}}">Crea un nuovo appartamento</a>
+
     <div class="row row-cols-4 gy-3">
         @foreach($apartments as $apartment)
 
@@ -38,11 +40,37 @@
                                 </svg>
                             </a>
                             <!-- delete -->
-                            <button type="button" class="btn btn-danger text-white">
+                            <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#delete-apartment-{{$apartment->id}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                                 </svg>
                             </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="delete-apartment-{{$apartment->id}}" tabindex="-1" aria-labelledby="modelTitle-{{$apartment->id}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Rimuovi appartamento</h5>
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Sei sicuro?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                            <form action="{{route('admin.apartments.destroy', $apartment->slug)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Rimuovi</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         
                     </div>
