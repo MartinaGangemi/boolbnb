@@ -87,7 +87,7 @@ class ApartmentController extends Controller
         $data['user_id'] = Auth::user()->id;
         $slug = Apartment::generateSlug($request->summary);
         $data['slug'] = $slug;
-        $path = Storage::put('storage', $request->cover_img);
+        $data['cover_img'] = Storage::put('storage', $request->cover_img);
 
 
         $newApartment = new Apartment();

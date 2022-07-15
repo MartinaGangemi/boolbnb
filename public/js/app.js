@@ -5124,12 +5124,136 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "my_back text-center"
-  }, [_vm._v("\r\n\r\n   parte guest\r\n\r\n\r\n")]);
+  return _vm._m(0);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    attrs: {
+      id: "body"
+    }
+  }, [_c("div", {
+    staticClass: "p-5 bg-light my_back"
+  }, [_c("div", {
+    staticClass: "container text-light"
+  }, [_c("h1", {
+    staticClass: "display-3"
+  }, [_vm._v("Consigliati da noi")]), _vm._v(" "), _c("p", {
+    staticClass: "lead"
+  }, [_vm._v("Jumbo helper text")]), _vm._v(" "), _c("hr", {
+    staticClass: "my-2"
+  }), _vm._v(" "), _c("p", [_vm._v("More info")]), _vm._v(" "), _c("p", {
+    staticClass: "lead"
+  }, [_c("a", {
+    staticClass: "btn btn-primary btn-lg",
+    attrs: {
+      href: "Jumbo action link",
+      role: "button"
+    }
+  }, [_vm._v("Jumbo action name")])])])]), _vm._v(" "), _c("section", {
+    staticClass: "container-fluid",
+    attrs: {
+      id: "site_main"
+    }
+  }, [_c("div", {
+    staticClass: "row justify-content-center py-3"
+  }, [_c("div", {
+    staticClass: "col-10"
+  }, [_c("h3", [_vm._v("Small Room")]), _vm._v(" "), _c("div", {
+    staticClass: "row justify-content-between"
+  }, [_c("div", {
+    staticClass: "col-9 text"
+  }, [_c("img", {
+    staticClass: "img-fluid",
+    attrs: {
+      src: "https://www.imghoteles.com/wp-content/uploads/sites/1709/nggallery/desktop-pics//fott1.jpg",
+      alt: ""
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Card title")]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v("Some quick example text to build on the card title and make up the bulk of the card's content.")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-2 text"
+  }, [_vm._v("\r\n                        TESTO DA SCEGLIERE\r\n                    ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "container-fluid"
+  }, [_c("div", {
+    staticClass: "row justify-content-around"
+  }, [_c("div", {
+    staticClass: "box col-3 p-0 shadow"
+  }, [_c("div", {
+    staticClass: "card_img d-flex justify-content-center"
+  }, [_c("img", {
+    attrs: {
+      src: "https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h4", {
+    staticClass: "card-title"
+  }, [_vm._v("Descrizione")]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "content text-center"
+  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\r\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\r\n                        ")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-light",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("vedere")])])]), _vm._v(" "), _c("div", {
+    staticClass: "box col-3 p-0 shadow"
+  }, [_c("div", {
+    staticClass: "card_img d-flex justify-content-center"
+  }, [_c("img", {
+    attrs: {
+      src: "https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h4", {
+    staticClass: "card-title"
+  }, [_vm._v("Descrizione")]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "content text-center"
+  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\r\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\r\n                        ")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-light",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("vedere")])])]), _vm._v(" "), _c("div", {
+    staticClass: "box col-3 p-0 shadow"
+  }, [_c("div", {
+    staticClass: "card_img d-flex justify-content-center"
+  }, [_c("img", {
+    attrs: {
+      src: "https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h4", {
+    staticClass: "card-title"
+  }, [_vm._v("Descrizione")]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "content text-center"
+  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\r\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\r\n                        ")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-light",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("vedere")])])])])])])]);
+}];
 render._withStripped = true;
 
 
@@ -10172,7 +10296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".my_back[data-v-91ac6b5c] {\n  background: url(\"https://cdn.materialdistrict.com/wp-content/uploads/2018/05/fire-alarm-wallpaper-can-warn-of-house-fires-01.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n}", ""]);
+exports.push([module.i, "#body[data-v-91ac6b5c] {\n  background-color: #FFFFFF;\n}\n.my_back[data-v-91ac6b5c] {\n  background: url(\"https://cdn.materialdistrict.com/wp-content/uploads/2018/05/fire-alarm-wallpaper-can-warn-of-house-fires-01.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\n.box[data-v-91ac6b5c] {\n  height: 500px;\n  width: 400px;\n  background-color: #7F7F7F;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #FFFFFF;\n}\n.box .card[data-v-91ac6b5c] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-91ac6b5c] {\n  height: 40%;\n}\n.card_img img[data-v-91ac6b5c] {\n  height: 100%;\n}\n.content[data-v-91ac6b5c] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-91ac6b5c] {\n  left: 0;\n}\n.content p[data-v-91ac6b5c] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}", ""]);
 
 // exports
 
@@ -54083,9 +54207,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

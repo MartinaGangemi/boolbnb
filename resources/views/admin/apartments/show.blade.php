@@ -4,7 +4,7 @@
 <div class="container">
     <h3>{{$apartment->summary}}</h3>
     <div class="card">
-        <img src="{{asset($apartment->cover_img)}}" alt="">
+        <img src="{{ asset('storage/' . $apartment->cover_img) }}" alt="">
         <div class="card-body">
             <p>{{$apartment->description}}</p>
             <address>{{$apartment->address}}</address>

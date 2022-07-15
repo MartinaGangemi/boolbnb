@@ -12,7 +12,7 @@
 
             <div class="col px-2">
                 <div class="card">
-                    <img src="{{$apartment->cover_img}}" class="card-img-top" alt="$apartment->slug">
+                    <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="card-img-top" alt="$apartment->slug">
                     <div class="card-body">
 
                         <div class="card-text">
@@ -21,7 +21,7 @@
                         </div>
 
                         <p class="card-text">
-                            
+
                         </p>
 
                         <div class="options text-center">
@@ -72,13 +72,13 @@
                             </div>
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-        
+
         @endforeach
-    </div>    
+    </div>
 
 </div>
 @endsection
