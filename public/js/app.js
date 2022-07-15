@@ -5124,26 +5124,12 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", {
     staticClass: "my_back"
-  }, [_c("div", {
-    staticClass: "container text-center"
-  }, [_c("img", {
-    attrs: {
-      src: "img/fablo.svg",
-      alt: ""
-    }
-  }), _vm._v(" "), _c("h1", {
-    staticClass: "text-white fw-bold display-4"
-  }, [_vm._v("Scegli anche tu a quale casa di fabio dare Fuoco ")]), _vm._v("\r\n        creato il dev\r\n    ")])]);
-}];
+  }, [_vm._v("\r\n\r\n   parte guest\r\n")]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -54097,9 +54083,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

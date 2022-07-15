@@ -7,6 +7,8 @@ use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Service;
 
 class ApartmentController extends Controller
 {
@@ -121,8 +123,9 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Apartment $apartment)
-    {
-        //
+    {   
+        $services = Service::all();
+        return view('admin.apartments.edit', compact('apartment','services'));
     }
 
     /**
@@ -145,6 +148,7 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->route('admin.apartments.index')->with('message', 'Il tuo appartamento è stato eliminato!');
     }
 }
