@@ -5185,7 +5185,7 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-2 text"
-  }, [_vm._v("\r\n                        TESTO DA SCEGLIERE\r\n                    ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "container-fluid"
   }, [_c("div", {
     staticClass: "row justify-content-around"
@@ -5205,7 +5205,7 @@ var staticRenderFns = [function () {
     staticClass: "card-text"
   })]), _vm._v(" "), _c("div", {
     staticClass: "content text-center"
-  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\r\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\r\n                        ")]), _vm._v(" "), _c("a", {
+  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\n                        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-light",
     attrs: {
       href: "#"
@@ -5226,7 +5226,7 @@ var staticRenderFns = [function () {
     staticClass: "card-text"
   })]), _vm._v(" "), _c("div", {
     staticClass: "content text-center"
-  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\r\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\r\n                        ")]), _vm._v(" "), _c("a", {
+  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\n                        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-light",
     attrs: {
       href: "#"
@@ -5247,7 +5247,7 @@ var staticRenderFns = [function () {
     staticClass: "card-text"
   })]), _vm._v(" "), _c("div", {
     staticClass: "content text-center"
-  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\r\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\r\n                        ")]), _vm._v(" "), _c("a", {
+  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\n                        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-light",
     attrs: {
       href: "#"
@@ -10296,7 +10296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#body[data-v-91ac6b5c] {\n  background-color: #FFFFFF;\n}\n.my_back[data-v-91ac6b5c] {\n  background: url(\"https://cdn.materialdistrict.com/wp-content/uploads/2018/05/fire-alarm-wallpaper-can-warn-of-house-fires-01.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\n.box[data-v-91ac6b5c] {\n  height: 500px;\n  width: 400px;\n  background-color: #7F7F7F;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #FFFFFF;\n}\n.box .card[data-v-91ac6b5c] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-91ac6b5c] {\n  height: 40%;\n}\n.card_img img[data-v-91ac6b5c] {\n  height: 100%;\n}\n.content[data-v-91ac6b5c] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-91ac6b5c] {\n  left: 0;\n}\n.content p[data-v-91ac6b5c] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}", ""]);
+exports.push([module.i, "#body[data-v-91ac6b5c] {\n  background-color: #FFFFFF;\n}\n.my_back[data-v-91ac6b5c] {\n  background: url(\"http://amdtapes.ro/wp-content/themes/options/images/skins/headers/full_width/header-tealSkies.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\n.box[data-v-91ac6b5c] {\n  height: 500px;\n  width: 400px;\n  background-color: #7F7F7F;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #FFFFFF;\n}\n.box .card[data-v-91ac6b5c] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-91ac6b5c] {\n  height: 40%;\n}\n.card_img img[data-v-91ac6b5c] {\n  height: 100%;\n}\n.content[data-v-91ac6b5c] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-91ac6b5c] {\n  left: 0;\n}\n.content p[data-v-91ac6b5c] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}", ""]);
 
 // exports
 
@@ -54207,9 +54207,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

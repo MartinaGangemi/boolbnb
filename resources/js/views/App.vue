@@ -40,74 +40,74 @@
 
         <div class="container-fluid">
             <div class="row justify-content-around">
-                
+
                 <div class="box col-3 p-0 shadow">
                     <div class="card_img d-flex justify-content-center">
                         <img src="https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg">
-                    </div>                 
-                        
+                    </div>
+
                     <div class="card-body">
                         <h4 class="card-title">Descrizione</h4>
                         <p class="card-text"></p>
                     </div>
 
-                    <div class="content text-center"> 
-                        <h3>B&B</h3> 
+                    <div class="content text-center">
+                        <h3>B&B</h3>
 
                         <p>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!
                         </p>
-                        
+
                         <a href="#" class="btn btn-light">vedere</a>
-                    </div> 
-                </div>
- 
-                <div class="box col-3 p-0 shadow">
-                    <div class="card_img d-flex justify-content-center">
-                        <img src="https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg">
-                    </div>                 
-                        
-                    <div class="card-body">
-                        <h4 class="card-title">Descrizione</h4>
-                        <p class="card-text"></p>
                     </div>
-
-                    <div class="content text-center"> 
-                        <h3>B&B</h3> 
-
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!
-                        </p>
-                        
-                        <a href="#" class="btn btn-light">vedere</a>
-                    </div> 
                 </div>
 
                 <div class="box col-3 p-0 shadow">
                     <div class="card_img d-flex justify-content-center">
                         <img src="https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg">
-                    </div>                 
-                        
+                    </div>
+
                     <div class="card-body">
                         <h4 class="card-title">Descrizione</h4>
                         <p class="card-text"></p>
                     </div>
 
-                    <div class="content text-center"> 
-                        <h3>B&B</h3> 
+                    <div class="content text-center">
+                        <h3>B&B</h3>
 
                         <p>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!
                         </p>
-                        
+
                         <a href="#" class="btn btn-light">vedere</a>
-                    </div> 
+                    </div>
+                </div>
+
+                <div class="box col-3 p-0 shadow">
+                    <div class="card_img d-flex justify-content-center">
+                        <img src="https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">Descrizione</h4>
+                        <p class="card-text"></p>
+                    </div>
+
+                    <div class="content text-center">
+                        <h3>B&B</h3>
+
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!
+                        </p>
+
+                        <a href="#" class="btn btn-light">vedere</a>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
- 
+
     </div>
 </template>
 
@@ -127,7 +127,7 @@ export default {
     }
 
     .my_back{
-        background: url('https://cdn.materialdistrict.com/wp-content/uploads/2018/05/fire-alarm-wallpaper-can-warn-of-house-fires-01.jpg');
+        background: url('http://amdtapes.ro/wp-content/themes/options/images/skins/headers/full_width/header-tealSkies.jpg');
         background-repeat:no-repeat ;
         background-size:cover ;
         background-position: center;
@@ -179,6 +179,6 @@ export default {
         border-bottom: 1px solid white;
         padding: 17px 0px
     }
-    
+
 
 </style>
