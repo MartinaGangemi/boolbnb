@@ -21,7 +21,7 @@ Auth::routes();
 
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function (){
-    Route::get('/', 'HomeController@index')->name('dashboard');
+    Route::get('/', 'ApartmentController@index')->name('dashboard');
 
     Route::resource('apartments', 'ApartmentController')->parameters ([
         'apartments' => 'apartment:slug'

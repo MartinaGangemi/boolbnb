@@ -29,4 +29,9 @@ class Apartment extends Model
   public function guest_views() {
     return $this->hasMany(Guest_View::class);
   }
+
+  public function user()
+  {
+      return $this->belongsTo(User::class);
+  }
 }

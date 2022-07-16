@@ -18,7 +18,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::where('user_id' , Auth::id())->orderByDesc('id')->get();
         return view ('admin.apartments.index', compact('apartments'));
     }
 
@@ -84,7 +84,7 @@ class ApartmentController extends Controller
 
 
 
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = Auth::id();
         $slug = Apartment::generateSlug($request->summary);
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
