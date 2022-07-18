@@ -21,6 +21,8 @@ class ApartmentController extends Controller
     {
         $apartments = Apartment::where('user_id' , Auth::id())->orderByDesc('id')->get();
         return view ('admin.apartments.index', compact('apartments'));
+
+
     }
 
     /**
@@ -124,7 +126,15 @@ class ApartmentController extends Controller
     public function edit(Apartment $apartment)
     {
         $services = Service::all();
-        return view('admin.apartments.edit', compact('apartment','services'));
+        $apartments = Apartment::where('user_id' , Auth::id());
+
+
+
+        if(Auth::user()->id === $apartment->user_id) {
+            return view('admin.apartments.edit',compact('apartment','services'));
+        } else {
+            return redirect()->route('admin.apartments.index')->with('message','access forbidden');
+        }
     }
 
     /**

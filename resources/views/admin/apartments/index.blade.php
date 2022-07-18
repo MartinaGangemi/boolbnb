@@ -4,6 +4,10 @@
 
 
 <div class="container">
+    @if(session('message'))
+    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+
+    @endif
 
     <a class="btn btn-primary text-white my-3" href="{{route('admin.apartments.create')}}">Crea un nuovo appartamento</a>
 
@@ -15,7 +19,7 @@
                     <div class="card-img">
                         <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="card-img-top" alt="$apartment->slug">
                     </div>
-                    
+
                     <div class="card-body">
 
                         <div class="card-text">
