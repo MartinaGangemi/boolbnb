@@ -27,7 +27,7 @@
                             <label for="summary" class="form-label">Title</label>
                             <span class="required">*</span>
                             <input type="text" class="form-control" id="summary" name="summary"
-                                placeholder="Add a summary" value="{{ old('summary', $apartment->summary) }}" required>
+                                placeholder="Add a summary" value="{{ old('summary', $apartment->summary) }}" required minlength="15" maxlength="150">
                         </div>
 
                         <div class="row mt-4 ms-2">
@@ -69,13 +69,14 @@
                             <div class="col-sm-12 col-lg-6">
                                 <label for="cover_img" class="form-label">Image</label>
                                 <input type="file" class="form-control" placeholder="Choose an cover_img" id="cover_img"
-                                    name="cover_img" value="{{ old('cover_img', $apartment->cover_img) }}">
+                                    name="cover_img" value="{{ old('cover_img', $apartment->cover_img) }}"
+                                    accept="jpeg, jpg, png">
                             </div>
 
                             <div class="col-sm-12 col-lg-6">
                                 <label for="description" class="form-label">Description</label>
                                 <span class="required">*</span>
-                                <textarea class="form-control" id="description" name="description" placeholder="Add a description" required>{{ old('description', $apartment->description) }}</textarea>
+                                <textarea class="form-control" id="description" name="description" placeholder="Add a description" required minlength="50" maxlength="255">{{ old('description', $apartment->description) }}</textarea>
                             </div>
                         </div>
 
@@ -84,7 +85,7 @@
                                 <label for="address" class="form-label">address</label>
                                 <span class="required">*</span>
                                 <input class="form-control" id="address" name="address"
-                                    value="{{ old('address', $apartment->address) }}" placeholder="Choose a address" required>
+                                    value="{{ old('address', $apartment->address) }}" placeholder="Choose a address" required minlength="4">
                             </div>
 
 
@@ -114,15 +115,15 @@
                             <div class=" col-sm-12 col-lg-6">
                                 <label for="rooms" class="form-label">Rooms</label>
                                 <span class="required">*</span>
-                                <input type="text" class="form-control" id="rooms" name="rooms"
-                                    value="{{ old('rooms', $apartment->rooms) }}" placeholder="Add your rooms' number" required>
+                                <input type="number" class="form-control" id="rooms" name="rooms"
+                                    value="{{ old('rooms', $apartment->rooms) }}" placeholder="Add your rooms' number" required min="1">
                             </div>
 
                             <div class=" col-sm-12 col-lg-6">
                                 <label for="beds" class="form-label">Beds</label>
                                 <span class="required">*</span>
-                                <input type="text" class="form-control" id="beds" name="beds"
-                                    value="{{ old('beds', $apartment->beds) }}" placeholder="Add your beds' number" required>
+                                <input type="number" class="form-control" id="beds" name="beds"
+                                    value="{{ old('beds', $apartment->beds) }}" placeholder="Add your beds' number" required min="1">
                             </div>
                         </div>
 
@@ -130,17 +131,17 @@
                             <div class=" col-sm-12 col-lg-6">
                                 <label for="bathrooms" class="form-label">Bathrooms</label>
                                 <span class="required">*</span>
-                                <input type="text" class="form-control" id="bathrooms" name="bathrooms"
+                                <input type="number" class="form-control" id="bathrooms" name="bathrooms"
                                     value="{{ old('bathrooms', $apartment->bathrooms) }}"
-                                    placeholder="Add your bathrooms' number" required>
+                                    placeholder="Add your bathrooms' number" required min="1">
                             </div>
 
                             <div class=" col-sm-12 col-lg-6">
                                 <label for="square_meters" class="form-label">Square Meters</label>
                                 <span class="required">*</span>
-                                <input type="text" class="form-control" id="square_meters" name="square_meters"
+                                <input type="number" class="form-control" id="square_meters" name="square_meters"
                                     value="{{ old('square_meters', $apartment->square_meters) }}"
-                                    placeholder="Add your square meters number" required>
+                                    placeholder="Add your square meters number" required min="10" step="5">
                             </div>
                         </div>
                         {{-- Questo deve stare qui se no il form non funziona --}}

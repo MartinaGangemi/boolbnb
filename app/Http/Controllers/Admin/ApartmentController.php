@@ -176,6 +176,7 @@ class ApartmentController extends Controller
             'address.min' => 'adress attribute should be long at least 4 characters',
 
         ]);
+        
         $data['user_id'] = Auth::user()->id;
         $data = $request->all();
 
