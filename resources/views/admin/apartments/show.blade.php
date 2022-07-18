@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
+    @if(session('message'))
+    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+
+    @endif
     <h3>{{$apartment->summary}}</h3>
     <div class="card">
         <img src="{{ asset('storage/' . $apartment->cover_img) }}" alt="">

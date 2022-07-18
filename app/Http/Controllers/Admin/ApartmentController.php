@@ -102,7 +102,7 @@ class ApartmentController extends Controller
 
         if(array_key_exists('services', $data)) $newApartment->services()->sync($data['services']);
 
-        return redirect()->route('admin.apartments.show', compact('apartment'));
+        return redirect()->route('admin.apartments.show', compact('apartment'))->with('message','Appartamento Creato');
     }
 
     /**
