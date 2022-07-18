@@ -53,7 +53,7 @@ class ApartmentController extends Controller
             'beds' => 'required|numeric|min:1',
             'bathrooms' => 'required|numeric|min:1',
             'square_meters' => 'required|numeric|min:9',
-            'cover_img' => 'image|mimes:jpeg,jpg,png',
+            'cover_img' => 'required|image|mimes:jpeg,jpg,png',
             'description' => 'required|min:50|max:255',
             'address' => 'required|string|min:4',
             'lat' => 'required|numeric',
@@ -89,8 +89,6 @@ class ApartmentController extends Controller
         $slug = Apartment::generateSlug($request->summary);
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
-
-
         $newApartment = new Apartment();
 
         $newApartment->fill($data);

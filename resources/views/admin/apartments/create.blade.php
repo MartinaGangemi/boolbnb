@@ -59,7 +59,8 @@
                         <div class="row mt-3">
                             <div class="col-sm-12 col-lg-6">
                                 <label for="cover_img" class="form-label">Image</label>
-                                <input type="file" class="form-control" placeholder="Choose an cover_img" id="cover_img" name="cover_img" value="{{old('cover_img', $newApartment->cover_img)}}">
+                                <span class="required">*</span>
+                                <input type="file" class="form-control" placeholder="Choose an cover_img" id="cover_img" name="cover_img" value="{{old('cover_img', $newApartment->cover_img)}}" required>
                             </div>
 
                             <div class="col-sm-12 col-lg-6">
