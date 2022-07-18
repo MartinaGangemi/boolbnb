@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apartment;
 use App\Models\Service;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,7 @@ class ApartmentController extends Controller
             'beds' => 'required|numeric|min:1',
             'bathrooms' => 'required|numeric|min:1',
             'square_meters' => 'required|numeric|min:9',
-            'cover_img' => 'required|image|mimes:jpeg,jpg,png',
+            'cover_img' => 'image|mimes:jpeg,jpg,png',
             'description' => 'required|min:50|max:255',
             'address' => 'required|string|min:4',
             'lat' => 'required|numeric',
@@ -135,7 +136,7 @@ class ApartmentController extends Controller
      * @param  \App\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment )
+    public function update(Request $request, User $id , Apartment $apartment )
     {
         $request->validate([
 
@@ -144,7 +145,7 @@ class ApartmentController extends Controller
             'beds' => 'required|numeric|min:1',
             'bathrooms' => 'required|numeric|min:1',
             'square_meters' => 'required|numeric|min:9',
-            'cover_img' => 'required|image|mimes:jpeg,jpg,png',
+            'cover_img' => 'image|mimes:jpeg,jpg,png',
             'description' => 'required|min:50|max:255',
             'address' => 'required|string|min:4',
             'lat' => 'required|numeric',
@@ -167,16 +168,21 @@ class ApartmentController extends Controller
             'address.min' => 'adress attribute should be long at least 4 characters',
 
         ]);
-
+        $data['user_id'] = Auth::user()->id;
         $data = $request->all();
 
+        if(array_key_exists('cover_img', $data)){
 
+            $data['cover_img'] = Storage::put('storage', $request->cover_img);
+        }
 
-        $data['user_id'] = Auth::user()->id;
+        $apartment->fill($data);
+
         $slug = Apartment::generateSlug($request->summary);
         $data['slug'] = $slug;
-        $data['cover_img'] = Storage::put('storage', $request->cover_img);
         $apartment->update($data);
+
+        if(array_key_exists('services', $data)) $apartment->services()->sync($data['services']);
 
         return redirect()->route('admin.apartments.show', compact('apartment'));
 
@@ -190,7 +196,7 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Apartment $apartment)
-    {   
+    {
         Storage::delete($apartment->cover_img);
         $apartment->delete();
         return redirect()->route('admin.apartments.index')->with('message', 'Il tuo appartamento è stato eliminato!');
