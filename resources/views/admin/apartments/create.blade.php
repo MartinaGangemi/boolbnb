@@ -18,7 +18,7 @@
                         </div>
                     @endif
                     {{-- form for appartment creation --}}
-                    <form class="p-2 my_form" action="{{ route('admin.apartments.store') }}" method="POST"
+                    <form  onsubmit="event.preventDefault(); validateMyForm();" class="p-2 my_form" action="{{ route('admin.apartments.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         {{-- title --}}
@@ -86,10 +86,12 @@
                             <div class=" col-sm-12 col-lg-6">
                                 <label for="address" class="form-label">address</label>
                                 <span class="required">*</span>
-                                <input class="form-control" id="address" name="address"
+                                <input onkeyup="searchAddress()" class="form-control" id="address" name="address"
                                     value="{{ old('address', $newApartment->address) }}" placeholder="Es: City , address and number"
                                     required minlength="4">
+                                    <div hidden class="results"></div>
                             </div>
+                           
 
                         </div>
 

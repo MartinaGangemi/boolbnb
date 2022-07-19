@@ -99,5 +99,56 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+     
+    function searchAddress() {
+    window.axios.defaults.headers.common = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    };
+    const address = document.getElementById('address').value
+    const resultElement = document.querySelector('.results')
+    resultElement.innerHTML = ''
+    const link = `https://kr-api.tomtom.com/search/2/geocode/${address}.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
+    axios.get(link).then(response => {
+        const addressResults = response.data.results
+        //console.log(addressResults);
+        addressResults.forEach(item => {
+            const listElement = document.createElement('div')
+            listElement.innerHTML = `${item.address.freeformAddress}`
+                listElement.addEventListener('click', function() {
+                document.getElementById('address').value = item.address.freeformAddress
+                const addressForm = document.getElementById('address').value
+                resultElement.innerHTML = ''
+                resultElement.setAttribute('hidden','true')
+                })
+
+              resultElement.append(listElement)
+             resultElement.removeAttribute('hidden')
+        });
+    })
+}
+
+function validateMyForm()
+{   
+
+
+    const addressValue = document.getElementById('address').value 
+    //console.log(addressValue, item.address.freeformAddress )
+    console.log(addressValue)
+    
+    if(this.address.freeformAddress !== addressValue )
+    { 
+        alert("validation failed false");
+        // returnToPreviousPage();
+        // return false;
+    }
+
+//   alert("validations passed");
+//   return true;
+}
+
+</script>
 </body>
 </html>
