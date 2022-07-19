@@ -5104,7 +5104,23 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
-  components: {}
+  data: function data() {
+    return {
+      apartments: ''
+    };
+  },
+  components: {},
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/apartments').then(function (response) {
+      console.log(response.data);
+      var apartments = response.data.data;
+      _this.apartments = apartments.slice(0, 6);
+    })["catch"](function (e) {
+      console.error(e);
+    });
+  }
 });
 
 /***/ }),
@@ -5124,7 +5140,31 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", {
+    attrs: {
+      id: "body"
+    }
+  }, [_vm._m(0), _vm._v(" "), _c("section", {
+    staticClass: "container-fluid",
+    attrs: {
+      id: "site_main"
+    }
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "container-fluid"
+  }, [_c("div", {
+    staticClass: "row justify-content-around"
+  }, _vm._l(_vm.apartments, function (apartment) {
+    return _c("div", {
+      key: apartment.id,
+      staticClass: "box col-3 p-0 shadow"
+    }, [_vm._m(2, true), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("h4", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    })]), _vm._v(" "), _vm._m(3, true)]);
+  }), 0)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5132,10 +5172,6 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    attrs: {
-      id: "body"
-    }
-  }, [_c("div", {
     staticClass: "p-5 bg-light my_back"
   }, [_c("div", {
     staticClass: "container text-light"
@@ -5153,12 +5189,12 @@ var staticRenderFns = [function () {
       href: "Jumbo action link",
       role: "button"
     }
-  }, [_vm._v("Jumbo action name")])])])]), _vm._v(" "), _c("section", {
-    staticClass: "container-fluid",
-    attrs: {
-      id: "site_main"
-    }
-  }, [_c("div", {
+  }, [_vm._v("Jumbo action name")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "row justify-content-center py-3"
   }, [_c("div", {
     staticClass: "col-10"
@@ -5185,74 +5221,30 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-2 text"
-  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "container-fluid"
-  }, [_c("div", {
-    staticClass: "row justify-content-around"
-  }, [_c("div", {
-    staticClass: "box col-3 p-0 shadow"
-  }, [_c("div", {
+  }, [_vm._v("\r\n                        TESTO DA SCEGLIERE\r\n                    ")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "card_img d-flex justify-content-center"
   }, [_c("img", {
     attrs: {
       src: "https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg"
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h4", {
-    staticClass: "card-title"
-  }, [_vm._v("Descrizione")]), _vm._v(" "), _c("p", {
-    staticClass: "card-text"
-  })]), _vm._v(" "), _c("div", {
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "content text-center"
-  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\n                        ")]), _vm._v(" "), _c("a", {
+  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\r\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\r\n                        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-light",
     attrs: {
       href: "#"
     }
-  }, [_vm._v("vedere")])])]), _vm._v(" "), _c("div", {
-    staticClass: "box col-3 p-0 shadow"
-  }, [_c("div", {
-    staticClass: "card_img d-flex justify-content-center"
-  }, [_c("img", {
-    attrs: {
-      src: "https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h4", {
-    staticClass: "card-title"
-  }, [_vm._v("Descrizione")]), _vm._v(" "), _c("p", {
-    staticClass: "card-text"
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "content text-center"
-  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\n                        ")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-light",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("vedere")])])]), _vm._v(" "), _c("div", {
-    staticClass: "box col-3 p-0 shadow"
-  }, [_c("div", {
-    staticClass: "card_img d-flex justify-content-center"
-  }, [_c("img", {
-    attrs: {
-      src: "https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h4", {
-    staticClass: "card-title"
-  }, [_vm._v("Descrizione")]), _vm._v(" "), _c("p", {
-    staticClass: "card-text"
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "content text-center"
-  }, [_c("h3", [_vm._v("B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!\n                        ")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-light",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("vedere")])])])])])])]);
+  }, [_vm._v("vedere")])]);
 }];
 render._withStripped = true;
 
@@ -54031,6 +54023,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54207,9 +54201,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

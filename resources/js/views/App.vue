@@ -41,13 +41,13 @@
         <div class="container-fluid">
             <div class="row justify-content-around">
 
-                <div class="box col-3 p-0 shadow">
+                <div class="box col-3 p-0 shadow" v-for="apartment in apartments" :key="apartment.id">
                     <div class="card_img d-flex justify-content-center">
                         <img src="https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg">
                     </div>
 
                     <div class="card-body">
-                        <h4 class="card-title">Descrizione</h4>
+                        <h4 class="card-title">{{apartment.summary}}</h4>
                         <p class="card-text"></p>
                     </div>
 
@@ -62,60 +62,37 @@
                     </div>
                 </div>
 
-                <div class="box col-3 p-0 shadow">
-                    <div class="card_img d-flex justify-content-center">
-                        <img src="https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg">
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title">Descrizione</h4>
-                        <p class="card-text"></p>
-                    </div>
-
-                    <div class="content text-center">
-                        <h3>B&B</h3>
-
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!
-                        </p>
-
-                        <a href="#" class="btn btn-light">vedere</a>
-                    </div>
-                </div>
-
-                <div class="box col-3 p-0 shadow">
-                    <div class="card_img d-flex justify-content-center">
-                        <img src="https://dhqbz5vfue3y3.cloudfront.net/fotomondobb/1929_top.jpg">
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title">Descrizione</h4>
-                        <p class="card-text"></p>
-                    </div>
-
-                    <div class="content text-center">
-                        <h3>B&B</h3>
-
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni aperiam nesciunt quibusdam id, minima, autem neque suscipit, accusantium numquam iure libero. Dolorem accusantium doloribus obcaecati veritatis et temporibus nulla aut alias corporis consequatur, repellendus eos molestiae nesciunt maxime corrupti officiis. Explicabo asperiores quo quod minus! Inventore illo soluta tenetur pariatur!
-                        </p>
-
-                        <a href="#" class="btn btn-light">vedere</a>
-                    </div>
-                </div>
+                
 
             </div>
         </div>
     </section>
 
-    </div>
+</div>
 </template>
 
 
 <script>
 export default {
     name: 'App',
-    components: {  }
+    data(){
+        return{
+            apartments:'',
+        }
+    },
+    components: {  },
+
+    mounted(){
+        axios.get('/api/apartments')
+        .then(response => {
+            console.log(response.data);
+            const apartments = response.data.data
+            this.apartments = apartments.slice(0, 6)
+        })
+        .catch(e => {
+            console.error(e)
+        })
+    }
 }
 </script>
 
