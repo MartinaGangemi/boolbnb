@@ -85,25 +85,9 @@
                                 <label for="address" class="form-label">address</label>
                                 <span class="required">*</span>
                                 <input class="form-control" id="address" name="address"
-                                    value="{{ old('address', $apartment->address) }}" placeholder="Choose a address" required minlength="4">
+                                    value="{{ old('address', $apartment->address) }}" placeholder="Es: City , address and number" required minlength="4">
                             </div>
 
-
-                            <div class=" col-sm-12 col-lg-6">
-                                <label for="lat" class="form-label">lat</label>
-                                <span class="required">*</span>
-                                <input class="form-control" id="lat" name="lat"
-                                    value="{{ old('lat', $apartment->lat) }}" placeholder="Choose a lat" required>
-                            </div>
-
-
-
-                            <div class=" col-sm-12 col-lg-6">
-                                <label for="lon" class="form-label">lon</label>
-                                <span class="required">*</span>
-                                <input class="form-control" id="lon" name="lon"
-                                    value="{{ old('lon', $apartment->lon) }}" placeholder="Choose a lon" required>
-                            </div>
 
 
 

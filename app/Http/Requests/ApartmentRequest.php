@@ -30,11 +30,9 @@ class ApartmentRequest extends FormRequest
             'beds' => 'required|numeric|min:1',
             'bathrooms' => 'required|numeric|min:1',
             'square_meters' => 'required|numeric|min:9',
-            'cover_img' => 'required|image|mimes:jpeg,jpg,png',
+            'cover_img' => 'image|mimes:jpeg,jpg,png',
             'description' => 'required|min:50|max:255',
-            'address' => 'required|string|min:4',
-            'lat' => 'required|numeric',
-            'lon' => 'required|numeric',
+            'address' => 'required|string|min:15',
         ];
     }
 
@@ -54,7 +52,7 @@ class ApartmentRequest extends FormRequest
             'square_meters' => 'The apartment should be bigger than 9 meters.',
             'description.min' => 'Apartment description should be longer than 50 characters to increase attractiveness.',
             'description.max' => 'Apartment description should not be longer than 255 characters.',
-            'address.min' => 'Address attribute should be long at least 4 characters.',
+            'address.min' => 'Address attribute should be long at least 14 characters and should be composede like this :" City address and number.',
         ];
     }
 }

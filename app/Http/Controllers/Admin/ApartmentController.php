@@ -50,6 +50,14 @@ class ApartmentController extends Controller
         $data = $request->validated();
         //dd($data);
 
+        $apiQuery =  str_replace(' ', '-', $data['address']) ;
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = json_decode($response);
+
+
+        $data['lat'] = $response->results[0]->position->lat;
+        $data['lon'] = $response->results[0]->position->lon;
+
         $data['user_id'] = Auth::id();
         $slug = Apartment::generateSlug($request->summary);
         $data['slug'] = $slug;
@@ -119,6 +127,15 @@ class ApartmentController extends Controller
         if (array_key_exists('cover_img', $data)) {
             $data['cover_img'] = Storage::put('storage', $request->cover_img);
         }
+
+
+        $apiQuery =  str_replace(' ', '-', $data['address']) ;
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = json_decode($response);
+
+
+        $data['lat'] = $response->results[0]->position->lat;
+        $data['lon'] = $response->results[0]->position->lon;
 
         $apartment->fill($data);
 
