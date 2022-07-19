@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\User;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
+use App\Http\Requests\ApartmentRequest;
 
 
 class ApartmentController extends Controller
@@ -19,10 +20,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id' , Auth::id())->orderByDesc('id')->get();
-        return view ('admin.apartments.index', compact('apartments'));
-
-
+        $apartments = Apartment::where('user_id', Auth::id())->orderByDesc('id')->get();
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
@@ -32,7 +31,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-       $newApartment = new Apartment();
+        $newApartment = new Apartment();
 
         $services = Service::all();
 
@@ -45,47 +44,11 @@ class ApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ApartmentRequest $request)
     {
-
-        $request->validate([
-
-            'summary' => 'required|string|min:15|max:150',
-            'rooms' => 'required|numeric|min:1',
-            'beds' => 'required|numeric|min:1',
-            'bathrooms' => 'required|numeric|min:1',
-            'square_meters' => 'required|numeric|min:9',
-            'cover_img' => 'required|image|mimes:jpeg,jpg,png',
-            'description' => 'required|min:50|max:255',
-            'address' => 'required|string|min:4',
-            'lat' => 'required|numeric',
-            'lon' => 'required|numeric',
-
-        ],
-        [
-            'required' => ':attribute is required',
-            'numeric' => ':attribute should be a number',
-            'summary.min' => 'Descriptive title must be longer than 15 characters',
-            'summary.max' => 'Descriptive title should not exceed 150 characters',
-            'rooms.min' => 'The apartment should have at least 1 room ',
-            'cover_img.image' => 'The apartment image should be an image',
-            'cover_img.mimes' => 'Image file format should be a .jpeg, .jpg or a .png',
-            'beds:min' => 'The apartment should have at least 1 bed ',
-            'bathrooms.min' => 'The apartment should have at least 1 bathroom ',
-            'square_meters' => 'The apartment should be bigger than 9 meters ',
-            'description.min' => 'Apartment description should be longer than 50 characters to increase attractiveness',
-            'description.max' => 'Apartment description should not be longer than 255 characters ',
-            'address.min' => 'adress attribute should be long at least 4 characters',
-
-        ]);
-
-
-   /*      $slug = Apartment::generateSlug($request->summary);
- */
-
-        $data = $request->all();
-
-
+        // Validazione dati-->controlla ApartmentRequest
+        $data = $request->validated();
+        //dd($data);
 
         $data['user_id'] = Auth::id();
         $slug = Apartment::generateSlug($request->summary);
@@ -96,13 +59,13 @@ class ApartmentController extends Controller
         $newApartment->fill($data);
         $newApartment->save();
 
-
         $apartment = $newApartment;
 
+        if (array_key_exists('services', $data)) {
+            $newApartment->services()->sync($data['services']);
+        }
 
-        if(array_key_exists('services', $data)) $newApartment->services()->sync($data['services']);
-
-        return redirect()->route('admin.apartments.show', compact('apartment'))->with('message','Appartamento Creato');
+        return redirect()->route('admin.apartments.show', compact('apartment'))->with('message', 'Appartamento Creato');
     }
 
     /**
@@ -126,14 +89,14 @@ class ApartmentController extends Controller
     public function edit(Apartment $apartment)
     {
         $services = Service::all();
-        $apartments = Apartment::where('user_id' , Auth::id());
+        $apartments = Apartment::where('user_id', Auth::id());
 
 
 
-        if(Auth::user()->id === $apartment->user_id) {
-            return view('admin.apartments.edit',compact('apartment','services'));
+        if (Auth::user()->id === $apartment->user_id) {
+            return view('admin.apartments.edit', compact('apartment', 'services'));
         } else {
-            return redirect()->route('admin.apartments.index')->with('message','access forbidden');
+            return redirect()->route('admin.apartments.index')->with('message', 'access forbidden');
         }
     }
 
@@ -144,44 +107,16 @@ class ApartmentController extends Controller
      * @param  \App\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $id , Apartment $apartment )
+    public function update(ApartmentRequest $request, User $id, Apartment $apartment)
     {
-        $request->validate([
+        // Validazione dati-->controlla ApartmentRequest
+        $data = $request->validated();
+        //dd($data);
 
-            'summary' => 'required|string|min:15|max:150',
-            'rooms' => 'required|numeric|min:1',
-            'beds' => 'required|numeric|min:1',
-            'bathrooms' => 'required|numeric|min:1',
-            'square_meters' => 'required|numeric|min:9',
-            'cover_img' => 'image|mimes:jpeg,jpg,png',
-            'description' => 'required|min:50|max:255',
-            'address' => 'required|string|min:4',
-            'lat' => 'required|numeric',
-            'lon' => 'required|numeric',
-
-        ],
-        [
-            'required' => ':attribute is required',
-            'numeric' => ':attribute should be a number',
-            'summary.min' => 'Descriptive title must be longer than 15 characters',
-            'summary.max' => 'Descriptive title should not exceed 150 characters',
-            'rooms.min' => 'The apartment should have at least 1 room ',
-            'cover_img.image' => 'The apartment image should be an image',
-            'cover_img.mimes' => 'Image file format should be a .jpeg, .jpg or a .png',
-            'beds:min' => 'The apartment should have at least 1 bed ',
-            'bathrooms.min' => 'The apartment should have at least 1 bathroom ',
-            'square_meters' => 'The apartment should be bigger than 9 meters ',
-            'description.min' => 'Apartment description should be longer than 50 characters to increase attractiveness',
-            'description.max' => 'Apartment description should not be longer than 255 characters ',
-            'address.min' => 'adress attribute should be long at least 4 characters',
-
-        ]);
-        
         $data['user_id'] = Auth::user()->id;
         $data = $request->all();
 
-        if(array_key_exists('cover_img', $data)){
-
+        if (array_key_exists('cover_img', $data)) {
             $data['cover_img'] = Storage::put('storage', $request->cover_img);
         }
 
@@ -191,7 +126,9 @@ class ApartmentController extends Controller
         $data['slug'] = $slug;
         $apartment->update($data);
 
-        if(array_key_exists('services', $data)) $apartment->services()->sync($data['services']);
+        if (array_key_exists('services', $data)) {
+            $apartment->services()->sync($data['services']);
+        }
 
         return redirect()->route('admin.apartments.show', compact('apartment'))->with('message','Appartamento Modificato');
 
