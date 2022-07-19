@@ -102,6 +102,7 @@
 
     <script>
      
+    
     function searchAddress() {
     window.axios.defaults.headers.common = {
         'Accept': 'application/json',
@@ -115,39 +116,41 @@
         const addressResults = response.data.results
         //console.log(addressResults);
         addressResults.forEach(item => {
+            //console.log(item.address.freeformAddress)
             const listElement = document.createElement('div')
             listElement.innerHTML = `${item.address.freeformAddress}`
+
+            // funzione 
                 listElement.addEventListener('click', function() {
                 document.getElementById('address').value = item.address.freeformAddress
                 const addressForm = document.getElementById('address').value
                 resultElement.innerHTML = ''
                 resultElement.setAttribute('hidden','true')
-                })
-
+//validazione
+            })
+                const addressValue = document.getElementById('address').value 
+                console.log(addressValue)
+                console.log(item.address.freeformAddress)
+                if( item.address.freeformAddress != addressValue){
+                console.log('dati invalidi!')
+                } else{
+                    console.log('dati corretti')
+                }
               resultElement.append(listElement)
              resultElement.removeAttribute('hidden')
+             
+             console.log(item.address.freeformAddress, 'freeformaddress')
+             console.log(addressValue, 'adressvalue')
+            
+            
         });
+
     })
+   
+   
 }
 
-function validateMyForm()
-{   
 
-
-    const addressValue = document.getElementById('address').value 
-    //console.log(addressValue, item.address.freeformAddress )
-    console.log(addressValue)
-    
-    if(this.address.freeformAddress !== addressValue )
-    { 
-        alert("validation failed false");
-        // returnToPreviousPage();
-        // return false;
-    }
-
-//   alert("validations passed");
-//   return true;
-}
 
 </script>
 </body>

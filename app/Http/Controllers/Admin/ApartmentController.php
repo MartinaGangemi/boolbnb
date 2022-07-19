@@ -34,8 +34,8 @@ class ApartmentController extends Controller
         $newApartment = new Apartment();
 
         $services = Service::all();
+
         return view('admin.apartments.create', compact('newApartment', 'services',));
-        
     }
 
     /**
@@ -53,7 +53,7 @@ class ApartmentController extends Controller
         $apiQuery =  str_replace(' ', '-', $data['address']) ;
         $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
         $response = json_decode($response);
-         
+
 
         $data['lat'] = $response->results[0]->position->lat;
         $data['lon'] = $response->results[0]->position->lon;
@@ -65,7 +65,7 @@ class ApartmentController extends Controller
         $newApartment = new Apartment();
 
         $newApartment->fill($data);
-        
+        $newApartment->save();
 
         $apartment = $newApartment;
 
@@ -73,16 +73,7 @@ class ApartmentController extends Controller
             $newApartment->services()->sync($data['services']);
         }
 
-        
-        if ($newApartment->address !== $response->results[0]->address->freeformAddress){
-           return redirect()->route('admin.apartments.create', compact('apartment'))->with('error', 'Indirizzo non valido!');
-        }
-        else{
-            return redirect()->route('admin.apartments.show', compact('apartment'))->with('message', 'Appartamento Creato');
-            $newApartment->save();
-        };
-        //dd(!$response->results[0]->address->freeformAddress == );
-        
+        return redirect()->route('admin.apartments.show', compact('apartment'))->with('message', 'Appartamento Creato');
     }
 
     /**

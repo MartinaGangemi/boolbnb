@@ -18,7 +18,7 @@
                         </div>
                     @endif
                     {{-- form for appartment creation --}}
-                    <form  onsubmit="event.preventDefault(); validateMyForm();" class="p-2 my_form" action="{{ route('admin.apartments.store') }}" method="POST"
+                    <form  class="p-2 my_form" action="{{ route('admin.apartments.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         {{-- title --}}
