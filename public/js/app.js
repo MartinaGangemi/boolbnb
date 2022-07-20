@@ -5181,9 +5181,6 @@ __webpack_require__.r(__webpack_exports__);
       this.lon = this.addressResults[addressId].position.lon;
       console.log(this.searchText);
       console.log(this.lat, this.lon, 'latlon');
-      setTimeout(function () {
-        return searchAddress();
-      }, 1000);
     } //  searchApartments(){
     //     axios.get()
     //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****

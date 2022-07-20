@@ -148,7 +148,7 @@ export default{
 
          console.log(this.searchText)
          console.log(this.lat,this.lon, 'latlon')
-    setTimeout(() =>  searchAddress(), 1000);
+
 
      },
 
