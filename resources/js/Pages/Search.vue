@@ -14,7 +14,7 @@
         :key="singleAddress.id"
       >
         <span @click="checkAddress(index)" v-if="!isHidden">{{
-          singleAddress.address.municipality
+          singleAddress.address.freeformAddress
         }}</span>
       </div>
       <button type="submit" class="my-4 btn btn-primary w-100 fw-bold fs-2 text-white" @click="searchApartments">
@@ -124,6 +124,8 @@ export default {
         console.log(results);
         this.addressResults = results;
       });
+      //visualizza la lista degli indirizzi/città
+      this.isHidden = false
     },
 
     checkAddress(addressId) {
@@ -138,11 +140,13 @@ export default {
          }); */
 
       console.log(addressId);
-      console.log(this.addressResults[0].address.municipality);
+      console.log(this.addressResults[0].address.freeformAddress);
 
-      this.searchText = this.addressResults[addressId].address.municipality;
+      //prende la lista delle città e lat e lon
+      this.searchText = this.addressResults[addressId].address.freeformAddress;
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon;
+      //nasconde la lista degli indirizzi/cittò
        this.isHidden = true
       console.log(this.searchText);
       console.log(this.lat, this.lon, "latlon");

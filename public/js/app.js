@@ -5163,7 +5163,9 @@ __webpack_require__.r(__webpack_exports__);
         var results = response.data.results;
         console.log(results);
         _this2.addressResults = results;
-      });
+      }); //visualizza la lista degli indirizzi/città
+
+      this.isHidden = false;
     },
     checkAddress: function checkAddress(addressId) {
       //console.log('suca')
@@ -5173,13 +5175,15 @@ __webpack_require__.r(__webpack_exports__);
              this.lat = item.position.lat
              this.lon = item.position.lon
              console.log(item.position)
-          }); */
+           }); */
 
       console.log(addressId);
-      console.log(this.addressResults[0].address.municipality);
-      this.searchText = this.addressResults[addressId].address.municipality;
+      console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon
+
+      this.searchText = this.addressResults[addressId].address.freeformAddress;
       this.lat = this.addressResults[addressId].position.lat;
-      this.lon = this.addressResults[addressId].position.lon;
+      this.lon = this.addressResults[addressId].position.lon; //nasconde la lista degli indirizzi/cittò
+
       this.isHidden = true;
       console.log(this.searchText);
       console.log(this.lat, this.lon, "latlon");
@@ -5361,7 +5365,7 @@ var render = function render() {
           return _vm.checkAddress(index);
         }
       }
-    }, [_vm._v(_vm._s(singleAddress.address.municipality))]) : _vm._e()]);
+    }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
   }), _vm._v(" "), _c("button", {
     staticClass: "my-4 btn btn-primary w-100 fw-bold fs-2 text-white",
     attrs: {
@@ -5439,7 +5443,7 @@ var render = function render() {
           name: item.route_name
         }
       }
-    }, [_vm._v(_vm._s(item.route_text) + "\n                ")])], 1);
+    }, [_vm._v(_vm._s(item.route_text) + "\r\n                ")])], 1);
   }), 0)]), _vm._v(" "), _c("main", [_c("router-view")], 1)]);
 };
 
@@ -57824,9 +57828,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
