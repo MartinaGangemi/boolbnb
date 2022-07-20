@@ -4,11 +4,12 @@
 
 
     <!-- form ricerca appartamento -->
-    
-        <input type="text" class="form-control" v-model="searchText" @keyup="searchAddress">
+    <form @submit.prevent>
+        <input type="text" class="form-control" v-model="searchText" @keyup='searchApartments' >
+        <!-- autoload da fixare -->
         <div v-for="singleAddress in addressResults" :key="singleAddress.id"> <span @click="checkAddress">{{singleAddress.address.municipality}}</span></div>
-        <button type="submit" class="btn btn-primary" >cerca appartamento</button>
-
+        <button type="submit" class="btn btn-primary" @click='searchApartments' >cerca appartamento</button>
+    </form>
 
         
 
@@ -69,64 +70,91 @@ export default{
    name:'Search',
     data(){
         return{
-            apartments:'',
+            apartments:[],
             apartmentsResponse:'',
             searchText:'',
             
             addressResults:[],
+            // lat:0,
+            // lon:0,
         }
 
         
     },
 
     methods:{
+
        searchApartments(){
+        this.apartments=[];
         axios.get('/api/apartments')
         .then(response => {
             console.log(response.data);
-            const apartments = response.data.data
+            const results = response.data.data
             this.apartmentsResponse = response.data
-            this.apartments = apartments
+            results.forEach(result => {
+               if(result.address.includes(this.searchText)){
+                this.apartments.push(result)
+               }
+            });
+            
         })
         .catch(e => {
             console.error(e)
         })
         },
 
-         searchAddress() {
-            console.log('suca')
-        window.axios.defaults.headers.common = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        };
+
+        // autoload da fixare
+
+    //     searchAddress() {
+            
+    //     window.axios.defaults.headers.common = {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //     };
         
-        //const resultElement = document.querySelector('.results')
-        //resultElement.innerHTML = ''
-        const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
-        axios.get(link).then(response => {
-            let results = response.data.results
-            console.log(results);
-            this.addressResults = results
+    //     //const resultElement = document.querySelector('.results')
+    //     //resultElement.innerHTML = ''
+    //     const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
+    //     axios.get(link).then(response => {
+    //         let results = response.data.results
+    //         //console.log(results);
+    //         this.addressResults = results
            
-        });
+    //     });
 
-       },
+    //    },
 
-    
 
-    checkAddress(){
-        console.log('suca')
-        this.addressResults.forEach(item => {
-            this.searchText = item.address.municipality
-            console.log(item,'diocan')
-        });
-        
-    }
+    //autoload da fixare
+
+    // checkAddress(){
+    //     console.log('suca')
+    //     this.searchText = null
+    //     this.addressResults.forEach(item => {
+    //         this.searchText = item.address.municipality
+    //         this.lat = item.position.lat
+    //         this.lon = item.position.lon
+    //         console.log(item.position,'diocan')
+            
+    //     });
+    //     console.log(this.searchText)
+    //     console.log(this.lat,this.lon, 'latlon')
+    // },
+
+    //  searchApartments(){
+    //     axios.get()
+    //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
+    //  }
+
+
+    //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
+
 
 
     //end methods
     }
-
+//end data
 }
 
        

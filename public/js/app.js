@@ -5121,53 +5121,68 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Search',
   data: function data() {
     return {
-      apartments: '',
+      apartments: [],
       apartmentsResponse: '',
       searchText: '',
-      addressResults: []
+      addressResults: [] // lat:0,
+      // lon:0,
+
     };
   },
   methods: {
     searchApartments: function searchApartments() {
       var _this = this;
 
+      this.apartments = [];
       axios.get('/api/apartments').then(function (response) {
         console.log(response.data);
-        var apartments = response.data.data;
+        var results = response.data.data;
         _this.apartmentsResponse = response.data;
-        _this.apartments = apartments;
+        results.forEach(function (result) {
+          if (result.address.includes(_this.searchText)) {
+            _this.apartments.push(result);
+          }
+        });
       })["catch"](function (e) {
         console.error(e);
       });
-    },
-    searchAddress: function searchAddress() {
-      var _this2 = this;
+    } // autoload da fixare
+    //     searchAddress() {
+    //     window.axios.defaults.headers.common = {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //     };
+    //     //const resultElement = document.querySelector('.results')
+    //     //resultElement.innerHTML = ''
+    //     const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
+    //     axios.get(link).then(response => {
+    //         let results = response.data.results
+    //         //console.log(results);
+    //         this.addressResults = results
+    //     });
+    //    },
+    //autoload da fixare
+    // checkAddress(){
+    //     console.log('suca')
+    //     this.searchText = null
+    //     this.addressResults.forEach(item => {
+    //         this.searchText = item.address.municipality
+    //         this.lat = item.position.lat
+    //         this.lon = item.position.lon
+    //         console.log(item.position,'diocan')
+    //     });
+    //     console.log(this.searchText)
+    //     console.log(this.lat,this.lon, 'latlon')
+    // },
+    //  searchApartments(){
+    //     axios.get()
+    //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
+    //  }
+    //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
+    //end methods
 
-      console.log('suca');
-      window.axios.defaults.headers.common = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }; //const resultElement = document.querySelector('.results')
-      //resultElement.innerHTML = ''
+  } //end data
 
-      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
-      axios.get(link).then(function (response) {
-        var results = response.data.results;
-        console.log(results);
-        _this2.addressResults = results;
-      });
-    },
-    checkAddress: function checkAddress() {
-      var _this3 = this;
-
-      console.log('suca');
-      this.addressResults.forEach(function (item) {
-        _this3.searchText = item.address.municipality;
-        console.log(item, 'diocan');
-      });
-    } //end methods
-
-  }
 });
 
 /***/ }),
@@ -5301,6 +5316,12 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container-fluid"
+  }, [_c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+      }
+    }
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -5316,7 +5337,7 @@ var render = function render() {
       value: _vm.searchText
     },
     on: {
-      keyup: _vm.searchAddress,
+      keyup: _vm.searchApartments,
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.searchText = $event.target.value;
@@ -5334,8 +5355,11 @@ var render = function render() {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
+    },
+    on: {
+      click: _vm.searchApartments
     }
-  }, [_vm._v("cerca appartamento")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("cerca appartamento")])], 2), _vm._v(" "), _c("div", {
     staticClass: "row justify-content-around"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
@@ -5409,7 +5433,7 @@ var render = function render() {
         return _vm.getAllApartments(_vm.apartmentsResponse.current_page + 1);
       }
     }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2);
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])]);
 };
 
 var staticRenderFns = [];
