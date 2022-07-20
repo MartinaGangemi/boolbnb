@@ -24,8 +24,9 @@
 
     <!-- lista appartamenti -->
     <div class="row justify-content-around">
-      <div
-        class="box col-3 p-0 shadow"
+      <div class="col-5">
+           <div
+        class="box  p-0 shadow"
         v-for="apartment in apartments"
         :key="apartment.id"
       >
@@ -49,6 +50,16 @@
           <a href="#" class="btn btn-light">vedere</a>
         </div>
       </div>
+      </div>
+
+      <!-- mappa -->
+      <div class="col-5">
+        <div id='map' ref="mapRef"></div> 
+      </div>
+
+     
+    
+     
     </div>
 
     <!-- numero pagine -->
@@ -70,8 +81,10 @@
 </template>
 
 <script>
+
 export default {
   name: "Search",
+ 
   data() {
     return {
       apartments: [],
@@ -85,28 +98,73 @@ export default {
   },
 
   methods: {
-    searchApartments() {
+    searchApartments(addressId) {
       this.apartments = [];
       axios
         .get("/api/apartments")
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           const results = response.data.data;
           this.apartmentsResponse = response.data;
-          results.forEach((result) => {
+          results.forEach(result => {
             if (result.address.includes(this.searchText)) {
               this.apartments.push(result);
             }
           });
+
+
+          //mappa
+
+           let map = tt.map({ 
+            key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq', 
+            container:  'map', 
+            style: 'tomtom://vector/1/basic-main', 
+            //center: coordinates,
+            //zoom:10,
+        }); 
+        map.addControl(new tt.FullscreenControl()); 
+        map.addControl(new tt.NavigationControl());  
+       
+       let popupOffset = 25; 
+
+
+
+
+          this.apartments.forEach(apartment=>{
+
+            let latMarker = apartment.lat;
+            let lonMarker = apartment.lon;
+            //  let lat = this.apartments[0].lat
+            //  let lon = this.apartments[0].lon
+             let coordinates = [lonMarker, latMarker]
+             console.log(coordinates)
+           
+              //marker
+                  
+                  let marker = new tt.Marker().setLngLat(coordinates).addTo(map); 
+                  console.log(marker)
+                  let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary); 
+                  marker.setPopup(popup).togglePopup(); 
+
+          });
+
+        
+
+        
+          
+
+
+
+
           this.searchText = '';
         })
         .catch((e) => {
           console.error(e);
         });
+
     },
 
-    //autoload da fixare
-
+ 
     searchAddress() {
       window.axios.defaults.headers.common = {
         Accept: "application/json",
@@ -121,7 +179,7 @@ export default {
         `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
-        console.log(results);
+        //console.log(results);
         this.addressResults = results;
       });
       //visualizza la lista degli indirizzi/città
@@ -148,8 +206,8 @@ export default {
       this.lon = this.addressResults[addressId].position.lon;
       //nasconde la lista degli indirizzi/cittò
        this.isHidden = true
-      console.log(this.searchText);
-      console.log(this.lat, this.lon, "latlon");
+      //console.log(this.searchText);
+      //console.log(this.lat, this.lon, "latlon");
     },
 
     //  searchApartments(){
@@ -161,6 +219,14 @@ export default {
 
     //end methods
   },
+
+  
+    mounted() { 
+          
+
+    //end mounted
+    }
+  
   //end data
 };
 </script>
@@ -212,4 +278,9 @@ export default {
   border-bottom: 1px solid white;
   padding: 17px 0px;
 }
+
+#map { 
+    height: 50vh; 
+   
+} 
 </style>

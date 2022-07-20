@@ -5130,25 +5130,52 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    searchApartments: function searchApartments() {
+    searchApartments: function searchApartments(addressId) {
       var _this = this;
 
       this.apartments = [];
       axios.get("/api/apartments").then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         var results = response.data.data;
         _this.apartmentsResponse = response.data;
         results.forEach(function (result) {
           if (result.address.includes(_this.searchText)) {
             _this.apartments.push(result);
           }
+        }); //mappa
+
+        var map = tt.map({
+          key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+          container: 'map',
+          style: 'tomtom://vector/1/basic-main' //center: coordinates,
+          //zoom:10,
+
         });
+        map.addControl(new tt.FullscreenControl());
+        map.addControl(new tt.NavigationControl());
+        var popupOffset = 25;
+
+        _this.apartments.forEach(function (apartment) {
+          var latMarker = apartment.lat;
+          var lonMarker = apartment.lon; //  let lat = this.apartments[0].lat
+          //  let lon = this.apartments[0].lon
+
+          var coordinates = [lonMarker, latMarker];
+          console.log(coordinates); //marker
+
+          var marker = new tt.Marker().setLngLat(coordinates).addTo(map);
+          console.log(marker);
+          var popup = new tt.Popup({
+            offset: popupOffset
+          }).setHTML(apartment.summary);
+          marker.setPopup(popup).togglePopup();
+        });
+
         _this.searchText = '';
       })["catch"](function (e) {
         console.error(e);
       });
     },
-    //autoload da fixare
     searchAddress: function searchAddress() {
       var _this2 = this;
 
@@ -5160,8 +5187,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
       axios.get(link).then(function (response) {
-        var results = response.data.results;
-        console.log(results);
+        var results = response.data.results; //console.log(results);
+
         _this2.addressResults = results;
       }); //visualizza la lista degli indirizzi/città
 
@@ -5184,9 +5211,8 @@ __webpack_require__.r(__webpack_exports__);
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon; //nasconde la lista degli indirizzi/cittò
 
-      this.isHidden = true;
-      console.log(this.searchText);
-      console.log(this.lat, this.lon, "latlon");
+      this.isHidden = true; //console.log(this.searchText);
+      //console.log(this.lat, this.lon, "latlon");
     } //  searchApartments(){
     //     axios.get()
     //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
@@ -5194,6 +5220,8 @@ __webpack_require__.r(__webpack_exports__);
     //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
     //end methods
 
+  },
+  mounted: function mounted() {//end mounted
   } //end data
 
 });
@@ -5376,10 +5404,12 @@ var render = function render() {
     }
   }, [_vm._v("\n      cerca appartamento\n    ")])], 2), _vm._v(" "), _c("div", {
     staticClass: "row justify-content-around"
+  }, [_c("div", {
+    staticClass: "col-5"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
-      staticClass: "box col-3 p-0 shadow"
+      staticClass: "box p-0 shadow"
     }, [_c("div", {
       staticClass: "card_img d-flex justify-content-center"
     }, [_c("img", {
@@ -5401,7 +5431,14 @@ var render = function render() {
         href: "#"
       }
     }, [_vm._v("vedere")])])]);
-  }), 0)]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "col-5"
+  }, [_c("div", {
+    ref: "mapRef",
+    attrs: {
+      id: "map"
+    }
+  })])])]);
 };
 
 var staticRenderFns = [];
@@ -10509,7 +10546,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background-color: #7f7f7f;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}", ""]);
+exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background-color: #7f7f7f;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}\n#map[data-v-4026e891] {\n  height: 50vh;\n}", ""]);
 
 // exports
 
