@@ -11,9 +11,9 @@
       <!-- autoload da fixare -->
       <div
         v-for="(singleAddress, index) in addressResults"
-        :key="singleAddress.id"
+        :key="singleAddress.id" 
       >
-        <span @click="checkAddress(index)">{{
+        <span @click="checkAddress(index)" v-if="!isHidden">{{
           singleAddress.address.municipality
         }}</span>
       </div>
@@ -143,7 +143,7 @@ export default {
       this.searchText = this.addressResults[addressId].address.municipality;
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon;
-
+       this.isHidden = true
       console.log(this.searchText);
       console.log(this.lat, this.lon, "latlon");
     },

@@ -5118,12 +5118,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Search',
+  name: "Search",
   data: function data() {
     return {
       apartments: [],
-      apartmentsResponse: '',
-      searchText: '',
+      apartmentsResponse: "",
+      searchText: "",
       addressResults: [],
       lat: 0,
       lon: 0
@@ -5134,7 +5134,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.apartments = [];
-      axios.get('/api/apartments').then(function (response) {
+      axios.get("/api/apartments").then(function (response) {
         console.log(response.data);
         var results = response.data.data;
         _this.apartmentsResponse = response.data;
@@ -5143,6 +5143,7 @@ __webpack_require__.r(__webpack_exports__);
             _this.apartments.push(result);
           }
         });
+        _this.searchText = '';
       })["catch"](function (e) {
         console.error(e);
       });
@@ -5152,8 +5153,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       window.axios.defaults.headers.common = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
@@ -5168,20 +5169,21 @@ __webpack_require__.r(__webpack_exports__);
       //console.log('suca')
       this.searchText = null;
       /* this.addressResults.forEach(item => {
-          this.searchText = item.address.municipality
-          this.lat = item.position.lat
-          this.lon = item.position.lon
-          console.log(item.position)
-         
-      }); */
+             this.searchText = item.address.municipality
+             this.lat = item.position.lat
+             this.lon = item.position.lon
+             console.log(item.position)
+            
+         }); */
 
       console.log(addressId);
       console.log(this.addressResults[0].address.municipality);
       this.searchText = this.addressResults[addressId].address.municipality;
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon;
+      this.isHidden = true;
       console.log(this.searchText);
-      console.log(this.lat, this.lon, 'latlon');
+      console.log(this.lat, this.lon, "latlon");
     } //  searchApartments(){
     //     axios.get()
     //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
@@ -5354,13 +5356,13 @@ var render = function render() {
   }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress, index) {
     return _c("div", {
       key: singleAddress.id
-    }, [_c("span", {
+    }, [!_vm.isHidden ? _c("span", {
       on: {
         click: function click($event) {
           return _vm.checkAddress(index);
         }
       }
-    }, [_vm._v(_vm._s(singleAddress.address.municipality))])]);
+    }, [_vm._v(_vm._s(singleAddress.address.municipality))]) : _vm._e()]);
   }), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
@@ -5369,7 +5371,7 @@ var render = function render() {
     on: {
       click: _vm.searchApartments
     }
-  }, [_vm._v("cerca appartamento")])], 2), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n      cerca appartamento\n    ")])], 2), _vm._v(" "), _c("div", {
     staticClass: "row justify-content-around"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
@@ -5390,7 +5392,7 @@ var render = function render() {
       staticClass: "card-text"
     })]), _vm._v(" "), _c("div", {
       staticClass: "content text-center"
-    }, [_c("h3", [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\r\n                    " + _vm._s(apartment.description) + "\r\n                ")]), _vm._v(" "), _c("a", {
+    }, [_c("h3", [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\n          " + _vm._s(apartment.description) + "\n        ")]), _vm._v(" "), _c("a", {
       staticClass: "btn btn-light",
       attrs: {
         href: "#"
@@ -10504,7 +10506,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background-color: #7F7F7F;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #FFFFFF;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}", ""]);
+exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background-color: #7f7f7f;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}", ""]);
 
 // exports
 
@@ -57823,9 +57825,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
