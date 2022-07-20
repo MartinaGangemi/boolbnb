@@ -23,7 +23,7 @@
     </form>
 
     <!-- lista appartamenti -->
-    <div class="row justify-content-around">
+    <div class="row justify-content-around gy-4">
       <div
         class="box col-3 p-0 shadow"
         v-for="apartment in apartments"
@@ -211,5 +211,6 @@ export default {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   padding: 17px 0px;
+  word-wrap: break-word;
 }
 </style>
