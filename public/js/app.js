@@ -5172,16 +5172,18 @@ __webpack_require__.r(__webpack_exports__);
           this.lat = item.position.lat
           this.lon = item.position.lon
           console.log(item.position)
-         
-      }); */
+       }); */
 
       console.log(addressId);
-      console.log(this.addressResults[0].address.municipality);
-      this.searchText = this.addressResults[addressId].address.municipality;
+      console.log(this.addressResults[0].address.freeformAddress);
+      this.searchText = this.addressResults[addressId].address.freeformAddress;
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon;
       console.log(this.searchText);
       console.log(this.lat, this.lon, 'latlon');
+      setTimeout(function () {
+        return searchAddress();
+      }, 1000);
     } //  searchApartments(){
     //     axios.get()
     //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
@@ -5355,14 +5357,15 @@ var render = function render() {
     return _c("div", {
       key: singleAddress.id
     }, [_c("span", {
+      staticClass: "ms-4",
       on: {
         click: function click($event) {
           return _vm.checkAddress(index);
         }
       }
-    }, [_vm._v(_vm._s(singleAddress.address.municipality))])]);
+    }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))])]);
   }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary",
+    staticClass: "my-4 btn btn-primary w-100",
     attrs: {
       type: "submit"
     },
@@ -5390,7 +5393,7 @@ var render = function render() {
       staticClass: "card-text"
     })]), _vm._v(" "), _c("div", {
       staticClass: "content text-center"
-    }, [_c("h3", [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\r\n                    " + _vm._s(apartment.description) + "\r\n                ")]), _vm._v(" "), _c("a", {
+    }, [_c("h3", [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\n                    " + _vm._s(apartment.description) + "\n                ")]), _vm._v(" "), _c("a", {
       staticClass: "btn btn-light",
       attrs: {
         href: "#"
@@ -5421,12 +5424,12 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", [_c("div", {
-    staticClass: "navbar",
+    staticClass: "navbar justify-content-center",
     attrs: {
       id: "navbarSupportedContent"
     }
   }, [_c("ul", {
-    staticClass: "navbar-nav mr-auto"
+    staticClass: "navbar-nav mr-auto d-flex flex-row gap-3"
   }, _vm._l(_vm.menu_items, function (item) {
     return _c("li", {
       key: item.id,
@@ -5438,7 +5441,7 @@ var render = function render() {
           name: item.route_name
         }
       }
-    }, [_vm._v(_vm._s(item.route_text) + "\r\n                ")])], 1);
+    }, [_vm._v(_vm._s(item.route_text) + "\n                ")])], 1);
   }), 0)]), _vm._v(" "), _c("main", [_c("router-view")], 1)]);
 };
 
@@ -57823,9 +57826,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

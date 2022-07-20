@@ -1,5 +1,5 @@
 <template>
-    
+
 <div class="container-fluid">
 
 
@@ -7,11 +7,11 @@
     <form @submit.prevent>
         <input type="text" class="form-control" v-model="searchText" @keyup='searchAddress' >
         <!-- autoload da fixare -->
-        <div v-for="(singleAddress,index) in addressResults" :key="singleAddress.id"> <span @click="checkAddress(index)">{{singleAddress.address.municipality}}</span></div>
-        <button type="submit" class="btn btn-primary" @click='searchApartments' >cerca appartamento</button>
+        <div v-for="(singleAddress,index) in addressResults" :key="singleAddress.id"> <span class="ms-4" @click="checkAddress(index)">{{singleAddress.address.freeformAddress}}</span></div>
+        <button type="submit" class=" my-4 btn btn-primary w-100" @click='searchApartments' >cerca appartamento</button>
     </form>
 
-        
+
 
     <!-- lista appartamenti -->
     <div class="row justify-content-around">
@@ -25,7 +25,7 @@
                 <h4 class="card-title">{{apartment.summary}}</h4>
                 <p class="card-text"></p>
             </div>
-            
+
             <!-- card overflow -->
             <div class="content text-center">
                 <h3>{{apartment.summary}}</h3>
@@ -38,10 +38,10 @@
             </div>
         </div>
 
-        
+
 
     </div>
-        
+
 
 
     <!-- numero pagine -->
@@ -53,16 +53,16 @@
         <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
             <a class="page-link" href="#" @click.prevent="getAllApartments(page)">{{ page }}</a>
         </li>
-        
+
         <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
             <a class="page-link" href="#" @click.prevent="getAllApartments(apartmentsResponse.current_page + 1)">Next</a>
         </li>
     </ul>
     </nav> -->
-    
+
 </div>
 
-    
+
 </template>
 
 <script>
@@ -73,13 +73,13 @@ export default{
             apartments:[],
             apartmentsResponse:'',
             searchText:'',
-            
+
             addressResults:[],
             lat:0,
             lon:0,
         }
 
-        
+
     },
 
     methods:{
@@ -98,7 +98,7 @@ export default{
                }
 
             });
-            
+
         })
         .catch(e => {
             console.error(e)
@@ -109,12 +109,12 @@ export default{
         //autoload da fixare
 
         searchAddress() {
-            
+
         window.axios.defaults.headers.common = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         };
-        
+
        //const resultElement = document.querySelector('.results')
        //resultElement.innerHTML = ''
         const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
@@ -122,7 +122,7 @@ export default{
             let results = response.data.results
            console.log(results);
             this.addressResults = results
-           
+
         });
 
        },
@@ -136,18 +136,20 @@ export default{
              this.lat = item.position.lat
              this.lon = item.position.lon
              console.log(item.position)
-            
+
          }); */
-        
+
         console.log(addressId);
-        console.log(this.addressResults[0].address.municipality);
-        
-         this.searchText = this.addressResults[addressId].address.municipality
+        console.log(this.addressResults[0].address.freeformAddress);
+
+         this.searchText = this.addressResults[addressId].address.freeformAddress
          this.lat =  this.addressResults[addressId].position.lat
-         this.lon =  this.addressResults[addressId].position.lon   
+         this.lon =  this.addressResults[addressId].position.lon
 
          console.log(this.searchText)
          console.log(this.lat,this.lon, 'latlon')
+    setTimeout(() =>  searchAddress(), 1000);
+
      },
 
     //  searchApartments(){
@@ -165,18 +167,18 @@ export default{
 //end data
 }
 
-       
-   
 
 
-   
+
+
+
 
 
 </script>
 
 <style lang="scss" scoped>
 
-    
+
 
     .box {
         height: 500px;
