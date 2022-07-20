@@ -5124,9 +5124,9 @@ __webpack_require__.r(__webpack_exports__);
       apartments: [],
       apartmentsResponse: '',
       searchText: '',
-      addressResults: [] // lat:0,
-      // lon:0,
-
+      addressResults: [],
+      lat: 0,
+      lon: 0
     };
   },
   methods: {
@@ -5146,35 +5146,43 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.error(e);
       });
-    } // autoload da fixare
-    //     searchAddress() {
-    //     window.axios.defaults.headers.common = {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json',
-    //     };
-    //     //const resultElement = document.querySelector('.results')
-    //     //resultElement.innerHTML = ''
-    //     const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
-    //     axios.get(link).then(response => {
-    //         let results = response.data.results
-    //         //console.log(results);
-    //         this.addressResults = results
-    //     });
-    //    },
+    },
     //autoload da fixare
-    // checkAddress(){
-    //     console.log('suca')
-    //     this.searchText = null
-    //     this.addressResults.forEach(item => {
-    //         this.searchText = item.address.municipality
-    //         this.lat = item.position.lat
-    //         this.lon = item.position.lon
-    //         console.log(item.position,'diocan')
-    //     });
-    //     console.log(this.searchText)
-    //     console.log(this.lat,this.lon, 'latlon')
-    // },
-    //  searchApartments(){
+    searchAddress: function searchAddress() {
+      var _this2 = this;
+
+      window.axios.defaults.headers.common = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }; //const resultElement = document.querySelector('.results')
+      //resultElement.innerHTML = ''
+
+      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+      axios.get(link).then(function (response) {
+        var results = response.data.results;
+        console.log(results);
+        _this2.addressResults = results;
+      });
+    },
+    checkAddress: function checkAddress(addressId) {
+      //console.log('suca')
+      this.searchText = null;
+      /* this.addressResults.forEach(item => {
+          this.searchText = item.address.municipality
+          this.lat = item.position.lat
+          this.lon = item.position.lon
+          console.log(item.position)
+         
+      }); */
+
+      console.log(addressId);
+      console.log(this.addressResults[0].address.municipality);
+      this.searchText = this.addressResults[addressId].address.municipality;
+      this.lat = this.addressResults[addressId].position.lat;
+      this.lon = this.addressResults[addressId].position.lon;
+      console.log(this.searchText);
+      console.log(this.lat, this.lon, 'latlon');
+    } //  searchApartments(){
     //     axios.get()
     //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
     //  }
@@ -5337,18 +5345,20 @@ var render = function render() {
       value: _vm.searchText
     },
     on: {
-      keyup: _vm.searchApartments,
+      keyup: _vm.searchAddress,
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.searchText = $event.target.value;
       }
     }
-  }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress) {
+  }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress, index) {
     return _c("div", {
       key: singleAddress.id
     }, [_c("span", {
       on: {
-        click: _vm.checkAddress
+        click: function click($event) {
+          return _vm.checkAddress(index);
+        }
       }
     }, [_vm._v(_vm._s(singleAddress.address.municipality))])]);
   }), _vm._v(" "), _c("button", {
@@ -5386,54 +5396,7 @@ var render = function render() {
         href: "#"
       }
     }, [_vm._v("vedere")])])]);
-  }), 0), _vm._v(" "), _c("nav", {
-    attrs: {
-      "aria-label": "Page navigation example"
-    }
-  }, [_c("ul", {
-    staticClass: "pagination justify-content-center mt-5"
-  }, [_vm.apartmentsResponse.current_page > 1 ? _c("li", {
-    staticClass: "page-item"
-  }, [_c("a", {
-    staticClass: "page-link",
-    on: {
-      click: function click($event) {
-        return _vm.getAllApartments(_vm.apartmentsResponse.current_page - 1);
-      }
-    }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.apartmentsResponse.last_page, function (page) {
-    return _c("li", {
-      key: page.id,
-      "class": {
-        "page-item": true,
-        active: page == _vm.apartmentsResponse.current_page
-      }
-    }, [_c("a", {
-      staticClass: "page-link",
-      attrs: {
-        href: "#"
-      },
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.getAllApartments(page);
-        }
-      }
-    }, [_vm._v(_vm._s(page))])]);
-  }), _vm._v(" "), _vm.apartmentsResponse.current_page < _vm.apartmentsResponse.last_page ? _c("li", {
-    staticClass: "page-item"
-  }, [_c("a", {
-    staticClass: "page-link",
-    attrs: {
-      href: "#"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.getAllApartments(_vm.apartmentsResponse.current_page + 1);
-      }
-    }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])]);
+  }), 0)]);
 };
 
 var staticRenderFns = [];
@@ -57860,9 +57823,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

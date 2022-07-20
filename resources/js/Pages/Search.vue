@@ -5,9 +5,9 @@
 
     <!-- form ricerca appartamento -->
     <form @submit.prevent>
-        <input type="text" class="form-control" v-model="searchText" @keyup='searchApartments' >
+        <input type="text" class="form-control" v-model="searchText" @keyup='searchAddress' >
         <!-- autoload da fixare -->
-        <div v-for="singleAddress in addressResults" :key="singleAddress.id"> <span @click="checkAddress">{{singleAddress.address.municipality}}</span></div>
+        <div v-for="(singleAddress,index) in addressResults" :key="singleAddress.id"> <span @click="checkAddress(index)">{{singleAddress.address.municipality}}</span></div>
         <button type="submit" class="btn btn-primary" @click='searchApartments' >cerca appartamento</button>
     </form>
 
@@ -45,7 +45,7 @@
 
 
     <!-- numero pagine -->
-    <nav aria-label="Page navigation example">
+    <!-- <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center  mt-5">
         <li class="page-item" v-if="apartmentsResponse.current_page > 1">
             <a class="page-link"  @click="getAllApartments(apartmentsResponse.current_page - 1)">Previous</a>
@@ -58,7 +58,7 @@
             <a class="page-link" href="#" @click.prevent="getAllApartments(apartmentsResponse.current_page + 1)">Next</a>
         </li>
     </ul>
-    </nav>
+    </nav> -->
     
 </div>
 
@@ -75,8 +75,8 @@ export default{
             searchText:'',
             
             addressResults:[],
-            // lat:0,
-            // lon:0,
+            lat:0,
+            lon:0,
         }
 
         
@@ -92,9 +92,11 @@ export default{
             const results = response.data.data
             this.apartmentsResponse = response.data
             results.forEach(result => {
+
                if(result.address.includes(this.searchText)){
                 this.apartments.push(result)
                }
+
             });
             
         })
@@ -104,43 +106,49 @@ export default{
         },
 
 
-        // autoload da fixare
+        //autoload da fixare
 
-    //     searchAddress() {
+        searchAddress() {
             
-    //     window.axios.defaults.headers.common = {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json',
-    //     };
+        window.axios.defaults.headers.common = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
         
-    //     //const resultElement = document.querySelector('.results')
-    //     //resultElement.innerHTML = ''
-    //     const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
-    //     axios.get(link).then(response => {
-    //         let results = response.data.results
-    //         //console.log(results);
-    //         this.addressResults = results
+       //const resultElement = document.querySelector('.results')
+       //resultElement.innerHTML = ''
+        const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
+        axios.get(link).then(response => {
+            let results = response.data.results
+           console.log(results);
+            this.addressResults = results
            
-    //     });
+        });
 
-    //    },
+       },
 
 
-    //autoload da fixare
-
-    // checkAddress(){
-    //     console.log('suca')
-    //     this.searchText = null
-    //     this.addressResults.forEach(item => {
-    //         this.searchText = item.address.municipality
-    //         this.lat = item.position.lat
-    //         this.lon = item.position.lon
-    //         console.log(item.position,'diocan')
+     checkAddress(addressId){
+         //console.log('suca')
+         this.searchText = null
+         /* this.addressResults.forEach(item => {
+             this.searchText = item.address.municipality
+             this.lat = item.position.lat
+             this.lon = item.position.lon
+             console.log(item.position)
             
-    //     });
-    //     console.log(this.searchText)
-    //     console.log(this.lat,this.lon, 'latlon')
-    // },
+         }); */
+        
+        console.log(addressId);
+        console.log(this.addressResults[0].address.municipality);
+        
+         this.searchText = this.addressResults[addressId].address.municipality
+         this.lat =  this.addressResults[addressId].position.lat
+         this.lon =  this.addressResults[addressId].position.lon   
+
+         console.log(this.searchText)
+         console.log(this.lat,this.lon, 'latlon')
+     },
 
     //  searchApartments(){
     //     axios.get()
