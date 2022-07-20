@@ -1,48 +1,55 @@
 <template>
-    
-<div class="container-fluid">
-
-
+  <div class="container-fluid">
     <!-- form ricerca appartamento -->
     <form @submit.prevent>
-        <input type="text" class="form-control" v-model="searchText" @keyup='searchAddress' >
-        <!-- autoload da fixare -->
-        <div v-for="(singleAddress,index) in addressResults" :key="singleAddress.id"> <span @click="checkAddress(index)">{{singleAddress.address.municipality}}</span></div>
-        <button type="submit" class="btn btn-primary" @click='searchApartments' >cerca appartamento</button>
+      <input
+        type="text"
+        class="form-control"
+        v-model="searchText"
+        @keyup="searchAddress"
+      />
+      <!-- autoload da fixare -->
+      <div
+        v-for="(singleAddress, index) in addressResults"
+        :key="singleAddress.id"
+      >
+        <span @click="checkAddress(index)">{{
+          singleAddress.address.municipality
+        }}</span>
+      </div>
+      <button type="submit" class="btn btn-primary" @click="searchApartments">
+        cerca appartamento
+      </button>
     </form>
-
-        
 
     <!-- lista appartamenti -->
     <div class="row justify-content-around">
-
-        <div class="box col-3 p-0 shadow" v-for="apartment in apartments" :key="apartment.id">
-            <div class="card_img d-flex justify-content-center">
-                <img :src="'storage/' + apartment.cover_img" :alt='apartment.slug'>
-            </div>
-
-            <div class="card-body">
-                <h4 class="card-title">{{apartment.summary}}</h4>
-                <p class="card-text"></p>
-            </div>
-            
-            <!-- card overflow -->
-            <div class="content text-center">
-                <h3>{{apartment.summary}}</h3>
-
-                <p>
-                    {{apartment.description}}
-                </p>
-
-                <a href="#" class="btn btn-light">vedere</a>
-            </div>
+      <div
+        class="box col-3 p-0 shadow"
+        v-for="apartment in apartments"
+        :key="apartment.id"
+      >
+        <div class="card_img d-flex justify-content-center">
+          <img :src="'storage/' + apartment.cover_img" :alt="apartment.slug" />
         </div>
 
-        
+        <div class="card-body">
+          <h4 class="card-title">{{ apartment.summary }}</h4>
+          <p class="card-text"></p>
+        </div>
 
+        <!-- card overflow -->
+        <div class="content text-center">
+          <h3>{{ apartment.summary }}</h3>
+
+          <p>
+            {{ apartment.description }}
+          </p>
+
+          <a href="#" class="btn btn-light">vedere</a>
+        </div>
+      </div>
     </div>
-        
-
 
     <!-- numero pagine -->
     <!-- <nav aria-label="Page navigation example">
@@ -59,171 +66,146 @@
         </li>
     </ul>
     </nav> -->
-    
-</div>
-
-    
+  </div>
 </template>
 
 <script>
-export default{
-   name:'Search',
-    data(){
-        return{
-            apartments:[],
-            apartmentsResponse:'',
-            searchText:'',
-            
-            addressResults:[],
-            lat:0,
-            lon:0,
-        }
+export default {
+  name: "Search",
+  data() {
+    return {
+      apartments: [],
+      apartmentsResponse: "",
+      searchText: "",
 
-        
+      addressResults: [],
+      lat: 0,
+      lon: 0,
+    };
+  },
+
+  methods: {
+    searchApartments() {
+      this.apartments = [];
+      axios
+        .get("/api/apartments")
+        .then((response) => {
+          console.log(response.data);
+          const results = response.data.data;
+          this.apartmentsResponse = response.data;
+          results.forEach((result) => {
+            if (result.address.includes(this.searchText)) {
+              this.apartments.push(result);
+            }
+          });
+          this.searchText = '';
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     },
 
-    methods:{
+    //autoload da fixare
 
-       searchApartments(){
-        this.apartments=[];
-        axios.get('/api/apartments')
-        .then(response => {
-            console.log(response.data);
-            const results = response.data.data
-            this.apartmentsResponse = response.data
-            results.forEach(result => {
+    searchAddress() {
+      window.axios.defaults.headers.common = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      };
 
-               if(result.address.includes(this.searchText)){
-                this.apartments.push(result)
-               }
+      //const resultElement = document.querySelector('.results')
+      //resultElement.innerHTML = ''
+      const link =
+        `https://kr-api.tomtom.com/search/2/geocode/` +
+        this.searchText +
+        `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`;
+      axios.get(link).then((response) => {
+        let results = response.data.results;
+        console.log(results);
+        this.addressResults = results;
+      });
+    },
 
-            });
-            
-        })
-        .catch(e => {
-            console.error(e)
-        })
-        },
-
-
-        //autoload da fixare
-
-        searchAddress() {
-            
-        window.axios.defaults.headers.common = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        };
-        
-       //const resultElement = document.querySelector('.results')
-       //resultElement.innerHTML = ''
-        const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
-        axios.get(link).then(response => {
-            let results = response.data.results
-           console.log(results);
-            this.addressResults = results
-           
-        });
-
-       },
-
-
-     checkAddress(addressId){
-         //console.log('suca')
-         this.searchText = null
-         /* this.addressResults.forEach(item => {
+    checkAddress(addressId) {
+      //console.log('suca')
+      this.searchText = null;
+      /* this.addressResults.forEach(item => {
              this.searchText = item.address.municipality
              this.lat = item.position.lat
              this.lon = item.position.lon
              console.log(item.position)
             
          }); */
-        
-        console.log(addressId);
-        console.log(this.addressResults[0].address.municipality);
-        
-         this.searchText = this.addressResults[addressId].address.municipality
-         this.lat =  this.addressResults[addressId].position.lat
-         this.lon =  this.addressResults[addressId].position.lon   
 
-         console.log(this.searchText)
-         console.log(this.lat,this.lon, 'latlon')
-     },
+      console.log(addressId);
+      console.log(this.addressResults[0].address.municipality);
+
+      this.searchText = this.addressResults[addressId].address.municipality;
+      this.lat = this.addressResults[addressId].position.lat;
+      this.lon = this.addressResults[addressId].position.lon;
+
+      console.log(this.searchText);
+      console.log(this.lat, this.lon, "latlon");
+    },
 
     //  searchApartments(){
     //     axios.get()
     //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
     //  }
 
-
     //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
 
-
-
     //end methods
-    }
-//end data
-}
-
-       
-   
-
-
-   
-
-
+  },
+  //end data
+};
 </script>
 
 <style lang="scss" scoped>
+.box {
+  height: 500px;
+  width: 400px;
+  background-color: #7f7f7f;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  color: #ffffff;
+}
 
-    
+.box .card {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+}
 
-    .box {
-        height: 500px;
-        width: 400px;
-        background-color: #7F7F7F;
-        position: relative;
-        overflow: hidden;
-        border-radius: 1rem;
-        color: #FFFFFF;
-    }
+.card_img {
+  height: 40%;
+}
 
-    .box .card {
-        width: 100%;
-        height: 100%;
-        border-radius: 1rem;
-    }
+.card_img img {
+  height: 100%;
+}
 
-    .card_img{
-        height: 40%;
-    }
+.content {
+  background-color: black;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  transition: all 0.7s;
+  opacity: 0.9;
+}
 
-    .card_img img{
-        height: 100%;
-    }
+.box:hover .content {
+  left: 0;
+}
 
-    .content {
-        background-color: black;
-        color: white;
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        padding: 20px;
-        transition: all 0.7s;
-        opacity: 0.9
-    }
-
-    .box:hover .content {
-        left: 0
-    }
-
-    .content p {
-        border-top: 1px solid white;
-        border-bottom: 1px solid white;
-        padding: 17px 0px
-    }
-
-
+.content p {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 17px 0px;
+}
 </style>
