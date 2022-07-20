@@ -5173,8 +5173,7 @@ __webpack_require__.r(__webpack_exports__);
              this.lat = item.position.lat
              this.lon = item.position.lon
              console.log(item.position)
-            
-         }); */
+          }); */
 
       console.log(addressId);
       console.log(this.addressResults[0].address.municipality);
@@ -5364,7 +5363,7 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(singleAddress.address.municipality))]) : _vm._e()]);
   }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary",
+    staticClass: "my-4 btn btn-primary w-100 fw-bold fs-2 text-white",
     attrs: {
       type: "submit"
     },
@@ -5423,12 +5422,12 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", [_c("div", {
-    staticClass: "navbar",
+    staticClass: "navbar justify-content-center",
     attrs: {
       id: "navbarSupportedContent"
     }
   }, [_c("ul", {
-    staticClass: "navbar-nav mr-auto"
+    staticClass: "navbar-nav mr-auto d-flex flex-row gap-4"
   }, _vm._l(_vm.menu_items, function (item) {
     return _c("li", {
       key: item.id,
@@ -5440,7 +5439,7 @@ var render = function render() {
           name: item.route_name
         }
       }
-    }, [_vm._v(_vm._s(item.route_text) + "\r\n                ")])], 1);
+    }, [_vm._v(_vm._s(item.route_text) + "\n                ")])], 1);
   }), 0)]), _vm._v(" "), _c("main", [_c("router-view")], 1)]);
 };
 
@@ -57825,9 +57824,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

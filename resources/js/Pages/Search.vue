@@ -11,13 +11,13 @@
       <!-- autoload da fixare -->
       <div
         v-for="(singleAddress, index) in addressResults"
-        :key="singleAddress.id" 
+        :key="singleAddress.id"
       >
         <span @click="checkAddress(index)" v-if="!isHidden">{{
           singleAddress.address.municipality
         }}</span>
       </div>
-      <button type="submit" class="btn btn-primary" @click="searchApartments">
+      <button type="submit" class="my-4 btn btn-primary w-100 fw-bold fs-2 text-white" @click="searchApartments">
         cerca appartamento
       </button>
     </form>
@@ -60,7 +60,7 @@
         <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
             <a class="page-link" href="#" @click.prevent="getAllApartments(page)">{{ page }}</a>
         </li>
-        
+
         <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
             <a class="page-link" href="#" @click.prevent="getAllApartments(apartmentsResponse.current_page + 1)">Next</a>
         </li>
@@ -134,7 +134,7 @@ export default {
              this.lat = item.position.lat
              this.lon = item.position.lon
              console.log(item.position)
-            
+
          }); */
 
       console.log(addressId);
