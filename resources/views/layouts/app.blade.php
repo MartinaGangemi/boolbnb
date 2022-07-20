@@ -74,10 +74,12 @@
                 </div>
             </div>
         </nav>
-
+        
         <main class="pb-4">
             @yield('content')
         </main>
+
+       
     </div>
 </body>
 </html>
