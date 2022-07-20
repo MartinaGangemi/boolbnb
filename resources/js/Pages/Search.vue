@@ -6,11 +6,11 @@
     <!-- form ricerca appartamento -->
     
         <input type="text" class="form-control" v-model="searchText" @keyup="searchAddress">
-        
+        <div v-for="singleAddress in addressResults" :key="singleAddress.id"> <span @click="checkAddress">{{singleAddress.address.municipality}}</span></div>
         <button type="submit" class="btn btn-primary" >cerca appartamento</button>
 
 
-        <!-- <div v-for="singleAddress in addressResults" :key="singleAddress.id"> {{singleAddress.address}}</div> -->
+        
 
     <!-- lista appartamenti -->
     <div class="row justify-content-around">
@@ -73,7 +73,7 @@ export default{
             apartmentsResponse:'',
             searchText:'',
             
-            addressResults:[]
+            addressResults:[],
         }
 
         
@@ -104,28 +104,27 @@ export default{
         //resultElement.innerHTML = ''
         const link = `https://kr-api.tomtom.com/search/2/geocode/`+ this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
         axios.get(link).then(response => {
-            let addressResults = response.data.results
-            
-            console.log(addressResults);
-            // addressResults.forEach(item => {
-            //      const listElement = document.createElement('div')
-            //      //listElement.innerHTML = item.address.freeformAddress
-            //          listElement.addEventListener('click', function() {
-            //          this.searchText = item.address.freeformAddress
-            //         const addressForm = this.searchText
-            //          resultElement.innerHTML = ''
-            //          resultElement.setAttribute('hidden','true')
-            //          })
-
-            //      resultElement.append(listElement)
-            //      resultElement.removeAttribute('hidden')
-            return this.addressResults
-            });
+            let results = response.data.results
+            console.log(results);
+            this.addressResults = results
+           
+        });
 
        },
 
-      
-    //})
+    
+
+    checkAddress(){
+        console.log('suca')
+        this.addressResults.forEach(item => {
+            this.searchText = item.address.municipality
+            console.log(item,'diocan')
+        });
+        
+    }
+
+
+    //end methods
     }
 
 }

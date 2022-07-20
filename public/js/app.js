@@ -5152,22 +5152,20 @@ __webpack_require__.r(__webpack_exports__);
 
       var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
       axios.get(link).then(function (response) {
-        var addressResults = response.data.results;
-        console.log(addressResults); // addressResults.forEach(item => {
-        //      const listElement = document.createElement('div')
-        //      //listElement.innerHTML = item.address.freeformAddress
-        //          listElement.addEventListener('click', function() {
-        //          this.searchText = item.address.freeformAddress
-        //         const addressForm = this.searchText
-        //          resultElement.innerHTML = ''
-        //          resultElement.setAttribute('hidden','true')
-        //          })
-        //      resultElement.append(listElement)
-        //      resultElement.removeAttribute('hidden')
-
-        return _this2.addressResults;
+        var results = response.data.results;
+        console.log(results);
+        _this2.addressResults = results;
       });
-    } //})
+    },
+    checkAddress: function checkAddress() {
+      var _this3 = this;
+
+      console.log('suca');
+      this.addressResults.forEach(function (item) {
+        _this3.searchText = item.address.municipality;
+        console.log(item, 'diocan');
+      });
+    } //end methods
 
   }
 });
@@ -5324,6 +5322,14 @@ var render = function render() {
         _vm.searchText = $event.target.value;
       }
     }
+  }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress) {
+    return _c("div", {
+      key: singleAddress.id
+    }, [_c("span", {
+      on: {
+        click: _vm.checkAddress
+      }
+    }, [_vm._v(_vm._s(singleAddress.address.municipality))])]);
   }), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
@@ -5403,7 +5409,7 @@ var render = function render() {
         return _vm.getAllApartments(_vm.apartmentsResponse.current_page + 1);
       }
     }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])]);
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])], 2);
 };
 
 var staticRenderFns = [];
