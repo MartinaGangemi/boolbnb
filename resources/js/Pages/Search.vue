@@ -98,7 +98,8 @@ export default {
   },
 
   methods: {
-    searchApartments(addressId) {
+    searchApartments() {
+      console.log(this.searchText); 
       this.apartments = [];
       axios
         .get("/api/apartments")
@@ -149,14 +150,6 @@ export default {
                   marker.setPopup(popup).togglePopup();
 
           });
-
-
-
-
-
-
-
-
 
           this.searchText = '';
         })

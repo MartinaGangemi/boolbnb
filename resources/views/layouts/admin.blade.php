@@ -99,5 +99,45 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        function searchAddress() {
+
+            window.axios.defaults.headers.common = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            };
+
+            const address = document.getElementById('address').value
+
+            const resultElement = document.querySelector('.result')
+            resultElement.innerHTML = ''
+
+            const link = `https://kr-api.tomtom.com/search/2/geocode/${address}.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`
+
+            axios.get(link).then(response => {
+
+                const attempts = response.data.results
+
+                //console.log(response);
+                //console.log(attempts);
+
+                attempts.forEach(item => {
+                    const divElement = document.createElement('div')
+                    divElement.classList.add('list-result')
+                    const markup = `<span>${item.address.freeformAddress}</span>`
+
+                    divElement.insertAdjacentHTML('beforeend', markup)
+                    divElement.addEventListener('click', function() {
+                        document.getElementById('address').value = item.address.freeformAddress
+                        resultElement.innerHTML = ''
+                        resultElement.setAttribute('hidden', 'true')
+                    })
+                    resultElement.append(divElement)
+                    resultElement.removeAttribute('hidden')
+                });
+            })
+        }
+    </script>
 </body>
 </html>

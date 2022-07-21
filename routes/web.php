@@ -30,7 +30,6 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     //qui mettiamo le altre rotte di admin
 });
 
-
 Route::get("{any?}", function(){
     return view("guest.home");
 })->where("any",".*");

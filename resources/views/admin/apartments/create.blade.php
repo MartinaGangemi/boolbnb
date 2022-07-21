@@ -83,32 +83,34 @@
                         {{-- address --}}
 
                         <div class="row mt-3">
-                            <div class=" col-sm-12 col-lg-6">
+                            <!-- <div class=" col-sm-12 col-lg-6">
                                 <label for="city" class="form-label">Città</label>
                                 <span class="required">*</span>
                                 <input class="form-control" id="city" name="city"
                                     value="{{ old('city', $newApartment->city) }}" placeholder="Es: Roma"
                                     required minlength="4">
-                            </div>
+                            </div> -->
 
-
-                        <div class="row mt-3">
-                            <div class=" col-sm-12 col-lg-6">
-                                <label for="address" class="form-label">Via</label>
-                                <span class="required">*</span>
-                                <input class="form-control" id="address" name="address"
-                                    value="{{ old('address', $newApartment->address) }}" placeholder="Es: Viale gaetano arturo crocco"
-                                    required minlength="4">
-                            </div>
 
                             <div class="row mt-3">
                                 <div class=" col-sm-12 col-lg-6">
-                                    <label for="number" class="form-label">Numero</label>
-                                    <span class="required">*</span>
-                                    <input type="number" class="form-control" id="number" name="number"
-                                        value="{{ old('number', $newApartment->number) }}" placeholder="Es: 129"
-                                        required min="1">
-                                </div>
+                                <label for="address" class="form-label">Indirizzo</label>
+                                <span class="required">*</span>
+                                <input class="form-control" id="address" name="address"
+                                    value="{{ old('address', $newApartment->address) }}" placeholder="Es: Viale gaetano arturo crocco"
+                                    required minlength="4" onkeyup="searchAddress()">
+                                <div class="result" hidden></div>
+                            </div>
+
+                            <!-- <div class="row mt-3">
+                                <div class=" col-sm-12 col-lg-6">
+                                <label for="number" class="form-label">Numero</label>
+                                <span class="required">*</span>
+                                <input type="number" class="form-control" id="number" name="number"
+                                    value="{{ old('number', $newApartment->number) }}" placeholder="Es: 129"
+                                    required min="1">
+                            </div> -->
+
                         </div>
 
 
