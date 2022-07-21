@@ -35,13 +35,15 @@ class ApartmentRequest extends FormRequest
             'city' => 'required|string|min:3',
             'address' => 'required|string|min:6',
             'number' => 'required|numeric|min:1',
+            'services' => 'required|exists:services,id',
         ];
     }
 
     public function messages()
     {
         return [
-            'required' => ': é richiestp.',
+            'required' => ': é richiesto.',
+            'services.required'=> ' selezionare almeno un servizio',
             'numeric' => ':Deve essere un numero.',
             'summary.min' => 'Il titolo descrittivo deve essere lungo almeno 15 caratteri.',
             'summary.max' => 'Il titolo descrittivo non deve superare 150 caratteri.',

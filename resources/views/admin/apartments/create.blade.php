@@ -52,7 +52,7 @@
                                                 <div>
                                                     <input type="checkbox" class="form-check-input"
                                                         id="{{ $service->id }}" value="{{ $service->id }}"
-                                                        name="services[]" @if (in_array($service->id, old('services', []))) checked @endif>
+                                                        name="services[]" @if (in_array($service->id, old('services', []))) checked @endif >
                                                     <label class="form-check-label"
                                                         for="{{ $service->id }}">{{ $service->name }}</label>
                                                 </div>
