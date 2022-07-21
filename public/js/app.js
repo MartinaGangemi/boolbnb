@@ -5202,7 +5202,7 @@ __webpack_require__.r(__webpack_exports__);
              this.lat = item.position.lat
              this.lon = item.position.lon
              console.log(item.position)
-           }); */
+          }); */
 
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon
@@ -5395,7 +5395,7 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
   }), _vm._v(" "), _c("button", {
-    staticClass: "my-4 btn btn-primary w-100 fw-bold fs-2 text-white",
+    staticClass: "my-4 btn btn-dark w-100 fw-bold fs-2 text-white",
     attrs: {
       type: "submit"
     },
@@ -5403,9 +5403,9 @@ var render = function render() {
       click: _vm.searchApartments
     }
   }, [_vm._v("\n      cerca appartamento\n    ")])], 2), _vm._v(" "), _c("div", {
-    staticClass: "row justify-content-around"
+    staticClass: "row justify-content-center"
   }, [_c("div", {
-    staticClass: "col-5"
+    staticClass: "col col-md-12 col-lg-10 mb-2 gap-2 d-flex flex-wrap"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
@@ -5432,7 +5432,7 @@ var render = function render() {
       }
     }, [_vm._v("vedere")])])]);
   }), 0), _vm._v(" "), _c("div", {
-    staticClass: "col-5"
+    staticClass: "col-12"
   }, [_c("div", {
     ref: "mapRef",
     attrs: {
@@ -10546,7 +10546,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background-color: #7f7f7f;\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}\n#map[data-v-4026e891] {\n  height: 50vh;\n}", ""]);
+exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 61, 65);\n  background: linear-gradient(352deg, rgb(159, 61, 65) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}\n#map[data-v-4026e891] {\n  height: 50vh;\n}", ""]);
 
 // exports
 
@@ -57865,9 +57865,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

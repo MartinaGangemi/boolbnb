@@ -17,14 +17,14 @@
           singleAddress.address.freeformAddress
         }}</span>
       </div>
-      <button type="submit" class="my-4 btn btn-primary w-100 fw-bold fs-2 text-white" @click="searchApartments">
+      <button type="submit" class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white" @click="searchApartments">
         cerca appartamento
       </button>
     </form>
 
     <!-- lista appartamenti -->
-    <div class="row justify-content-around">
-      <div class="col-5">
+    <div class="row justify-content-center">
+      <div class="col col-md-12 col-lg-10 mb-2 gap-2 d-flex flex-wrap">
            <div
         class="box  p-0 shadow"
         v-for="apartment in apartments"
@@ -53,13 +53,13 @@
       </div>
 
       <!-- mappa -->
-      <div class="col-5">
-        <div id='map' ref="mapRef"></div> 
+      <div class="col-12">
+        <div id='map' ref="mapRef"></div>
       </div>
 
-     
-    
-     
+
+
+
     </div>
 
     <!-- numero pagine -->
@@ -84,7 +84,7 @@
 
 export default {
   name: "Search",
- 
+
   data() {
     return {
       apartments: [],
@@ -115,19 +115,19 @@ export default {
 
           //mappa
 
-           let map = tt.map({ 
-            key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq', 
-            container:  'map', 
-            style: 'tomtom://vector/1/basic-main', 
+           let map = tt.map({
+            key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+            container:  'map',
+            style: 'tomtom://vector/1/basic-main',
             center: [this.apartments[0].lon,this.apartments[0].lat],
             zoom: 10
             });
 
-            
-            map.addControl(new tt.FullscreenControl()); 
-            map.addControl(new tt.NavigationControl());  
-          
-            let popupOffset = 25; 
+
+            map.addControl(new tt.FullscreenControl());
+            map.addControl(new tt.NavigationControl());
+
+            let popupOffset = 25;
 
 
 
@@ -140,20 +140,20 @@ export default {
             //  let lon = this.apartments[0].lon
              let coordinates = [lonMarker, latMarker]
              console.log(coordinates)
-           
+
               //marker
-                  
-                  let marker = new tt.Marker().setLngLat(coordinates).addTo(map); 
+
+                  let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
                   console.log(marker)
-                  let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary); 
-                  marker.setPopup(popup).togglePopup(); 
+                  let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
+                  marker.setPopup(popup).togglePopup();
 
           });
 
-        
 
-        
-          
+
+
+
 
 
 
@@ -166,7 +166,7 @@ export default {
 
     },
 
- 
+
     searchAddress() {
       window.axios.defaults.headers.common = {
         Accept: "application/json",
@@ -222,13 +222,13 @@ export default {
     //end methods
   },
 
-  
-    mounted() { 
-          
+
+    mounted() {
+
 
     //end mounted
     }
-  
+
   //end data
 };
 </script>
@@ -237,7 +237,8 @@ export default {
 .box {
   height: 500px;
   width: 400px;
-  background-color: #7f7f7f;
+  background: rgb(159,61,65);
+  background: linear-gradient(352deg, rgba(159,61,65,1) 11%, rgba(2,0,36,1) 100%);
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
@@ -281,8 +282,8 @@ export default {
   padding: 17px 0px;
 }
 
-#map { 
-    height: 50vh; 
-   
-} 
+#map {
+    height: 50vh;
+
+}
 </style>
