@@ -1,10 +1,10 @@
 <template>
     <div id="body">
 
-  
 
-    
-   
+
+
+
 
     <div class="p-5 bg-light my_back">
         <div class="container text-light">
@@ -43,12 +43,12 @@
         </div>
 
 
-        
+
     </section>
 
-  
 
-    
+
+
 </div>
 </template>
 
@@ -56,9 +56,9 @@
 
 export default{
    name:'Home',
-   
 
-    
+
+
 }
 
 </script>
@@ -76,6 +76,6 @@ export default{
         background-position: center;
     }
 
-   
+
 
 </style>

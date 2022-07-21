@@ -32,27 +32,31 @@ class ApartmentRequest extends FormRequest
             'square_meters' => 'required|numeric|min:9',
             'cover_img' => 'image|mimes:jpeg,jpg,png',
             'description' => 'required|min:50|max:255',
-            'address' => 'required|string|min:15',
+            'city' => 'required|string|min:3',
+            'address' => 'required|string|min:6',
+            'number' => 'required|numeric|min:1',
         ];
     }
 
     public function messages()
     {
         return [
-            'required' => ':attribute is required.',
-            'numeric' => ':attribute should be a number.',
-            'summary.min' => 'Descriptive title must be longer than 15 characters.',
-            'summary.max' => 'Descriptive title should not exceed 150 characters.',
-            'rooms.min' => 'The apartment should have at least 1 room.',
-            'cover_img.image' => 'The apartment image should be an image.',
-            'cover_img.required' => 'A cover image of the apartment is required.',
-            'cover_img.mimes' => 'Image file format should be a .jpeg, .jpg or a .png.',
-            'beds:min' => 'The apartment should have at least 1 bed.',
-            'bathrooms.min' => 'The apartment should have at least 1 bathroom.',
-            'square_meters' => 'The apartment should be bigger than 9 meters.',
-            'description.min' => 'Apartment description should be longer than 50 characters to increase attractiveness.',
-            'description.max' => 'Apartment description should not be longer than 255 characters.',
-            'address.min' => 'Address attribute should be long at least 14 characters and should be composede like this :" City address and number.',
+            'required' => ': é richiestp.',
+            'numeric' => ':Deve essere un numero.',
+            'summary.min' => 'Il titolo descrittivo deve essere lungo almeno 15 caratteri.',
+            'summary.max' => 'Il titolo descrittivo non deve superare 150 caratteri.',
+            'rooms.min' => 'Deve esserci almeno una stanza.',
+            'cover_img.image' => 'l\'\ immagine deve essere un immagine.',
+            'cover_img.required' => 'è richiesta un immagine.',
+            'cover_img.mimes' => 'Il file immagine deve essere nel formato .jpeg, .jpg or a .png.',
+            'beds:min' => 'Deve esserci almeno un letto.',
+            'bathrooms.min' => 'Deve esserci alemeno un bagno.',
+            'square_meters' => 'Deve avere almeno 9 metriquadri.',
+            'description.min' => 'La descrizzione deve essere di almeno 50 caratteri.',
+            'description.max' => 'La descrizzione non può superare i 255 caratteri.',
+            'city.min' => 'La Citta deve essere lunga almeno 3 caratteri ',
+            'address.min' => 'La via deve essere lunga almeno 6 caratteri ',
+            'number.min' => 'Il numero deve essere maggiore di 0',
         ];
     }
 }

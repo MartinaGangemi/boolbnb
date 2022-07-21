@@ -237,8 +237,8 @@ export default {
 .box {
   height: 500px;
   width: 400px;
-  background: rgb(159,61,65);
-  background: linear-gradient(352deg, rgba(159,61,65,1) 11%, rgba(2,0,36,1) 100%);
+  background: rgb(159, 35, 39);
+  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgba(2,0,36,1) 100%);
   position: relative;
   overflow: hidden;
   border-radius: 1rem;

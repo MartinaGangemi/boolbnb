@@ -3,7 +3,7 @@
 @section('content')
     <section id="apartment-form" class="p-3 bg-container">
         <div class="container">
-            <h4 class="text-center">Insert your apartment's info.</h4>
+            <h4 class="text-center">Inserisci le informazioni del tuo appartamento</h4>
 
             <div class="create-edit-wrapper p-3">
                 <div class="container create-container">
@@ -23,7 +23,7 @@
                         @csrf
                         {{-- title --}}
                         <div>
-                            <label for="summary" class="form-label">Title</label>
+                            <label for="summary" class="form-label">Titolo descrittivo</label>
                             <span class="required">*</span>
                             <input type="text" class="form-control" id="summary" name="summary"
                                 placeholder="Add a summary" value="{{ old('summary', $newApartment->summary) }}" required
@@ -35,8 +35,7 @@
                                 <input class="form-check-input" type="hidden" value="0" id="visible" name="visible">
                                 <input class="form-check-input" type="checkbox" value="1" id="visible"
                                     name="visible">
-                                <label class="form-check-label yellow-label" for="visible">Check this if you want your
-                                    apartment to be visibile</label>
+                                <label class="form-check-label yellow-label" for="visible">Spunta se vui rendere visibile l'appartamento</label>
                             </div>
                             {{-- services --}}
                             <div class="form-group col-sm-12 col-lg-6">
@@ -44,7 +43,7 @@
 
                                     <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenu2"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Choose your services
+                                        Scegli almeno un servizio
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -67,7 +66,7 @@
                         {{-- cover image --}}
                         <div class="row mt-3">
                             <div class="col-sm-12 col-lg-6">
-                                <label for="cover_img" class="form-label">Image</label>
+                                <label for="cover_img" class="form-label">Immagine</label>
                                 <span class="required">*</span>
                                 <input type="file" class="form-control" placeholder="Choose an cover_img" id="cover_img"
                                     name="cover_img" value="{{ old('cover_img', $newApartment->cover_img) }}" required
@@ -75,29 +74,48 @@
                             </div>
                             {{-- description --}}
                             <div class="col-sm-12 col-lg-6">
-                                <label for="description" class="form-label">Description</label>
+                                <label for="description" class="form-label">Descizione</label>
                                 <span class="required">*</span>
                                 <textarea class="form-control" id="description" name="description" placeholder="Add a description" required
                                     minlength="50" maxlength="255">{{ old('description', $newApartment->description) }}</textarea>
                             </div>
                         </div>
                         {{-- address --}}
+
                         <div class="row mt-3">
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="address" class="form-label">address</label>
+                                <label for="city" class="form-label">Città</label>
+                                <span class="required">*</span>
+                                <input class="form-control" id="city" name="city"
+                                    value="{{ old('city', $newApartment->city) }}" placeholder="Es: Roma"
+                                    required minlength="4">
+                            </div>
+
+
+                        <div class="row mt-3">
+                            <div class=" col-sm-12 col-lg-6">
+                                <label for="address" class="form-label">Via</label>
                                 <span class="required">*</span>
                                 <input class="form-control" id="address" name="address"
                                     value="{{ old('address', $newApartment->address) }}" placeholder="Es: City , address and number"
                                     required minlength="4">
                             </div>
 
+                            <div class="row mt-3">
+                                <div class=" col-sm-12 col-lg-6">
+                                    <label for="number" class="form-label">Numero</label>
+                                    <span class="required">*</span>
+                                    <input type="number" class="form-control" id="number" name="number"
+                                        value="{{ old('number', $newApartment->number) }}" placeholder="Add your number' number"
+                                        required min="1">
+                                </div>
                         </div>
 
 
                         {{-- rooms --}}
                         <div class="row mt-3">
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="rooms" class="form-label">Rooms</label>
+                                <label for="rooms" class="form-label">Stanze</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="rooms" name="rooms"
                                     value="{{ old('rooms', $newApartment->rooms) }}" placeholder="Add your rooms' number"
@@ -105,7 +123,7 @@
                             </div>
                             {{-- beds --}}
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="beds" class="form-label">Beds</label>
+                                <label for="beds" class="form-label">Letti</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="beds" name="beds"
                                     value="{{ old('beds', $newApartment->beds) }}" placeholder="Add your beds' number"
@@ -115,7 +133,7 @@
                         {{-- bathrooms --}}
                         <div class="row mt-3">
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="bathrooms" class="form-label">Bathrooms</label>
+                                <label for="bathrooms" class="form-label">Bagni</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="bathrooms" name="bathrooms"
                                     value="{{ old('bathrooms', $newApartment->bathrooms) }}"
@@ -123,7 +141,7 @@
                             </div>
                             {{-- square_mt --}}
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="square_meters" class="form-label">Square Meters</label>
+                                <label for="square_meters" class="form-label">Metriquadri</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="square_meters" name="square_meters"
                                     value="{{ old('square_meters', $newApartment->square_meters) }}"
@@ -131,15 +149,14 @@
                             </div>
                         </div>
                         {{-- Questo deve stare qui se no il form non funziona --}}
-                        <button type="submit" class="btn btn-success mt-5 w-100">Add your new apartment</button>
+                        <button type="submit" class="btn btn-success mt-5 w-100">Aggiungi il tuo appartamento</button>
                     </form>
 
 
 
                 </div>
             </div>
-            <h5 class="text-center"><a href="{{ route('admin.apartments.index') }}" class="font-italic">Click here to
-                    go back to your apartments.</a></h5>
+            <h5 class="text-center"><a href="{{ route('admin.apartments.index') }}" class="font-italic">Clicca qui per tornare alla tua dashboard.</a></h5>
 
         </div>
     </section>
