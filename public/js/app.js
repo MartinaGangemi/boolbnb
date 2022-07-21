@@ -5149,7 +5149,7 @@ __webpack_require__.r(__webpack_exports__);
           container: 'map',
           style: 'tomtom://vector/1/basic-main',
           center: [_this.apartments[0].lon, _this.apartments[0].lat],
-          zoom: 10
+          zoom: 17
         });
         map.addControl(new tt.FullscreenControl());
         map.addControl(new tt.NavigationControl());

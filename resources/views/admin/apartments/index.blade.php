@@ -15,9 +15,9 @@
         @foreach($apartments as $apartment)
 
             <div class="col px-2">
-                <div class="card">
+                <div class="card card-index">
                     <div class="card-img">
-                        <img src="{{ asset('storage/' . $apartment->cover_img) }}" class="card-img-top" alt="$apartment->slug">
+                        <img  src="{{ asset('storage/' . $apartment->cover_img) }}" class="card-img-top" alt="$apartment->slug">
                     </div>
 
                     <div class="card-body">

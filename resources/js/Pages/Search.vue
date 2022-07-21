@@ -120,7 +120,7 @@ export default {
             container:  'map',
             style: 'tomtom://vector/1/basic-main',
             center: [this.apartments[0].lon,this.apartments[0].lat],
-            zoom: 10
+            zoom: 17
             });
 
 
