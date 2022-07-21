@@ -5202,7 +5202,7 @@ __webpack_require__.r(__webpack_exports__);
              this.lat = item.position.lat
              this.lon = item.position.lon
              console.log(item.position)
-          }); */
+           }); */
 
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon

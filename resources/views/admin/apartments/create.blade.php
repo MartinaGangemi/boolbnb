@@ -26,7 +26,7 @@
                             <label for="summary" class="form-label">Titolo descrittivo</label>
                             <span class="required">*</span>
                             <input type="text" class="form-control" id="summary" name="summary"
-                                placeholder="Add a summary" value="{{ old('summary', $newApartment->summary) }}" required
+                                placeholder="Aggiungi Titolo descrittivo" value="{{ old('summary', $newApartment->summary) }}" required
                                 minlength="15" maxlength="150">
                         </div>
                         {{-- visibility --}}
@@ -68,7 +68,7 @@
                             <div class="col-sm-12 col-lg-6">
                                 <label for="cover_img" class="form-label">Immagine</label>
                                 <span class="required">*</span>
-                                <input type="file" class="form-control" placeholder="Choose an cover_img" id="cover_img"
+                                <input type="file" class="form-control" placeholder="Scegli un immagine" id="cover_img"
                                     name="cover_img" value="{{ old('cover_img', $newApartment->cover_img) }}" required
                                     accept="jpeg, jpg, png">
                             </div>
@@ -76,7 +76,7 @@
                             <div class="col-sm-12 col-lg-6">
                                 <label for="description" class="form-label">Descizione</label>
                                 <span class="required">*</span>
-                                <textarea class="form-control" id="description" name="description" placeholder="Add a description" required
+                                <textarea class="form-control" id="description" name="description" placeholder="Aggiungi una descrizione" required
                                     minlength="50" maxlength="255">{{ old('description', $newApartment->description) }}</textarea>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                                 <label for="address" class="form-label">Via</label>
                                 <span class="required">*</span>
                                 <input class="form-control" id="address" name="address"
-                                    value="{{ old('address', $newApartment->address) }}" placeholder="Es: City , address and number"
+                                    value="{{ old('address', $newApartment->address) }}" placeholder="Es: Viale gaetano arturo crocco"
                                     required minlength="4">
                             </div>
 
@@ -106,7 +106,7 @@
                                     <label for="number" class="form-label">Numero</label>
                                     <span class="required">*</span>
                                     <input type="number" class="form-control" id="number" name="number"
-                                        value="{{ old('number', $newApartment->number) }}" placeholder="Add your number' number"
+                                        value="{{ old('number', $newApartment->number) }}" placeholder="Es: 129"
                                         required min="1">
                                 </div>
                         </div>
@@ -118,7 +118,7 @@
                                 <label for="rooms" class="form-label">Stanze</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="rooms" name="rooms"
-                                    value="{{ old('rooms', $newApartment->rooms) }}" placeholder="Add your rooms' number"
+                                    value="{{ old('rooms', $newApartment->rooms) }}" placeholder="Numero di stanze es : 2"
                                     required min="1">
                             </div>
                             {{-- beds --}}
@@ -126,7 +126,7 @@
                                 <label for="beds" class="form-label">Letti</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="beds" name="beds"
-                                    value="{{ old('beds', $newApartment->beds) }}" placeholder="Add your beds' number"
+                                    value="{{ old('beds', $newApartment->beds) }}" placeholder="Numero di letti es : 1"
                                     required min="1">
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="bathrooms" name="bathrooms"
                                     value="{{ old('bathrooms', $newApartment->bathrooms) }}"
-                                    placeholder="Add your bathrooms' number" required min="1">
+                                    placeholder="Numero di bagni es : 1" required min="1">
                             </div>
                             {{-- square_mt --}}
                             <div class=" col-sm-12 col-lg-6">
@@ -145,7 +145,7 @@
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="square_meters" name="square_meters"
                                     value="{{ old('square_meters', $newApartment->square_meters) }}"
-                                    placeholder="Add your square meters number" required min="10" step="5">
+                                    placeholder="Metriquadri es : 40 " required min="10" step="5">
                             </div>
                         </div>
                         {{-- Questo deve stare qui se no il form non funziona --}}
