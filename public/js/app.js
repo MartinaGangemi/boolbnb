@@ -5147,9 +5147,9 @@ __webpack_require__.r(__webpack_exports__);
         var map = tt.map({
           key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
           container: 'map',
-          style: 'tomtom://vector/1/basic-main' //center: coordinates,
-          //zoom:10,
-
+          style: 'tomtom://vector/1/basic-main',
+          center: [_this.apartments[0].lon, _this.apartments[0].lat],
+          zoom: 10
         });
         map.addControl(new tt.FullscreenControl());
         map.addControl(new tt.NavigationControl());
@@ -5428,7 +5428,7 @@ var render = function render() {
     }, [_c("h3", [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\n          " + _vm._s(apartment.description) + "\n        ")]), _vm._v(" "), _c("a", {
       staticClass: "btn btn-light",
       attrs: {
-        href: "#"
+        href: "admin/apartments/" + apartment.slug
       }
     }, [_vm._v("vedere")])])]);
   }), 0), _vm._v(" "), _c("div", {
@@ -57865,9 +57865,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-3\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

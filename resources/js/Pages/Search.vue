@@ -47,7 +47,7 @@
             {{ apartment.description }}
           </p>
 
-          <a href="#" class="btn btn-light">vedere</a>
+          <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
         </div>
       </div>
       </div>
@@ -119,13 +119,15 @@ export default {
             key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq', 
             container:  'map', 
             style: 'tomtom://vector/1/basic-main', 
-            //center: coordinates,
-            //zoom:10,
-        }); 
-        map.addControl(new tt.FullscreenControl()); 
-        map.addControl(new tt.NavigationControl());  
-       
-       let popupOffset = 25; 
+            center: [this.apartments[0].lon,this.apartments[0].lat],
+            zoom: 10
+            });
+
+            
+            map.addControl(new tt.FullscreenControl()); 
+            map.addControl(new tt.NavigationControl());  
+          
+            let popupOffset = 25; 
 
 
 
