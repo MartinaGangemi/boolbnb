@@ -5102,8 +5102,71 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../state */ "./resources/js/state.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Home'
+  name: 'Home',
+  data: function data() {
+    return {
+      addressResults: [],
+      searchText: "",
+      apartments: []
+    };
+  },
+  methods: {
+    searchApartments: function searchApartments(addressId) {
+      var _this = this;
+
+      this.apartments = [];
+      axios.get("/api/apartments").then(function (response) {
+        //console.log(response.data);
+        var results = response.data.data;
+        _this.apartmentsResponse = response.data; //filtro appartamenti per città
+
+        results.forEach(function (result) {
+          if (result.address.includes(_this.searchText)) {
+            _this.apartments.push(result);
+          }
+        });
+        _state__WEBPACK_IMPORTED_MODULE_0__["default"].apartments = _this.apartments;
+        console.log(_state__WEBPACK_IMPORTED_MODULE_0__["default"]);
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    },
+    //chiamata tom tom e crea una lista sdi suggerimenti
+    searchAddress: function searchAddress() {
+      var _this2 = this;
+
+      window.axios.defaults.headers.common = {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }; //const resultElement = document.querySelector('.results')
+      //resultElement.innerHTML = ''
+
+      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+      axios.get(link).then(function (response) {
+        var results = response.data.results; //console.log(results);
+
+        _this2.addressResults = results;
+      }); //visualizza la lista degli indirizzi/città
+
+      this.isHidden = false;
+    },
+    //metodo per cliccare l'indirizzo che compare in autoload
+    checkAddress: function checkAddress(addressId) {
+      this.searchText = null;
+      console.log(addressId);
+      console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon
+
+      this.searchText = this.addressResults[addressId].address.freeformAddress;
+      this.lat = this.addressResults[addressId].position.lat;
+      this.lon = this.addressResults[addressId].position.lon; //nasconde la lista degli indirizzi/cittò
+
+      this.isHidden = true; //console.log(this.searchText);
+      //console.log(this.lat, this.lon, "latlon");
+    }
+  }
 });
 
 /***/ }),
@@ -5117,6 +5180,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../state */ "./resources/js/state.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Search",
   data: function data() {
@@ -5128,6 +5193,10 @@ __webpack_require__.r(__webpack_exports__);
       lat: 0,
       lon: 0
     };
+  },
+  props: {
+    type: Object,
+    required: true
   },
   methods: {
     searchApartments: function searchApartments(addressId) {
@@ -5195,15 +5264,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isHidden = false;
     },
     checkAddress: function checkAddress(addressId) {
-      //console.log('suca')
       this.searchText = null;
-      /* this.addressResults.forEach(item => {
-             this.searchText = item.address.municipality
-             this.lat = item.position.lat
-             this.lon = item.position.lon
-             console.log(item.position)
-           }); */
-
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon
 
@@ -5211,19 +5272,14 @@ __webpack_require__.r(__webpack_exports__);
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon; //nasconde la lista degli indirizzi/cittò
 
-      this.isHidden = true; //console.log(this.searchText);
-      //console.log(this.lat, this.lon, "latlon");
-    } //  searchApartments(){
-    //     axios.get()
-    //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
-    //  }
-    //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
-    //end methods
+      this.isHidden = true;
+    } //end methods
 
   },
-  mounted: function mounted() {//end mounted
-  } //end data
-
+  mounted: function mounted() {
+    this.apartments = _state__WEBPACK_IMPORTED_MODULE_0__["default"].apartments;
+    console.log(apartments);
+  }
 });
 
 /***/ }),
@@ -5272,7 +5328,71 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", {
+    attrs: {
+      id: "body"
+    }
+  }, [_vm._m(0), _vm._v(" "), _c("section", {
+    staticClass: "container-fluid mt-5",
+    attrs: {
+      id: "site_main"
+    }
+  }, [_c("div", {
+    staticClass: "row justify-content-center"
+  }, [_c("div", {
+    staticClass: "col-8"
+  }, [_c("h1", [_vm._v("Dove vuoi andare?")]), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+      }
+    }
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.searchText,
+      expression: "searchText"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.searchText
+    },
+    on: {
+      keyup: _vm.searchAddress,
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.searchText = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress, index) {
+    return _c("div", {
+      key: singleAddress.id
+    }, [!_vm.isHidden ? _c("span", {
+      on: {
+        click: function click($event) {
+          return _vm.checkAddress(index);
+        }
+      }
+    }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
+  }), _vm._v(" "), _c("router-link", {
+    attrs: {
+      to: "/search"
+    }
+  }, [_c("button", {
+    staticClass: "my-4 btn btn-dark w-100 fw-bold fs-2 text-white",
+    attrs: {
+      type: "submit"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.searchApartments();
+      }
+    }
+  }, [_vm._v("\n                    cerca appartamento\n                ")])])], 2)])]), _vm._v(" "), _vm._m(1)])]);
 };
 
 var staticRenderFns = [function () {
@@ -5280,10 +5400,6 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    attrs: {
-      id: "body"
-    }
-  }, [_c("div", {
     staticClass: "p-5 bg-light my_back"
   }, [_c("div", {
     staticClass: "container text-light"
@@ -5301,12 +5417,12 @@ var staticRenderFns = [function () {
       href: "Jumbo action link",
       role: "button"
     }
-  }, [_vm._v("Jumbo action name")])])])]), _vm._v(" "), _c("section", {
-    staticClass: "container-fluid",
-    attrs: {
-      id: "site_main"
-    }
-  }, [_c("div", {
+  }, [_vm._v("Jumbo action name")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "row justify-content-center py-3"
   }, [_c("div", {
     staticClass: "col-10"
@@ -5333,7 +5449,7 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-2 text"
-  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])])])]);
+  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])]);
 }];
 render._withStripped = true;
 
@@ -57767,6 +57883,25 @@ var routes = [{
 
 /***/ }),
 
+/***/ "./resources/js/state.js":
+/*!*******************************!*\
+  !*** ./resources/js/state.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+var state = vue__WEBPACK_IMPORTED_MODULE_0___default.a.observable({
+  apartments: []
+});
+/* harmony default export */ __webpack_exports__["default"] = (state);
+
+/***/ }),
+
 /***/ "./resources/js/views/App.vue":
 /*!************************************!*\
   !*** ./resources/js/views/App.vue ***!
@@ -57865,9 +58000,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
