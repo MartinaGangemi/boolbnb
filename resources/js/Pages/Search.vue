@@ -23,8 +23,12 @@
     </form>
 
     <!-- lista appartamenti -->
-    <div class="row justify-content-center">
-      <div class="col col-md-12 col-lg-10 mb-2 gap-2 d-flex flex-wrap">
+    <div class="row justify-content-center" style="padding-bottom:2000px">
+      <div class="sticky-top row col-lg-9 pb-5">
+        <div id='map' class="my-round my-col" ref="mapRef"></div>
+      </div>
+      
+      <div class="col col-md-12 col-lg-10 mb-2 gap-2 p-3 d-flex flex-wrap">
            <div
         class="box  p-0 shadow"
         v-for="apartment in apartments"
@@ -37,10 +41,11 @@
         <div class="card-body">
           <h4 class="card-title">{{ apartment.summary }}</h4>
           <p class="card-text"></p>
+          <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
         </div>
 
         <!-- card overflow -->
-        <div class="content text-center">
+        <!-- <div class="content text-center">
           <h3>{{ apartment.summary }}</h3>
 
           <p>
@@ -48,15 +53,11 @@
           </p>
 
           <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
-        </div>
+        </div> -->
       </div>
       </div>
 
       <!-- mappa -->
-      <div class="col-12">
-        <div id='map' ref="mapRef"></div>
-      </div>
-
 
 
 
@@ -234,6 +235,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+#map {
+    height: 35vh;
+}
+
+.my-round{
+  border-radius: 20px;
+}
+
+.fixed{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
+}
+
 .box {
   height: 500px;
   width: 400px;
@@ -259,7 +278,7 @@ export default {
   height: 100%;
 }
 
-.content {
+/* .content {
   background-color: black;
   color: white;
   position: absolute;
@@ -280,10 +299,5 @@ export default {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   padding: 17px 0px;
-}
-
-#map {
-    height: 50vh;
-
-}
+} */
 </style>
