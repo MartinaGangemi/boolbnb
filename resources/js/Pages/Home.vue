@@ -38,9 +38,11 @@
                 singleAddress.address.freeformAddress
                 }}</span>
             </div>
-            <button type="submit" class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white">
-                cerca appartamento
-            </button>
+            <router-link to="/search">
+                <button type="submit" class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white" @click="searchApartments()">
+                    cerca appartamento
+                </button>
+            </router-link>   
         </form>
             </div>
         </div>
@@ -80,7 +82,7 @@
 </template>
 
 <script>
-
+import state from '../state';
 export default{
    name:'Home',
 
@@ -88,12 +90,37 @@ export default{
         return {
             addressResults: [],
             searchText: "",
+            apartments: [],
+            
+            
         };
     },
 
     methods: {
+    
+    searchApartments(addressId) {
+      this.apartments = [];
+      axios
+        .get("/api/apartments")
+        .then((response) => {
+          //console.log(response.data);
+          const results = response.data.data;
+          this.apartmentsResponse = response.data;
+          //filtro appartamenti per città
+          results.forEach(result => {
+            if (result.address.includes(this.searchText)) {
+              this.apartments.push(result);
+            }
+          });
+          state.apartments = this.apartments
+        console.log(state)
+        })
 
-        //chiamata tom tom e crea una lista sdi suggerimenti
+        .catch((e) => {
+        console.error(e);
+        });
+    },
+    //chiamata tom tom e crea una lista sdi suggerimenti
     searchAddress() {
       window.axios.defaults.headers.common = {
         Accept: "application/json",

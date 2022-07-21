@@ -81,12 +81,13 @@
 </template>
 
 <script>
-
+import state from '../state';
 export default {
   name: "Search",
 
   data() {
     return {
+     
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
@@ -95,6 +96,11 @@ export default {
       lat: 0,
       lon: 0,
     };
+  },
+
+  props: {
+    type:Object,
+    required:true
   },
 
   methods: {
@@ -113,58 +119,47 @@ export default {
           });
 
 
-          //mappa
+  //mappa
 
-           let map = tt.map({
-            key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
-            container:  'map',
-            style: 'tomtom://vector/1/basic-main',
-            center: [this.apartments[0].lon,this.apartments[0].lat],
-            zoom: 17
-            });
+    let map = tt.map({
+    key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+    container:  'map',
+    style: 'tomtom://vector/1/basic-main',
+    center: [this.apartments[0].lon,this.apartments[0].lat],
+    zoom: 17
+    });
 
+    map.addControl(new tt.FullscreenControl());
+    map.addControl(new tt.NavigationControl());
 
-            map.addControl(new tt.FullscreenControl());
-            map.addControl(new tt.NavigationControl());
-
-            let popupOffset = 25;
-
+    let popupOffset = 25;
 
 
+    this.apartments.forEach(apartment=>{
 
-          this.apartments.forEach(apartment=>{
+    let latMarker = apartment.lat;
+    let lonMarker = apartment.lon;
+    //  let lat = this.apartments[0].lat
+    //  let lon = this.apartments[0].lon
+      let coordinates = [lonMarker, latMarker]
+      console.log(coordinates)
 
-            let latMarker = apartment.lat;
-            let lonMarker = apartment.lon;
-            //  let lat = this.apartments[0].lat
-            //  let lon = this.apartments[0].lon
-             let coordinates = [lonMarker, latMarker]
-             console.log(coordinates)
+      //marker
 
-              //marker
+          let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
+          console.log(marker)
+          let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
+          marker.setPopup(popup).togglePopup();
 
-                  let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-                  console.log(marker)
-                  let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
-                  marker.setPopup(popup).togglePopup();
+  });
 
-          });
+    this.searchText = '';
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 
-
-
-
-
-
-
-
-
-          this.searchText = '';
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-
-    },
+  },
 
 
     searchAddress() {
@@ -189,16 +184,9 @@ export default {
     },
 
     checkAddress(addressId) {
-      //console.log('suca')
+      
       this.searchText = null;
-      /* this.addressResults.forEach(item => {
-             this.searchText = item.address.municipality
-             this.lat = item.position.lat
-             this.lon = item.position.lon
-             console.log(item.position)
-
-         }); */
-
+     
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress);
 
@@ -208,28 +196,19 @@ export default {
       this.lon = this.addressResults[addressId].position.lon;
       //nasconde la lista degli indirizzi/cittò
        this.isHidden = true
-      //console.log(this.searchText);
-      //console.log(this.lat, this.lon, "latlon");
+      
     },
 
-    //  searchApartments(){
-    //     axios.get()
-    //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
-    //  }
-
-    //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
+   
 
     //end methods
   },
 
+  mounted(){
+    this.apartments = state.apartments
+    console.log(apartments)
+  }
 
-    mounted() {
-
-
-    //end mounted
-    }
-
-  //end data
 };
 </script>
 
