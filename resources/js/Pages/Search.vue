@@ -95,7 +95,9 @@ export default {
       addressResults: [],
       lat: 0,
       lon: 0,
-
+      searchLat: 0,
+      searchLon: 0,
+      defaultDistance: 20
       
     };
   },
@@ -103,63 +105,101 @@ export default {
 
 
   methods: {
-    searchApartments(addressId) {
+
+    searchApartments() {
+
       this.apartments = [];
+
       axios
         .get("/api/apartments")
         .then((response) => {
           //console.log(response.data);
           const results = response.data.data;
           this.apartmentsResponse = response.data;
-          results.forEach(result => {
-            if (result.address.includes(this.searchText)) {
-              this.apartments.push(result);
-            }
-          });
 
+          const link = `https://kr-api.tomtom.com/search/2/geocode/` + this.searchText + `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`;
 
-  //mappa
+          axios.get(link).then((searchResponse) => {
 
-    let map = tt.map({
-    key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
-    container:  'map',
-    style: 'tomtom://vector/1/basic-main',
-    center: [this.apartments[0].lon,this.apartments[0].lat],
-    zoom: 17
-    });
+            let searchResults = searchResponse.data.results;
 
-    map.addControl(new tt.FullscreenControl());
-    map.addControl(new tt.NavigationControl());
+            //console.log('Risultati di ricerca: ' , searchResults[0].position);
+            this.searchLat = searchResults[0].position.lat;
+            this.searchLon = searchResults[0].position.lon;
 
-    let popupOffset = 25;
+            //console.log("Coordinates: ", this.searchLat, this.searchLon);
 
+            results.forEach(result => {
 
-    this.apartments.forEach(apartment=>{
+              //console.log("Risultato: ", result);
 
-    let latMarker = apartment.lat;
-    let lonMarker = apartment.lon;
-    //  let lat = this.apartments[0].lat
-    //  let lon = this.apartments[0].lon
-      let coordinates = [lonMarker, latMarker]
-      console.log(coordinates)
+              const distance = this.getDistanceFromLatLonInKm(result.lat, result.lon, this.searchLat, this.searchLon);
+              //console.log(distance);
 
-      //marker
+              if (distance <= this.defaultDistance) {
+                this.apartments.push(result);
+              }
 
-          let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-          console.log(marker)
-          let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
-          marker.setPopup(popup).togglePopup();
+            });
 
-  });
+            //mappa
 
-    this.searchText = '';
-    })
-    .catch((e) => {
-      console.error(e);
-    });
+            let map = tt.map({
+              key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+              container:  'map',
+              style: 'tomtom://vector/1/basic-main',
+              center: [this.apartments[0].lon,this.apartments[0].lat],
+              zoom: 17
+            });
 
-  },
+            map.addControl(new tt.FullscreenControl());
+            map.addControl(new tt.NavigationControl());
 
+            let popupOffset = 25;
+
+            this.apartments.forEach(apartment=>{
+
+              let latMarker = apartment.lat;
+              let lonMarker = apartment.lon;
+              let coordinates = [lonMarker, latMarker]
+              //console.log(coordinates)
+
+              //marker
+
+              let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
+              console.log(marker)
+              let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
+              marker.setPopup(popup).togglePopup();
+
+            });
+
+            this.searchText = '';
+
+          });          
+
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+
+    },
+
+    getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      let R = 6371; // Radius of the earth in km
+      let dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+      let dLon = this.deg2rad(lon2 - lon1);
+      let a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      let d = R * c; // Distance in km
+          return d;
+    },
+
+    deg2rad(deg) {
+      return deg * (Math.PI / 180);
+    },
 
     searchAddress() {
       window.axios.defaults.headers.common = {
@@ -186,8 +226,8 @@ export default {
       
       this.searchText = null;
      
-      console.log(addressId);
-      console.log(this.addressResults[0].address.freeformAddress);
+      //console.log(addressId);
+      //console.log(this.addressResults[0].address.freeformAddress);
 
       //prende la lista delle città e lat e lon
       this.searchText = this.addressResults[addressId].address.freeformAddress;

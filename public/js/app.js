@@ -5195,11 +5195,14 @@ __webpack_require__.r(__webpack_exports__);
       searchText: "",
       addressResults: [],
       lat: 0,
-      lon: 0
+      lon: 0,
+      searchLat: 0,
+      searchLon: 0,
+      defaultDistance: 20
     };
   },
   methods: {
-    searchApartments: function searchApartments(addressId) {
+    searchApartments: function searchApartments() {
       var _this = this;
 
       this.apartments = [];
@@ -5207,43 +5210,68 @@ __webpack_require__.r(__webpack_exports__);
         //console.log(response.data);
         var results = response.data.data;
         _this.apartmentsResponse = response.data;
-        results.forEach(function (result) {
-          if (result.address.includes(_this.searchText)) {
-            _this.apartments.push(result);
-          }
-        }); //mappa
+        var link = "https://kr-api.tomtom.com/search/2/geocode/" + _this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+        axios.get(link).then(function (searchResponse) {
+          var searchResults = searchResponse.data.results; //console.log('Risultati di ricerca: ' , searchResults[0].position);
 
-        var map = tt.map({
-          key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
-          container: 'map',
-          style: 'tomtom://vector/1/basic-main',
-          center: [_this.apartments[0].lon, _this.apartments[0].lat],
-          zoom: 17
+          _this.searchLat = searchResults[0].position.lat;
+          _this.searchLon = searchResults[0].position.lon; //console.log("Coordinates: ", this.searchLat, this.searchLon);
+
+          results.forEach(function (result) {
+            //console.log("Risultato: ", result);
+            var distance = _this.getDistanceFromLatLonInKm(result.lat, result.lon, _this.searchLat, _this.searchLon); //console.log(distance);
+
+
+            if (distance <= _this.defaultDistance) {
+              _this.apartments.push(result);
+            }
+          }); //mappa
+
+          var map = tt.map({
+            key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+            container: 'map',
+            style: 'tomtom://vector/1/basic-main',
+            center: [_this.apartments[0].lon, _this.apartments[0].lat],
+            zoom: 17
+          });
+          map.addControl(new tt.FullscreenControl());
+          map.addControl(new tt.NavigationControl());
+          var popupOffset = 25;
+
+          _this.apartments.forEach(function (apartment) {
+            var latMarker = apartment.lat;
+            var lonMarker = apartment.lon;
+            var coordinates = [lonMarker, latMarker]; //console.log(coordinates)
+            //marker
+
+            var marker = new tt.Marker().setLngLat(coordinates).addTo(map);
+            console.log(marker);
+            var popup = new tt.Popup({
+              offset: popupOffset
+            }).setHTML(apartment.summary);
+            marker.setPopup(popup).togglePopup();
+          });
+
+          _this.searchText = '';
         });
-        map.addControl(new tt.FullscreenControl());
-        map.addControl(new tt.NavigationControl());
-        var popupOffset = 25;
-
-        _this.apartments.forEach(function (apartment) {
-          var latMarker = apartment.lat;
-          var lonMarker = apartment.lon; //  let lat = this.apartments[0].lat
-          //  let lon = this.apartments[0].lon
-
-          var coordinates = [lonMarker, latMarker];
-          console.log(coordinates); //marker
-
-          var marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-          console.log(marker);
-          var popup = new tt.Popup({
-            offset: popupOffset
-          }).setHTML(apartment.summary);
-          marker.setPopup(popup).togglePopup();
-        });
-
-        _this.searchText = '';
       })["catch"](function (e) {
         console.error(e);
       });
+    },
+    getDistanceFromLatLonInKm: function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      var R = 6371; // Radius of the earth in km
+
+      var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+
+      var dLon = this.deg2rad(lon2 - lon1);
+      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = R * c; // Distance in km
+
+      return d;
+    },
+    deg2rad: function deg2rad(deg) {
+      return deg * (Math.PI / 180);
     },
     searchAddress: function searchAddress() {
       var _this2 = this;
@@ -5264,9 +5292,9 @@ __webpack_require__.r(__webpack_exports__);
       this.isHidden = false;
     },
     checkAddress: function checkAddress(addressId) {
-      this.searchText = null;
-      console.log(addressId);
-      console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon
+      this.searchText = null; //console.log(addressId);
+      //console.log(this.addressResults[0].address.freeformAddress);
+      //prende la lista delle città e lat e lon
 
       this.searchText = this.addressResults[addressId].address.freeformAddress;
       this.lat = this.addressResults[addressId].position.lat;
@@ -57976,9 +58004,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-4\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-4\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-4\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
