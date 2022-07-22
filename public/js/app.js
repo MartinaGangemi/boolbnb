@@ -5183,10 +5183,10 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
       axios.get(link).then(function (response) {
-        var results = response.data.results; //console.log(results);
-
+        var results = response.data.results;
+        console.log(results);
         _this2.addressResults = results;
       }); //visualizza la lista degli indirizzi/città
 
@@ -5245,7 +5245,7 @@ __webpack_require__.r(__webpack_exports__);
         //console.log(response.data);
         var results = response.data.data;
         _this.apartmentsResponse = response.data;
-        var link = "https://kr-api.tomtom.com/search/2/geocode/" + _this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+        var link = "https://kr-api.tomtom.com/search/2/geocode/" + _this.searchText + ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
         axios.get(link).then(function (searchResponse) {
           var searchResults = searchResponse.data.results; //console.log('Risultati di ricerca: ' , searchResults[0].position);
 
@@ -5286,7 +5286,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     createMap: function createMap() {
       var map = tt.map({
-        key: "D4OSGfRW4VAQYImcVowdausckQhvMUbq",
+        key: "zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
@@ -5320,7 +5320,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 

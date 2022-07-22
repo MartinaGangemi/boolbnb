@@ -134,10 +134,10 @@ export default{
       const link =
         `https://kr-api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`;
+        `.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
-        //console.log(results);
+        console.log(results);
         this.addressResults = results;
       });
       //visualizza la lista degli indirizzi/città
