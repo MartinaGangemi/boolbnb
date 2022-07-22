@@ -5514,9 +5514,20 @@ var render = function render() {
       click: _vm.searchApartments
     }
   }, [_vm._v("\n      cerca appartamento\n    ")])], 2), _vm._v(" "), _c("div", {
-    staticClass: "row justify-content-center"
+    staticClass: "row justify-content-center",
+    staticStyle: {
+      "padding-bottom": "2000px"
+    }
   }, [_c("div", {
-    staticClass: "col col-md-12 col-lg-10 mb-2 gap-2 d-flex flex-wrap"
+    staticClass: "sticky-top row col-lg-9 pb-5"
+  }, [_c("div", {
+    ref: "mapRef",
+    staticClass: "my-round my-col",
+    attrs: {
+      id: "map"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
@@ -5534,22 +5545,13 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    })]), _vm._v(" "), _c("div", {
-      staticClass: "content text-center"
-    }, [_c("h3", [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\n          " + _vm._s(apartment.description) + "\n        ")]), _vm._v(" "), _c("a", {
+    }), _vm._v(" "), _c("a", {
       staticClass: "btn btn-light",
       attrs: {
         href: "admin/apartments/" + apartment.slug
       }
     }, [_vm._v("vedere")])])]);
-  }), 0), _vm._v(" "), _c("div", {
-    staticClass: "col-12"
-  }, [_c("div", {
-    ref: "mapRef",
-    attrs: {
-      id: "map"
-    }
-  })])])]);
+  }), 0)])]);
 };
 
 var staticRenderFns = [];
@@ -10657,7 +10659,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}\n#map[data-v-4026e891] {\n  height: 50vh;\n}", ""]);
+exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4CAF50;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
 
 // exports
 
@@ -57976,9 +57978,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\PROVA\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\PROVA\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\PROVA\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
