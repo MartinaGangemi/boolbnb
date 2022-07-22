@@ -17,40 +17,72 @@
           singleAddress.address.freeformAddress
         }}</span>
       </div>
-      <button type="submit" class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white" @click="searchApartments">
+      <div class="beds-rooms-commands mt-4">
+        <span class="me-2">
+          <label for="rooms">Nr. Stanze</label>
+          <input
+            type="number"
+            min="1"
+            max="8"
+            v-model="nRooms"
+            class="border border-danger rounded"
+            style="width: 50px"
+          />
+        </span>
+        <span>
+          <label for="rooms">Nr. Letti</label>
+          <input
+            type="number"
+            min="1"
+            max="8"
+            v-model="nBeds"
+            class="border border-danger rounded"
+            style="width: 50px"
+          />
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white"
+        @click="searchApartments"
+      >
         cerca appartamento
       </button>
     </form>
 
     <!-- lista appartamenti -->
-    <div class="row justify-content-center" style="padding-bottom:2000px">
+    <div class="row justify-content-center" style="padding-bottom: 2000px">
       <!-- sezione mappa -->
       <div class="sticky-top row col-lg-9 pb-5">
-        <div id='map' class="my-round my-col" ref="mapRef"></div>
+        <div id="map" class="my-round my-col" ref="mapRef"></div>
       </div>
 
       <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
-           <div
-        class="box  p-0 shadow"
-        v-for="apartment in apartments"
-        :key="apartment.id"
-      >
-        <div class="card_img d-flex justify-content-center">
-          <img :src="'storage/' + apartment.cover_img" :alt="apartment.slug" />
-        </div>
+        <div
+          class="box p-0 shadow"
+          v-for="apartment in apartments"
+          :key="apartment.id"
+        >
+          <div class="card_img d-flex justify-content-center">
+            <img
+              :src="'storage/' + apartment.cover_img"
+              :alt="apartment.slug"
+            />
+          </div>
 
-        <div class="card-body">
-          <h4 class="card-title">{{ apartment.summary }}</h4>
-          <p class="card-text"></p>
-         <router-link class="btn btn-light" :to="{name: 'apartment', params: { id:apartment.id } }">Read More</router-link>
-          
-         
-          
-          
-        </div>
+          <div class="card-body">
+            <h4 class="card-title">{{ apartment.summary }}</h4>
+            <p class="card-text"></p>
+            <router-link
+              class="btn btn-light"
+              :to="{ name: 'apartment', params: { id: apartment.id } }"
+              >Read More</router-link
+            >
+          </div>
 
-        <!-- card overflow -->
-        <!-- <div class="content text-center">
+          <!-- card overflow -->
+          <!-- <div class="content text-center">
           <h3>{{ apartment.summary }}</h3>
 
           <p>
@@ -59,9 +91,8 @@
 
           <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
         </div> -->
+        </div>
       </div>
-      </div>
-
     </div>
 
     <!-- numero pagine -->
@@ -83,13 +114,11 @@
 </template>
 
 <script>
-
 export default {
   name: "Search",
 
   data() {
     return {
-    
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
@@ -99,62 +128,61 @@ export default {
       lon: 0,
       searchLat: 0,
       searchLon: 0,
-      defaultDistance: 20
-
+      defaultDistance: 20,
+      nBeds: 1,
+      nRooms: 1,
     };
   },
 
   methods: {
-
     searchApartments() {
-
       this.apartments = [];
 
       axios
         .get("/api/apartments")
         .then((response) => {
-
           //console.log(response.data);
           const results = response.data.data;
           this.apartmentsResponse = response.data;
 
-          const link = 'https://kr-api.tomtom.com/search/2/geocode/' + this.searchText + '.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true';
+          const link =
+            "https://kr-api.tomtom.com/search/2/geocode/" +
+            this.searchText +
+            ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
 
-          axios
-            .get(link)
-            .then((searchResponse) => {
+          axios.get(link).then((searchResponse) => {
+            let searchResults = searchResponse.data.results;
 
-              let searchResults = searchResponse.data.results;
+            //console.log('Risultati di ricerca: ' , searchResults[0].position);
+            this.searchLat = searchResults[0].position.lat;
+            this.searchLon = searchResults[0].position.lon;
 
-              //console.log('Risultati di ricerca: ' , searchResults[0].position);
-              this.searchLat = searchResults[0].position.lat;
-              this.searchLon = searchResults[0].position.lon;
+            results.forEach((result) => {
+              //console.log("Risultato: ", result);
 
-              results.forEach((result) => {
+              const distance = this.getDistanceFromLatLonInKm(
+                result.lat,
+                result.lon,
+                this.searchLat,
+                this.searchLon
+              );
+              //console.log(distance);
 
-                //console.log("Risultato: ", result);
+              if (distance <= this.defaultDistance && result.rooms >= this.nRooms &&
+              result.beds >= this.nBeds) {
+                this.apartments.push(result);
+              }
+            });
 
-                const distance = this.getDistanceFromLatLonInKm(result.lat, result.lon, this.searchLat, this.searchLon);
-                //console.log(distance);
+            //mappa
+            this.createMap();
 
-                if (distance <= this.defaultDistance) {
-                  this.apartments.push(result);
-                }
-
-              });
-
-              //mappa
-              this.createMap();
-
-              this.searchText = '';
-
-            });           
-          
-          })
-          .catch((e) => {
-            console.error(e);
+            this.searchText = "";
           });
-
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     },
 
     getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
@@ -162,25 +190,27 @@ export default {
       let dLat = this.deg2rad(lat2 - lat1); // deg2rad below
       let dLon = this.deg2rad(lon2 - lon1);
       let a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(this.deg2rad(lat1)) *
+          Math.cos(this.deg2rad(lat2)) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
       let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       let d = R * c; // Distance in km
-          return d;
+      return d;
     },
 
     deg2rad(deg) {
       return deg * (Math.PI / 180);
     },
 
-    createMap(){
+    createMap() {
       let map = tt.map({
-      key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
-      container:  'map',
-      style: 'tomtom://vector/1/basic-main',
-      center: [this.apartments[0].lon,this.apartments[0].lat],
-      zoom: 17
+        key: "D4OSGfRW4VAQYImcVowdausckQhvMUbq",
+        container: "map",
+        style: "tomtom://vector/1/basic-main",
+        center: [this.apartments[0].lon, this.apartments[0].lat],
+        zoom: 17,
       });
 
       map.addControl(new tt.FullscreenControl());
@@ -188,24 +218,23 @@ export default {
 
       let popupOffset = 25;
 
-
-      this.apartments.forEach(apartment=>{
-
-      let latMarker = apartment.lat;
-      let lonMarker = apartment.lon;
-      //  let lat = this.apartments[0].lat
-      //  let lon = this.apartments[0].lon
-        let coordinates = [lonMarker, latMarker]
-        console.log(coordinates)
+      this.apartments.forEach((apartment) => {
+        let latMarker = apartment.lat;
+        let lonMarker = apartment.lon;
+        //  let lat = this.apartments[0].lat
+        //  let lon = this.apartments[0].lon
+        let coordinates = [lonMarker, latMarker];
+        console.log(coordinates);
 
         //marker
 
         let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-        console.log(marker)
-        let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
+        console.log(marker);
+        let popup = new tt.Popup({ offset: popupOffset }).setHTML(
+          apartment.summary
+        );
         marker.setPopup(popup).togglePopup();
-
-    });
+      });
     },
 
     searchAddress() {
@@ -226,13 +255,12 @@ export default {
         this.addressResults = results;
       });
       //visualizza la lista degli indirizzi/città
-      this.isHidden = false
+      this.isHidden = false;
     },
 
     checkAddress(addressId) {
-      
       this.searchText = null;
-     
+
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress);
 
@@ -241,51 +269,49 @@ export default {
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon;
       //nasconde la lista degli indirizzi/cittò
-       this.isHidden = true
-      
-    },   
+      this.isHidden = true;
+    },
 
     //end methods
   },
 
-  created(){
-    this.apartments=this.$route.params.data
-    
-    
+  created() {
+    this.apartments = this.$route.params.data;
   },
 
-  mounted(){
-    this.createMap()
-  }
-
-
+  mounted() {
+    this.createMap();
+  },
 };
-
 </script>
 
 <style lang="scss" scoped>
 #map {
-    height: 35vh;
+  height: 35vh;
 }
 
-.my-round{
+.my-round {
   border-radius: 20px;
 }
 
-.fixed{
+.fixed {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   padding: 5px;
   background-color: #cae8ca;
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
 }
 
 .box {
   height: 500px;
   width: 400px;
   background: rgb(159, 35, 39);
-  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgba(2,0,36,1) 100%);
+  background: linear-gradient(
+    352deg,
+    rgb(165, 37, 41) 11%,
+    rgba(2, 0, 36, 1) 100%
+  );
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
@@ -328,5 +354,4 @@ export default {
   border-bottom: 1px solid white;
   padding: 17px 0px;
 }*/
-
 </style>
