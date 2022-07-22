@@ -42,7 +42,11 @@
         <div class="card-body">
           <h4 class="card-title">{{ apartment.summary }}</h4>
           <p class="card-text"></p>
-          <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
+         <router-link class="btn btn-light" :to="{name: 'apartment', params: { id:apartment.id } }">Read More</router-link>
+          
+         
+          
+          
         </div>
 
         <!-- card overflow -->
