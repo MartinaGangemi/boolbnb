@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 // Variables
 @import 'variables';
 // Bootstrap
@@ -12,4 +12,9 @@
 
 .prova{
  color:black
+}
+
+
+body{
+    font-family: 'Poppins', sans-serif;
 }

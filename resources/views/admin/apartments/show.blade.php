@@ -16,7 +16,7 @@
             <strong>Beds: </strong><span>{{$apartment->beds}}</span><br>
             <strong>Bathrooms: </strong><span>{{$apartment->bathrooms}}</span><br>
             <strong>Square Meters: </strong><span>{{$apartment->square_meters}}</span><br>
-
+            
         </div>
     </div>
 </div>

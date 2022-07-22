@@ -1,15 +1,7 @@
 
 <template>
 <div>
-    <div class="navbar justify-content-center" id="navbarSupportedContent">
-        <!-- Left Side Of Navbar -->
-        <ul class="navbar-nav mr-auto d-flex flex-row gap-4">
-            <li class="nav-item" v-for="item in menu_items" :key="item.id">
-                <router-link class="nav-link" :to="{ name: item.route_name }">{{ item.route_text }}
-                </router-link>
-            </li>
-        </ul>
-    </div>
+    
     <main>
          <router-view></router-view>
     </main>

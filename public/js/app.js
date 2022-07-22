@@ -5183,7 +5183,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
@@ -5435,16 +5435,18 @@ var render = function render() {
     attrs: {
       id: "body"
     }
-  }, [_vm._m(0), _vm._v(" "), _c("section", {
-    staticClass: "container-fluid mt-5",
-    attrs: {
-      id: "site_main"
-    }
   }, [_c("div", {
-    staticClass: "row justify-content-center"
+    staticClass: "bg-light my_back"
   }, [_c("div", {
-    staticClass: "col-8"
-  }, [_c("h1", [_vm._v("Dove vuoi andare?")]), _vm._v(" "), _c("form", {
+    staticClass: "container text-light py-5"
+  }, [_c("div", {
+    staticClass: "row justify-content-center align-items-center row-form"
+  }, [_c("div", {
+    staticClass: "col-7 text-center"
+  }, [_c("h1", {
+    staticClass: "display-1"
+  }, [_vm._v("Fablo B&B")]), _vm._v(" "), _c("form", {
+    staticClass: "mt-4 d-flex flex-column align-items-center",
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -5459,6 +5461,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
+      placeholder: "Dove vuoi andare?",
       type: "text"
     },
     domProps: {
@@ -5471,18 +5474,8 @@ var render = function render() {
         _vm.searchText = $event.target.value;
       }
     }
-  }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress, index) {
-    return _c("div", {
-      key: singleAddress.id
-    }, [!_vm.isHidden ? _c("span", {
-      on: {
-        click: function click($event) {
-          return _vm.checkAddress(index);
-        }
-      }
-    }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
   }), _vm._v(" "), _c("button", {
-    staticClass: "my-4 btn btn-dark w-100 fw-bold fs-2 text-white",
+    staticClass: "search-btn rounded-end text-uppercase text-center text-white",
     attrs: {
       type: "submit"
     },
@@ -5491,64 +5484,73 @@ var render = function render() {
         return _vm.searchApartments();
       }
     }
-  }, [_vm._v("\n                    cerca appartamento\n                ")])], 2)])]), _vm._v(" "), _vm._m(1)])]);
+  }, [_vm._v("\n                                Cerca appartamento \n                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "list-address"
+  }, _vm._l(_vm.addressResults, function (singleAddress, index) {
+    return _c("div", {
+      key: singleAddress.id
+    }, [!_vm.isHidden ? _c("span", {
+      staticClass: "p-2",
+      on: {
+        click: function click($event) {
+          return _vm.checkAddress(index);
+        }
+      }
+    }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
+  }), 0)])])])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
 };
 
 var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", {
-    staticClass: "p-5 bg-light my_back"
-  }, [_c("div", {
-    staticClass: "container text-light"
-  }, [_c("h1", {
-    staticClass: "display-3"
-  }, [_vm._v("Consigliati da noi")]), _vm._v(" "), _c("p", {
-    staticClass: "lead"
-  }, [_vm._v("Jumbo helper text")]), _vm._v(" "), _c("hr", {
-    staticClass: "my-2"
-  }), _vm._v(" "), _c("p", [_vm._v("More info")]), _vm._v(" "), _c("p", {
-    staticClass: "lead"
-  }, [_c("a", {
-    staticClass: "btn btn-primary btn-lg",
+  return _c("section", {
+    staticClass: "container mt-5",
     attrs: {
-      href: "Jumbo action link",
-      role: "button"
+      id: "site_main"
     }
-  }, [_vm._v("Jumbo action name")])])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
+  }, [_c("div", {
     staticClass: "row justify-content-center py-3"
   }, [_c("div", {
-    staticClass: "col-10"
-  }, [_c("h3", [_vm._v("Small Room")]), _vm._v(" "), _c("div", {
-    staticClass: "row justify-content-between"
+    staticClass: "row row-cols-2 my-5 justify-content-between"
   }, [_c("div", {
-    staticClass: "col-9 text"
+    staticClass: "col-12 col-lg-8 text"
   }, [_c("img", {
-    staticClass: "img-fluid",
+    staticClass: "img-home img-fluid",
     attrs: {
       src: "https://www.imghoteles.com/wp-content/uploads/sites/1709/nggallery/desktop-pics//fott1.jpg",
       alt: ""
     }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("Card title")]), _vm._v(" "), _c("p", {
-    staticClass: "card-text"
-  }, [_vm._v("Some quick example text to build on the card title and make up the bulk of the card's content.")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-2 text"
-  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])]);
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-lg-4 text-description d-flex flex-column justify-content-end mt-4"
+  }, [_c("h3", {
+    staticClass: "text-uppercase"
+  }, [_vm._v("Benvenuti su Fablo B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam cum neque odio at a obcaecati doloremque fuga veritatis, non provident?\n                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex justify-content-center mb-4"
+  }, [_c("button", {
+    staticClass: "text-light mt-4 w-50"
+  }, [_vm._v("Inizia a viaggiare")])])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("section", {
+    staticClass: "mt-5 container"
+  }, [_c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v("\n            Appartamenti consigliati\n        ")]), _vm._v(" "), _c("div", {
+    staticClass: "row card-container"
+  }, [_c("div", {
+    staticClass: "col-3"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-img"
+  }, [_vm._v("\n                        card-img\n                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "p-2 card-text d-flex flex-column align-items-center"
+  }, [_c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi nisi facere minus labore distinctio corporis veniam ab quos velit quod.\n                        ")]), _vm._v(" "), _c("button", {
+    staticClass: "w-50 text-light text-uppercase"
+  }, [_vm._v("\n                            dettagli\n                        ")])])])])])]);
 }];
 render._withStripped = true;
 
@@ -5746,26 +5748,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
-    staticClass: "navbar justify-content-center",
-    attrs: {
-      id: "navbarSupportedContent"
-    }
-  }, [_c("ul", {
-    staticClass: "navbar-nav mr-auto d-flex flex-row gap-4"
-  }, _vm._l(_vm.menu_items, function (item) {
-    return _c("li", {
-      key: item.id,
-      staticClass: "nav-item"
-    }, [_c("router-link", {
-      staticClass: "nav-link",
-      attrs: {
-        to: {
-          name: item.route_name
-        }
-      }
-    }, [_vm._v(_vm._s(item.route_text) + "\n                ")])], 1);
-  }), 0)]), _vm._v(" "), _c("main", [_c("router-view")], 1)]);
+  return _c("div", [_c("main", [_c("router-view")], 1)]);
 };
 
 var staticRenderFns = [];
@@ -10811,7 +10794,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#body[data-v-6a63e488] {\n  background-color: #FFFFFF;\n}\n.my_back[data-v-6a63e488] {\n  background: url(\"http://amdtapes.ro/wp-content/themes/options/images/skins/headers/full_width/header-tealSkies.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}", ""]);
+exports.push([module.i, "#body[data-v-6a63e488] {\n  background-color: #FFFFFF;\n}\n.row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 50px;\n  margin-top: 0.5rem;\n  width: 95%;\n  position: relative;\n  top: -9px;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 40%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}", ""]);
 
 // exports
 
@@ -58224,9 +58207,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
