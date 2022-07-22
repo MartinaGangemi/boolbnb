@@ -32,9 +32,9 @@ class ApartmentRequest extends FormRequest
             'square_meters' => 'required|numeric|min:9',
             'cover_img' => 'image|mimes:jpeg,jpg,png',
             'description' => 'required|min:50|max:255',
-            'city' => 'required|string|min:3',
+            //'city' => 'required|string|min:3',
             'address' => 'required|string|min:6',
-            'number' => 'required|numeric|min:1',
+            //'number' => 'required|numeric|min:1',
             'services' => 'required|exists:services,id',
         ];
     }
@@ -56,9 +56,9 @@ class ApartmentRequest extends FormRequest
             'square_meters' => 'Deve avere almeno 9 metriquadri.',
             'description.min' => 'La descrizzione deve essere di almeno 50 caratteri.',
             'description.max' => 'La descrizzione non può superare i 255 caratteri.',
-            'city.min' => 'La Citta deve essere lunga almeno 3 caratteri ',
+            //'city.min' => 'La Citta deve essere lunga almeno 3 caratteri ',
             'address.min' => 'La via deve essere lunga almeno 6 caratteri ',
-            'number.min' => 'Il numero deve essere maggiore di 0',
+            //'number.min' => 'Il numero deve essere maggiore di 0',
         ];
     }
 }
