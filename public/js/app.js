@@ -5103,7 +5103,66 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Home'
+  name: 'Home',
+  data: function data() {
+    return {
+      addressResults: [],
+      searchText: "",
+      apartments: []
+    };
+  },
+  methods: {
+    searchApartments: function searchApartments(addressId) {
+      var _this = this;
+
+      this.apartments = [];
+      axios.get("/api/apartments").then(function (response) {
+        //console.log(response.data);
+        var results = response.data.data;
+        _this.apartmentsResponse = response.data; //filtro appartamenti per città
+
+        results.forEach(function (result) {
+          if (result.address.includes(_this.searchText)) {
+            _this.apartments.push(result);
+          }
+        });
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    },
+    //chiamata tom tom e crea una lista sdi suggerimenti
+    searchAddress: function searchAddress() {
+      var _this2 = this;
+
+      window.axios.defaults.headers.common = {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }; //const resultElement = document.querySelector('.results')
+      //resultElement.innerHTML = ''
+
+      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+      axios.get(link).then(function (response) {
+        var results = response.data.results; //console.log(results);
+
+        _this2.addressResults = results;
+      }); //visualizza la lista degli indirizzi/città
+
+      this.isHidden = false;
+    },
+    //metodo per cliccare l'indirizzo che compare in autoload
+    checkAddress: function checkAddress(addressId) {
+      this.searchText = null;
+      console.log(addressId);
+      console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon
+
+      this.searchText = this.addressResults[addressId].address.freeformAddress;
+      this.lat = this.addressResults[addressId].position.lat;
+      this.lon = this.addressResults[addressId].position.lon; //nasconde la lista degli indirizzi/cittò
+
+      this.isHidden = true; //console.log(this.searchText);
+      //console.log(this.lat, this.lon, "latlon");
+    }
+  }
 });
 
 /***/ }),
@@ -5195,15 +5254,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isHidden = false;
     },
     checkAddress: function checkAddress(addressId) {
-      //console.log('suca')
       this.searchText = null;
-      /* this.addressResults.forEach(item => {
-             this.searchText = item.address.municipality
-             this.lat = item.position.lat
-             this.lon = item.position.lon
-             console.log(item.position)
-           }); */
-
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress); //prende la lista delle città e lat e lon
 
@@ -5211,19 +5262,10 @@ __webpack_require__.r(__webpack_exports__);
       this.lat = this.addressResults[addressId].position.lat;
       this.lon = this.addressResults[addressId].position.lon; //nasconde la lista degli indirizzi/cittò
 
-      this.isHidden = true; //console.log(this.searchText);
-      //console.log(this.lat, this.lon, "latlon");
-    } //  searchApartments(){
-    //     axios.get()
-    //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
-    //  }
-    //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
-    //end methods
+      this.isHidden = true;
+    } //end methods
 
-  },
-  mounted: function mounted() {//end mounted
-  } //end data
-
+  }
 });
 
 /***/ }),
@@ -5272,7 +5314,71 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", {
+    attrs: {
+      id: "body"
+    }
+  }, [_vm._m(0), _vm._v(" "), _c("section", {
+    staticClass: "container-fluid mt-5",
+    attrs: {
+      id: "site_main"
+    }
+  }, [_c("div", {
+    staticClass: "row justify-content-center"
+  }, [_c("div", {
+    staticClass: "col-8"
+  }, [_c("h1", [_vm._v("Dove vuoi andare?")]), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+      }
+    }
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.searchText,
+      expression: "searchText"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.searchText
+    },
+    on: {
+      keyup: _vm.searchAddress,
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.searchText = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress, index) {
+    return _c("div", {
+      key: singleAddress.id
+    }, [!_vm.isHidden ? _c("span", {
+      on: {
+        click: function click($event) {
+          return _vm.checkAddress(index);
+        }
+      }
+    }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
+  }), _vm._v(" "), _c("router-link", {
+    attrs: {
+      to: "/search"
+    }
+  }, [_c("button", {
+    staticClass: "my-4 btn btn-dark w-100 fw-bold fs-2 text-white",
+    attrs: {
+      type: "submit"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.searchApartments();
+      }
+    }
+  }, [_vm._v("\n                    cerca appartamento\n                ")])])], 2)])]), _vm._v(" "), _vm._m(1)])]);
 };
 
 var staticRenderFns = [function () {
@@ -5280,10 +5386,6 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    attrs: {
-      id: "body"
-    }
-  }, [_c("div", {
     staticClass: "p-5 bg-light my_back"
   }, [_c("div", {
     staticClass: "container text-light"
@@ -5301,12 +5403,12 @@ var staticRenderFns = [function () {
       href: "Jumbo action link",
       role: "button"
     }
-  }, [_vm._v("Jumbo action name")])])])]), _vm._v(" "), _c("section", {
-    staticClass: "container-fluid",
-    attrs: {
-      id: "site_main"
-    }
-  }, [_c("div", {
+  }, [_vm._v("Jumbo action name")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "row justify-content-center py-3"
   }, [_c("div", {
     staticClass: "col-10"
@@ -5333,7 +5435,7 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-2 text"
-  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])])])]);
+  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])]);
 }];
 render._withStripped = true;
 
@@ -5403,20 +5505,9 @@ var render = function render() {
       click: _vm.searchApartments
     }
   }, [_vm._v("\n      cerca appartamento\n    ")])], 2), _vm._v(" "), _c("div", {
-    staticClass: "row justify-content-center",
-    staticStyle: {
-      "padding-bottom": "2000px"
-    }
+    staticClass: "row justify-content-center"
   }, [_c("div", {
-    staticClass: "sticky-top row col-lg-9 pb-5"
-  }, [_c("div", {
-    ref: "mapRef",
-    staticClass: "my-round my-col",
-    attrs: {
-      id: "map"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "col col-md-12 col-lg-10 mb-2 gap-2 p-3 d-flex flex-wrap"
+    staticClass: "col col-md-12 col-lg-10 mb-2 gap-2 d-flex flex-wrap"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
@@ -5434,13 +5525,22 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }), _vm._v(" "), _c("a", {
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "content text-center"
+    }, [_c("h3", [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\n          " + _vm._s(apartment.description) + "\n        ")]), _vm._v(" "), _c("a", {
       staticClass: "btn btn-light",
       attrs: {
         href: "admin/apartments/" + apartment.slug
       }
     }, [_vm._v("vedere")])])]);
-  }), 0)])]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "col-12"
+  }, [_c("div", {
+    ref: "mapRef",
+    attrs: {
+      id: "map"
+    }
+  })])])]);
 };
 
 var staticRenderFns = [];
@@ -10548,7 +10648,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4CAF50;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n\n/* .content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n} */", ""]);
+exports.push([module.i, ".box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.content[data-v-4026e891] {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n.box:hover .content[data-v-4026e891] {\n  left: 0;\n}\n.content p[data-v-4026e891] {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}\n#map[data-v-4026e891] {\n  height: 50vh;\n}", ""]);
 
 // exports
 
@@ -57867,9 +57967,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-4\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-4\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-4\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

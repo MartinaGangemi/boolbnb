@@ -23,12 +23,8 @@
     </form>
 
     <!-- lista appartamenti -->
-    <div class="row justify-content-center" style="padding-bottom:2000px">
-      <div class="sticky-top row col-lg-9 pb-5">
-        <div id='map' class="my-round my-col" ref="mapRef"></div>
-      </div>
-      
-      <div class="col col-md-12 col-lg-10 mb-2 gap-2 p-3 d-flex flex-wrap">
+    <div class="row justify-content-center">
+      <div class="col col-md-12 col-lg-10 mb-2 gap-2 d-flex flex-wrap">
            <div
         class="box  p-0 shadow"
         v-for="apartment in apartments"
@@ -41,11 +37,10 @@
         <div class="card-body">
           <h4 class="card-title">{{ apartment.summary }}</h4>
           <p class="card-text"></p>
-          <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
         </div>
 
         <!-- card overflow -->
-        <!-- <div class="content text-center">
+        <div class="content text-center">
           <h3>{{ apartment.summary }}</h3>
 
           <p>
@@ -53,11 +48,15 @@
           </p>
 
           <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
-        </div> -->
+        </div>
       </div>
       </div>
 
       <!-- mappa -->
+      <div class="col-12">
+        <div id='map' ref="mapRef"></div>
+      </div>
+
 
 
 
@@ -88,6 +87,7 @@ export default {
 
   data() {
     return {
+    
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
@@ -97,6 +97,8 @@ export default {
       lon: 0,
     };
   },
+
+
 
   methods: {
     searchApartments(addressId) {
@@ -114,58 +116,47 @@ export default {
           });
 
 
-          //mappa
+  //mappa
 
-           let map = tt.map({
-            key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
-            container:  'map',
-            style: 'tomtom://vector/1/basic-main',
-            center: [this.apartments[0].lon,this.apartments[0].lat],
-            zoom: 17
-            });
+    let map = tt.map({
+    key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+    container:  'map',
+    style: 'tomtom://vector/1/basic-main',
+    center: [this.apartments[0].lon,this.apartments[0].lat],
+    zoom: 17
+    });
 
+    map.addControl(new tt.FullscreenControl());
+    map.addControl(new tt.NavigationControl());
 
-            map.addControl(new tt.FullscreenControl());
-            map.addControl(new tt.NavigationControl());
-
-            let popupOffset = 25;
-
+    let popupOffset = 25;
 
 
+    this.apartments.forEach(apartment=>{
 
-          this.apartments.forEach(apartment=>{
+    let latMarker = apartment.lat;
+    let lonMarker = apartment.lon;
+    //  let lat = this.apartments[0].lat
+    //  let lon = this.apartments[0].lon
+      let coordinates = [lonMarker, latMarker]
+      console.log(coordinates)
 
-            let latMarker = apartment.lat;
-            let lonMarker = apartment.lon;
-            //  let lat = this.apartments[0].lat
-            //  let lon = this.apartments[0].lon
-             let coordinates = [lonMarker, latMarker]
-             console.log(coordinates)
+      //marker
 
-              //marker
+          let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
+          console.log(marker)
+          let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
+          marker.setPopup(popup).togglePopup();
 
-                  let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-                  console.log(marker)
-                  let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
-                  marker.setPopup(popup).togglePopup();
+  });
 
-          });
+    this.searchText = '';
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 
-
-
-
-
-
-
-
-
-          this.searchText = '';
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-
-    },
+  },
 
 
     searchAddress() {
@@ -190,16 +181,9 @@ export default {
     },
 
     checkAddress(addressId) {
-      //console.log('suca')
+      
       this.searchText = null;
-      /* this.addressResults.forEach(item => {
-             this.searchText = item.address.municipality
-             this.lat = item.position.lat
-             this.lon = item.position.lon
-             console.log(item.position)
-
-         }); */
-
+     
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress);
 
@@ -209,50 +193,19 @@ export default {
       this.lon = this.addressResults[addressId].position.lon;
       //nasconde la lista degli indirizzi/cittò
        this.isHidden = true
-      //console.log(this.searchText);
-      //console.log(this.lat, this.lon, "latlon");
+      
     },
 
-    //  searchApartments(){
-    //     axios.get()
-    //      https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?storeResult=false&lat=37.337&lon=-121.89&radius=20000&view=Unified&key=*****
-    //  }
-
-    //`https://api.tomtom.com/search/2/geocode/`+ $searchText + `.json?storeResult=false&lat=`37.337&lon=-121.89&radius=20000&view=Unified&key=*****
+   
 
     //end methods
   },
 
 
-    mounted() {
-
-
-    //end mounted
-    }
-
-  //end data
 };
 </script>
 
 <style lang="scss" scoped>
-
-#map {
-    height: 35vh;
-}
-
-.my-round{
-  border-radius: 20px;
-}
-
-.fixed{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: 5px;
-  background-color: #cae8ca;
-  border: 2px solid #4CAF50;
-}
-
 .box {
   height: 500px;
   width: 400px;
@@ -278,7 +231,7 @@ export default {
   height: 100%;
 }
 
-/* .content {
+.content {
   background-color: black;
   color: white;
   position: absolute;
@@ -299,5 +252,10 @@ export default {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   padding: 17px 0px;
-} */
+}
+
+#map {
+    height: 50vh;
+
+}
 </style>
