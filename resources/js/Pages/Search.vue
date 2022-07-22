@@ -117,6 +117,145 @@ export default {
 
 
   //mappa
+  this.createMap()
+    
+
+    this.searchText = '';
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+
+  },
+
+  createMap(){
+    let map = tt.map({
+    key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+    container:  'map',
+    style: 'tomtom://vector/1/basic-main',
+    center: [this.apartments[0].lon,this.apartments[0].lat],
+    zoom: 17
+    });
+
+    map.addControl(new tt.FullscreenControl());
+    map.addControl(new tt.NavigationControl());
+
+    let popupOffset = 25;
+
+
+    this.apartments.forEach(apartment=>{
+
+    let latMarker = apartment.lat;
+    let lonMarker = apartment.lon;
+    //  let lat = this.apartments[0].lat
+    //  let lon = this.apartments[0].lon
+      let coordinates = [lonMarker, latMarker]
+      console.log(coordinates)
+
+      //marker
+
+      let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
+      console.log(marker)
+      let popup = new tt.Popup({ offset: popupOffset }).setHTML(apartment.summary);
+      marker.setPopup(popup).togglePopup();
+
+  });
+  },
+
+
+    searchAddress() {
+      window.axios.defaults.headers.common = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      };
+
+      //const resultElement = document.querySelector('.results')
+      //resultElement.innerHTML = ''
+      const link =
+        `https://kr-api.tomtom.com/search/2/geocode/` +
+        this.searchText +
+        `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`;
+      axios.get(link).then((response) => {
+        let results = response.data.results;
+        //console.log(results);
+        this.addressResults = results;
+      });
+      //visualizza la lista degli indirizzi/città
+      this.isHidden = false
+    },
+
+    checkAddress(addressId) {
+      
+      this.searchText = null;
+     
+      console.log(addressId);
+      console.log(this.addressResults[0].address.freeformAddress);
+
+      //prende la lista delle città e lat e lon
+      this.searchText = this.addressResults[addressId].address.freeformAddress;
+      this.lat = this.addressResults[addressId].position.lat;
+      this.lon = this.addressResults[addressId].position.lon;
+      //nasconde la lista degli indirizzi/cittò
+       this.isHidden = true
+      
+    },
+
+   
+
+    //end methods
+  },
+
+  created(){
+    this.apartments=this.$route.params.data
+    
+    
+  },
+
+  mounted(){
+    this.createMap()
+  }
+
+
+};
+</script>
+
+export default {
+  name: "Search",
+
+  data() {
+    return {
+    
+      apartments: [],
+      apartmentsResponse: "",
+      searchText: "",
+
+      addressResults: [],
+      lat: 0,
+      lon: 0,
+
+      
+    };
+  },
+
+
+
+  methods: {
+    searchApartments(addressId) {
+      this.apartments = [];
+      axios
+        .get("/api/apartments")
+        .then((response) => {
+          //console.log(response.data);
+          const results = response.data.data;
+          this.apartmentsResponse = response.data;
+          results.forEach(result => {
+            if (result.address.includes(this.searchText)) {
+              this.apartments.push(result);
+            }
+          });
+
+
+  //mappa
 
     let map = tt.map({
     key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',

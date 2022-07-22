@@ -5213,36 +5213,38 @@ __webpack_require__.r(__webpack_exports__);
           }
         }); //mappa
 
-        var map = tt.map({
-          key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
-          container: 'map',
-          style: 'tomtom://vector/1/basic-main',
-          center: [_this.apartments[0].lon, _this.apartments[0].lat],
-          zoom: 17
-        });
-        map.addControl(new tt.FullscreenControl());
-        map.addControl(new tt.NavigationControl());
-        var popupOffset = 25;
-
-        _this.apartments.forEach(function (apartment) {
-          var latMarker = apartment.lat;
-          var lonMarker = apartment.lon; //  let lat = this.apartments[0].lat
-          //  let lon = this.apartments[0].lon
-
-          var coordinates = [lonMarker, latMarker];
-          console.log(coordinates); //marker
-
-          var marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-          console.log(marker);
-          var popup = new tt.Popup({
-            offset: popupOffset
-          }).setHTML(apartment.summary);
-          marker.setPopup(popup).togglePopup();
-        });
+        _this.createMap();
 
         _this.searchText = '';
       })["catch"](function (e) {
         console.error(e);
+      });
+    },
+    createMap: function createMap() {
+      var map = tt.map({
+        key: 'D4OSGfRW4VAQYImcVowdausckQhvMUbq',
+        container: 'map',
+        style: 'tomtom://vector/1/basic-main',
+        center: [this.apartments[0].lon, this.apartments[0].lat],
+        zoom: 17
+      });
+      map.addControl(new tt.FullscreenControl());
+      map.addControl(new tt.NavigationControl());
+      var popupOffset = 25;
+      this.apartments.forEach(function (apartment) {
+        var latMarker = apartment.lat;
+        var lonMarker = apartment.lon; //  let lat = this.apartments[0].lat
+        //  let lon = this.apartments[0].lon
+
+        var coordinates = [lonMarker, latMarker];
+        console.log(coordinates); //marker
+
+        var marker = new tt.Marker().setLngLat(coordinates).addTo(map);
+        console.log(marker);
+        var popup = new tt.Popup({
+          offset: popupOffset
+        }).setHTML(apartment.summary);
+        marker.setPopup(popup).togglePopup();
       });
     },
     searchAddress: function searchAddress() {
@@ -5278,6 +5280,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.apartments = this.$route.params.data;
+  },
+  mounted: function mounted() {
+    this.createMap();
   }
 });
 
@@ -57978,9 +57983,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\PROVA\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\PROVA\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\PROVA\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
