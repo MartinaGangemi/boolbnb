@@ -2,15 +2,42 @@
     <div id="body">
     
     <!-- jumbotron -->
-    <div class="p-5 bg-light my_back">
-        <div class="container text-light">
-            <h1 class="display-3">Consigliati da noi</h1>
-            <p class="lead">Jumbo helper text</p>
-            <hr class="my-2">
-            <p>More info</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-            </p>
+    <div class=" bg-light my_back">
+         
+        <div class="container text-light py-5">
+            
+            <div class="row justify-content-center align-items-center row-form">
+                <div class="col-7 text-center">
+                   <h1 class="display-1">Fablo B&B</h1>
+                   <!-- ricerca -->
+                    <form @submit.prevent class="mt-4 d-flex flex-column align-items-center">
+                        <input placeholder="Dove vuoi andare?"
+                            type="text"
+                            class="form-control "
+                            v-model="searchText"
+                            @keyup="searchAddress"
+                        />
+                        <button type="submit" class="  rounded-end  text-uppercase text-center text-white" @click="searchApartments()">
+                                Cerca appartamento <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+                        </button>
+                        <!-- autoload -->
+                        <div class="list-address">
+                            <div
+                                v-for="(singleAddress, index) in addressResults"
+                                :key="singleAddress.id"
+                            >
+                                <span  class="p-2" @click="checkAddress(index)" v-if="!isHidden">{{
+                                singleAddress.address.freeformAddress
+                                }}</span>
+                            </div>
+                            
+                        </div>
+                            
+                    
+                        
+                    </form>
+                </div>
+        </div>
         </div>
     </div>
 
@@ -19,39 +46,12 @@
     
     <!-- form -->
     <section id="site_main" class="container-fluid mt-5">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <h1>Dove vuoi andare?</h1>
-        <form @submit.prevent>
-            <input
-                type="text"
-                class="form-control"
-                v-model="searchText"
-                @keyup="searchAddress"
-            />
-            <!-- autoload da fixare -->
-            <div
-                v-for="(singleAddress, index) in addressResults"
-                :key="singleAddress.id"
-            >
-                <span @click="checkAddress(index)" v-if="!isHidden">{{
-                singleAddress.address.freeformAddress
-                }}</span>
-            </div>
-            
-                <button type="submit" class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white" @click="searchApartments()">
-                    cerca appartamento
-                </button>
-           
-            
-        </form>
-            </div>
-        </div>
+        
 
 
         <div class="row justify-content-center py-3">
             <div class="col-10">
-                <h3>Small Room</h3>
+                <h3>Appartamenti consigliati </h3>
 
                 <div class="row justify-content-between">
                     <div class="col-9 text">
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-
+    <div class="trapezioIs">a</div>
 
     </section>
 
@@ -116,8 +116,6 @@ export default{
               this.$router.push({name:"search", params:{data:this.apartments}})
             }
           });
-          
-            
         })
 
         .catch((e) => {
@@ -179,17 +177,65 @@ export default{
 
 <style lang="scss" scoped>
 
+
+
     #body{
         background-color: #FFFFFF;
     }
 
+    .row-form{
+        height: 500px;
+    }
+
+    .list-address{
+        background-color: rgba(255, 255, 255, 0.527);
+        color: black;
+        max-height: 50px;
+        margin-top: 0.5rem;
+        width: 95%;
+        position: relative;
+        top: -9px;
+       
+    }
     .my_back{
-        background: url('http://amdtapes.ro/wp-content/themes/options/images/skins/headers/full_width/header-tealSkies.jpg');
+        background: 
+        linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)),
+        url('https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg');
         background-repeat:no-repeat ;
         background-size:cover ;
         background-position: center;
+        
+       
     }
 
+
+    input{
+        height: 40px;
+    }
+    input:focus{
+        box-shadow: 0 0 0 0.25rem #b945457b;
+        border-color: #b945457b
+
+    }
+
+
+    h1{ 
+        text-shadow: 4px 4px #b94545;
+        color: rgba(255, 255, 255, 0.827);
+    }
+
+    form{
+        position: relative;
+    }
+    button{
+        background-color: #b94545;
+        position: absolute;
+        width: 40%;
+        height: 40px;
+        top: 0;
+        right: 0;
+        border: none;
+    }
 
 
 </style>
