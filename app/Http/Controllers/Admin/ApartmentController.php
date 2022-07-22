@@ -131,7 +131,7 @@ class ApartmentController extends Controller
         }
 
 
-        $apiQuery =  str_replace(' ', '-', $data['city']) . '-' .  str_replace(' ', '-', $data['address']) . '-' .  str_replace(' ', '-', $data['number']) ;
+        $apiQuery =  str_replace(' ', '-', $data['address']) ;
         $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
         $response = json_decode($response);
 

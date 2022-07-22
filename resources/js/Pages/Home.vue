@@ -38,11 +38,11 @@
                 singleAddress.address.freeformAddress
                 }}</span>
             </div>
-            <router-link to="/search">
+            
                 <button type="submit" class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white" @click="searchApartments()">
                     cerca appartamento
                 </button>
-            </router-link>   
+           
             
         </form>
             </div>
@@ -92,7 +92,9 @@ export default{
             addressResults: [],
             searchText: "",
             apartments: [],
-            
+             props:{
+            apartmentList: Array
+                }
             
         };
     },
@@ -111,6 +113,7 @@ export default{
           results.forEach(result => {
             if (result.address.includes(this.searchText)) {
               this.apartments.push(result);
+              this.$router.push({name:"search", params:{data:this.apartments}})
             }
           });
           

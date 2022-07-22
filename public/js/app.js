@@ -5108,7 +5108,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       addressResults: [],
       searchText: "",
-      apartments: []
+      apartments: [],
+      props: {
+        apartmentList: Array
+      }
     };
   },
   methods: {
@@ -5124,6 +5127,13 @@ __webpack_require__.r(__webpack_exports__);
         results.forEach(function (result) {
           if (result.address.includes(_this.searchText)) {
             _this.apartments.push(result);
+
+            _this.$router.push({
+              name: "search",
+              params: {
+                data: _this.apartments
+              }
+            });
           }
         });
       })["catch"](function (e) {
@@ -5265,6 +5275,9 @@ __webpack_require__.r(__webpack_exports__);
       this.isHidden = true;
     } //end methods
 
+  },
+  created: function created() {
+    this.apartments = this.$route.params.data;
   }
 });
 
@@ -5364,11 +5377,7 @@ var render = function render() {
         }
       }
     }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
-  }), _vm._v(" "), _c("router-link", {
-    attrs: {
-      to: "/search"
-    }
-  }, [_c("button", {
+  }), _vm._v(" "), _c("button", {
     staticClass: "my-4 btn btn-dark w-100 fw-bold fs-2 text-white",
     attrs: {
       type: "submit"
@@ -5378,7 +5387,7 @@ var render = function render() {
         return _vm.searchApartments();
       }
     }
-  }, [_vm._v("\n                    cerca appartamento\n                ")])])], 2)])]), _vm._v(" "), _vm._m(1)])]);
+  }, [_vm._v("\n                    cerca appartamento\n                ")])], 2)])]), _vm._v(" "), _vm._m(1)])]);
 };
 
 var staticRenderFns = [function () {

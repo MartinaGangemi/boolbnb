@@ -95,6 +95,8 @@ export default {
       addressResults: [],
       lat: 0,
       lon: 0,
+
+      
     };
   },
 
@@ -200,6 +202,10 @@ export default {
 
     //end methods
   },
+
+  created(){
+    this.apartments=this.$route.params.data
+  }
 
 
 };
