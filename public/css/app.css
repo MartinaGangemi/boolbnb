@@ -10219,3 +10219,7 @@ textarea.form-control-lg {
 .prova {
   color: black;
 }
+
+body {
+  font-family: "Poppins", sans-serif;
+}

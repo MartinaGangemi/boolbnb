@@ -5183,7 +5183,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
@@ -5475,7 +5475,7 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("button", {
-    staticClass: "rounded-end text-uppercase text-center text-white",
+    staticClass: "search-btn rounded-end text-uppercase text-center text-white",
     attrs: {
       type: "submit"
     },
@@ -5484,11 +5484,7 @@ var render = function render() {
         return _vm.searchApartments();
       }
     }
-  }, [_vm._v("\n                                Cerca appartamento "), _c("font-awesome-icon", {
-    attrs: {
-      icon: "fa-solid fa-magnifying-glass"
-    }
-  })], 1), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                Cerca appartamento \n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "list-address"
   }, _vm._l(_vm.addressResults, function (singleAddress, index) {
     return _c("div", {
@@ -5501,7 +5497,7 @@ var render = function render() {
         }
       }
     }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
-  }), 0)])])])])]), _vm._v(" "), _vm._m(0)]);
+  }), 0)])])])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
 };
 
 var staticRenderFns = [function () {
@@ -5509,40 +5505,52 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("section", {
-    staticClass: "container-fluid mt-5",
+    staticClass: "container mt-5",
     attrs: {
       id: "site_main"
     }
   }, [_c("div", {
     staticClass: "row justify-content-center py-3"
   }, [_c("div", {
-    staticClass: "col-10"
-  }, [_c("h3", [_vm._v("Appartamenti consigliati ")]), _vm._v(" "), _c("div", {
-    staticClass: "row justify-content-between"
+    staticClass: "row row-cols-2 my-5 justify-content-between"
   }, [_c("div", {
-    staticClass: "col-9 text"
+    staticClass: "col-12 col-lg-8 text"
   }, [_c("img", {
-    staticClass: "img-fluid",
+    staticClass: "img-home img-fluid",
     attrs: {
       src: "https://www.imghoteles.com/wp-content/uploads/sites/1709/nggallery/desktop-pics//fott1.jpg",
       alt: ""
     }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("Card title")]), _vm._v(" "), _c("p", {
-    staticClass: "card-text"
-  }, [_vm._v("Some quick example text to build on the card title and make up the bulk of the card's content.")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-2 text"
-  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "trapezioIs"
-  }, [_vm._v("a")])]);
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 col-lg-4 text-description d-flex flex-column justify-content-end mt-4"
+  }, [_c("h3", {
+    staticClass: "text-uppercase"
+  }, [_vm._v("Benvenuti su Fablo B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam cum neque odio at a obcaecati doloremque fuga veritatis, non provident?\n                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex justify-content-center mb-4"
+  }, [_c("button", {
+    staticClass: "text-light mt-4 w-50"
+  }, [_vm._v("Inizia a viaggiare")])])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("section", {
+    staticClass: "mt-5 container"
+  }, [_c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v("\n            Appartamenti consigliati\n        ")]), _vm._v(" "), _c("div", {
+    staticClass: "row card-container"
+  }, [_c("div", {
+    staticClass: "col-3"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-img"
+  }, [_vm._v("\n                        card-img\n                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "p-2 card-text d-flex flex-column align-items-center"
+  }, [_c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi nisi facere minus labore distinctio corporis veniam ab quos velit quod.\n                        ")]), _vm._v(" "), _c("button", {
+    staticClass: "w-50 text-light text-uppercase"
+  }, [_vm._v("\n                            dettagli\n                        ")])])])])])]);
 }];
 render._withStripped = true;
 
@@ -10786,7 +10794,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#body[data-v-6a63e488] {\n  background-color: #FFFFFF;\n}\n.row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 50px;\n  margin-top: 0.5rem;\n  width: 95%;\n  position: relative;\n  top: -9px;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  position: absolute;\n  width: 40%;\n  height: 40px;\n  top: 0;\n  right: 0;\n  border: none;\n}", ""]);
+exports.push([module.i, "#body[data-v-6a63e488] {\n  background-color: #FFFFFF;\n}\n.row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 50px;\n  margin-top: 0.5rem;\n  width: 95%;\n  position: relative;\n  top: -9px;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 40%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}", ""]);
 
 // exports
 
