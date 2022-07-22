@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid mt-4">
     <!-- form ricerca appartamento -->
     <form @submit.prevent>
       <input
@@ -19,7 +19,7 @@
       </div>
       <div class="beds-rooms-commands mt-4">
         <span class="me-2">
-          <label for="rooms">Nr. Stanze</label>
+          <label for="rooms">Nr. Stanze <i class="fa-solid fa-door-closed"></i></label>
           <input
             type="number"
             min="1"
@@ -30,7 +30,7 @@
           />
         </span>
         <span>
-          <label for="rooms">Nr. Letti</label>
+          <label for="rooms">Nr. Letti <i class="fa-solid fa-bed"></i></label>
           <input
             type="number"
             min="1"
@@ -77,7 +77,7 @@
             <router-link
               class="btn btn-light"
               :to="{ name: 'apartment', params: { id: apartment.id } }"
-              >Read More</router-link
+              >Visita <i class="fa-solid fa-eye"></i></router-link
             >
           </div>
 

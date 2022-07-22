@@ -24,7 +24,7 @@
 
                         <div class="card-text">
                             <h5>{{$apartment->summary}}</h5>
-                            <small>Indirizzo: {{$apartment->address}}</small>
+                            <small><i class="fa-solid fa-map-location"></i> : {{$apartment->address}}</small>
                         </div>
 
                         <div class="options text-center">

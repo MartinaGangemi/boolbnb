@@ -1,11 +1,11 @@
 <template>
     <div id="body">
-    
+
     <!-- jumbotron -->
     <div class=" bg-light my_back">
-         
+
         <div class="container text-light py-5">
-            
+
             <div class="row justify-content-center align-items-center row-form">
                 <div class="col-7 text-center">
                    <h1 class="display-1">Fablo B&B</h1>
@@ -18,7 +18,7 @@
                             @keyup="searchAddress"
                         />
                         <button type="submit" class="  rounded-end  text-uppercase text-center text-white" @click="searchApartments()">
-                                Cerca appartamento <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+                                 <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                         <!-- autoload -->
                         <div class="list-address">
@@ -30,11 +30,11 @@
                                 singleAddress.address.freeformAddress
                                 }}</span>
                             </div>
-                            
+
                         </div>
-                            
-                    
-                        
+
+
+
                     </form>
                 </div>
         </div>
@@ -43,10 +43,10 @@
 
 
 
-    
+
     <!-- form -->
     <section id="site_main" class="container-fluid mt-5">
-        
+
 
 
         <div class="row justify-content-center py-3">
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-    <div class="trapezioIs">a</div>
+   <!--  <div class="trapezioIs">a</div> -->
 
     </section>
 
@@ -95,12 +95,12 @@ export default{
              props:{
             apartmentList: Array
                 }
-            
+
         };
     },
 
     methods: {
-    
+
     searchApartments(addressId) {
       this.apartments = [];
       axios
@@ -148,9 +148,9 @@ export default{
 
         //metodo per cliccare l'indirizzo che compare in autoload
         checkAddress(addressId) {
-      
+
       this.searchText = null;
-      
+
 
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress);
@@ -169,8 +169,8 @@ export default{
 
 
 
-    
-    
+
+
 }
 
 </script>
@@ -195,17 +195,17 @@ export default{
         width: 95%;
         position: relative;
         top: -9px;
-       
+
     }
     .my_back{
-        background: 
+        background:
         linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)),
         url('https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg');
         background-repeat:no-repeat ;
         background-size:cover ;
         background-position: center;
-        
-       
+
+
     }
 
 
@@ -219,7 +219,7 @@ export default{
     }
 
 
-    h1{ 
+    h1{
         text-shadow: 4px 4px #b94545;
         color: rgba(255, 255, 255, 0.827);
     }
@@ -230,11 +230,17 @@ export default{
     button{
         background-color: #b94545;
         position: absolute;
-        width: 40%;
+        width: 20%;
         height: 40px;
         top: 0;
         right: 0;
         border: none;
+        transition: 1s;
+    }
+     button:hover{
+         background: -webkit-gradient(radial, 100 75, 100, 100 75, 0, from(rgba(0, 0, 0, .7)), to(rgba(0, 0, 0, .4)))
+
+
     }
 
 

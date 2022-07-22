@@ -11,11 +11,11 @@
         <img src="{{ asset('storage/' . $apartment->cover_img) }}" alt="">
         <div class="card-body">
             <p>{{$apartment->description}}</p>
-            <strong>Address: </strong><span>{{$apartment->city}} {{$apartment->address}} {{$apartment->number}}</span><br>
-            <strong>Rooms: </strong><span>{{$apartment->rooms}}</span><br>
-            <strong>Beds: </strong><span>{{$apartment->beds}}</span><br>
-            <strong>Bathrooms: </strong><span>{{$apartment->bathrooms}}</span><br>
-            <strong>Square Meters: </strong><span>{{$apartment->square_meters}}</span><br>
+            <strong><i class="fa-solid fa-map-location"></i>  Address : </strong><span>{{$apartment->city}} {{$apartment->address}} {{$apartment->number}}</span><br>
+            <strong><i class="fa-solid fa-door-closed"></i>  Rooms : </strong><span>{{$apartment->rooms}}</span><br>
+            <strong><i class="fa-solid fa-bed"></i> Beds : </strong><span>{{$apartment->beds}}</span><br>
+            <strong><i class="fa-solid fa-toilet"></i>  Bathrooms : </strong><span>{{$apartment->bathrooms}}</span><br>
+            <strong><i class="fa-solid fa-ruler-combined"></i>  Square Meters : </strong><span>{{$apartment->square_meters}}</span><br>
 
         </div>
     </div>

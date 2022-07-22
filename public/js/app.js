@@ -5407,10 +5407,45 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_c("p", [_vm._v(_vm._s(_vm.apartment.description))]), _vm._v(" "), _c("strong", [_vm._v("Address: ")]), _c("span", [_vm._v(_vm._s(_vm.apartment.address))]), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Rooms: ")]), _c("span", [_vm._v(_vm._s(_vm.apartment.rooms))]), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Beds: ")]), _c("span", [_vm._v(_vm._s(_vm.apartment.beds))]), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Bathrooms: ")]), _c("span", [_vm._v(_vm._s(_vm.apartment.bathrooms))]), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Square Meters: ")]), _c("span", [_vm._v(_vm._s(_vm.apartment.square_meters))]), _c("br")])])]);
+  }, [_c("p", [_vm._v(_vm._s(_vm.apartment.description))]), _vm._v(" "), _vm._m(0), _c("span", [_vm._v(_vm._s(_vm.apartment.address))]), _c("br"), _vm._v(" "), _vm._m(1), _c("span", [_vm._v(_vm._s(_vm.apartment.rooms))]), _c("br"), _vm._v(" "), _vm._m(2), _c("span", [_vm._v(_vm._s(_vm.apartment.beds))]), _c("br"), _vm._v(" "), _vm._m(3), _c("span", [_vm._v(_vm._s(_vm.apartment.bathrooms))]), _c("br"), _vm._v(" "), _vm._m(4), _c("span", [_vm._v(_vm._s(_vm.apartment.square_meters))]), _c("br")])])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("strong", [_c("i", {
+    staticClass: "fa-solid fa-map-location"
+  }), _vm._v(" Address : ")]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("strong", [_c("i", {
+    staticClass: "fa-solid fa-door-closed"
+  }), _vm._v(" Rooms : ")]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("strong", [_c("i", {
+    staticClass: "fa-solid fa-bed"
+  }), _vm._v(" Beds : ")]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("strong", [_c("i", {
+    staticClass: "fa-solid fa-toilet"
+  }), _vm._v(" Bathrooms : ")]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("strong", [_c("i", {
+    staticClass: "fa-solid fa-ruler-combined"
+  }), _vm._v(" Square Meters : ")]);
+}];
 render._withStripped = true;
 
 
@@ -5484,11 +5519,9 @@ var render = function render() {
         return _vm.searchApartments();
       }
     }
-  }, [_vm._v("\n                                Cerca appartamento "), _c("font-awesome-icon", {
-    attrs: {
-      icon: "fa-solid fa-magnifying-glass"
-    }
-  })], 1), _vm._v(" "), _c("div", {
+  }, [_c("i", {
+    staticClass: "fa-solid fa-magnifying-glass"
+  })]), _vm._v(" "), _c("div", {
     staticClass: "list-address"
   }, _vm._l(_vm.addressResults, function (singleAddress, index) {
     return _c("div", {
@@ -5540,9 +5573,7 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Go somewhere")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-2 text"
-  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "trapezioIs"
-  }, [_vm._v("a")])]);
+  }, [_vm._v("\n                        TESTO DA SCEGLIERE\n                    ")])])])])]);
 }];
 render._withStripped = true;
 
@@ -5565,7 +5596,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container-fluid"
+    staticClass: "container-fluid mt-4"
   }, [_c("form", {
     on: {
       submit: function submit($event) {
@@ -5607,11 +5638,7 @@ var render = function render() {
     staticClass: "beds-rooms-commands mt-4"
   }, [_c("span", {
     staticClass: "me-2"
-  }, [_c("label", {
-    attrs: {
-      "for": "rooms"
-    }
-  }, [_vm._v("Nr. Stanze")]), _vm._v(" "), _c("input", {
+  }, [_vm._m(0), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5636,11 +5663,7 @@ var render = function render() {
         _vm.nRooms = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("span", [_c("label", {
-    attrs: {
-      "for": "rooms"
-    }
-  }, [_vm._v("Nr. Letti")]), _vm._v(" "), _c("input", {
+  })]), _vm._v(" "), _c("span", [_vm._m(1), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5715,11 +5738,35 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Read More")])], 1)]);
+    }, [_vm._v("Visita "), _c("i", {
+      staticClass: "fa-solid fa-eye"
+    })])], 1)]);
   }), 0)])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("label", {
+    attrs: {
+      "for": "rooms"
+    }
+  }, [_vm._v("Nr. Stanze "), _c("i", {
+    staticClass: "fa-solid fa-door-closed"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("label", {
+    attrs: {
+      "for": "rooms"
+    }
+  }, [_vm._v("Nr. Letti "), _c("i", {
+    staticClass: "fa-solid fa-bed"
+  })]);
+}];
 render._withStripped = true;
 
 
@@ -10786,7 +10833,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#body[data-v-6a63e488] {\n  background-color: #FFFFFF;\n}\n.row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 50px;\n  margin-top: 0.5rem;\n  width: 95%;\n  position: relative;\n  top: -9px;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  position: absolute;\n  width: 40%;\n  height: 40px;\n  top: 0;\n  right: 0;\n  border: none;\n}", ""]);
+exports.push([module.i, "#body[data-v-6a63e488] {\n  background-color: #FFFFFF;\n}\n.row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 50px;\n  margin-top: 0.5rem;\n  width: 95%;\n  position: relative;\n  top: -9px;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  position: absolute;\n  width: 20%;\n  height: 40px;\n  top: 0;\n  right: 0;\n  border: none;\n  transition: 1s;\n}\nbutton[data-v-6a63e488]:hover {\n  background: -webkit-gradient(radial, 100 75, 100, 100 75, 0, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.4)));\n}", ""]);
 
 // exports
 
@@ -58199,9 +58246,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

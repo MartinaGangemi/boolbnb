@@ -14,8 +14,8 @@
             <strong>Address: </strong><span>{{$apartment->address}}</span><br>
             <strong>Rooms: </strong><span>{{$apartment->rooms}}</span><br>
             <strong>Beds: </strong><span>{{$apartment->beds}}</span><br>
-            <strong>Bathrooms: </strong><span>{{$apartment->bathrooms}}</span><br>
-            <strong>Square Meters: </strong><span>{{$apartment->square_meters}}</span><br>
+            <strong>Bathrooms : </strong><span>{{$apartment->bathrooms}}</span><br>
+            <strong>Square Meters  : </strong><span>{{$apartment->square_meters}}</span><br>
 
         </div>
     </div>
