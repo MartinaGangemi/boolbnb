@@ -5290,7 +5290,27 @@ __webpack_require__.r(__webpack_exports__);
             if (distance <= _this.defaultDistance && result.rooms >= _this.nRooms && result.beds >= _this.nBeds) {
               _this.apartments.push(result);
             }
+          }); //console.log("Lista appartamenti: ", this.apartments);
+
+          _this.apartments.sort(function (apartment1, apartment2) {
+            //console.log("1: ", apartment1, " 2: ", apartment2);
+
+            /* let distance1 = this.getDistanceFromLatLonInKm(
+                apartment1.lat,
+                apartment1.lon,
+                this.searchLat,
+                this.searchLon
+            );
+              let distance2 = this.getDistanceFromLatLonInKm(
+                apartment2.lat,
+                apartment2.lon,
+                this.searchLat,
+                this.searchLon
+            ); */
+            //console.log("1: ", distance1, " 2: ", distance2);
+            return 0;
           }); //mappa
+
 
           _this.createMap();
 
@@ -5751,6 +5771,32 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
+      value: _vm.defaultDistance,
+      expression: "defaultDistance"
+    }],
+    staticClass: "border border-danger rounded",
+    staticStyle: {
+      width: "50px"
+    },
+    attrs: {
+      type: "number",
+      min: "0"
+    },
+    domProps: {
+      value: _vm.defaultDistance
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.defaultDistance = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("span", {
+    staticClass: "me-2"
+  }, [_vm._m(1), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
       value: _vm.nRooms,
       expression: "nRooms"
     }],
@@ -5772,7 +5818,7 @@ var render = function render() {
         _vm.nRooms = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("span", [_vm._m(1), _vm._v(" "), _c("input", {
+  })]), _vm._v(" "), _c("span", [_vm._m(2), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5852,6 +5898,17 @@ var render = function render() {
 };
 
 var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("label", {
+    attrs: {
+      "for": "rooms"
+    }
+  }, [_vm._v("Distanza (km) "), _c("i", {
+    staticClass: "fa-solid fa-map-location-dot"
+  })]);
+}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -58420,9 +58477,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
