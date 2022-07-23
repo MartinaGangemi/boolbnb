@@ -57,6 +57,7 @@
       <div class="sticky-top row col-lg-9 pb-5">
         <div id="map" class="my-round my-col" ref="mapRef"></div>
       </div>
+      
 
       <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
         <div
@@ -122,7 +123,6 @@ export default {
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
-
       addressResults: [],
       lat: 0,
       lon: 0,
