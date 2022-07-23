@@ -17,7 +17,19 @@
           singleAddress.address.freeformAddress
         }}</span>
       </div>
-      <div class="beds-rooms-commands mt-4">
+      <div class="commands mt-4">
+
+        <span class="me-2">
+          <label for="rooms">Distanza (km) <i class="fa-solid fa-map-location-dot"></i></label>
+          <input
+            type="number"
+            min="0"
+            v-model="defaultDistance"
+            class="border border-danger rounded"
+            style="width: 50px"
+          />
+        </span>
+
         <span class="me-2">
           <label for="rooms">Nr. Stanze <i class="fa-solid fa-door-closed"></i></label>
           <input
@@ -29,6 +41,7 @@
             style="width: 50px"
           />
         </span>
+
         <span>
           <label for="rooms">Nr. Letti <i class="fa-solid fa-bed"></i></label>
           <input
@@ -40,6 +53,7 @@
             style="width: 50px"
           />
         </span>
+
       </div>
 
       <button
@@ -166,13 +180,42 @@ export default {
                 this.searchLat,
                 this.searchLon
               );
-              //console.log(distance);
+              //console.log(result.address, ' : ', distance, ' km');
 
               if (distance <= this.defaultDistance && result.rooms >= this.nRooms &&
               result.beds >= this.nBeds) {
+
                 this.apartments.push(result);
+
               }
+
             });
+
+            //console.log("Lista appartamenti: ", this.apartments);
+
+            this.apartments.sort(function(apartment1, apartment2) {
+
+              //console.log("1: ", apartment1, " 2: ", apartment2);
+
+              /* let distance1 = this.getDistanceFromLatLonInKm(
+                apartment1.lat,
+                apartment1.lon,
+                this.searchLat,
+                this.searchLon
+              );
+
+              let distance2 = this.getDistanceFromLatLonInKm(
+                apartment2.lat,
+                apartment2.lon,
+                this.searchLat,
+                this.searchLon
+              );
+
+              console.log("1: ", distance1, " 2: ", distance2); */
+
+              return 0;
+
+            })
 
             //mappa
             this.createMap();
@@ -224,7 +267,7 @@ export default {
         //  let lat = this.apartments[0].lat
         //  let lon = this.apartments[0].lon
         let coordinates = [lonMarker, latMarker];
-        console.log(coordinates);
+        //console.log(coordinates);
 
         //marker
 
@@ -261,8 +304,8 @@ export default {
     checkAddress(addressId) {
       this.searchText = null;
 
-      console.log(addressId);
-      console.log(this.addressResults[0].address.freeformAddress);
+      //console.log(addressId);
+      //console.log(this.addressResults[0].address.freeformAddress);
 
       //prende la lista delle città e lat e lon
       this.searchText = this.addressResults[addressId].address.freeformAddress;
