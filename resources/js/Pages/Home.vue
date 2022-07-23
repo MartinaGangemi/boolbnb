@@ -69,8 +69,8 @@
             <h2 class="text-center">
                 Appartamenti consigliati
             </h2>
-            <div class="row card-container">
-                <div class="col-3">
+            <div class="mt-5 row card-container">
+                <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card">
                         <div class="card-img">
                             card-img
@@ -127,9 +127,9 @@ export default{
             if (result.address.includes(this.searchText)) {
               this.apartments.push(result);
               this.$router.push({name:"search", params:{data:this.apartments}})
-
             }
-          });
+           });
+
         })
 
         .catch((e) => {
@@ -167,7 +167,7 @@ export default{
 
 
       console.log(addressId);
-      console.log(this.addressResults[0].address.freeformAddress);
+      
 
       //prende la lista delle città e lat e lon
       this.searchText = this.addressResults[addressId].address.freeformAddress;
@@ -190,12 +190,6 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-
-
-
-    #body{
-        background-color: #FFFFFF;
-    }
 
     .row-form{
         height: 500px;
@@ -242,12 +236,7 @@ export default{
     form{
         position: relative;
     }
-    button {
-        background-color: #b94545;
-        width: 40%;
-        height: 40px;
-        border: none;
-    }
+    
 
     .search-btn{
        position: absolute;
@@ -271,6 +260,12 @@ export default{
         margin: 0 auto;
     }
 
+        button {
+    background-color: #b94545;
+    width: 40%;
+    height: 40px;
+    border: none;
+}
     .img-home{
         filter: drop-shadow(2px 4px 6px black);
     }
