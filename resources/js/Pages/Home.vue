@@ -19,7 +19,7 @@
                                     Cerca appartamento 
                             </button>
                             <!-- autoload -->
-                            <div class="list-address">
+                            <div class="list-address rounded-bottom">
                                 <div
                                     v-for="(singleAddress, index) in addressResults"
                                     :key="singleAddress.id"
@@ -127,6 +127,7 @@ export default{
             if (result.address.includes(this.searchText)) {
               this.apartments.push(result);
               this.$router.push({name:"search", params:{data:this.apartments}})
+            
             }
           });
         })
@@ -147,7 +148,7 @@ export default{
       const link =
         `https://api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`;
+        `.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
         //console.log(results);
@@ -160,7 +161,7 @@ export default{
 
 
         //metodo per cliccare l'indirizzo che compare in autoload
-        checkAddress(addressId) {
+    checkAddress(addressId) {
       
       this.searchText = null;
       
@@ -203,11 +204,13 @@ export default{
     .list-address{
         background-color: rgba(255, 255, 255, 0.527);
         color: black;
-        max-height: 50px;
+        max-height: 100px;
+        overflow: hidden;
         margin-top: 0.5rem;
-        width: 95%;
-        position: relative;
-        top: -9px;
+        width: 100%;
+        position: absolute;
+        top: 30px;
+        text-align: left;
        
     }
     .my_back{
@@ -241,16 +244,14 @@ export default{
     }
     button {
         background-color: #b94545;
-       
         width: 40%;
         height: 40px;
-       
         border: none;
     }
 
     .search-btn{
        position: absolute;
-    width: 40%;
+        width: 40%;
         top: 0;
         right: 0;
     }
