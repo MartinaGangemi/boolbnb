@@ -20,4 +20,7 @@ const mix = require('laravel-mix');
  .options({
      processCssUrls:false
  })
-
+ .copy(
+    'node_modules/@fortawesome/fontawesome-free/webfonts',
+    'public/webfonts'
+);

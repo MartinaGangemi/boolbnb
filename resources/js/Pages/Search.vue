@@ -19,7 +19,7 @@
       </div>
       <div class="beds-rooms-commands mt-4">
         <span class="me-2">
-          <label for="rooms">Nr. Stanze</label>
+          <label for="rooms">Nr. Stanze <i class="fa-solid fa-door-closed"></i></label>
           <input
             type="number"
             min="1"
@@ -30,7 +30,7 @@
           />
         </span>
         <span>
-          <label for="rooms">Nr. Letti</label>
+          <label for="rooms">Nr. Letti <i class="fa-solid fa-bed"></i></label>
           <input
             type="number"
             min="1"
@@ -148,7 +148,7 @@ export default {
           const link =
             "https://kr-api.tomtom.com/search/2/geocode/" +
             this.searchText +
-            ".json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true";
+            ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
 
           axios.get(link).then((searchResponse) => {
             let searchResults = searchResponse.data.results;
@@ -206,7 +206,7 @@ export default {
 
     createMap() {
       let map = tt.map({
-        key: "D4OSGfRW4VAQYImcVowdausckQhvMUbq",
+        key: "zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
@@ -248,7 +248,7 @@ export default {
       const link =
         `https://kr-api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=D4OSGfRW4VAQYImcVowdausckQhvMUbq&typeahead=true`;
+        `.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
         //console.log(results);

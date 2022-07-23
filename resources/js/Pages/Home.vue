@@ -1,6 +1,6 @@
 <template>
     <div id="body">
-    
+
         <!-- jumbotron -->
         <div class=" bg-light my_back">
             <div class="container text-light py-5">
@@ -16,7 +16,7 @@
                                 @keyup="searchAddress"
                             />
                             <button type="submit" class="search-btn  rounded-end  text-uppercase text-center text-white" @click="searchApartments()">
-                                    Cerca appartamento 
+                                    <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                             <!-- autoload -->
                             <div class="list-address rounded-bottom">
@@ -28,9 +28,9 @@
                                     singleAddress.address.freeformAddress
                                     }}</span>
                                 </div>
-                                
+
                             </div>
-                                
+
                         </form>
                     </div>
                 </div>
@@ -52,16 +52,16 @@
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam cum neque odio at a obcaecati doloremque fuga veritatis, non provident?
                         </p>
-                        
+
                         <div class="d-flex justify-content-center mb-4">
                             <button class="text-light mt-4 w-50">Inizia a viaggiare</button>
                         </div>
-                        
+
                     </div>
 
                 </div>
             </div>
-                
+
         </section>
 
         <!-- appartamenti sponsorizzati -->
@@ -108,12 +108,12 @@ export default{
              props:{
             apartmentList: Array
                 }
-            
+
         };
     },
 
     methods: {
-    
+
     searchApartments(addressId) {
       this.apartments = [];
       axios
@@ -127,7 +127,7 @@ export default{
             if (result.address.includes(this.searchText)) {
               this.apartments.push(result);
               this.$router.push({name:"search", params:{data:this.apartments}})
-            
+
             }
           });
         })
@@ -162,9 +162,9 @@ export default{
 
         //metodo per cliccare l'indirizzo che compare in autoload
     checkAddress(addressId) {
-      
+
       this.searchText = null;
-      
+
 
       console.log(addressId);
       console.log(this.addressResults[0].address.freeformAddress);
@@ -183,8 +183,8 @@ export default{
 
 
 
-    
-    
+
+
 }
 
 </script>
@@ -211,10 +211,10 @@ export default{
         position: absolute;
         top: 30px;
         text-align: left;
-       
+
     }
     .my_back{
-        background: 
+        background:
         linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)),
         url('https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg');
         background-repeat:no-repeat ;
@@ -234,7 +234,7 @@ export default{
     }
 
 
-    h1{ 
+    h1{
         text-shadow: 4px 4px #b94545;
         color: rgba(255, 255, 255, 0.827);
     }
@@ -251,7 +251,7 @@ export default{
 
     .search-btn{
        position: absolute;
-        width: 40%;
+        width: 20%;
         top: 0;
         right: 0;
     }

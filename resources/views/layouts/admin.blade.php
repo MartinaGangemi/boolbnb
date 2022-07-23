@@ -18,14 +18,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link  href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
-    
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img  src="{{asset('img/logo.svg')}}" alt="">
+                <img  class="logo" src="{{asset('img/logo.svg')}}" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -99,7 +99,7 @@
     <main class="py-4">
         @yield('content')
     </main>
-    
+
 
     <script>
         function searchAddress() {
