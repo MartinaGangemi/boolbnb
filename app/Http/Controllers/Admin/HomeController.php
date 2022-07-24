@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\Apartment;
 use App\Http\Controllers\Controller;
-
+use App\Models\Service;
 
 class HomeController extends Controller
 {
-    
+
 
     /**
      * Show the application dashboard.
@@ -15,8 +15,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         $apartments = Apartment::all();
-        return view('admin.apartments.index', compact('apartments'));
+        $services = Service::all();
+        return view('admin.apartments.index', compact('apartments','services'));
     }
 }

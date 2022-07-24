@@ -38,28 +38,17 @@
                                 <label class="form-check-label yellow-label" for="visible">Spunta se vui rendere visibile l'appartamento</label>
                             </div>
                             {{-- services --}}
-                            <div class="form-group col-sm-12 col-lg-6">
-                                <div class="dropdown">
-
-                                    <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenu2"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Scegli almeno un servizio
-                                    </button>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <button class="my_button dropdown-item" type="button">
-                                            @foreach ($services as $service)
-                                                <div>
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="{{ $service->id }}" value="{{ $service->id }}"
-                                                        name="services[]" @if (in_array($service->id, old('services', []))) checked @endif >
-                                                    <label class="form-check-label"
-                                                        for="{{ $service->id }}">{{ $service->name }}</label>
-                                                </div>
-                                            @endforeach
-                                        </button>
+                          <!--chechbox services-->
+                            <div class="mb-3">
+                                <label for="services" class="form-label">Seleziona almeno un servizio</label>
+                                <span class="required">*</span>
+                                <div class="row">
+                                    @foreach ($services as $service)
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                        <input type="checkbox" class="service_imput" id="{{$service->id}}" name="services[]" onclick="selectChecked()" required value="{{ $service->id }}" {{ is_array(old('services')) && in_array($service->id, old('services')) ? 'checked' : '' }}>
+                                        {{ $service->name }}</input>
                                     </div>
-
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -82,15 +71,6 @@
                         </div>
                         {{-- address --}}
 
-                        <!-- <div class="row mt-3">
-                            <div class=" col-sm-12 col-lg-6">
-                                <label for="city" class="form-label">Città</label>
-                                <span class="required">*</span>
-                                <input class="form-control" id="city" name="city"
-                                    value="{{ old('city', $newApartment->city) }}" placeholder="Es: Roma"
-                                    required minlength="4">
-                            </div>
-                        </div> -->
 
 
                         <div class="row mt-3">
@@ -103,16 +83,7 @@
                             </div>
                         </div>
 
-                        <!-- <div class="row mt-3">
-                            <div class=" col-sm-12 col-lg-6">
-                                <label for="number" class="form-label">Numero</label>
-                                <span class="required">*</span>
-                                <input type="number" class="form-control" id="number" name="number"
-                                    value="{{ old('number', $newApartment->number) }}" placeholder="es: 129"
-                                    required min="1">
-                            </div>
-                        </div>
-                        -->
+
 
 
                         {{-- rooms --}}
@@ -163,4 +134,33 @@
 
         </div>
     </section>
-@endsection
+    @endsection
+
+
+
+
+    @push('check')
+    <script>
+        const array = []
+        function selectChecked() {
+            const input = event.target
+            input.setAttribute('checked', 'checked')
+            if (array.includes(input.value)) {
+                const index = array.indexOf(input.value)
+                array.splice(index, 1)
+                input.removeAttribute('checked')
+            } else {
+                array.push(input.value)
+            }
+            if (array.length > 0) {
+                document.querySelectorAll('.service_imput').forEach(item => {
+                    item.removeAttribute('required')
+                })
+            } else {
+                document.querySelectorAll('.service_imput').forEach(item => {
+                    item.setAttribute('required', 'required')
+                })
+            }
+        }
+    </script>
+    @endpush

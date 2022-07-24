@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 class ApartmentController extends Controller
 {
     public function index (){
+
+
+
         $apartments = Apartment::with('services')->orderByDesc('id')->paginate(8);
-    
+
         return $apartments;
     }
 
