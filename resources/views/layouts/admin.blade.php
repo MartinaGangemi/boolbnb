@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    @stack('scripts')
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,7 +101,7 @@
         @yield('content')
     </main>
 
-
+    @stack('check')
     <script>
         function searchAddress() {
 

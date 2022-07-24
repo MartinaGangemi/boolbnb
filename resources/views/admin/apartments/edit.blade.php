@@ -35,33 +35,22 @@
                                 <input class="form-check-input" type="hidden" value="0" id="visible" name="visible">
                                 <input class="form-check-input" type="checkbox" value="1" id="visible"
                                     name="visible">
-                                <label class="form-check-label yellow-label" for="visible">Spunta se vui rendere visibile l'appartamento</label>
+                                <label class="form-check-label yellow-label" for="visible">Spunta se vuoi rendere visibile l'appartamento</label>
                             </div>
 
-                            <div class="form-group col-sm-12 col-lg-6">
-                                <div class="dropdown">
-
-                                    <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenu2"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Scegli almeno un servizio
-                                    </button>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <button class="my_button dropdown-item" type="button">
-                                            @foreach ($services as $service)
-                                                <div>
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="{{ $service->id }}" value="{{ $service->id }}"
-                                                        name="services[]" @if ($apartment->services->contains($service->id)) checked @endif>
-                                                    <label class="form-check-label"
-                                                        for="{{ $service->id }}">{{ $service->name }}</label>
-                                                </div>
-                                            @endforeach
-                                        </button>
+                            <div class="mb-3">
+                                <label for="services" class="form-label">Seleziona almeno un servizio</label>
+                                <span class="required">*</span>
+                                <div class="row">
+                                    @foreach ($services as $service)
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                        <input type="checkbox" class="service_imput" id="service-{{$service->id}}" name="services[]" onclick="selectChecked()" value="{{ $service->id }}" {{ $apartment->services->contains($service->id) ? 'checked' : '' }}>
+                                        {{ $service->name }}</input>
                                     </div>
-
+                                    @endforeach
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="row mt-3">
@@ -159,3 +148,37 @@
         </div>
     </section>
 @endsection
+
+@push('check')
+<script>
+    const array = []
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.service_imput').forEach(item => {
+            if(item.hasAttribute('checked')){
+                array.push(item.value)
+            }
+        })
+        console.log(array);
+    })
+    function selectChecked() {
+        const input = event.target
+        input.setAttribute('checked', 'checked')
+        if (array.includes(input.value)) {
+            const index = array.indexOf(input.value)
+            array.splice(index, 1)
+            input.removeAttribute('checked')
+        } else {
+            array.push(input.value)
+        }
+        if (array.length > 0) {
+            document.querySelectorAll('.service_imput').forEach(item => {
+                item.removeAttribute('required')
+            })
+        } else {
+            document.querySelectorAll('.service_imput').forEach(item => {
+                item.setAttribute('required', 'required')
+            })
+        }
+    }
+</script>
+@endpush

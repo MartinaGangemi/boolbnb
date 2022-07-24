@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid mt-4">
     <!-- form ricerca appartamento -->
     <form @submit.prevent>
       <input
@@ -18,7 +18,7 @@
         }}</span>
       </div>
       <div class="beds-rooms-commands mt-4">
-        
+
         <span class="me-2">
           <label for="rooms">Distanza (km) <i class="fa-solid fa-map-location-dot"></i></label>
           <input
@@ -56,6 +56,20 @@
 
       </div>
 
+
+   <div class="row mt-4 p-0">
+         <strong>Seleziona almeno un servizio</strong>
+        <div class="row">
+            <div  v-for="service in services"
+                    :key="service.id" class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark">
+                <input class="text-dark" type="checkbox"  :id="service" :name="services"  :value="service" >
+                 <label class="form-check-label" :for="service">{{service}}</label>
+
+            </div>
+
+        </div>
+    </div>
+
       <button
         type="submit"
         class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white"
@@ -71,7 +85,7 @@
       <div class="sticky-top row col-lg-9 pb-5">
         <div id="map" class="my-round my-col" ref="mapRef"></div>
       </div>
-      
+
 
       <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
         <div
@@ -137,6 +151,8 @@ export default {
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
+      services:['Wifi','Parcheggio interno','Belvedere','Asciugacapelli','TV', 'Climatizzatore', 'Microonde'],
+      checkedServices:[],
       addressResults: [],
       lat: 0,
       lon: 0,

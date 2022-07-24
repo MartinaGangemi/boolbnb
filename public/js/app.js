@@ -5257,6 +5257,8 @@ __webpack_require__.r(__webpack_exports__);
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
+      services: ['Wifi', 'Parcheggio interno', 'Belvedere', 'Asciugacapelli', 'TV', 'Climatizzatore', 'Microonde'],
+      checkedServices: [],
       addressResults: [],
       lat: 0,
       lon: 0,
@@ -5301,7 +5303,7 @@ __webpack_require__.r(__webpack_exports__);
                 this.searchLat,
                 this.searchLon
             );
-              let distance2 = this.getDistanceFromLatLonInKm(
+             let distance2 = this.getDistanceFromLatLonInKm(
                 apartment2.lat,
                 apartment2.lon,
                 this.searchLat,
@@ -5725,7 +5727,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container-fluid"
+    staticClass: "container-fluid mt-4"
   }, [_c("form", {
     on: {
       submit: function submit($event) {
@@ -5843,7 +5845,31 @@ var render = function render() {
         _vm.nBeds = $event.target.value;
       }
     }
-  })])]), _vm._v(" "), _c("button", {
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "row mt-4 p-0"
+  }, [_c("strong", [_vm._v("Seleziona almeno un servizio")]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, _vm._l(_vm.services, function (service) {
+    return _c("div", {
+      key: service.id,
+      staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 text-dark"
+    }, [_c("input", {
+      staticClass: "text-dark",
+      attrs: {
+        type: "checkbox",
+        id: service,
+        name: _vm.services
+      },
+      domProps: {
+        value: service
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-check-label",
+      attrs: {
+        "for": service
+      }
+    }, [_vm._v(_vm._s(service))])]);
+  }), 0)]), _vm._v(" "), _c("button", {
     staticClass: "my-4 btn btn-dark w-100 fw-bold fs-2 text-white",
     attrs: {
       type: "submit"
@@ -58477,9 +58503,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
