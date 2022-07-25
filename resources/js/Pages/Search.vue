@@ -9,29 +9,34 @@
         @keyup="searchAddress"
       />
       <!-- autoload da fixare -->
-      <div
-        v-for="(singleAddress, index) in addressResults"
-        :key="singleAddress.id"
-      >
-        <span @click="checkAddress(index)" v-if="!isHidden">{{
-          singleAddress.address.freeformAddress
-        }}</span>
+      <div class="listAddress">
+        <div
+          v-for="(singleAddress, index) in addressResults"
+          :key="singleAddress.id"
+        >
+          <span @click="checkAddress(index)" v-if="!isHidden">{{
+            singleAddress.address.freeformAddress
+          }}</span>
+        </div>
       </div>
       <div class="beds-rooms-commands mt-4">
-
         <span class="me-2">
-          <label for="rooms">Distanza (km) <i class="fa-solid fa-map-location-dot"></i></label>
+          <label for="rooms"
+            >Distanza (km) <i class="fa-solid fa-map-location-dot"></i
+          ></label>
           <input
-              type="number"
-              min="0"
-              v-model="defaultDistance"
-              class="border border-danger rounded"
-              style="width: 50px"
+            type="number"
+            min="0"
+            v-model="defaultDistance"
+            class="border border-danger rounded"
+            style="width: 50px"
           />
         </span>
 
         <span class="me-2">
-          <label for="rooms">Nr. Stanze <i class="fa-solid fa-door-closed"></i></label>
+          <label for="rooms"
+            >Nr. Stanze <i class="fa-solid fa-door-closed"></i
+          ></label>
           <input
             type="number"
             min="1"
@@ -53,22 +58,27 @@
             style="width: 50px"
           />
         </span>
-
       </div>
 
-
-   <div class="row mt-4 p-0">
-         <strong>Seleziona almeno un servizio</strong>
+      <div class="row mt-4 p-0">
+        <strong>Seleziona almeno un servizio</strong>
         <div class="row">
-            <div  v-for="service in services"
-                    :key="service.id" class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark">
-                <input class="text-dark" type="checkbox"  :id="service" :name="services"  :value="service" >
-                 <label class="form-check-label" :for="service">{{service}}</label>
-
-            </div>
-
+          <div
+            v-for="service in services"
+            :key="service.id"
+            class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark"
+          >
+            <input
+              class="text-dark"
+              type="checkbox"
+              :id="service"
+              :name="services"
+              :value="service"
+            />
+            <label class="form-check-label" :for="service">{{ service }}</label>
+          </div>
         </div>
-    </div>
+      </div>
 
       <button
         type="submit"
@@ -85,7 +95,6 @@
       <div class="sticky-top row col-lg-9 pb-5">
         <div id="map" class="my-round my-col" ref="mapRef"></div>
       </div>
-
 
       <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
         <div
@@ -151,8 +160,16 @@ export default {
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
-      services:['Wifi','Parcheggio interno','Belvedere','Asciugacapelli','TV', 'Climatizzatore', 'Microonde'],
-      checkedServices:[],
+      services: [
+        "Wifi",
+        "Parcheggio interno",
+        "Belvedere",
+        "Asciugacapelli",
+        "TV",
+        "Climatizzatore",
+        "Microonde",
+      ],
+      checkedServices: [],
       addressResults: [],
       lat: 0,
       lon: 0,
@@ -173,7 +190,7 @@ export default {
           params: {
             beds: this.beds,
             rooms: this.rooms,
-          }
+          },
         })
         .then((response) => {
           //console.log(response.data);
@@ -203,21 +220,17 @@ export default {
               );
               //console.log(distance);
 
-              if (distance <= this.defaultDistance ) {
-
+              if (distance <= this.defaultDistance) {
                 this.apartments.push(result);
-
               }
-
             });
 
             //console.log("Lista appartamenti: ", this.apartments);
 
-            this.apartments.sort(function(apartment1, apartment2) {
+            this.apartments.sort(function (apartment1, apartment2) {
+              //console.log("1: ", apartment1, " 2: ", apartment2);
 
-                //console.log("1: ", apartment1, " 2: ", apartment2);
-
-                /* let distance1 = this.getDistanceFromLatLonInKm(
+              /* let distance1 = this.getDistanceFromLatLonInKm(
                     apartment1.lat,
                     apartment1.lon,
                     this.searchLat,
@@ -231,11 +244,10 @@ export default {
                     this.searchLon
                 ); */
 
-                //console.log("1: ", distance1, " 2: ", distance2);
+              //console.log("1: ", distance1, " 2: ", distance2);
 
-                return 0;
-
-            })
+              return 0;
+            });
 
             //mappa
             this.createMap();
@@ -393,6 +405,11 @@ export default {
 
 .card_img img {
   height: 100%;
+}
+
+.listAddress {
+  max-height: 130px;
+  overflow-y: scroll;
 }
 
 /*.content {

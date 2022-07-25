@@ -20520,6 +20520,11 @@ img {
   color: red;
 }
 
+.result {
+  max-height: 130px;
+  overflow-y: scroll;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }

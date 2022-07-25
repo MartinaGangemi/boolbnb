@@ -5264,7 +5264,7 @@ __webpack_require__.r(__webpack_exports__);
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
-      services: ['Wifi', 'Parcheggio interno', 'Belvedere', 'Asciugacapelli', 'TV', 'Climatizzatore', 'Microonde'],
+      services: ["Wifi", "Parcheggio interno", "Belvedere", "Asciugacapelli", "TV", "Climatizzatore", "Microonde"],
       checkedServices: [],
       addressResults: [],
       lat: 0,
@@ -5310,17 +5310,17 @@ __webpack_require__.r(__webpack_exports__);
             //console.log("1: ", apartment1, " 2: ", apartment2);
 
             /* let distance1 = this.getDistanceFromLatLonInKm(
-                apartment1.lat,
-                apartment1.lon,
-                this.searchLat,
-                this.searchLon
-            );
-             let distance2 = this.getDistanceFromLatLonInKm(
-                apartment2.lat,
-                apartment2.lon,
-                this.searchLat,
-                this.searchLon
-            ); */
+                  apartment1.lat,
+                  apartment1.lon,
+                  this.searchLat,
+                  this.searchLon
+              );
+               let distance2 = this.getDistanceFromLatLonInKm(
+                  apartment2.lat,
+                  apartment2.lon,
+                  this.searchLat,
+                  this.searchLon
+              ); */
             //console.log("1: ", distance1, " 2: ", distance2);
             return 0;
           }); //mappa
@@ -5775,7 +5775,9 @@ var render = function render() {
         _vm.searchText = $event.target.value;
       }
     }
-  }), _vm._v(" "), _vm._l(_vm.addressResults, function (singleAddress, index) {
+  }), _vm._v(" "), _c("div", {
+    staticClass: "listAddress"
+  }, _vm._l(_vm.addressResults, function (singleAddress, index) {
     return _c("div", {
       key: singleAddress.id
     }, [!_vm.isHidden ? _c("span", {
@@ -5785,7 +5787,7 @@ var render = function render() {
         }
       }
     }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
-  }), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _c("div", {
     staticClass: "beds-rooms-commands mt-4"
   }, [_c("span", {
     staticClass: "me-2"
@@ -5897,7 +5899,7 @@ var render = function render() {
     on: {
       click: _vm.searchApartments
     }
-  }, [_vm._v("\n      cerca appartamento\n    ")])], 2), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n      cerca appartamento\n    ")])]), _vm._v(" "), _c("div", {
     staticClass: "row justify-content-center",
     staticStyle: {
       "padding-bottom": "2000px"
@@ -11062,7 +11064,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow: hidden;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}", ""]);
+exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow-y: scroll;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}", ""]);
 
 // exports
 
@@ -11081,7 +11083,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4caf50;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
+exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4caf50;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
 
 // exports
 

@@ -216,7 +216,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.527);
   color: black;
   max-height: 100px;
-  overflow: hidden;
+  overflow-y: scroll;
   margin-top: 0.5rem;
   width: 100%;
   position: absolute;
