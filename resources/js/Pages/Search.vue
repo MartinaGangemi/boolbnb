@@ -102,7 +102,8 @@
 
           <div class="card-body">
             <h4 class="card-title">{{ apartment.summary }}</h4>
-            <p class="card-text"></p>
+            <div class="card-text"><strong>letti: </strong>{{ apartment.beds }}</div>
+             <div class="card-text"><strong>bagni: </strong>{{ apartment.bathrooms }}</div>
             <router-link
               class="btn btn-light"
               :to="{ name: 'apartment', params: { id: apartment.id } }"

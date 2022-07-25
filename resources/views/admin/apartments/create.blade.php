@@ -35,7 +35,7 @@
                                 <input class="form-check-input" type="hidden" value="0" id="visible" name="visible">
                                 <input class="form-check-input" type="checkbox" value="1" id="visible"
                                     name="visible">
-                                <label class="form-check-label yellow-label" for="visible">Spunta se vui rendere visibile l'appartamento</label>
+                                <label class="form-check-label yellow-label" for="visible">Spunta se vuoi nascondere l'appartamento</label>
                             </div>
                             {{-- services --}}
                           <!--chechbox services-->

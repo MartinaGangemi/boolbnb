@@ -5315,7 +5315,7 @@ __webpack_require__.r(__webpack_exports__);
                 this.searchLat,
                 this.searchLon
             );
-             let distance2 = this.getDistanceFromLatLonInKm(
+              let distance2 = this.getDistanceFromLatLonInKm(
                 apartment2.lat,
                 apartment2.lon,
                 this.searchLat,
@@ -5927,9 +5927,11 @@ var render = function render() {
       staticClass: "card-body"
     }, [_c("h4", {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", {
+    }, [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("div", {
       staticClass: "card-text"
-    }), _vm._v(" "), _c("router-link", {
+    }, [_c("strong", [_vm._v("letti: ")]), _vm._v(_vm._s(apartment.beds))]), _vm._v(" "), _c("div", {
+      staticClass: "card-text"
+    }, [_c("strong", [_vm._v("bagni: ")]), _vm._v(_vm._s(apartment.bathrooms))]), _vm._v(" "), _c("router-link", {
       staticClass: "btn btn-light",
       attrs: {
         to: {
@@ -58523,9 +58525,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
