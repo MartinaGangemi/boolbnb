@@ -5662,7 +5662,7 @@ var render = function render() {
       expression: "error == true "
     }],
     staticClass: "mt-2 position-absolute error-search"
-  }, [_vm._v("Non abbiamo trovato nessun appartamento!")])])])])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
+  }, [_vm._v("Non abbiamo trovato nessun appartamento")])])])])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
 };
 
 var staticRenderFns = [function () {

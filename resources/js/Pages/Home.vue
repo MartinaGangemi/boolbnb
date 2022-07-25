@@ -31,7 +31,7 @@
                                 </div>
 
                             </div> 
-                            <div  class="mt-2 position-absolute error-search" v-show="error == true " >Non abbiamo trovato nessun appartamento!</div>
+                            <div  class="mt-2 position-absolute error-search" v-show="error == true " >Non abbiamo trovato nessun appartamento</div>
                         </form>
                     </div>
                 </div>
