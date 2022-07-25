@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Apartment;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
-    
+
 
     /**
      * Show the application dashboard.
@@ -17,6 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $apartments = Apartment::all();
+        $services = Service::all();
+        return view('admin.apartments.index', compact('apartments','services'));
     }
 }

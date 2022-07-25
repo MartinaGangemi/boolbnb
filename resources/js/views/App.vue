@@ -1,34 +1,40 @@
+
 <template>
-<div class="my_back">
 
-    <div class="container text-center ">
-       <img src="img/fablo.svg" alt="">
+    
+    <main>
+         <router-view></router-view>
+    </main>
+    
 
-        <h1 class="text-white fw-bold display-4">Scegli anche tu a quale casa di fabio dare Fuoco </h1>
-        creato il dev
-    </div>
 
-</div>
 </template>
 
 
 <script>
-
 export default {
     name: 'App',
-    components: {  }
+    data(){
+        return{
+            apartments:'',
+            apartmentsResponse:'',
+
+            menu_items: [
+                {
+                    route_name: 'home',
+                    route_text: 'Home'
+                },
+                {
+                     route_name: 'search',
+                    route_text: 'Search'
+                }
+            ]
+        }
+    },
+    components: {  },
+
 }
 </script>
 
 
-<style lang="scss" scoped>
 
-    .my_back{
-        background: url('https://cdn.materialdistrict.com/wp-content/uploads/2018/05/fire-alarm-wallpaper-can-warn-of-house-fires-01.jpg');
-        background-repeat:no-repeat ;
-        background-size:cover ;
-    }
-
-
-
-</style>
