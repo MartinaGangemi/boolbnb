@@ -5303,7 +5303,7 @@ __webpack_require__.r(__webpack_exports__);
                 this.searchLat,
                 this.searchLon
             );
-             let distance2 = this.getDistanceFromLatLonInKm(
+              let distance2 = this.getDistanceFromLatLonInKm(
                 apartment2.lat,
                 apartment2.lon,
                 this.searchLat,

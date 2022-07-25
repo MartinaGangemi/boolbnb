@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
     <link  rel='stylesheet'  type='text/css'  href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css'>
 </head>
 <body>
-    
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -78,7 +78,7 @@
             </div>
         </div>
     </nav>
-    
+
     <main class="pb-4">
         @yield('content')
     </main>
@@ -89,10 +89,26 @@
         <p class="text-light py-5 mb-0 text-center">Copyright &copy; team6</p>
         </div>
     </footer>
-       
-   
 
-    <script  src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps-web.min.js"></script> 
-    <script  src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/services/services-web.min.js"></script> 
+
+
+    <script  src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps-web.min.js"></script>
+    <script  src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/services/services-web.min.js"></script>
+
+
+    <script>
+        let validate = function() {
+            if (document.getElementById('password').value ==
+                document.getElementById('password-confirm').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Le password combaciano';
+                document.getElementById('submit_button').removeAttribute('disabled')
+            } else {
+                document.getElementById('submit_button').setAttribute('disabled', 'disabled')
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Le password non combaciano';
+            }
+        }
+    </script>
 </body>
 </html>
