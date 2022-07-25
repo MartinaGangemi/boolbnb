@@ -36,7 +36,7 @@
             type="number"
             min="1"
             max="8"
-            v-model="nRooms"
+            v-model="rooms"
             class="border border-danger rounded"
             style="width: 50px"
           />
@@ -48,7 +48,7 @@
             type="number"
             min="1"
             max="8"
-            v-model="nBeds"
+            v-model="beds"
             class="border border-danger rounded"
             style="width: 50px"
           />
@@ -159,8 +159,8 @@ export default {
       searchLat: 0,
       searchLon: 0,
       defaultDistance: 20,
-      nBeds: 1,
-      nRooms: 1,
+      beds: 1,
+      rooms: 1,
     };
   },
 
@@ -169,7 +169,12 @@ export default {
       this.apartments = [];
 
       axios
-        .get("/api/apartments")
+        .get("/api/apartments", {
+          params: {
+            beds: this.beds,
+            rooms: this.rooms,
+          }
+        })
         .then((response) => {
           //console.log(response.data);
           const results = response.data.data;
@@ -198,8 +203,7 @@ export default {
               );
               //console.log(distance);
 
-              if (distance <= this.defaultDistance && result.rooms >= this.nRooms &&
-              result.beds >= this.nBeds) {
+              if (distance <= this.defaultDistance ) {
 
                 this.apartments.push(result);
 
@@ -283,12 +287,12 @@ export default {
         //  let lat = this.apartments[0].lat
         //  let lon = this.apartments[0].lon
         let coordinates = [lonMarker, latMarker];
-        console.log(coordinates);
+        // console.log(coordinates);
 
         //marker
 
         let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-        console.log(marker);
+        // console.log(marker);
         let popup = new tt.Popup({ offset: popupOffset }).setHTML(
           apartment.summary
         );

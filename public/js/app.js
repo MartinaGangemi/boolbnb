@@ -5168,16 +5168,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Home',
+  name: "Home",
   data: function data() {
     return {
       addressResults: [],
       searchText: "",
       apartments: [],
       error: false,
-      props: {
-        apartmentList: Array
-      }
+      beds: 1,
+      rooms: 1
     };
   },
   methods: {
@@ -5185,13 +5184,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.apartments = [];
-      axios.get("/api/apartments").then(function (response) {
+      axios.get("/api/apartments", {
+        params: {
+          beds: this.beds,
+          rooms: this.rooms
+        }
+      }).then(function (response) {
         //console.log(response.data);
         var results = response.data.data;
         _this.apartmentsResponse = response.data; //filtro appartamenti per città
 
         results.forEach(function (result) {
-          if (result.address.toLowerCase().includes(_this.searchText.toLowerCase()) && _this.searchText != '') {
+          if (result.address.toLowerCase().includes(_this.searchText.toLowerCase()) && _this.searchText != "") {
             _this.apartments.push(result);
 
             _this.$router.push({
@@ -5268,8 +5272,8 @@ __webpack_require__.r(__webpack_exports__);
       searchLat: 0,
       searchLon: 0,
       defaultDistance: 20,
-      nBeds: 1,
-      nRooms: 1
+      beds: 1,
+      rooms: 1
     };
   },
   methods: {
@@ -5277,7 +5281,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.apartments = [];
-      axios.get("/api/apartments").then(function (response) {
+      axios.get("/api/apartments", {
+        params: {
+          beds: this.beds,
+          rooms: this.rooms
+        }
+      }).then(function (response) {
         //console.log(response.data);
         var results = response.data.data;
         _this.apartmentsResponse = response.data;
@@ -5292,7 +5301,7 @@ __webpack_require__.r(__webpack_exports__);
             var distance = _this.getDistanceFromLatLonInKm(result.lat, result.lon, _this.searchLat, _this.searchLon); //console.log(distance);
 
 
-            if (distance <= _this.defaultDistance && result.rooms >= _this.nRooms && result.beds >= _this.nBeds) {
+            if (distance <= _this.defaultDistance) {
               _this.apartments.push(result);
             }
           }); //console.log("Lista appartamenti: ", this.apartments);
@@ -5306,7 +5315,7 @@ __webpack_require__.r(__webpack_exports__);
                 this.searchLat,
                 this.searchLon
             );
-              let distance2 = this.getDistanceFromLatLonInKm(
+             let distance2 = this.getDistanceFromLatLonInKm(
                 apartment2.lat,
                 apartment2.lon,
                 this.searchLat,
@@ -5356,11 +5365,11 @@ __webpack_require__.r(__webpack_exports__);
         var lonMarker = apartment.lon; //  let lat = this.apartments[0].lat
         //  let lon = this.apartments[0].lon
 
-        var coordinates = [lonMarker, latMarker];
-        console.log(coordinates); //marker
+        var coordinates = [lonMarker, latMarker]; // console.log(coordinates);
+        //marker
 
-        var marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-        console.log(marker);
+        var marker = new tt.Marker().setLngLat(coordinates).addTo(map); // console.log(marker);
+
         var popup = new tt.Popup({
           offset: popupOffset
         }).setHTML(apartment.summary);
@@ -5659,10 +5668,10 @@ var render = function render() {
       name: "show",
       rawName: "v-show",
       value: _vm.error == true,
-      expression: "error == true "
+      expression: "error == true"
     }],
     staticClass: "mt-2 position-absolute error-search"
-  }, [_vm._v("Non abbiamo trovato nessun appartamento")])])])])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
+  }, [_vm._v("\n              Non abbiamo trovato nessun appartamento\n            ")])])])])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
 };
 
 var staticRenderFns = [function () {
@@ -5690,7 +5699,7 @@ var staticRenderFns = [function () {
     staticClass: "col-12 col-lg-4 text-description d-flex flex-column justify-content-end mt-4"
   }, [_c("h3", {
     staticClass: "text-uppercase"
-  }, [_vm._v("Benvenuti su Fablo B&B")]), _vm._v(" "), _c("p", [_vm._v("\n                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam cum neque odio at a obcaecati doloremque fuga veritatis, non provident?\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Benvenuti su Fablo B&B")]), _vm._v(" "), _c("p", [_vm._v("\n            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam\n            cum neque odio at a obcaecati doloremque fuga veritatis, non\n            provident?\n          ")]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-content-center mb-4"
   }, [_c("button", {
     staticClass: "text-light mt-4 w-50"
@@ -5703,7 +5712,7 @@ var staticRenderFns = [function () {
     staticClass: "mt-5 container"
   }, [_c("h2", {
     staticClass: "text-center"
-  }, [_vm._v("\n            Appartamenti consigliati\n        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Appartamenti consigliati")]), _vm._v(" "), _c("div", {
     staticClass: "mt-5 row card-container"
   }, [_c("div", {
     staticClass: "col-12 col-sm-6 col-lg-3"
@@ -5711,11 +5720,11 @@ var staticRenderFns = [function () {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-img"
-  }, [_vm._v("\n                        card-img\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("card-img")]), _vm._v(" "), _c("div", {
     staticClass: "p-2 card-text d-flex flex-column align-items-center"
-  }, [_c("p", [_vm._v("\n                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi nisi facere minus labore distinctio corporis veniam ab quos velit quod.\n                        ")]), _vm._v(" "), _c("button", {
+  }, [_c("p", [_vm._v("\n              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi\n              nisi facere minus labore distinctio corporis veniam ab quos\n              velit quod.\n            ")]), _vm._v(" "), _c("button", {
     staticClass: "w-50 text-light text-uppercase"
-  }, [_vm._v("\n                            dettagli\n                        ")])])])])])]);
+  }, [_vm._v("dettagli")])])])])])]);
 }];
 render._withStripped = true;
 
@@ -5810,8 +5819,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.nRooms,
-      expression: "nRooms"
+      value: _vm.rooms,
+      expression: "rooms"
     }],
     staticClass: "border border-danger rounded",
     staticStyle: {
@@ -5823,20 +5832,20 @@ var render = function render() {
       max: "8"
     },
     domProps: {
-      value: _vm.nRooms
+      value: _vm.rooms
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.nRooms = $event.target.value;
+        _vm.rooms = $event.target.value;
       }
     }
   })]), _vm._v(" "), _c("span", [_vm._m(2), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.nBeds,
-      expression: "nBeds"
+      value: _vm.beds,
+      expression: "beds"
     }],
     staticClass: "border border-danger rounded",
     staticStyle: {
@@ -5848,12 +5857,12 @@ var render = function render() {
       max: "8"
     },
     domProps: {
-      value: _vm.nBeds
+      value: _vm.beds
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.nBeds = $event.target.value;
+        _vm.beds = $event.target.value;
       }
     }
   })])]), _vm._v(" "), _c("div", {
@@ -58514,9 +58523,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

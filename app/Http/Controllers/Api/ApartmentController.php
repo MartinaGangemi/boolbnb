@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
-    public function index (){
+    public function index (Request $request){
+        
+        $beds = $request->query('beds');
+        $rooms = $request->query('rooms');
 
 
-
-        $apartments = Apartment::with('services')->orderByDesc('id')->paginate(8);
+        $apartments = Apartment::with('services')->where('beds', '>=', $beds)->where('rooms', '>=', $rooms)->orderByDesc('id')->paginate(8);
 
         return $apartments;
     }
