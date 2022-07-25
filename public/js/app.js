@@ -5804,7 +5804,8 @@ var render = function render() {
     },
     attrs: {
       type: "number",
-      min: "0"
+      min: "0",
+      step: "5"
     },
     domProps: {
       value: _vm.defaultDistance

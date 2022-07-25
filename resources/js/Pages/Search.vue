@@ -27,6 +27,7 @@
           <input
             type="number"
             min="0"
+            step="5"
             v-model="defaultDistance"
             class="border border-danger rounded"
             style="width: 50px"
