@@ -14,6 +14,7 @@
                                 class="form-control "
                                 v-model="searchText"
                                 @keyup="searchAddress"
+                               
                             />
                             <button type="submit" class="search-btn  rounded-end  text-uppercase text-center text-white" @click="searchApartments()">
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -29,8 +30,8 @@
                                     }}</span>
                                 </div>
 
-                            </div>
-
+                            </div> 
+                            <div  class="mt-2 position-absolute error-search" v-show="error == true " >Non abbiamo trovato nessun appartamento</div>
                         </form>
                     </div>
                 </div>
@@ -105,6 +106,7 @@ export default{
             addressResults: [],
             searchText: "",
             apartments: [],
+            error:false,
              props:{
             apartmentList: Array
                 }
@@ -124,11 +126,16 @@ export default{
           this.apartmentsResponse = response.data;
           //filtro appartamenti per città
           results.forEach(result => {
-            if (result.address.includes(this.searchText)) {
+            if (result.address.toLowerCase().includes(this.searchText.toLowerCase()) && this.searchText != '' ) {
               this.apartments.push(result);
               this.$router.push({name:"search", params:{data:this.apartments}})
+            } else {
+                this.error = true
             }
-           });
+            
+           })
+           
+           
 
         })
 
@@ -205,6 +212,9 @@ export default{
         position: absolute;
         top: 30px;
         text-align: left;
+        span{
+            cursor: pointer;
+        }
 
     }
     .my_back{
@@ -249,6 +259,7 @@ export default{
         position: relative;
         text-transform: uppercase;
     }
+
     h2:after {
         border-bottom: solid 2px  #b94545;
         content: '';
@@ -260,15 +271,22 @@ export default{
         margin: 0 auto;
     }
 
-        button {
+    button {
     background-color: #b94545;
     width: 40%;
     height: 40px;
     border: none;
-}
+    }
+
     .img-home{
         filter: drop-shadow(2px 4px 6px black);
     }
 
+    .error-search{
+        top: 50px;
+    }
+
 
 </style>
+
+
