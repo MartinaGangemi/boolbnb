@@ -5583,14 +5583,20 @@ var staticRenderFns = [function () {
       rows: "3"
     }
   })]), _vm._v(" "), _c("button", {
-    staticClass: "search-btn text-uppercase text-center text-white"
+    staticClass: "search-btn text-uppercase text-center text-white",
+    attrs: {
+      type: "submit"
+    }
   }, [_vm._v("Contatta")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 col-lg-6"
   }, [_c("div", {
-    staticClass: "card p-5"
-  }, [_c("h2", {
-    staticClass: "text-uppercase text-center"
-  }, [_vm._v("Recensioni")]), _vm._v(" "), _c("p", [_vm._v("Nessuna Recensione")])])])]);
+    staticClass: "img-container p-5"
+  }, [_c("img", {
+    attrs: {
+      src: "http://cdn.home-designing.com/wp-content/uploads/2017/06/red-dining-chairs.jpg",
+      alt: ""
+    }
+  })])])]);
 }];
 render._withStripped = true;
 

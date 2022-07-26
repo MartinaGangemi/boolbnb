@@ -49,6 +49,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
+                           
+
                         @endif
                     @else
                         <li class="nav-item dropdown">
@@ -64,6 +66,9 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     Admin
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.messages') }}">
+                                    Messaggi
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
