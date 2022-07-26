@@ -129,7 +129,7 @@ class ApartmentController extends Controller
 
         //l'untente non può creare più appartamenti con lo stesso nome
         $request->validate([
-            'summary' => [Rule::unique('apartments')->where(function ($query) {
+            'summary' => [Rule::unique('apartments')->ignore($apartment)->where(function ($query) {
                 return $query->where('user_id', Auth::id());
             })],
         ]);
