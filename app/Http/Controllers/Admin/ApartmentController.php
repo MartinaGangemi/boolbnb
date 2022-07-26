@@ -8,6 +8,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\ApartmentRequest;
 
 
@@ -45,31 +46,40 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ApartmentRequest $request)
+
+    
     {
+        $request->validate([
+            'summary' => [Rule::unique('apartments')->where(function ($query) {
+                return $query->where('user_id', Auth::id());
+            })],
+        ]);
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
         //dd($data);
 
+        
         //$apiQuery =  str_replace(' ', '-', $data['city']) . '-' .  str_replace(' ', '-', $data['address']) . '-' .  str_replace(' ', '-', $data['number']) ;
         //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
         $apiQuery = str_replace(' ', '-', $data['address']);
         $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
         $response = json_decode($response);
 
-
+        
         $data['lat'] = $response->results[0]->position->lat;
         $data['lon'] = $response->results[0]->position->lon;
-
         $data['user_id'] = Auth::id();
-        $slug = Apartment::generateSlug($request->summary);
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
+        
         $newApartment = new Apartment();
-
         $newApartment->fill($data);
         $newApartment->save();
 
         $apartment = $newApartment;
+
+        
 
         if (array_key_exists('services', $data)) {
             $newApartment->services()->sync($data['services']);
@@ -142,7 +152,7 @@ class ApartmentController extends Controller
 
         $apartment->fill($data);
 
-        $slug = Apartment::generateSlug($request->summary);
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
         $data['slug'] = $slug;
         $apartment->update($data);
 
