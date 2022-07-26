@@ -21,6 +21,11 @@
               <strong><i class="fa-solid fa-bed"></i> Beds : </strong><span>{{apartment.beds}}</span><br>
               <strong><i class="fa-solid fa-toilet"></i> Bathrooms : </strong><span>{{apartment.bathrooms}}</span><br>
               <strong><i class="fa-solid fa-ruler-combined"></i> Square Meters : </strong><span>{{apartment.square_meters}}</span><br>
+              <strong><i class="fa-solid fa-list"></i> Services : </strong>
+              <ul class="d-inline-block list-inline">
+                <li class="list-inline-item" v-for="service in apartment.services" :key="service.id">{{service.name}}</li>
+              </ul>
+
 
             </div>
             <div class="col-6">

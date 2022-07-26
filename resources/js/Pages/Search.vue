@@ -65,7 +65,7 @@
         <strong>Seleziona almeno un servizio</strong>
         <div class="row">
           <div
-            v-for="service in services"
+            v-for="(service, index) in services"
             :key="service.id"
             class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark"
           >
@@ -74,7 +74,8 @@
               type="checkbox"
               :id="service"
               :name="services"
-              :value="service"
+              :value="index+1"
+              v-model="checkedServices"
             />
             <label class="form-check-label" :for="service">{{ service }}</label>
           </div>
@@ -186,11 +187,15 @@ export default {
     searchApartments() {
       this.apartments = [];
 
+      console.log(this.checkedServices);
+
       axios
         .get("/api/apartments", {
           params: {
             beds: this.beds,
             rooms: this.rooms,
+            services: this.services,
+            checkedServices: this.checkedServices
           },
         })
         .then((response) => {
