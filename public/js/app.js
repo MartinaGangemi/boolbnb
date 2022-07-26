@@ -5281,10 +5281,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.apartments = [];
+      console.log(this.checkedServices);
       axios.get("/api/apartments", {
         params: {
           beds: this.beds,
-          rooms: this.rooms
+          rooms: this.rooms,
+          services: this.services,
+          checkedServices: this.checkedServices
         }
       }).then(function (response) {
         //console.log(response.data);
@@ -5478,14 +5481,21 @@ var render = function render() {
     staticClass: "row apartment-information"
   }, [_c("div", {
     staticClass: "col-6"
-  }, [_c("p", [_vm._v(_vm._s(_vm.apartment.description))]), _vm._v(" "), _vm._m(0), _c("span", [_vm._v(_vm._s(_vm.apartment.address))]), _c("br"), _vm._v(" "), _vm._m(1), _c("span", [_vm._v(_vm._s(_vm.apartment.rooms))]), _c("br"), _vm._v(" "), _vm._m(2), _c("span", [_vm._v(_vm._s(_vm.apartment.beds))]), _c("br"), _vm._v(" "), _vm._m(3), _c("span", [_vm._v(_vm._s(_vm.apartment.bathrooms))]), _c("br"), _vm._v(" "), _vm._m(4), _c("span", [_vm._v(_vm._s(_vm.apartment.square_meters))]), _c("br")]), _vm._v(" "), _c("div", {
+  }, [_c("p", [_vm._v(_vm._s(_vm.apartment.description))]), _vm._v(" "), _vm._m(0), _c("span", [_vm._v(_vm._s(_vm.apartment.address))]), _c("br"), _vm._v(" "), _vm._m(1), _c("span", [_vm._v(_vm._s(_vm.apartment.rooms))]), _c("br"), _vm._v(" "), _vm._m(2), _c("span", [_vm._v(_vm._s(_vm.apartment.beds))]), _c("br"), _vm._v(" "), _vm._m(3), _c("span", [_vm._v(_vm._s(_vm.apartment.bathrooms))]), _c("br"), _vm._v(" "), _vm._m(4), _c("span", [_vm._v(_vm._s(_vm.apartment.square_meters))]), _c("br"), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("ul", {
+    staticClass: "d-inline-block list-inline"
+  }, _vm._l(_vm.apartment.services, function (service) {
+    return _c("li", {
+      key: service.id,
+      staticClass: "list-inline-item"
+    }, [_vm._v(_vm._s(service.name))]);
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "col-6"
   }, [_c("div", {
     ref: "mapRef",
     attrs: {
       id: "map"
     }
-  })])]), _vm._v(" "), _vm._m(5)])]);
+  })])]), _vm._v(" "), _vm._m(6)])]);
 };
 
 var staticRenderFns = [function () {
@@ -5523,6 +5533,13 @@ var staticRenderFns = [function () {
   return _c("strong", [_c("i", {
     staticClass: "fa-solid fa-ruler-combined"
   }), _vm._v(" Square Meters : ")]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("strong", [_c("i", {
+    staticClass: "fa-solid fa-list"
+  }), _vm._v(" Services : ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -5872,11 +5889,17 @@ var render = function render() {
     staticClass: "row mt-4 p-0"
   }, [_c("strong", [_vm._v("Seleziona almeno un servizio")]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, _vm._l(_vm.services, function (service) {
+  }, _vm._l(_vm.services, function (service, index) {
     return _c("div", {
       key: service.id,
       staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 text-dark"
     }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.checkedServices,
+        expression: "checkedServices"
+      }],
       staticClass: "text-dark",
       attrs: {
         type: "checkbox",
@@ -5884,7 +5907,28 @@ var render = function render() {
         name: _vm.services
       },
       domProps: {
-        value: service
+        value: index + 1,
+        checked: Array.isArray(_vm.checkedServices) ? _vm._i(_vm.checkedServices, index + 1) > -1 : _vm.checkedServices
+      },
+      on: {
+        change: function change($event) {
+          var $$a = _vm.checkedServices,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false;
+
+          if (Array.isArray($$a)) {
+            var $$v = index + 1,
+                $$i = _vm._i($$a, $$v);
+
+            if ($$el.checked) {
+              $$i < 0 && (_vm.checkedServices = $$a.concat([$$v]));
+            } else {
+              $$i > -1 && (_vm.checkedServices = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.checkedServices = $$c;
+          }
+        }
       }
     }), _vm._v(" "), _c("label", {
       staticClass: "form-check-label",
@@ -58526,9 +58570,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
