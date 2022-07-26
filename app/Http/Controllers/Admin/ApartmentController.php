@@ -126,9 +126,6 @@ class ApartmentController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data = $request->all();
 
-        if (array_key_exists('cover_img', $data)) {
-            $data['cover_img'] = Storage::put('storage', $request->cover_img);
-        }
 
 
         $apiQuery =str_replace(' ', '-', $data['address']);
@@ -138,6 +135,10 @@ class ApartmentController extends Controller
 
         $data['lat'] = $response->results[0]->position->lat;
         $data['lon'] = $response->results[0]->position->lon;
+        if (array_key_exists('cover_img', $data)) {
+            $data['cover_img'] = Storage::put('storage', $request->cover_img);
+        }
+
 
         $apartment->fill($data);
 

@@ -57,7 +57,7 @@
                             <div class="col-sm-12 col-lg-6">
                                 <label for="cover_img" class="form-label">Immagine</label>
                                 <input type="file" class="form-control" placeholder="Choose an cover_img" id="cover_img"
-                                    name="Scegli un immagine" value="{{ old('cover_img', $apartment->cover_img) }}"
+                                    name="cover_img" value="{{ old('cover_img', $apartment->cover_img) }}"
                                     accept="jpeg, jpg, png">
                             </div>
 
@@ -68,15 +68,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="row mt-3">
-                            <div class=" col-sm-12 col-lg-6">
-                                <label for="city" class="form-label">Città</label>
-                                <span class="required">*</span>
-                                <input class="form-control" id="city" name="city"
-                                    value="{{ old('city', $apartment->city) }}" placeholder="Es: Roma"
-                                    required minlength="4">
-                            </div>
-                        </div> -->
 
 
                         <div class="row mt-3">
@@ -89,16 +80,7 @@
                             </div>
                         </div>
 
-                        <!-- <div class="row mt-3">
-                            <div class=" col-sm-12 col-lg-6">
-                                <label for="number" class="form-label">Numero</label>
-                                <span class="required">*</span>
-                                <input type="number" class="form-control" id="number" name="number"
-                                    value="{{ old('number', $apartment->number) }}" placeholder="es: 129"
-                                    required min="1">
-                            </div>
-                        </div>
-                        -->
+
 
 
 
@@ -158,7 +140,7 @@
                 array.push(item.value)
             }
         })
-        console.log(array);
+
     })
     function selectChecked() {
         const input = event.target
