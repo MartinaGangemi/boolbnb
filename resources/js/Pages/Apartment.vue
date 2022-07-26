@@ -53,15 +53,14 @@
                 <div class="mb-3">
                   <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Scrivi un messaggio *" rows="3"></textarea>
                 </div>
-                <button class="search-btn  text-uppercase text-center text-white">Contatta</button>
+                <button type="submit" class="search-btn  text-uppercase text-center text-white">Contatta</button>
               </form>
           </div>
         </div>
-        <!-- Recensioni -->
+        <!-- immagine random -->
         <div class="col-12 col-lg-6">
-          <div class="card p-5">
-            <h2 class="text-uppercase text-center">Recensioni</h2>
-            <p>Nessuna Recensione</p>
+          <div class="img-container p-5">
+            <img src="http://cdn.home-designing.com/wp-content/uploads/2017/06/red-dining-chairs.jpg" alt="">
           </div>
       </div>
     </div>
