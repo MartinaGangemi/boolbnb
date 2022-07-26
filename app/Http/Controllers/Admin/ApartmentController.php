@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ApartmentRequest;
 
@@ -45,7 +46,13 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ApartmentRequest $request)
-    {
+    {    //l'untente non può creare più appartamenti con lo stesso nome
+        $request->validate([
+            'summary' => [Rule::unique('apartments')->where(function ($query) {
+                return $query->where('user_id', Auth::id());
+            })],
+        ]);
+
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
         //dd($data);
@@ -61,7 +68,7 @@ class ApartmentController extends Controller
         $data['lon'] = $response->results[0]->position->lon;
 
         $data['user_id'] = Auth::id();
-        $slug = Apartment::generateSlug($request->summary);
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
         $newApartment = new Apartment();
@@ -118,7 +125,14 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ApartmentRequest $request, User $id, Apartment $apartment)
-    {
+    {   
+
+        //l'untente non può creare più appartamenti con lo stesso nome
+        $request->validate([
+            'summary' => [Rule::unique('apartments')->where(function ($query) {
+                return $query->where('user_id', Auth::id());
+            })],
+        ]);
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
         //dd($data);
@@ -142,7 +156,7 @@ class ApartmentController extends Controller
 
         $apartment->fill($data);
 
-        $slug = Apartment::generateSlug($request->summary);
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
         $data['slug'] = $slug;
         $apartment->update($data);
 
