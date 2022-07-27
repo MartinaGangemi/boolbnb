@@ -20,3 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('apartments', 'Api\ApartmentController@index');
 Route::get('search/apartments/{apartment:id}', 'API\ApartmentController@show');
+
+Route::get('sponsorship','Api\SponsorshipController@index');
+
+Route::get('orders/generate','Api\Orders\OrderController@generate');
+Route::post('orders/make/payment','Api\Orders\OrderController@makePayment');
