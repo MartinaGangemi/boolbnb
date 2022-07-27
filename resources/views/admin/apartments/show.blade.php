@@ -7,6 +7,7 @@
         @endif
         <h3>{{ $apartment->summary }}</h3>
         <div class="card">
+
             <img src="{{ asset('storage/' . $apartment->cover_img) }}" alt="">
             <div class="card-body">
                 <p>{{ $apartment->description }}</p>
@@ -21,5 +22,8 @@
                     href="{{ route('admin.messages.index', $apartment->slug) }}">View Messages</a>
             </div>
         </div>
+
+
+        
     </div>
 @endsection

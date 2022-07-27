@@ -8,6 +8,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\User;
 use Illuminate\Validation\Rule;
+use App\Models\Sponsorship;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ApartmentRequest;
 
@@ -87,8 +88,8 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
-        return view('admin.apartments.show', compact('apartment'));
+        $sponsorships = Sponsorship::all();
+        return view('admin.apartments.show', compact('apartment','sponsorships'));
     }
 
     /**
