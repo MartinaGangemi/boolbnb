@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('apartments', 'Api\ApartmentController@index');
 Route::get('search/apartments/{apartment:id}', 'API\ApartmentController@show');
+Route::get('apartment/message','API\ApartmentController@saveMessage');

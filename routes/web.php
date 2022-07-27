@@ -26,7 +26,7 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('apartments', 'ApartmentController')->parameters ([
         'apartments' => 'apartment:slug'
     ]);
-
+    Route::get('apartments/{apartment:slug}/messages', 'MessageController@index')->name('messages.index');
     //qui mettiamo le altre rotte di admin
 });
 

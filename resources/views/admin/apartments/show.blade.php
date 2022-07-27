@@ -16,6 +16,7 @@
             <strong><i class="fa-solid fa-bed"></i> Beds : </strong><span>{{$apartment->beds}}</span><br>
             <strong><i class="fa-solid fa-toilet"></i>  Bathrooms : </strong><span>{{$apartment->bathrooms}}</span><br>
             <strong><i class="fa-solid fa-ruler-combined"></i>  Square Meters : </strong><span>{{$apartment->square_meters}}</span><br>
+            <a class="btn btn-sm btn-primary text-white" id="message-trigger" href="{{route('admin.messages.index', $apartment->slug)}}">View Messages</a>
 
         </div>
     </div>

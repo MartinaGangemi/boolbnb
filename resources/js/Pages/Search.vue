@@ -74,7 +74,7 @@
               type="checkbox"
               :id="service"
               :name="services"
-              :value="index+1"
+              :value="index + 1"
               v-model="checkedServices"
             />
             <label class="form-check-label" :for="service">{{ service }}</label>
@@ -195,7 +195,7 @@ export default {
             beds: this.beds,
             rooms: this.rooms,
             services: this.services,
-            checkedServices: this.checkedServices
+            checkedServices: this.checkedServices,
           },
         })
         .then((response) => {
