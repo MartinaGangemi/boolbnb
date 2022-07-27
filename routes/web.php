@@ -27,6 +27,9 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
         'apartments' => 'apartment:slug'
     ]);
     Route::get('apartments/{apartment:slug}/messages', 'MessageController@index')->name('messages.index');
+    Route::get('apartments/{apartment:slug}/sponsorships', 'SponsorshipController@index')->name('sponsorships.index');
+    Route::get('apartments/{apartment}/sponsorships/{sponsorship}','SponsorshipController@show')->name('sponsorships.show');
+
 
     //qui mettiamo le altre rotte di admin
 });
