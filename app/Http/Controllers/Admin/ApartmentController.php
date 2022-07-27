@@ -46,29 +46,23 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ApartmentRequest $request)
-    {    //l'untente non può creare più appartamenti con lo stesso nome
-        $request->validate([
-            'summary' => [Rule::unique('apartments')->where(function ($query) {
-                return $query->where('user_id', Auth::id());
-            })],
-        ]);
-
+    {
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
         //dd($data);
 
         //$apiQuery =  str_replace(' ', '-', $data['city']) . '-' .  str_replace(' ', '-', $data['address']) . '-' .  str_replace(' ', '-', $data['number']) ;
-        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
         $apiQuery = str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
         $response = json_decode($response);
 
 
         $data['lat'] = $response->results[0]->position->lat;
         $data['lon'] = $response->results[0]->position->lon;
-
+        $currentId = Apartment::orderBy('id', 'desc')->first()->id + 1;
         $data['user_id'] = Auth::id();
-        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id().'-'.$currentId ;
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
         $newApartment = new Apartment();
@@ -125,14 +119,9 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ApartmentRequest $request, User $id, Apartment $apartment)
-    {   
+    {
 
-        //l'untente non può creare più appartamenti con lo stesso nome
-        $request->validate([
-            'summary' => [Rule::unique('apartments')->ignore($apartment)->where(function ($query) {
-                return $query->where('user_id', Auth::id());
-            })],
-        ]);
+
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
         //dd($data);
@@ -143,7 +132,7 @@ class ApartmentController extends Controller
 
 
         $apiQuery =str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
         $response = json_decode($response);
 
 
@@ -155,8 +144,8 @@ class ApartmentController extends Controller
 
 
         $apartment->fill($data);
-
-        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
+        $currentId = Apartment::orderBy('id', 'desc')->first()->id + 1;
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id().'-'.$currentId ;
         $data['slug'] = $slug;
         $apartment->update($data);
 
