@@ -46,12 +46,8 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ApartmentRequest $request)
-    {    //l'untente non può creare più appartamenti con lo stesso nome
-        $request->validate([
-            'summary' => [Rule::unique('apartments')->where(function ($query) {
-                return $query->where('user_id', Auth::id());
-            })],
-        ]);
+    {
+
 
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
@@ -66,9 +62,9 @@ class ApartmentController extends Controller
 
         $data['lat'] = $response->results[0]->position->lat;
         $data['lon'] = $response->results[0]->position->lon;
-
+        $currentId = Apartment::orderBy('id', 'desc')->first()->id + 1;
         $data['user_id'] = Auth::id();
-        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id().'-'.$currentId ;
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
         $newApartment = new Apartment();
@@ -127,12 +123,7 @@ class ApartmentController extends Controller
     public function update(ApartmentRequest $request, User $id, Apartment $apartment)
     {
 
-        //l'untente non può creare più appartamenti con lo stesso nome
-        $request->validate([
-            'summary' => [Rule::unique('apartments')->ignore($apartment)->where(function ($query) {
-                return $query->where('user_id', Auth::id());
-            })],
-        ]);
+
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
         //dd($data);
@@ -155,8 +146,8 @@ class ApartmentController extends Controller
 
 
         $apartment->fill($data);
-
-        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id();
+        $currentId = Apartment::orderBy('id', 'desc')->first()->id + 1;
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id().'-'.$currentId ;
         $data['slug'] = $slug;
         $apartment->update($data);
 
