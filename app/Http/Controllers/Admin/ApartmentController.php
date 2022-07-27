@@ -58,9 +58,9 @@ class ApartmentController extends Controller
         //dd($data);
 
         //$apiQuery =  str_replace(' ', '-', $data['city']) . '-' .  str_replace(' ', '-', $data['address']) . '-' .  str_replace(' ', '-', $data['number']) ;
-        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
         $apiQuery = str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
         $response = json_decode($response);
 
 
@@ -125,7 +125,7 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ApartmentRequest $request, User $id, Apartment $apartment)
-    {   
+    {
 
         //l'untente non può creare più appartamenti con lo stesso nome
         $request->validate([
@@ -143,7 +143,7 @@ class ApartmentController extends Controller
 
 
         $apiQuery =str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
         $response = json_decode($response);
 
 

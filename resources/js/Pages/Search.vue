@@ -92,11 +92,16 @@
     </form>
 
     <!-- lista appartamenti -->
-    <div class="row justify-content-center" style="padding-bottom: 2000px">
+    <div class=" row justify-content-center" style="padding-bottom: 2000px">
       <!-- sezione mappa -->
-      <div class="sticky-top row col-lg-9 pb-5">
+      <div class="row col-lg-9 pb-5 original-map">
         <div id="map" class="my-round my-col" ref="mapRef"></div>
+     <div class=" row col-lg-9 pb-5 h-100 w-100 bg-light text-dark cover-map" v-if="apartments <= [0]">
+        <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Loading...⏲️ <br> oppure non ce stanno appartamenti 👌</div>
       </div>
+      </div>
+
+
 
       <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
         <div
@@ -206,7 +211,7 @@ export default {
           const link =
             "https://kr-api.tomtom.com/search/2/geocode/" +
             this.searchText +
-            ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
+            ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
 
           axios.get(link).then((searchResponse) => {
             let searchResults = searchResponse.data.results;
@@ -287,11 +292,11 @@ export default {
 
     createMap() {
       let map = tt.map({
-        key: "zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB",
+        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
-        zoom: 17,
+        zoom: 13,
       });
 
       map.addControl(new tt.FullscreenControl());
@@ -329,7 +334,7 @@ export default {
       const link =
         `https://kr-api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true`;
+        `.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
         //console.log(results);
@@ -368,6 +373,10 @@ export default {
 
 <style lang="scss" scoped>
 #map {
+  height: 35vh;
+}
+
+#map2 {
   height: 35vh;
 }
 
@@ -416,6 +425,19 @@ export default {
 .listAddress {
   max-height: 130px;
   overflow-y: scroll;
+}
+
+.original-map{
+    position: relative;
+    z-index: 1;
+}
+
+.cover-map{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transition: 4s;
 }
 
 /*.content {

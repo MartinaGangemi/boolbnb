@@ -5114,7 +5114,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     createMap: function createMap() {
       var map = tt.map({
-        key: "zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB",
+        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartment.lon, this.apartment.lat],
@@ -5222,7 +5222,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
+      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
@@ -5293,7 +5293,7 @@ __webpack_require__.r(__webpack_exports__);
         //console.log(response.data);
         var results = response.data.data;
         _this.apartmentsResponse = response.data;
-        var link = "https://kr-api.tomtom.com/search/2/geocode/" + _this.searchText + ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
+        var link = "https://kr-api.tomtom.com/search/2/geocode/" + _this.searchText + ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
         axios.get(link).then(function (searchResponse) {
           var searchResults = searchResponse.data.results; //console.log('Risultati di ricerca: ' , searchResults[0].position);
 
@@ -5318,7 +5318,7 @@ __webpack_require__.r(__webpack_exports__);
                   this.searchLat,
                   this.searchLon
               );
-                let distance2 = this.getDistanceFromLatLonInKm(
+               let distance2 = this.getDistanceFromLatLonInKm(
                   apartment2.lat,
                   apartment2.lon,
                   this.searchLat,
@@ -5354,11 +5354,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     createMap: function createMap() {
       var map = tt.map({
-        key: "zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB",
+        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
-        zoom: 17
+        zoom: 13
       });
       map.addControl(new tt.FullscreenControl());
       map.addControl(new tt.NavigationControl());
@@ -5388,7 +5388,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
+      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
@@ -5956,14 +5956,16 @@ var render = function render() {
       "padding-bottom": "2000px"
     }
   }, [_c("div", {
-    staticClass: "sticky-top row col-lg-9 pb-5"
+    staticClass: "row col-lg-9 pb-5 original-map"
   }, [_c("div", {
     ref: "mapRef",
     staticClass: "my-round my-col",
     attrs: {
       id: "map"
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.apartments <= [0] ? _c("div", {
+    staticClass: "row col-lg-9 pb-5 h-100 w-100 bg-light text-dark cover-map"
+  }, [_vm._m(3)]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
@@ -6029,6 +6031,16 @@ var staticRenderFns = [function () {
   }, [_vm._v("Nr. Letti "), _c("i", {
     staticClass: "fa-solid fa-bed"
   })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "display-5 fw-bold d-flex justify-content-center align-items-center text-center",
+    attrs: {
+      id: "map2"
+    }
+  }, [_vm._v(" Loading...⏲️ "), _c("br"), _vm._v(" oppure non ce stanno appartamenti 👌")]);
 }];
 render._withStripped = true;
 
@@ -11134,7 +11146,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4caf50;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
+exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4caf50;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
 
 // exports
 
@@ -58576,9 +58588,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

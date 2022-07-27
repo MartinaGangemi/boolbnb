@@ -10,9 +10,9 @@
 
 
       <h1 class="text-uppercase">{{apartment.summary}}</h1>
-      
+
           <div class="row apartment-information">
-              
+
             <div class="col-6">
               <!-- informazioni appartamento -->
               <p>{{apartment.description}}</p>
@@ -29,12 +29,12 @@
 
             </div>
             <div class="col-6">
-              
+
               <!-- mappa -->
               <div id="map"  ref="mapRef"></div>
             </div>
-          
-          
+
+
           </div>
 
 
@@ -66,7 +66,7 @@
     </div>
     </div>
 
-    
+
 </div>
 
 
@@ -86,14 +86,14 @@ export default {
         apartment:'',
         lat: 0,
         lon: 0,
-       
+
       }
     },
 
     methods:{
       createMap(){
       let map = tt.map({
-        key: "zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB",
+        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartment.lon, this.apartment.lat],
@@ -143,7 +143,7 @@ export default {
       console.error(e);
       })
 
-     
+
 
     },
 
@@ -183,7 +183,7 @@ img{
     width: 40%;
     height: 40px;
     border: none;
-} 
+}
 
 #map {
   height: 400px;
