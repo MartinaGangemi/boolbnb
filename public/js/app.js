@@ -5349,7 +5349,7 @@ __webpack_require__.r(__webpack_exports__);
                   this.searchLat,
                   this.searchLon
               );
-               let distance2 = this.getDistanceFromLatLonInKm(
+                let distance2 = this.getDistanceFromLatLonInKm(
                   apartment2.lat,
                   apartment2.lon,
                   this.searchLat,
@@ -5384,12 +5384,25 @@ __webpack_require__.r(__webpack_exports__);
       return deg * (Math.PI / 180);
     },
     createMap: function createMap() {
+      //zoom per la mappa
+      var zoomMap = 0;
+
+      if (this.defaultDistance <= 20) {
+        zoomMap = 15;
+      } else if (this.defaultDistance <= 40) {
+        zoomMap = 8;
+      } else if (this.defaultDistance <= 80) {
+        zoomMap = 6;
+      } else if (this.defaultDistance <= 160) {
+        zoomMap = 4;
+      }
+
       var map = tt.map({
         key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
-        zoom: 13
+        zoom: zoomMap
       });
       map.addControl(new tt.FullscreenControl());
       map.addControl(new tt.NavigationControl());
@@ -58691,9 +58704,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

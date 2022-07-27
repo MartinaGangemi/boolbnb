@@ -289,12 +289,25 @@ export default {
     },
 
     createMap() {
+
+      //zoom per la mappa
+      let zoomMap = 0
+      if(this.defaultDistance <= 20){
+        zoomMap = 15
+      } else if (this.defaultDistance <= 40){
+        zoomMap = 8
+      } else if (this.defaultDistance <= 80){
+        zoomMap = 6
+      }else if (this.defaultDistance <= 160){
+        zoomMap = 4
+      } 
+
       let map = tt.map({
         key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
-        zoom: 13,
+        zoom: zoomMap,
       });
 
       map.addControl(new tt.FullscreenControl());
