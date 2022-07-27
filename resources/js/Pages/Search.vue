@@ -190,86 +190,36 @@ export default {
     searchApartments() {
       this.apartments = [];
 
-      console.log(this.checkedServices);
+      //console.log(this.checkedServices);
 
       axios
         .get("/api/apartments", {
           params: {
             beds: this.beds,
             rooms: this.rooms,
-            services: this.services,
-            checkedServices: this.checkedServices
+            checkedServices: this.checkedServices,
+            defaultDistance: this.defaultDistance * 1000,
+            searchLat: this.lat,
+            searchLon: this.lon
           },
         })
         .then((response) => {
           //console.log(response.data);
-          const results = response.data.data;
+          const results = response.data;
           this.apartmentsResponse = response.data;
-
-          const link =
-            "https://kr-api.tomtom.com/search/2/geocode/" +
-            this.searchText +
-            ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
-
-          axios.get(link).then((searchResponse) => {
-            let searchResults = searchResponse.data.results;
-
-            //console.log('Risultati di ricerca: ' , searchResults[0].position);
-            this.searchLat = searchResults[0].position.lat;
-            this.searchLon = searchResults[0].position.lon;
-
-            results.forEach((result) => {
-              //console.log("Risultato: ", result);
-
-              const distance = this.getDistanceFromLatLonInKm(
-                result.lat,
-                result.lon,
-                this.searchLat,
-                this.searchLon
-              );
-              //console.log(distance);
-
-              if (distance <= this.defaultDistance) {
-                this.apartments.push(result);
-              }
-            });
-
-            //console.log("Lista appartamenti: ", this.apartments);
-
-            this.apartments.sort(function (apartment1, apartment2) {
-              //console.log("1: ", apartment1, " 2: ", apartment2);
-
-              /* let distance1 = this.getDistanceFromLatLonInKm(
-                    apartment1.lat,
-                    apartment1.lon,
-                    this.searchLat,
-                    this.searchLon
-                );
-
-                let distance2 = this.getDistanceFromLatLonInKm(
-                    apartment2.lat,
-                    apartment2.lon,
-                    this.searchLat,
-                    this.searchLon
-                ); */
-
-              //console.log("1: ", distance1, " 2: ", distance2);
-
-              return 0;
-            });
+          this.apartments = response.data;
 
             //mappa
             this.createMap();
 
             this.searchText = "";
-          });
-        })
+          })
         .catch((e) => {
           console.error(e);
         });
     },
 
-    getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    /* getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
       let R = 6371; // Radius of the earth in km
       let dLat = this.deg2rad(lat2 - lat1); // deg2rad below
       let dLon = this.deg2rad(lon2 - lon1);
@@ -282,11 +232,11 @@ export default {
       let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       let d = R * c; // Distance in km
       return d;
-    },
+    }, */
 
-    deg2rad(deg) {
+    /* deg2rad(deg) {
       return deg * (Math.PI / 180);
-    },
+    }, */
 
     createMap() {
 

@@ -126,22 +126,28 @@ export default {
       error: false,
       beds: 1,
       rooms: 1,
+      defaultDistance: 20,
+      lat: 0,
+      lon: 0
     };
   },
 
   methods: {
-    searchApartments(addressId) {
+    searchApartments() {
       this.apartments = [];
       axios
         .get("/api/apartments", {
             params: {
-                beds: this.beds,
-                rooms: this.rooms,
+              beds: this.beds,
+              rooms: this.rooms,
+              defaultDistance: this.defaultDistance * 1000,
+              searchLat: this.lat,
+              searchLon: this.lon
             }
         })
         .then((response) => {
           //console.log(response.data);
-          const results = response.data.data;
+          const results = response.data;
           this.apartmentsResponse = response.data;
           //filtro appartamenti per città
           results.forEach((result) => {

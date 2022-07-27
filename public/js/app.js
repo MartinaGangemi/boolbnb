@@ -5207,22 +5207,28 @@ __webpack_require__.r(__webpack_exports__);
       apartments: [],
       error: false,
       beds: 1,
-      rooms: 1
+      rooms: 1,
+      defaultDistance: 20,
+      lat: 0,
+      lon: 0
     };
   },
   methods: {
-    searchApartments: function searchApartments(addressId) {
+    searchApartments: function searchApartments() {
       var _this = this;
 
       this.apartments = [];
       axios.get("/api/apartments", {
         params: {
           beds: this.beds,
-          rooms: this.rooms
+          rooms: this.rooms,
+          defaultDistance: this.defaultDistance * 1000,
+          searchLat: this.lat,
+          searchLon: this.lon
         }
       }).then(function (response) {
         //console.log(response.data);
-        var results = response.data.data;
+        var results = response.data;
         _this.apartmentsResponse = response.data; //filtro appartamenti per città
 
         results.forEach(function (result) {
@@ -5311,78 +5317,49 @@ __webpack_require__.r(__webpack_exports__);
     searchApartments: function searchApartments() {
       var _this = this;
 
-      this.apartments = [];
-      console.log(this.checkedServices);
+      this.apartments = []; //console.log(this.checkedServices);
+
       axios.get("/api/apartments", {
         params: {
           beds: this.beds,
           rooms: this.rooms,
-          services: this.services,
-          checkedServices: this.checkedServices
+          checkedServices: this.checkedServices,
+          defaultDistance: this.defaultDistance * 1000,
+          searchLat: this.lat,
+          searchLon: this.lon
         }
       }).then(function (response) {
         //console.log(response.data);
-        var results = response.data.data;
+        var results = response.data;
         _this.apartmentsResponse = response.data;
-        var link = "https://kr-api.tomtom.com/search/2/geocode/" + _this.searchText + ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
-        axios.get(link).then(function (searchResponse) {
-          var searchResults = searchResponse.data.results; //console.log('Risultati di ricerca: ' , searchResults[0].position);
+        _this.apartments = response.data; //mappa
 
-          _this.searchLat = searchResults[0].position.lat;
-          _this.searchLon = searchResults[0].position.lon;
-          results.forEach(function (result) {
-            //console.log("Risultato: ", result);
-            var distance = _this.getDistanceFromLatLonInKm(result.lat, result.lon, _this.searchLat, _this.searchLon); //console.log(distance);
+        _this.createMap();
 
-
-            if (distance <= _this.defaultDistance) {
-              _this.apartments.push(result);
-            }
-          }); //console.log("Lista appartamenti: ", this.apartments);
-
-          _this.apartments.sort(function (apartment1, apartment2) {
-            //console.log("1: ", apartment1, " 2: ", apartment2);
-
-            /* let distance1 = this.getDistanceFromLatLonInKm(
-                  apartment1.lat,
-                  apartment1.lon,
-                  this.searchLat,
-                  this.searchLon
-              );
-                let distance2 = this.getDistanceFromLatLonInKm(
-                  apartment2.lat,
-                  apartment2.lon,
-                  this.searchLat,
-                  this.searchLon
-              ); */
-            //console.log("1: ", distance1, " 2: ", distance2);
-            return 0;
-          }); //mappa
-
-
-          _this.createMap();
-
-          _this.searchText = "";
-        });
+        _this.searchText = "";
       })["catch"](function (e) {
         console.error(e);
       });
     },
-    getDistanceFromLatLonInKm: function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-      var R = 6371; // Radius of the earth in km
 
-      var dLat = this.deg2rad(lat2 - lat1); // deg2rad below
-
-      var dLon = this.deg2rad(lon2 - lon1);
-      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      var d = R * c; // Distance in km
-
+    /* getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      let R = 6371; // Radius of the earth in km
+      let dLat = this.deg2rad(lat2 - lat1); // deg2rad below
+      let dLon = this.deg2rad(lon2 - lon1);
+      let a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(this.deg2rad(lat1)) *
+          Math.cos(this.deg2rad(lat2)) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      let d = R * c; // Distance in km
       return d;
-    },
-    deg2rad: function deg2rad(deg) {
+    }, */
+
+    /* deg2rad(deg) {
       return deg * (Math.PI / 180);
-    },
+    }, */
     createMap: function createMap() {
       //zoom per la mappa
       var zoomMap = 0;
@@ -58980,9 +58957,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
