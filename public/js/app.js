@@ -5103,12 +5103,16 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'apartment',
+  name: "apartment",
   data: function data() {
     return {
-      apartment: '',
+      apartment: "",
       lat: 0,
-      lon: 0
+      lon: 0,
+      guestMessage: "",
+      guestEmail: "",
+      guestFullName: "",
+      messageSent: false
     };
   },
   methods: {
@@ -5138,17 +5142,44 @@ __webpack_require__.r(__webpack_exports__);
       }).setHTML(this.apartment.summary);
       marker.setPopup(popup).togglePopup();
       console.log(apartment);
+    },
+    getAuthUser: function getAuthUser() {
+      this.guestEmail = window.user_email;
+      this.guestFullName = window.user_name;
+    },
+    saveMessage: function saveMessage() {
+      var _this = this;
+
+      axios.get("/api/apartment/message", {
+        params: {
+          apartment_id: this.$route.params.id,
+          fullname: this.guestFullName,
+          email: this.guestEmail,
+          description: this.guestMessage
+        }
+      }).then(function (response) {
+        console.log(response);
+        _this.guestMessage = "";
+        _this.guestEmail = "";
+        _this.guestFullName = "";
+        _this.messageSent = true;
+        setTimeout(function () {
+          _this.messageSent = false;
+        }, 2000);
+      })["catch"](function (e) {
+        console.error(e);
+      });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
-    axios.get('/api/search/apartments/' + this.$route.params.id).then(function (response) {
+    axios.get("/api/search/apartments/" + this.$route.params.id).then(function (response) {
       if (response.data.status_code === 404) {//this.$router.push({name: 'not-found'})
       } else {
-        _this.apartment = response.data; //console.log(this.apartment)
+        _this2.apartment = response.data; //console.log(this.apartment)
 
-        _this.createMap();
+        _this2.createMap();
       }
     })["catch"](function (e) {
       console.error(e);
@@ -5318,7 +5349,7 @@ __webpack_require__.r(__webpack_exports__);
                   this.searchLat,
                   this.searchLon
               );
-                let distance2 = this.getDistanceFromLatLonInKm(
+               let distance2 = this.getDistanceFromLatLonInKm(
                   apartment2.lat,
                   apartment2.lon,
                   this.searchLat,
@@ -5487,7 +5518,7 @@ var render = function render() {
     return _c("li", {
       key: service.id,
       staticClass: "list-inline-item"
-    }, [_vm._v(_vm._s(service.name))]);
+    }, [_vm._v("\n            " + _vm._s(service.name) + "\n          ")]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "col-6"
   }, [_c("div", {
@@ -5495,7 +5526,122 @@ var render = function render() {
     attrs: {
       id: "map"
     }
-  })])]), _vm._v(" "), _vm._m(6)])]);
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "row mt-5"
+  }, [_c("div", {
+    staticClass: "col-12 col-lg-6 mb-2"
+  }, [_c("div", {
+    staticClass: "card p-5 text-center"
+  }, [_c("div", {
+    staticClass: "message-form message-style p-4"
+  }, [_c("h2", {
+    staticClass: "text-uppercase fw-bold"
+  }, [_vm._v("\n              Invia un messaggio all' Host\n            ")]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("Nome:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.guestFullName,
+      expression: "guestFullName"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "name",
+      id: "name",
+      "aria-describedby": "namehelpId",
+      placeholder: "Mario Rossi"
+    },
+    domProps: {
+      value: _vm.guestFullName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.guestFullName = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("Email:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.guestEmail,
+      expression: "guestEmail"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "email",
+      name: "email",
+      id: "email",
+      "aria-describedby": "emailHelpId",
+      placeholder: "mariorossi@example.com"
+    },
+    domProps: {
+      value: _vm.guestEmail
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.guestEmail = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "message"
+    }
+  }, [_vm._v("Messaggio:")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.guestMessage,
+      expression: "guestMessage"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      name: "message",
+      id: "message",
+      rows: "3"
+    },
+    domProps: {
+      value: _vm.guestMessage
+    },
+    on: {
+      keyup: function keyup($event) {
+        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
+        return _vm.saveMessage();
+      },
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.guestMessage = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        return _vm.saveMessage();
+      }
+    }
+  }, [_vm._v("\n              Invia\n            ")])]), _vm._v(" "), _c("div", {
+    staticClass: "message_sent rounded p-1 mb-2 bg-success text-white d-inline-block",
+    "class": _vm.messageSent ? "position-absolute" : "d-none"
+  }, [_vm._v("\n            Messaggio inviato!\n          ")])])]), _vm._v(" "), _vm._m(6)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5545,49 +5691,6 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "row mt-5"
-  }, [_c("div", {
-    staticClass: "col-12 col-lg-6 mb-2"
-  }, [_c("div", {
-    staticClass: "card p-5 text-center"
-  }, [_c("h2", {
-    staticClass: "text-uppercase"
-  }, [_vm._v("Contatta l'host")]), _vm._v(" "), _c("form", {
-    staticClass: "mt-5",
-    attrs: {
-      action: ""
-    }
-  }, [_c("div", {
-    staticClass: "mb-3 d-flex gap-2"
-  }, [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "name",
-      id: "exampleFormControlInput1",
-      placeholder: "Nome"
-    }
-  }), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "email",
-      id: "exampleFormControlInput1",
-      placeholder: "Email"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3"
-  }, [_c("textarea", {
-    staticClass: "form-control",
-    attrs: {
-      id: "exampleFormControlTextarea1",
-      placeholder: "Scrivi un messaggio *",
-      rows: "3"
-    }
-  })]), _vm._v(" "), _c("button", {
-    staticClass: "search-btn text-uppercase text-center text-white",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Contatta")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 col-lg-6"
   }, [_c("div", {
     staticClass: "img-container p-5"
@@ -5596,7 +5699,7 @@ var staticRenderFns = [function () {
       src: "http://cdn.home-designing.com/wp-content/uploads/2017/06/red-dining-chairs.jpg",
       alt: ""
     }
-  })])])]);
+  })])]);
 }];
 render._withStripped = true;
 
@@ -11096,7 +11199,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "img[data-v-2ed98ed9] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.apartment-img[data-v-2ed98ed9] {\n  height: 500px;\n  width: 100%;\n}\nh2[data-v-2ed98ed9] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-2ed98ed9]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 20%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-2ed98ed9] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n#map[data-v-2ed98ed9] {\n  height: 400px;\n}", ""]);
+exports.push([module.i, ".message_sent[data-v-2ed98ed9] {\n  position: absolute;\n  bottom: 0;\n  left: 50%;\n  transform: translate(-50%, 0);\n  transition: all 1s;\n}\nimg[data-v-2ed98ed9] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.apartment-img[data-v-2ed98ed9] {\n  height: 500px;\n  width: 100%;\n}\nh2[data-v-2ed98ed9] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-2ed98ed9]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 20%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-2ed98ed9] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n#map[data-v-2ed98ed9] {\n  height: 400px;\n}", ""]);
 
 // exports
 
@@ -58576,9 +58679,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

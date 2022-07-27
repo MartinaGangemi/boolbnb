@@ -20488,6 +20488,10 @@ readers do not read off random characters that represent icons */
   content: "\F63F";
 }
 
+#message-trigger {
+  width: 100px;
+}
+
 img {
   height: 100%;
   -o-object-fit: cover;

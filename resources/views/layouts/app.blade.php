@@ -67,9 +67,9 @@
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     Admin
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.messages') }}">
+                                {{-- <a class="dropdown-item" href="{{ route('admin.messages') }}">
                                     Messaggi
-                                </a>
+                                </a> --}}
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
