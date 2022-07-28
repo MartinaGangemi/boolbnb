@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apartment;
 use App\Models\Service;
-use App\User;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 use App\Models\Sponsorship;
 use Illuminate\Support\Facades\Storage;
@@ -53,9 +53,9 @@ class ApartmentController extends Controller
         //dd($data);
 
         //$apiQuery =  str_replace(' ', '-', $data['city']) . '-' .  str_replace(' ', '-', $data['address']) . '-' .  str_replace(' ', '-', $data['number']) ;
-        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
+        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN');
         $apiQuery = str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN');
         $response = json_decode($response);
 
 
@@ -133,7 +133,7 @@ class ApartmentController extends Controller
 
 
         $apiQuery =str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN');
         $response = json_decode($response);
 
 

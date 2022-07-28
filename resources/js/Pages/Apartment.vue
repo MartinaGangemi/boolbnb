@@ -145,7 +145,7 @@ export default {
   methods: {
     createMap() {
       let map = tt.map({
-        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
+        key: "psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartment.lon, this.apartment.lat],

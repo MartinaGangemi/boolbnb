@@ -5118,7 +5118,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     createMap: function createMap() {
       var map = tt.map({
-        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
+        key: "psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartment.lon, this.apartment.lat],
@@ -5259,7 +5259,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
+      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
@@ -5375,7 +5375,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var map = tt.map({
-        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
+        key: "psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
@@ -5409,7 +5409,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
+      var link = "https://kr-api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
