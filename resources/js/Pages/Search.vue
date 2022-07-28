@@ -1,25 +1,29 @@
 <template>
-  <div class="container-fluid pie mt-4">
+  <div class="container custom-height mt-4">
     <!-- form ricerca appartamento -->
-    <h2 class="fw-bold text-center ">Cerca un appartamento</h2>
-    <form @submit.prevent class="container">
-      <input
-        type="text"
-        class="form-control"
-        v-model="searchText"
-        @keyup="searchAddress"
-      />
-      <!-- autoload da fixare -->
-      <div class="listAddress">
-        <div
-          v-for="(singleAddress, index) in addressResults"
-          :key="singleAddress.id"
-        >
-          <span @click="checkAddress(index)" v-if="!isHidden">{{
-            singleAddress.address.freeformAddress
-          }}</span>
-        </div>
-      </div>
+
+    <h2 class="fw-bold text-center text-white ">Cerca un appartamento</h2>
+        <div class="card bg-light">
+    <form @submit.prevent class="container mt-4">
+            <input
+                type="text"
+                class="form-control"
+                v-model="searchText"
+                @keyup="searchAddress"
+            />
+            <!-- autoload da fixare -->
+            <div class="listAddress">
+                <div
+                v-for="(singleAddress, index) in addressResults"
+                :key="singleAddress.id"
+                >
+                <span @click="checkAddress(index)" v-if="!isHidden">{{
+                    singleAddress.address.freeformAddress
+                }}</span>
+                </div>
+            </div>
+
+
       <div class="text-center">
 
 
@@ -97,54 +101,45 @@
 
     </div>
     </form>
+    </div>
 
     <!-- lista appartamenti -->
-    <div class=" row justify-content-center" style="padding-bottom: 2000px">
+    <div class=" row justify-content-center mt-2" >
       <!-- sezione mappa -->
       <div class="row col-lg-9 pb-5 original-map">
         <div id="map" class="my-round my-col" ref="mapRef"></div>
-     <div class=" row col-lg-9 pb-5 h-100 w-100 bg-light text-dark cover-map" v-if="apartments <= [0]">
+     <div class=" row col-lg-9 pb-5 bg-light text-dark cover-map" v-if="apartments <= [0]">
         <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
       </div>
 
 
       </div>
 
-      <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
-        <div
-          class="box p-0 shadow"
-          v-for="apartment in apartments"
-          :key="apartment.id"
-        >
-          <div class="card_img d-flex justify-content-center">
-            <img
-              :src="'storage/' + apartment.cover_img"
-              :alt="apartment.slug"
-            />
-          </div>
 
-          <div class="card-body">
-            <h4 class="card-title">{{ apartment.summary }}</h4>
-            <p class="card-text"></p>
-            <router-link
-              class="btn btn-light"
+<!-- nuova card -->
+
+<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-center">
+        <div class="card border-0  col-12 p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
+          :key="apartment.id"  style="width: 18rem;">
+            <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
+            <div class="card-body">
+                <span class="text-center fw-bold" >{{ apartment.summary }}</span>
+                 <router-link
+              class="btn btn-custom text-light"
               :to="{ name: 'apartment', params: { id: apartment.id } }"
-              >Read More</router-link
+              >Visita</router-link
             >
-          </div>
-
-          <!-- card overflow -->
-          <!-- <div class="content text-center">
-          <h3>{{ apartment.summary }}</h3>
-
-          <p>
-            {{ apartment.description }}
-          </p>
-
-          <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
-        </div> -->
+            </div>
         </div>
-      </div>
+    </div>
+
+
+
+
+
+
+
+
     </div>
 
     <!-- numero pagine -->
@@ -388,47 +383,27 @@ input[type="checkbox"]:checked + label {
   border-radius: 20px;
 }
 
-.fixed {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: 5px;
-  background-color: #cae8ca;
-  border: 2px solid #4caf50;
-}
 
 .btn-custom{
     background-color: #B94545;
 
 }
 
-.box {
-  height: 500px;
-  width: 400px;
-  background: rgb(159, 35, 39);
-  background: linear-gradient(
-    352deg,
-    rgb(165, 37, 41) 11%,
-    rgba(2, 0, 36, 1) 100%
-  );
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  color: #ffffff;
-}
+.col-12{
 
-.box .card {
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-}
 
-.card_img {
-  height: 40%;
-}
+        .card{
+            height: 260px;
+            border-radius: 5px;
+            cursor: pointer;
+            filter: drop-shadow(2px 4px 6px black);
+            .card-img-top{
+                height: 150px;
+            }
 
-.card_img img {
-  height: 100%;
+
+        }
+
 }
 
 .listAddress {
@@ -447,9 +422,6 @@ input[type="checkbox"]:checked + label {
     z-index: 4;
     transition: 4s;
 }
-
-
-
 
 /*.content {
   background-color: black;

@@ -1,11 +1,11 @@
 
 <template>
 
-    
+
     <main>
          <router-view></router-view>
     </main>
-    
+
 
 
 </template>
@@ -37,4 +37,7 @@ export default {
 </script>
 
 
+<style lang="scss" scoped>
 
+
+</style>
