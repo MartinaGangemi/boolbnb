@@ -2,6 +2,7 @@
 
 @section('content')
     <section id="apartment-form" class="p-3 bg-container">
+
         <div class="container">
             <h4 class="text-center">Modifica le info del tuo appartamento </h4>
 

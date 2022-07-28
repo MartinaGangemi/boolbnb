@@ -5259,7 +5259,7 @@ __webpack_require__.r(__webpack_exports__);
       }; //const resultElement = document.querySelector('.results')
       //resultElement.innerHTML = ''
 
-      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true";
+      var link = "https://api.tomtom.com/search/2/geocode/" + this.searchText + ".json?key=oACbG3tI0HEQEXTTTBi1BjRveNyHAv75&typeahead=true";
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
@@ -5335,8 +5335,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.apartments = response.data; //mappa
 
         _this.createMap();
-
-        _this.searchText = "";
       })["catch"](function (e) {
         console.error(e);
       });
@@ -5784,7 +5782,7 @@ var render = function render() {
       id: "body"
     }
   }, [_c("div", {
-    staticClass: "bg-light my_back"
+    staticClass: "my_back"
   }, [_c("div", {
     staticClass: "container text-light py-5"
   }, [_c("div", {
@@ -5855,7 +5853,13 @@ var render = function render() {
       expression: "error == true"
     }],
     staticClass: "mt-2 position-absolute error-search"
-  }, [_vm._v("\n              Non abbiamo trovato nessun appartamento\n            ")])])])])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
+  }, [_vm._v("\n              Non abbiamo trovato nessun appartamento\n            ")])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "bg"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "bg bg2"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "bg bg3"
+  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
 };
 
 var staticRenderFns = [function () {
@@ -5863,7 +5867,7 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("section", {
-    staticClass: "container mt-5",
+    staticClass: "container mt-5 bg_light contentsd",
     attrs: {
       id: "site_main"
     }
@@ -5895,7 +5899,7 @@ var staticRenderFns = [function () {
   return _c("section", {
     staticClass: "mt-5 container"
   }, [_c("h2", {
-    staticClass: "text-center"
+    staticClass: "text-center text-white"
   }, [_vm._v("Appartamenti consigliati")]), _vm._v(" "), _c("div", {
     staticClass: "mt-5 row card-container"
   }, [_c("div", {
@@ -5931,8 +5935,11 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container-fluid mt-4"
-  }, [_c("form", {
+    staticClass: "container-fluid pie mt-4"
+  }, [_c("h2", {
+    staticClass: "fw-bold text-center"
+  }, [_vm._v("Cerca un appartamento")]), _vm._v(" "), _c("form", {
+    staticClass: "container",
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -5972,6 +5979,8 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(singleAddress.address.freeformAddress))]) : _vm._e()]);
   }), 0), _vm._v(" "), _c("div", {
+    staticClass: "text-center"
+  }, [_c("div", {
     staticClass: "beds-rooms-commands mt-4"
   }, [_c("span", {
     staticClass: "me-2"
@@ -6052,14 +6061,16 @@ var render = function render() {
         _vm.beds = $event.target.value;
       }
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])])]), _vm._v(" "), _c("div", {
     staticClass: "row mt-4 p-0"
-  }, [_c("strong", [_vm._v("Seleziona almeno un servizio")]), _vm._v(" "), _c("div", {
+  }, [_c("strong", {
+    staticClass: "text-center mb-2"
+  }, [_vm._v("Seleziona almeno un servizio")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, _vm._l(_vm.services, function (service, index) {
     return _c("div", {
       key: service.id,
-      staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 text-dark"
+      staticClass: "col-12 col-sm-6 col-md-4 col-lg-3 text-dark text-center"
     }, [_c("input", {
       directives: [{
         name: "model",
@@ -6067,7 +6078,7 @@ var render = function render() {
         value: _vm.checkedServices,
         expression: "checkedServices"
       }],
-      staticClass: "text-dark",
+      staticClass: "text-dark checkbox",
       attrs: {
         type: "checkbox",
         id: service,
@@ -6103,15 +6114,19 @@ var render = function render() {
         "for": service
       }
     }, [_vm._v(_vm._s(service))])]);
-  }), 0)]), _vm._v(" "), _c("button", {
-    staticClass: "my-4 btn btn-dark w-100 fw-bold fs-2 text-white",
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "text-center"
+  }, [_c("button", {
+    staticClass: "my-4 btn btn-custom fw-bold rounded-circle fs-2 text-white",
     attrs: {
       type: "submit"
     },
     on: {
       click: _vm.searchApartments
     }
-  }, [_vm._v("\n      cerca appartamento\n    ")])]), _vm._v(" "), _c("div", {
+  }, [_c("i", {
+    staticClass: "fa-solid fa-magnifying-glass"
+  })])])]), _vm._v(" "), _c("div", {
     staticClass: "row justify-content-center",
     staticStyle: {
       "padding-bottom": "2000px"
@@ -6126,7 +6141,12 @@ var render = function render() {
     }
   }), _vm._v(" "), _vm.apartments <= [0] ? _c("div", {
     staticClass: "row col-lg-9 pb-5 h-100 w-100 bg-light text-dark cover-map"
-  }, [_vm._m(3)]) : _vm._e()]), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "display-5 fw-bold d-flex justify-content-center align-items-center text-center",
+    attrs: {
+      id: "map2"
+    }
+  }, [_vm._v(" Caricamento...⏲️ ")])]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap"
   }, _vm._l(_vm.apartments, function (apartment) {
     return _c("div", {
@@ -6192,16 +6212,6 @@ var staticRenderFns = [function () {
   }, [_vm._v("Nr. Letti "), _c("i", {
     staticClass: "fa-solid fa-bed"
   })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "display-5 fw-bold d-flex justify-content-center align-items-center text-center",
-    attrs: {
-      id: "map2"
-    }
-  }, [_vm._v(" Loading...⏲️ "), _c("br"), _vm._v(" oppure non ce stanno appartamenti 👌")]);
 }];
 render._withStripped = true;
 
@@ -11346,7 +11356,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow-y: scroll;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}", ""]);
+exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow-y: scroll;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}\n.bg[data-v-6a63e488] {\n  -webkit-animation: slide-6a63e488 3s ease-in-out infinite alternate;\n          animation: slide-6a63e488 3s ease-in-out infinite alternate;\n  background-image: linear-gradient(-60deg, #B94545 50%, #000000 50%);\n  bottom: 0;\n  left: -50%;\n  opacity: 0.5;\n  position: fixed;\n  right: -50%;\n  top: 0;\n  z-index: -1;\n}\n.bg2[data-v-6a63e488] {\n  animation-direction: alternate-reverse;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n}\n.bg3[data-v-6a63e488] {\n  -webkit-animation-duration: 5s;\n          animation-duration: 5s;\n}\n.contentsd[data-v-6a63e488] {\n  color: white;\n  padding: 10vmin;\n  text-align: center;\n}\n@-webkit-keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n@keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}", ""]);
 
 // exports
 
@@ -11365,7 +11375,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4caf50;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
+exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\nul[data-v-4026e891] {\n  padding: 0;\n  margin: 0;\n  clear: both;\n}\nli[data-v-4026e891] {\n  list-style-type: none;\n  list-style-position: outside;\n  padding: 10px;\n  float: left;\n}\ninput[type=checkbox][data-v-4026e891]:not(:checked),\ninput[type=checkbox][data-v-4026e891]:checked {\n  position: absolute;\n  left: -9999%;\n}\ninput[type=checkbox] + label[data-v-4026e891] {\n  display: inline-block;\n  width: 200px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 20px;\n  color: black;\n  background-color: white;\n  margin-bottom: 10px;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[type=checkbox]:checked + label[data-v-4026e891] {\n  color: white;\n  background-color: #B94545;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.fixed[data-v-4026e891] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  padding: 5px;\n  background-color: #cae8ca;\n  border: 2px solid #4caf50;\n}\n.btn-custom[data-v-4026e891] {\n  background-color: #B94545;\n}\n.box[data-v-4026e891] {\n  height: 500px;\n  width: 400px;\n  background: rgb(159, 35, 39);\n  background: linear-gradient(352deg, rgb(165, 37, 41) 11%, rgb(2, 0, 36) 100%);\n  position: relative;\n  overflow: hidden;\n  border-radius: 1rem;\n  color: #ffffff;\n}\n.box .card[data-v-4026e891] {\n  width: 100%;\n  height: 100%;\n  border-radius: 1rem;\n}\n.card_img[data-v-4026e891] {\n  height: 40%;\n}\n.card_img img[data-v-4026e891] {\n  height: 100%;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
 
 // exports
 
@@ -58957,9 +58967,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

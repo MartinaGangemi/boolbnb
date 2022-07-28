@@ -1,7 +1,8 @@
 <template>
-  <div class="container-fluid mt-4">
+  <div class="container-fluid pie mt-4">
     <!-- form ricerca appartamento -->
-    <form @submit.prevent>
+    <h2 class="fw-bold text-center ">Cerca un appartamento</h2>
+    <form @submit.prevent class="container">
       <input
         type="text"
         class="form-control"
@@ -19,6 +20,9 @@
           }}</span>
         </div>
       </div>
+      <div class="text-center">
+
+
       <div class="beds-rooms-commands mt-4">
         <span class="me-2">
           <label for="rooms"
@@ -60,17 +64,18 @@
           />
         </span>
       </div>
+      </div>
 
-      <div class="row mt-4 p-0">
-        <strong>Seleziona almeno un servizio</strong>
-        <div class="row">
+      <div class="row mt-4 p-0 ">
+        <strong class="text-center mb-2">Seleziona almeno un servizio</strong>
+        <div class="row ">
           <div
             v-for="(service, index) in services"
             :key="service.id"
-            class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark"
+            class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark text-center "
           >
             <input
-              class="text-dark"
+              class="text-dark checkbox"
               type="checkbox"
               :id="service"
               :name="services"
@@ -81,14 +86,16 @@
           </div>
         </div>
       </div>
-
+    <div class="text-center ">
       <button
         type="submit"
-        class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white"
+        class="my-4 btn btn-custom fw-bold rounded-circle fs-2 text-white"
         @click="searchApartments"
       >
-        cerca appartamento
+       <i class="fa-solid fa-magnifying-glass"></i>
       </button>
+
+    </div>
     </form>
 
     <!-- lista appartamenti -->
@@ -97,8 +104,10 @@
       <div class="row col-lg-9 pb-5 original-map">
         <div id="map" class="my-round my-col" ref="mapRef"></div>
      <div class=" row col-lg-9 pb-5 h-100 w-100 bg-light text-dark cover-map" v-if="apartments <= [0]">
-        <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Loading...⏲️ <br> oppure non ce stanno appartamenti 👌</div>
+        <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
       </div>
+
+
       </div>
 
       <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
@@ -212,7 +221,7 @@ export default {
             //mappa
             this.createMap();
 
-            this.searchText = "";
+
           })
         .catch((e) => {
           console.error(e);
@@ -250,7 +259,7 @@ export default {
         zoomMap = 6
       }else if (this.defaultDistance <= 160){
         zoomMap = 4
-      } 
+      }
 
       let map = tt.map({
         key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
@@ -339,6 +348,41 @@ export default {
 #map2 {
   height: 35vh;
 }
+ul {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+li{
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 10px;
+  float: left;
+}
+
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999%;
+}
+
+input[type="checkbox"] + label {
+  display: inline-block;
+  width: 200px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+  color: black;
+  background-color: white;
+  margin-bottom: 10px;
+     filter: drop-shadow(2px 4px 6px black);
+}
+
+input[type="checkbox"]:checked + label {
+  color: white;
+  background-color: #B94545;
+}
 
 .my-round {
   border-radius: 20px;
@@ -351,6 +395,11 @@ export default {
   padding: 5px;
   background-color: #cae8ca;
   border: 2px solid #4caf50;
+}
+
+.btn-custom{
+    background-color: #B94545;
+
 }
 
 .box {
@@ -398,6 +447,9 @@ export default {
     z-index: 4;
     transition: 4s;
 }
+
+
+
 
 /*.content {
   background-color: black;

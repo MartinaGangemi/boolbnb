@@ -1,7 +1,7 @@
 <template>
-  <div id="body">
+  <div id="body" >
     <!-- jumbotron -->
-    <div class="bg-light my_back">
+    <div class="my_back">
       <div class="container text-light py-5">
         <div class="row justify-content-center align-items-center row-form">
           <div class="col-7 text-center">
@@ -54,8 +54,10 @@
         </div>
       </div>
     </div>
-
-    <section id="site_main" class="container mt-5">
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <section id="site_main" class="container mt-5 bg_light contentsd">
       <div class="row justify-content-center py-3">
         <div class="row row-cols-2 my-5 justify-content-between">
           <div class="col-12 col-lg-8 text">
@@ -93,7 +95,7 @@
 
     <!-- appartamenti sponsorizzati -->
     <section class="mt-5 container">
-      <h2 class="text-center">Appartamenti consigliati</h2>
+      <h2 class="text-center text-white">Appartamenti consigliati</h2>
       <div class="mt-5 row card-container">
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="card">
@@ -184,7 +186,7 @@ export default {
       const link =
         `https://api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true`;
+        `.json?key=oACbG3tI0HEQEXTTTBi1BjRveNyHAv75&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
         //console.log(results);
@@ -214,6 +216,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+
+
 .row-form {
   height: 500px;
 }
@@ -295,6 +301,49 @@ button {
 
 .error-search {
   top: 50px;
+}
+
+
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #B94545 50%, #000000 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+}
+
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+}
+
+.bg3 {
+    animation-duration:5s;
+}
+
+.contentsd {
+
+    color: white;
+
+
+    padding:10vmin;
+    text-align:center;
+
+}
+
+
+@keyframes slide {
+    0% {
+        transform:translateX(-25%);
+    }
+
+    100% {
+        transform:translateX(25%);
+    }
 }
 </style>
 
