@@ -19,7 +19,9 @@
                 <strong><i class="fa-solid fa-ruler-combined"></i> Square Meters :
                 </strong><span>{{ $apartment->square_meters }}</span><br>
                 <a class="btn btn-sm btn-primary text-white" id="message-trigger"
-                    href="{{ route('admin.messages.index', $apartment->slug) }}">View Messages</a>
+                    href="{{ route('admin.messages.index', $apartment->slug) }}">Messaggi</a>
+                    <a class="btn btn-sm btn-primary text-white" id="message-trigger"
+                    href="{{ route('admin.sponsorships.index', $apartment->slug) }}">Sponsorizza</a>
             </div>
         </div>
 
