@@ -128,10 +128,10 @@
         <div class="card border-0  col-12 p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
           :key="apartment.id"  style="width: 18rem;">
             <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
-            <div class="card-body">
+            <div class="card-body d-flex align-items-center">
                 <span class="text-center fw-bold" >{{ apartment.summary }}</span>
                  <router-link
-              class="btn btn-custom text-light"
+              class="ms-1 btn btn-custom text-light"
               :to="{ name: 'apartment', params: { id: apartment.id } }"
               >Visita</router-link
             >
@@ -148,23 +148,54 @@
 
     </div>
 
-    <!-- numero pagine -->
-    <!-- <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center  mt-5">
-        <li class="page-item" v-if="apartmentsResponse.current_page > 1">
-            <a class="page-link"  @click="getAllApartments(apartmentsResponse.current_page - 1)">Previous</a>
-        </li>
-        <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
-            <a class="page-link" href="#" @click.prevent="getAllApartments(page)">{{ page }}</a>
-        </li>
 
-        <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
-            <a class="page-link" href="#" @click.prevent="getAllApartments(apartmentsResponse.current_page + 1)">Next</a>
-        </li>
-    </ul>
-    </nav> -->
+
+
 
 </div>
+<!-- PAGINAZIONE NON FUNZIONANTE  -->
+    <!-- <nav aria-label="Page navigation"  >
+        <ul class="pagination justify-content-center mb-0">
+            <li
+            class="page-item"
+            v-if="apartmentsResponse.current_page > 1"
+            >
+                <a
+                 class="page_link"
+                 aria-label="Previous"
+                 @click="getApartment(apartmentsResponse.current_page - 1)"
+                >
+                <span aria-hidden="true">&laquo;</span>
+                <span class="visually-hidden">Previous</span>
+                </a>
+            </li>
+            <li
+                :class="{'page-item': true, active: apartmentsResponse.current_page == page,}"
+                v-for="page in apartmentsResponse.last_page"
+                :key="page"
+                  >
+                <a class="page_link" @click="getApartment(page)">{{
+                      page
+                    }}</a>
+            </li>
+            <li
+                class="page-item"
+                v-if="
+                apartmentsResponse.current_page <
+                apartmentsResponse.last_page
+                "
+            >
+                <a
+                class="page_link"
+                aria-label="Next"
+                @click="getApartment(apartmentsResponse.current_page + 1)"
+                >
+                <span aria-hidden="true">&raquo;</span>
+                <span class="visually-hidden">Next</span>
+                </a>
+            </li>
+        </ul>
+     </nav> -->
   </div>
 </template>
 
@@ -207,6 +238,7 @@ export default {
       axios
         .get("/api/apartments", {
           params: {
+           /*  page: selectPage, */
             beds: this.beds,
             rooms: this.rooms,
             checkedServices: this.checkedServices,
@@ -231,24 +263,6 @@ export default {
         });
     },
 
-    /* getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-      let R = 6371; // Radius of the earth in km
-      let dLat = this.deg2rad(lat2 - lat1); // deg2rad below
-      let dLon = this.deg2rad(lon2 - lon1);
-      let a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(this.deg2rad(lat1)) *
-          Math.cos(this.deg2rad(lat2)) *
-          Math.sin(dLon / 2) *
-          Math.sin(dLon / 2);
-      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      let d = R * c; // Distance in km
-      return d;
-    }, */
-
-    /* deg2rad(deg) {
-      return deg * (Math.PI / 180);
-    }, */
 
     createMap() {
 
@@ -400,7 +414,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .custom-height{
-min-height: calc(100vh  - 178px) ;
+min-height: calc(100vh  - 170px) ;
 }
 
 .col-12{

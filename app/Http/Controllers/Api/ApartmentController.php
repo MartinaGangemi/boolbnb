@@ -37,7 +37,7 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::with('services')->where('beds', '>=', $beds)->where('visible', 'visible==true', $visible)->where('rooms', '>=', $rooms)->whereHas('services', function ($query) use ($checkedServices) {
                 $query->whereIn('id', $checkedServices);
-            }, '=', count($checkedServices))->orderByDesc('id')->paginate(12);
+            }, '=', count($checkedServices))->orderByDesc('id')->get();
 
         foreach ($apartments as $apartment) {
             $objectApartment = [
@@ -60,12 +60,14 @@ class ApartmentController extends Controller
         foreach ($apartments as $apartment) {
             foreach ($results as $result) {
                 if ($result->id == $apartment->id) {
+
                     array_push($apartmentsFiltered, $apartment);
                 }
             }
         };
 
         return $apartmentsFiltered;
+
     }
 
     public function show($id)
