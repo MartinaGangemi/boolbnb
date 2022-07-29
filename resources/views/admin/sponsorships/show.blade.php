@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+
 <div class="form-container">
  
 
@@ -9,6 +10,12 @@
 
   <form id="my-sample-form" action="{{route('admin.sponsorships.checkout',[$apartment->id , $sponsorship->id])}}" method="post" class="scale-down">
   @csrf
+
+  @if (session('message'))
+    <div class="alert alert-danger">
+        {{ session('message') }}
+    </div>
+  @endif
     <div class="cardinfo-card-number">
       <label class="cardinfo-label" for="card-number">Card Number</label>
       <div class='input-wrapper' id="card-number"></div>
@@ -26,7 +33,7 @@
         <div class='input-wrapper' id="cvv"></div>
       </div>
     </div>
-    <input type="text" hidden id="nonce" name="nonce">
+    <input id="nonce" name="payment_method_nonce" type="hidden" />
   </form>
 
   <input id="button-pay" type="submit" value="Paga" />
@@ -39,9 +46,10 @@
 <script>
 var form = document.querySelector('#my-sample-form');
 var submit = document.querySelector('input[type="submit"]');
+var client_token = "{{ $token }}";
 
 braintree.client.create({
-  authorization: 'sandbox_mfrh98g8_rx6zvryzvj2bvjyz'
+  authorization: client_token
 }, function (err, clientInstance) {
   if (err) {
     console.error(err);
@@ -156,7 +164,7 @@ braintree.client.create({
         }
 
         // This is where you would submit payload.nonce to your server
-        document.getElementById('nonce').value = payload.nonce
+        document.querySelector('#nonce').value = payload.nonce
           // This is where you would submit payload.nonce to your server
           document.getElementById('my-sample-form').submit()
       });

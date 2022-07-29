@@ -30,8 +30,8 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     
     
     //rotte per sponsorships
-    Route::get('apartments/{apartment:slug}/sponsorships', 'SponsorshipController@index')->name('sponsorships.index');
-    Route::get('apartments/{apartment}/sponsorships/{sponsorship}','SponsorshipController@show')->name('sponsorships.show');
+    Route::get('apartments/{apartment:slug}/sponsorships', 'SponsorshipController@select')->name('sponsorships.index');
+    Route::get('apartments/{apartment}/sponsorships/{sponsorship}','SponsorshipController@take')->name('sponsorships.show');
     Route::post('apartments/{apartment}/sponsorships/{sponsorship}/checkout','SponsorshipController@checkout')->name('sponsorships.checkout');
 
 
