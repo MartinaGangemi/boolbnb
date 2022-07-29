@@ -1,16 +1,31 @@
-<template>
-  <div class="container custom-height mt-4">
-    <!-- form ricerca appartamento -->
+<template >
 
-    <h2 class="fw-bold text-center text-white ">Cerca un appartamento</h2>
+
+  <div class="custom-height bg-dark">
+    <!-- form ricerca appartamento -->
+<div class="container ">
+    <h2 class="fw-bold text-center text-white pt-5">Cerca un appartamento</h2>
         <div class="card bg-light">
-    <form @submit.prevent class="container mt-4">
+    <form @submit.prevent class="container mt-4 searchs">
             <input
                 type="text"
-                class="form-control"
+                class="form-control "
                 v-model="searchText"
                 @keyup="searchAddress"
             />
+    <div class="">
+
+        <button
+            type="submit"
+            class=" btn btn-custom search-btn fw-bold text-white"
+            @click="searchApartments"
+        >
+        <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+    </div>
+
+
             <!-- autoload da fixare -->
             <div class="listAddress">
                 <div
@@ -90,16 +105,7 @@
           </div>
         </div>
       </div>
-    <div class="text-center ">
-      <button
-        type="submit"
-        class="my-4 btn btn-custom fw-bold rounded-circle fs-2 text-white"
-        @click="searchApartments"
-      >
-       <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
 
-    </div>
     </form>
     </div>
 
@@ -118,7 +124,7 @@
 
 <!-- nuova card -->
 
-<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-center">
+<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-center ">
         <div class="card border-0  col-12 p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
           :key="apartment.id"  style="width: 18rem;">
             <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
@@ -157,6 +163,8 @@
         </li>
     </ul>
     </nav> -->
+
+</div>
   </div>
 </template>
 
@@ -337,6 +345,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+body{
+     background-color: #212529 !important;
+    color: white !important;
+}
+
 #map {
   height: 35vh;
 }
@@ -368,10 +381,10 @@ input[type="checkbox"] + label {
   padding: 10px;
   cursor: pointer;
   border-radius: 20px;
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #212529;
   margin-bottom: 10px;
-     filter: drop-shadow(2px 4px 6px black);
+
 }
 
 input[type="checkbox"]:checked + label {
@@ -389,13 +402,18 @@ input[type="checkbox"]:checked + label {
 
 }
 
+.custom-height{
+min-height: calc(100vh  - 203px) ;
+}
+
 .col-12{
 
 
         .card{
             height: 260px;
             border-radius: 5px;
-            cursor: pointer;
+            margin-bottom: 20px;
+
             filter: drop-shadow(2px 4px 6px black);
             .card-img-top{
                 height: 150px;
@@ -404,6 +422,23 @@ input[type="checkbox"]:checked + label {
 
         }
 
+}
+
+.searchs{
+    position: relative;
+}
+
+.search-btn {
+  position: absolute;
+  width: 10%;
+  top: 0;
+  right: 10px;
+}
+button {
+  background-color: #b94545;
+  width: 30px;
+  height: 36px;
+  border: none;
 }
 
 .listAddress {
@@ -421,6 +456,9 @@ input[type="checkbox"]:checked + label {
     left: 0;
     z-index: 4;
     transition: 4s;
+    width: 100%;
+    background-color: #212529 !important;
+    color: white !important;
 }
 
 /*.content {

@@ -82,12 +82,12 @@
         </div>
     </nav>
 
-    <main class="pb-4">
+    <main class="">
         @yield('content')
     </main>
 
     <!-- footer -->
-    <footer class="bg-dark">
+    <footer class="bg-dark ">
         <div class="container">
         <p class="text-light py-5 mb-0 text-center">Copyright &copy; team6</p>
         </div>

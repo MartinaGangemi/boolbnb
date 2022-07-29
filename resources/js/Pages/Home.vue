@@ -1,5 +1,5 @@
 <template>
-  <div id="body" >
+  <div id="body"  class="pb-4">
     <!-- jumbotron -->
     <div class="my_back">
       <div class="container text-light py-5">

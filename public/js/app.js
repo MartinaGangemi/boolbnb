@@ -5778,6 +5778,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
+    staticClass: "pb-4",
     attrs: {
       id: "body"
     }
@@ -5935,13 +5936,15 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container custom-height mt-4"
+    staticClass: "custom-height bg-dark"
+  }, [_c("div", {
+    staticClass: "container"
   }, [_c("h2", {
-    staticClass: "fw-bold text-center text-white"
+    staticClass: "fw-bold text-center text-white pt-5"
   }, [_vm._v("Cerca un appartamento")]), _vm._v(" "), _c("div", {
     staticClass: "card bg-light"
   }, [_c("form", {
-    staticClass: "container mt-4",
+    staticClass: "container mt-4 searchs",
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -5968,7 +5971,17 @@ var render = function render() {
         _vm.searchText = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {}, [_c("button", {
+    staticClass: "btn btn-custom search-btn fw-bold text-white",
+    attrs: {
+      type: "submit"
+    },
+    on: {
+      click: _vm.searchApartments
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-magnifying-glass"
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "listAddress"
   }, _vm._l(_vm.addressResults, function (singleAddress, index) {
     return _c("div", {
@@ -6116,19 +6129,7 @@ var render = function render() {
         "for": service
       }
     }, [_vm._v(_vm._s(service))])]);
-  }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "text-center"
-  }, [_c("button", {
-    staticClass: "my-4 btn btn-custom fw-bold rounded-circle fs-2 text-white",
-    attrs: {
-      type: "submit"
-    },
-    on: {
-      click: _vm.searchApartments
-    }
-  }, [_c("i", {
-    staticClass: "fa-solid fa-magnifying-glass"
-  })])])])]), _vm._v(" "), _c("div", {
+  }), 0)])])]), _vm._v(" "), _c("div", {
     staticClass: "row justify-content-center mt-2"
   }, [_c("div", {
     staticClass: "row col-lg-9 pb-5 original-map"
@@ -6175,7 +6176,7 @@ var render = function render() {
         }
       }
     }, [_vm._v("Visita")])], 1)]);
-  }), 0)])]);
+  }), 0)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -11374,7 +11375,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\nul[data-v-4026e891] {\n  padding: 0;\n  margin: 0;\n  clear: both;\n}\nli[data-v-4026e891] {\n  list-style-type: none;\n  list-style-position: outside;\n  padding: 10px;\n  float: left;\n}\ninput[type=checkbox][data-v-4026e891]:not(:checked),\ninput[type=checkbox][data-v-4026e891]:checked {\n  position: absolute;\n  left: -9999%;\n}\ninput[type=checkbox] + label[data-v-4026e891] {\n  display: inline-block;\n  width: 200px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 20px;\n  color: black;\n  background-color: white;\n  margin-bottom: 10px;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[type=checkbox]:checked + label[data-v-4026e891] {\n  color: white;\n  background-color: #B94545;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.btn-custom[data-v-4026e891] {\n  background-color: #B94545;\n}\n.col-12 .card[data-v-4026e891] {\n  height: 260px;\n  border-radius: 5px;\n  cursor: pointer;\n  filter: drop-shadow(2px 4px 6px black);\n}\n.col-12 .card .card-img-top[data-v-4026e891] {\n  height: 150px;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
+exports.push([module.i, "body[data-v-4026e891] {\n  background-color: #212529 !important;\n  color: white !important;\n}\n#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\nul[data-v-4026e891] {\n  padding: 0;\n  margin: 0;\n  clear: both;\n}\nli[data-v-4026e891] {\n  list-style-type: none;\n  list-style-position: outside;\n  padding: 10px;\n  float: left;\n}\ninput[type=checkbox][data-v-4026e891]:not(:checked),\ninput[type=checkbox][data-v-4026e891]:checked {\n  position: absolute;\n  left: -9999%;\n}\ninput[type=checkbox] + label[data-v-4026e891] {\n  display: inline-block;\n  width: 200px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 20px;\n  color: white;\n  background-color: #212529;\n  margin-bottom: 10px;\n}\ninput[type=checkbox]:checked + label[data-v-4026e891] {\n  color: white;\n  background-color: #B94545;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 20px;\n}\n.btn-custom[data-v-4026e891] {\n  background-color: #B94545;\n}\n.custom-height[data-v-4026e891] {\n  min-height: calc(100vh - 203px);\n}\n.col-12 .card[data-v-4026e891] {\n  height: 260px;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  filter: drop-shadow(2px 4px 6px black);\n}\n.col-12 .card .card-img-top[data-v-4026e891] {\n  height: 150px;\n}\n.searchs[data-v-4026e891] {\n  position: relative;\n}\n.search-btn[data-v-4026e891] {\n  position: absolute;\n  width: 10%;\n  top: 0;\n  right: 10px;\n}\nbutton[data-v-4026e891] {\n  background-color: #b94545;\n  width: 30px;\n  height: 36px;\n  border: none;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n  width: 100%;\n  background-color: #212529 !important;\n  color: white !important;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
 
 // exports
 
