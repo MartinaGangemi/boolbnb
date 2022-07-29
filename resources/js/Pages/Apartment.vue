@@ -1,13 +1,13 @@
 <template>
-  <div class="apartment-container">
+  <div class="apartment-container bg-dark">
     <div class="apartment-img">
       <img :src="'/storage/' + apartment.cover_img" alt="" />
     </div>
 
     <div class="container mt-5">
-      <h1 class="text-uppercase">{{ apartment.summary }}</h1>
+      <h1 class="text-uppercase text-white">{{ apartment.summary }}</h1>
 
-      <div class="row apartment-information">
+      <div class="row apartment-information text-white d-flex ">
         <div class="col-6">
           <!-- informazioni appartamento -->
           <p>{{ apartment.description }}</p>

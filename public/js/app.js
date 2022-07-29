@@ -5552,7 +5552,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "apartment-container"
+    staticClass: "apartment-container bg-dark"
   }, [_c("div", {
     staticClass: "apartment-img"
   }, [_c("img", {
@@ -5563,9 +5563,9 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "container mt-5"
   }, [_c("h1", {
-    staticClass: "text-uppercase"
+    staticClass: "text-uppercase text-white"
   }, [_vm._v(_vm._s(_vm.apartment.summary))]), _vm._v(" "), _c("div", {
-    staticClass: "row apartment-information"
+    staticClass: "row apartment-information text-white d-flex"
   }, [_c("div", {
     staticClass: "col-6"
   }, [_c("p", [_vm._v(_vm._s(_vm.apartment.description))]), _vm._v(" "), _vm._m(0), _c("span", [_vm._v(_vm._s(_vm.apartment.address))]), _c("br"), _vm._v(" "), _vm._m(1), _c("span", [_vm._v(_vm._s(_vm.apartment.rooms))]), _c("br"), _vm._v(" "), _vm._m(2), _c("span", [_vm._v(_vm._s(_vm.apartment.beds))]), _c("br"), _vm._v(" "), _vm._m(3), _c("span", [_vm._v(_vm._s(_vm.apartment.bathrooms))]), _c("br"), _vm._v(" "), _vm._m(4), _c("span", [_vm._v(_vm._s(_vm.apartment.square_meters))]), _c("br"), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("ul", {
