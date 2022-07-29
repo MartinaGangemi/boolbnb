@@ -345,10 +345,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-body{
-     background-color: #212529 !important;
-    color: white !important;
-}
+
 
 #map {
   height: 35vh;
@@ -403,7 +400,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .custom-height{
-min-height: calc(100vh  - 203px) ;
+min-height: calc(100vh  - 178px) ;
 }
 
 .col-12{

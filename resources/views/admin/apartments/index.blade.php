@@ -9,8 +9,10 @@
     <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
 
     @endif
+    <div class="text-center">
 
-    <a class="btn btn-primary text-white my-3" href="{{route('admin.apartments.create')}}">Crea un nuovo appartamento</a>
+        <a class="btn btn-customs text-white my-3 " href="{{route('admin.apartments.create')}}">Crea un nuovo appartamento</a>
+    </div>
 
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5  gy-3">
         @foreach($apartments as $apartment)

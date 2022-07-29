@@ -5,10 +5,12 @@
     </div>
 
     <div class="container mt-5">
-      <h1 class="text-uppercase text-white">{{ apartment.summary }}</h1>
+        <div class="card ">
 
-      <div class="row apartment-information text-white d-flex ">
-        <div class="col-6">
+      <h1 class="text-uppercase  text-center">{{ apartment.summary }}</h1>
+
+      <div class="row apartment-information m-1 d-flex ">
+        <div class="col-12 col-sm-6 ">
           <!-- informazioni appartamento -->
           <p>{{ apartment.description }}</p>
           <strong><i class="fa-solid fa-map-location"></i> Address : </strong
@@ -38,11 +40,12 @@
             </li>
           </ul>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 text-dark">
           <!-- mappa -->
           <div id="map" ref="mapRef"></div>
         </div>
       </div>
+        </div>
 
       <!-- sezione messaggi e recensioni-->
       <div class="row mt-5">
@@ -149,7 +152,7 @@ export default {
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartment.lon, this.apartment.lat],
-        zoom: 20,
+        zoom: 17,
       });
 
       //console.log(this.apartment)

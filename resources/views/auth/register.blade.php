@@ -128,7 +128,7 @@
 
 <style>
       .register-cont {
-        min-height: calc(100vh  - 251px) ;
+        min-height: calc(100vh  - 227px) ;
     }
 
     .card_dark{
@@ -142,7 +142,7 @@
 }
 .bg {
     animation:slide 3s ease-in-out infinite alternate;
-    background-image: linear-gradient(-60deg, #B94545 50%, #000000 50%);
+    background-image: linear-gradient(-60deg, #B94545 50%, #202023 50%);
     bottom:0;
     left:-50%;
     opacity:.5;
