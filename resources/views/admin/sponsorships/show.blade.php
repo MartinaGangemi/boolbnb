@@ -1,176 +1,78 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('content')
+   
+    <div class="content">
+        <div class="wrapper">
+            <div class="checkout container text-center">
+               
+            <h1>Hi, <br>Let's test a transaction</h1>
+                <p>
+                    Make a test payment with Braintree using PayPal or a card
+                </p>
+                {{-- form --}}
+                <form method="post" id="payment-form"
+                    action="{{ route('admin.sponsorships.checkout', [$apartment->id, $sponsorship->id]) }}">
+                    @csrf
+                    <section>
+                        <label  for="amount">
+                            <div class="input-wrapper amount-wrapper pb-3">
+                                <span class="input-label">Stai acquistando il piano{{$sponsorship->name}} a</span>
+                                <input style="max-width:50px" id="amount" name="amount" type="tel" min="1"
+                                    placeholder="{{ $sponsorship->price }} €" value="{{ $sponsorship->price }}" readonly>
+                            </div>
+                        </label>
+                        @if (session('message'))
+                            <div class="alert alert-danger">
+                                {{ session('message') }}
+                            </div>
+                        @endif
 
-<div class="form-container">
- 
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
+                        </div>
+                    </section>
 
-  <header>
-    <h1>Payment Method</h1>
-  </header>
-
-  <form id="my-sample-form" action="{{route('admin.sponsorships.checkout',[$apartment->id , $sponsorship->id])}}" method="post" class="scale-down">
-  @csrf
-
-  @if (session('message'))
-    <div class="alert alert-danger">
-        {{ session('message') }}
+                    <input id="nonce" name="payment_method_nonce"  type="hidden"/>
+                    <button class="button btn btn-primary text-white" type="submit"><span>Acquista
+                        Sponsorizzazione</span></button>
+                </form>
+            </div>
+        </div>
     </div>
-  @endif
-    <div class="cardinfo-card-number">
-      <label class="cardinfo-label" for="card-number">Card Number</label>
-      <div class='input-wrapper' id="card-number"></div>
-      <div id="card-image"></div>
-    </div>
-
-    <div class="cardinfo-wrapper">
-      <div class="cardinfo-exp-date">
-        <label class="cardinfo-label" for="expiration-date">Valid Thru</label>
-        <div class='input-wrapper' id="expiration-date"></div>
-      </div>
-
-      <div class="cardinfo-cvv">
-        <label class="cardinfo-label" for="cvv">CVV</label>
-        <div class='input-wrapper' id="cvv"></div>
-      </div>
-    </div>
-    <input id="nonce" name="payment_method_nonce" type="hidden" />
-  </form>
-
-  <input id="button-pay" type="submit" value="Paga" />
-</div>
-  @endsection
-
-  @push('payment')
-<script src="https://js.braintreegateway.com/web/3.85.3/js/client.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.85.3/js/hosted-fields.min.js"></script>
-<script>
-var form = document.querySelector('#my-sample-form');
-var submit = document.querySelector('input[type="submit"]');
-var client_token = "{{ $token }}";
-
-braintree.client.create({
-  authorization: client_token
-}, function (err, clientInstance) {
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  // Create input fields and add text styles  
-  braintree.hostedFields.create({
-    client: clientInstance,
-    styles: {
-      'input': {
-        'color': '#282c37',
-        'font-size': '16px',
-        'transition': 'color 0.1s',
-        'line-height': '3'
-      },
-      // Style the text of an invalid input
-      'input.invalid': {
-        'color': '#E53A40'
-      },
-      // placeholder styles need to be individually adjusted
-      '::-webkit-input-placeholder': {
-        'color': 'rgba(0,0,0,0.6)'
-      },
-      ':-moz-placeholder': {
-        'color': 'rgba(0,0,0,0.6)'
-      },
-      '::-moz-placeholder': {
-        'color': 'rgba(0,0,0,0.6)'
-      },
-      ':-ms-input-placeholder': {
-        'color': 'rgba(0,0,0,0.6)'
-      },
-      // prevent IE 11 and Edge from
-      // displaying the clear button
-      // over the card brand icon
-      'input::-ms-clear': {
-        opacity: '0'
-      }
-    },
-    // Add information for individual fields
-    fields: {
-      number: {
-        selector: '#card-number',
-        placeholder: '1111 1111 1111 1111'
-      },
-      cvv: {
-        selector: '#cvv',
-        placeholder: '123'
-      },
-      expirationDate: {
-        selector: '#expiration-date',
-        placeholder: '10 / 2019'
-      }
-    }
-  }, function (err, hostedFieldsInstance) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    hostedFieldsInstance.on('validityChange', function (event) {
-      // Check if all fields are valid, then show submit button
-      var formValid = Object.keys(event.fields).every(function (key) {
-        return event.fields[key].isValid;
-      });
-
-      if (formValid) {
-        $('#button-pay').addClass('show-button');
-      } else {
-        $('#button-pay').removeClass('show-button');
-      }
-    });
-
-    hostedFieldsInstance.on('empty', function (event) {
-      $('header').removeClass('header-slide');
-      $('#card-image').removeClass();
-      $(form).removeClass();
-    });
-
-    hostedFieldsInstance.on('cardTypeChange', function (event) {
-      // Change card bg depending on card type
-      if (event.cards.length === 1) {
-        $(form).removeClass().addClass(event.cards[0].type);
-        $('#card-image').removeClass().addClass(event.cards[0].type);
-        $('header').addClass('header-slide');
-        
-        // Change the CVV length for AmericanExpress cards
-        if (event.cards[0].code.size === 4) {
-          hostedFieldsInstance.setAttribute({
-            field: 'cvv',
-            attribute: 'placeholder',
-            value: '1234'
-          });
-        } 
-      } else {
-        hostedFieldsInstance.setAttribute({
-          field: 'cvv',
-          attribute: 'placeholder',
-          value: '123'
+  
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.2/js/dropin.min.js"></script>
+    <script>
+        var form = document.querySelector('#payment-form');
+        var client_token = "{{ $token }}";
+        let Button = document.getElementById('button');
+        console.log(braintree);
+        braintree.dropin.create({
+            authorization: client_token,
+            selector: '#bt-dropin',
+            /* paypal: {
+                flow: 'vault'
+            } */
+        }, function(createErr, instance) {
+            console.log(instance);
+            if (createErr) {
+                console.log('Create Error', createErr);
+                return;
+            }
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                instance.requestPaymentMethod(function(err, payload) {
+                    console.log(payload);
+                    if (err) {
+                        console.log('funzione');
+                        console.log('Request Payment Method Error', err);
+                        return;
+                    }
+                    // Add the nonce to the form and submit
+                    document.querySelector('#nonce').value = payload.nonce;
+                    form.submit();
+                    Button.classList.add('NotVisible');
+                });
+            });
         });
-      }
-    });
-
-    submit.addEventListener('click', function (event) {
-      event.preventDefault();
-
-      hostedFieldsInstance.tokenize(function (err, payload) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        // This is where you would submit payload.nonce to your server
-        document.querySelector('#nonce').value = payload.nonce
-          // This is where you would submit payload.nonce to your server
-          document.getElementById('my-sample-form').submit()
-      });
-    }, false);
-  });
-});
-  </script>
-
-@endpush
+    </script>
+@endsection

@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apartment;
-use Braintree\Gateway;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
+
 
 class SponsorshipController extends Controller
 {
@@ -28,13 +28,12 @@ class SponsorshipController extends Controller
         ]);
 
         $token = $gateway->ClientToken()->generate();
-        //dd($publicity, $apartment, $token);
+        //dd($sponsorship, $apartment, $token);
+       
         return view('admin.sponsorships.show', compact('apartment','sponsorship','token'));
         
     }
 
-
-    
 
     public function checkout(Request $request, Apartment $apartment, Sponsorship $sponsorship)
     {   
@@ -44,45 +43,35 @@ class SponsorshipController extends Controller
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
         ]);
+
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
 
-        $resultCustomer = $gateway->customer()->create([
-            'email' => Auth::user()->email,
-        ]);
+       
         //dd($resultCustomer->customer->id);
-        $customerId = $resultCustomer->customer->id;
-
-        $resultCreate = $gateway->paymentMethod()->create([
-            'customerId' => $customerId,
+        
+        $result =  $gateway->transaction()->sale([
             'paymentMethodNonce' => $nonce,
+            'amount' => $amount,
             'options' => [
-                'verifyCard' => true,
+                'submitForSettlement' => true,
             ]
         ]);
 
-        dd($resultCreate);
-
-        if ($resultCreate->success) {
-            $result = $gateway->transaction()->sale([
-                'amount' => $amount,
-                'paymentMethodNonce' => $nonce,
-                'options' => [
-                    'submitForSettlement' => true
-                ]
-            ]);
-
-            
-            return redirect()->route('admin.apartments.index')->with('message', "Sponsorizzazione di \"$apartment->title\" avvenuta con successo");
-            } else {
-            return redirect()->route('admin.apartments.index')->with('message', "Transazione fallita.");
-            }
+       if($result->success){
        
+        //dd($result);
+        return redirect()->route('admin.apartments.index')->with('message', "Sponsorizzazione di \"$apartment->summary\" avvenuta con successo");
+       }else{
+        return redirect()->back()->with('message', "Transazione fallita! Si prega di riprovare");
+    }
     }
 }
 
        
  
+
+
 
 
 
