@@ -88,8 +88,9 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        $services =  $apartment['services'];
         $sponsorships = Sponsorship::all();
-        return view('admin.apartments.show', compact('apartment','sponsorships'));
+        return view('admin.apartments.show', compact('apartment','sponsorships','services'));
     }
 
     /**

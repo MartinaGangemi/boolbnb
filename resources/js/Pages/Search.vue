@@ -1,24 +1,46 @@
-<template>
-  <div class="container-fluid mt-4">
+<template >
+
+
+  <div class="custom-height bg-dark">
     <!-- form ricerca appartamento -->
-    <form @submit.prevent>
-      <input
-        type="text"
-        class="form-control"
-        v-model="searchText"
-        @keyup="searchAddress"
-      />
-      <!-- autoload da fixare -->
-      <div class="listAddress">
-        <div
-          v-for="(singleAddress, index) in addressResults"
-          :key="singleAddress.id"
+<div class="container ">
+    <h2 class="fw-bold text-center text-white pt-5">Cerca un appartamento</h2>
+        <div class="card bg-light">
+    <form @submit.prevent class="container mt-4 searchs">
+            <input
+                type="text"
+                class="form-control "
+                v-model="searchText"
+                @keyup="searchAddress"
+            />
+    <div class="">
+
+        <button
+            type="submit"
+            class=" btn btn-custom search-btn fw-bold text-white"
+            @click="searchApartments"
         >
-          <span @click="checkAddress(index)" v-if="!isHidden">{{
-            singleAddress.address.freeformAddress
-          }}</span>
-        </div>
-      </div>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+    </div>
+
+
+            <!-- autoload da fixare -->
+            <div class="listAddress">
+                <div
+                v-for="(singleAddress, index) in addressResults"
+                :key="singleAddress.id"
+                >
+                <span @click="checkAddress(index)" v-if="!isHidden">{{
+                    singleAddress.address.freeformAddress
+                }}</span>
+                </div>
+            </div>
+
+
+      <div class="text-center">
+
       <div class="beds-rooms-commands mt-4">
         <span class="me-2">
           <label for="rooms"
@@ -60,17 +82,18 @@
           />
         </span>
       </div>
+      </div>
 
-      <div class="row mt-4 p-0">
-        <strong>Seleziona almeno un servizio</strong>
-        <div class="row">
+       <div class="row mt-4 p-0 ">
+        <strong class="text-center mb-2">Seleziona almeno un servizio</strong>
+        <div class="row ">
           <div
             v-for="(service, index) in services"
             :key="service.id"
-            class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark"
+            class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark text-center "
           >
             <input
-              class="text-dark"
+              class="text-dark checkbox"
               type="checkbox"
               :id="service"
               :name="services"
@@ -82,77 +105,85 @@
         </div>
       </div>
 
-      <button
-        type="submit"
-        class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white"
-        @click="searchApartments"
-      >
-        cerca appartamento
-      </button>
     </form>
-
-    <!-- lista appartamenti -->
-    <div class=" row justify-content-center" style="padding-bottom: 2000px">
-      <!-- sezione mappa -->
-      <div class="row col-lg-9 pb-5 original-map">
-        <div id="map" class="my-round my-col" ref="mapRef"></div>
-     <div class=" row col-lg-9 pb-5 h-100 w-100 bg-light text-dark cover-map" v-if="apartments <= [0]">
-        <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Loading...⏲️ <br> oppure non ce stanno appartamenti 👌</div>
-      </div>
-      </div>
-
-      <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
-        <div
-          class="box p-0 shadow"
-          v-for="apartment in apartments"
-          :key="apartment.id"
-        >
-          <div class="card_img d-flex justify-content-center">
-            <img
-              :src="'storage/' + apartment.cover_img"
-              :alt="apartment.slug"
-            />
-          </div>
-
-          <div class="card-body">
-            <h4 class="card-title">{{ apartment.summary }}</h4>
-            <p class="card-text"></p>
-            <router-link
-              class="btn btn-light"
-              :to="{ name: 'apartment', params: { id: apartment.id } }"
-              >Read More</router-link
-            >
-          </div>
-
-          <!-- card overflow -->
-          <!-- <div class="content text-center">
-          <h3>{{ apartment.summary }}</h3>
-
-          <p>
-            {{ apartment.description }}
-          </p>
-
-          <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
-        </div> -->
-        </div>
-      </div>
     </div>
 
-    <!-- numero pagine -->
-    <!-- <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center  mt-5">
-        <li class="page-item" v-if="apartmentsResponse.current_page > 1">
-            <a class="page-link"  @click="getAllApartments(apartmentsResponse.current_page - 1)">Previous</a>
-        </li>
-        <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
-            <a class="page-link" href="#" @click.prevent="getAllApartments(page)">{{ page }}</a>
-        </li>
+    <!-- lista appartamenti -->
+    <div class=" row justify-content-center mt-2" >
+      <!-- sezione mappa -->
+       <div class="row col pb-5 original-map">
+        <div id="map" class="my-round " ref="mapRef"></div>
+     <div class=" row col-lg-9 pb-5 bg-light text-dark cover-map" v-if="apartments <= [0]">
+        <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
+      </div>
+      </div>
 
-        <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
-            <a class="page-link" href="#" @click.prevent="getAllApartments(apartmentsResponse.current_page + 1)">Next</a>
-        </li>
-    </ul>
-    </nav> -->
+
+
+
+<!-- nuova card -->
+
+<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-between ">
+        <div class="card border-0  col-12 col-sm-6  p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
+          :key="apartment.id"  style="width: 18rem;">
+            <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
+            <div class="card-body d-flex align-items-center">
+                <span class="text-center fw-bold" >{{ apartment.summary }}</span>
+                 <router-link
+              class="ms-1 btn btn-custom text-light"
+              :to="{ name: 'apartment', params: { id: apartment.id } }"
+              >Visita</router-link
+            >
+              </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+<!-- PAGINAZIONE NON FUNZIONANTE  -->
+    <!-- <nav aria-label="Page navigation"  >
+        <ul class="pagination justify-content-center mb-0">
+            <li
+            class="page-item"
+            v-if="apartmentsResponse.current_page > 1"
+            >
+                <a
+                 class="page_link"
+                 aria-label="Previous"
+                 @click="getApartment(apartmentsResponse.current_page - 1)"
+                >
+                <span aria-hidden="true">&laquo;</span>
+                <span class="visually-hidden">Previous</span>
+                </a>
+            </li>
+            <li
+                :class="{'page-item': true, active: apartmentsResponse.current_page == page,}"
+                v-for="page in apartmentsResponse.last_page"
+                :key="page"
+                  >
+                <a class="page_link" @click="getApartment(page)">{{
+                      page
+                    }}</a>
+            </li>
+            <li
+                class="page-item"
+                v-if="
+                apartmentsResponse.current_page <
+                apartmentsResponse.last_page
+                "
+            >
+                <a
+                class="page_link"
+                aria-label="Next"
+                @click="getApartment(apartmentsResponse.current_page + 1)"
+                >
+                <span aria-hidden="true">&raquo;</span>
+                <span class="visually-hidden">Next</span>
+                </a>
+            </li>
+        </ul>
+     </nav> -->
+
   </div>
 </template>
 
@@ -195,6 +226,7 @@ export default {
       axios
         .get("/api/apartments", {
           params: {
+            /* page: selectPage, */
             beds: this.beds,
             rooms: this.rooms,
             checkedServices: this.checkedServices,
@@ -219,24 +251,6 @@ export default {
         });
     },
 
-    /* getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-      let R = 6371; // Radius of the earth in km
-      let dLat = this.deg2rad(lat2 - lat1); // deg2rad below
-      let dLon = this.deg2rad(lon2 - lon1);
-      let a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(this.deg2rad(lat1)) *
-          Math.cos(this.deg2rad(lat2)) *
-          Math.sin(dLon / 2) *
-          Math.sin(dLon / 2);
-      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      let d = R * c; // Distance in km
-      return d;
-    }, */
-
-    /* deg2rad(deg) {
-      return deg * (Math.PI / 180);
-    }, */
 
     createMap() {
 
@@ -250,7 +264,7 @@ export default {
         zoomMap = 6
       }else if (this.defaultDistance <= 160){
         zoomMap = 4
-      } 
+      }
 
       let map = tt.map({
         key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
@@ -340,48 +354,82 @@ export default {
   height: 35vh;
 }
 
-.my-round {
+ul {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+li{
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 10px;
+  float: left;
+}
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999%;
+}
+input[type="checkbox"] + label {
+  display: inline-block;
+  width: 200px;
+  padding: 10px;
+  cursor: pointer;
   border-radius: 20px;
+  color: white;
+  background-color: #212529;
+  margin-bottom: 10px;
 }
 
-.fixed {
-  position: -webkit-sticky;
-  position: sticky;
+input:focus {   box-shadow: 0 0 0 0.25rem #b945457b;   border-color: #b945457b; }
+input:focus {
+  box-shadow: 0 0 0 0.25rem #b945457b;
+  border-color: #b945457b;
+}
+
+input[type="checkbox"]:checked + label {
+  color: white;
+  background-color: #B94545;
+}
+
+.my-round {
+   border-radius: 5px;
+
+}
+
+.btn-custom{
+    background-color: #B94545;
+}
+
+.custom-height{
+min-height: calc(100vh  - 170px) ;
+}
+.col-12{
+        .card{
+            height: 260px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            filter: drop-shadow(2px 4px 6px black);
+            .card-img-top{
+                height: 150px;
+            }
+        }
+}
+.searchs{
+    position: relative;
+}
+.search-btn {
+  position: absolute;
+  width: 10%;
   top: 0;
-  padding: 5px;
-  background-color: #cae8ca;
-  border: 2px solid #4caf50;
+  right: 10px;
 }
-
-.box {
-  height: 500px;
-  width: 400px;
-  background: rgb(159, 35, 39);
-  background: linear-gradient(
-    352deg,
-    rgb(165, 37, 41) 11%,
-    rgba(2, 0, 36, 1) 100%
-  );
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  color: #ffffff;
+button {
+  background-color: #b94545;
+  width: 30px;
+  height: 36px;
+  border: none;
 }
-
-.box .card {
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-}
-
-.card_img {
-  height: 40%;
-}
-
-.card_img img {
-  height: 100%;
-}
-
 .listAddress {
   max-height: 130px;
   overflow-y: scroll;
@@ -397,6 +445,9 @@ export default {
     left: 0;
     z-index: 4;
     transition: 4s;
+    width: 100%;
+    background-color: #212529 !important;
+    color: white !important;
 }
 
 /*.content {

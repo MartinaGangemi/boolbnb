@@ -82,7 +82,7 @@
         </div>
     </nav>
 
-    <main class="pb-4">
+    <main class="">
         @yield('content')
     </main>
 

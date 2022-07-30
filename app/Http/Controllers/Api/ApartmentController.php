@@ -37,7 +37,7 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::with('services')->where('beds', '>=', $beds)->where('visible', 'visible==true', $visible)->where('rooms', '>=', $rooms)->whereHas('services', function ($query) use ($checkedServices) {
                 $query->whereIn('id', $checkedServices);
-            }, '=', count($checkedServices))->orderByDesc('id')->paginate(8);
+            }, '=', count($checkedServices))->orderByDesc('id')->get();
 
         foreach ($apartments as $apartment) {
             $objectApartment = [
@@ -52,7 +52,7 @@ class ApartmentController extends Controller
 
         $pointsOfInterestJson = json_encode($pointsOfInterest);
         //ddd($pointsOfInterestJson);
-        $response = Http::get("https://api.tomtom.com/search/2/geometryFilter.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&geometryList=$geometry_json&poiList=$pointsOfInterestJson");
+        $response = Http::get("https://api.tomtom.com/search/2/geometryFilter.json?key=oACbG3tI0HEQEXTTTBi1BjRveNyHAv75&geometryList=$geometry_json&poiList=$pointsOfInterestJson");
         //ddd($response);
         $results = $response->object()->results;
 
