@@ -17,7 +17,9 @@
 
         <button
             type="submit"
-            class=" btn btn-custom search-btn fw-bold text-white"
+            class=" search-btn
+                  rounded-end
+                  text-uppercase text-center text-white"
             @click="searchApartments"
         >
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -117,28 +119,38 @@
         <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
       </div>
       </div>
-
+    </div>
 
 
 
 <!-- nuova card -->
 
-<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-between ">
-        <div class="card border-0  col-12 col-sm-6  p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
+<div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="apartment in apartments"
           :key="apartment.id"  style="width: 18rem;">
-            <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
-            <div class="card-body d-flex align-items-center">
-                <span class="text-center fw-bold" >{{ apartment.summary }}</span>
+            <div class="card">
+              <div class="card-img">
+                <img  :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
+              </div>
+               <div class="card-body py-3 text-center">
+                <h6 class="text-center fw-bold" >{{ apartment.summary }}</h6>
+                 <div>
+                 <span class=" me-2"><i class="fa-solid fa-bed"></i> :{{apartment.beds}}</span>
+                  <span><i class="fa-solid fa-toilet"></i>: {{apartment.bathrooms}} </span>
+                  
+                </div>
+                 
                  <router-link
-              class="ms-1 btn btn-custom text-light"
+              class="ms-1 btn btn-custom text-light mt-2"
               :to="{ name: 'apartment', params: { id: apartment.id } }"
               >Visita</router-link
             >
-              </div>
+            </div>
+            </div>
         </div>
-    </div>
+</div>
 
-    </div>
+    
     </div>
 <!-- PAGINAZIONE NON FUNZIONANTE  -->
     <!-- <nav aria-label="Page navigation"  >
@@ -404,17 +416,21 @@ input[type="checkbox"]:checked + label {
 .custom-height{
 min-height: calc(100vh  - 170px) ;
 }
-.col-12{
-        .card{
-            height: 260px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            filter: drop-shadow(2px 4px 6px black);
-            .card-img-top{
-                height: 150px;
-            }
-        }
-}
+
+  .card{
+    //height: 280px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+  .card-img{
+    height: 160px;
+      img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
 .searchs{
     position: relative;
 }
@@ -423,6 +439,7 @@ min-height: calc(100vh  - 170px) ;
   width: 10%;
   top: 0;
   right: 10px;
+  z-index:20;
 }
 button {
   background-color: #b94545;

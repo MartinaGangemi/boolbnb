@@ -114,7 +114,7 @@ class ApartmentController extends Controller
                 }
             }
         }
-        return Apartment::with('services', 'sponsorships')->whereIn('id', $sponsoredApartments)->paginate(6);
+        return Apartment::with('services', 'sponsorships')->whereIn('id', $sponsoredApartments)->paginate(8);
     }
 }
 
