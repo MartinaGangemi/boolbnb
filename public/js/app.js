@@ -5210,12 +5210,38 @@ __webpack_require__.r(__webpack_exports__);
       rooms: 1,
       defaultDistance: 20,
       lat: 0,
-      lon: 0
+      lon: 0,
+      response_apartments: null
     };
   },
   methods: {
-    searchApartments: function searchApartments() {
+    getSponsoredApartments: function getSponsoredApartments(selectPage) {
       var _this = this;
+
+      axios.get("/api/apartment/sponsorship", {
+        params: {
+          page: selectPage
+        }
+      }).then(function (response) {
+        //console.log(response);
+        if (response.data.status_code === 404) {
+          _this.loading = false;
+
+          _this.$router.push({
+            name: "not-found"
+          });
+        } else {
+          _this.apartments = response.data.data;
+          _this.response_apartments = response.data;
+          _this.loading = false;
+          console.log(_this.response_apartments);
+        }
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    },
+    searchApartments: function searchApartments() {
+      var _this2 = this;
 
       this.apartments = [];
       axios.get("/api/apartments", {
@@ -5229,20 +5255,20 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         //console.log(response.data);
         var results = response.data;
-        _this.apartmentsResponse = response.data; //filtro appartamenti per città
+        _this2.apartmentsResponse = response.data; //filtro appartamenti per città
 
         results.forEach(function (result) {
-          if (result.address.toLowerCase().includes(_this.searchText.toLowerCase()) && _this.searchText != "") {
-            _this.apartments.push(result);
+          if (result.address.toLowerCase().includes(_this2.searchText.toLowerCase()) && _this2.searchText != "") {
+            _this2.apartments.push(result);
 
-            _this.$router.push({
+            _this2.$router.push({
               name: "search",
               params: {
-                data: _this.apartments
+                data: _this2.apartments
               }
             });
           } else {
-            _this.error = true;
+            _this2.error = true;
           }
         });
       })["catch"](function (e) {
@@ -5251,7 +5277,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     //chiamata tom tom e crea una lista sdi suggerimenti
     searchAddress: function searchAddress() {
-      var _this2 = this;
+      var _this3 = this;
 
       window.axios.defaults.headers.common = {
         Accept: "application/json",
@@ -5263,7 +5289,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(link).then(function (response) {
         var results = response.data.results; //console.log(results);
 
-        _this2.addressResults = results;
+        _this3.addressResults = results;
       }); //visualizza la lista degli indirizzi/città
 
       this.isHidden = false;
@@ -5280,6 +5306,9 @@ __webpack_require__.r(__webpack_exports__);
       this.isHidden = true; //console.log(this.searchText);
       //console.log(this.lat, this.lon, "latlon");
     }
+  },
+  mounted: function mounted() {
+    this.getSponsoredApartments();
   }
 });
 
@@ -5846,7 +5875,34 @@ var render = function render() {
     staticClass: "bg bg2"
   }), _vm._v(" "), _c("div", {
     staticClass: "bg bg3"
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
+  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("section", {
+    staticClass: "mt-5 container"
+  }, [_c("h2", {
+    staticClass: "text-center text-white"
+  }, [_vm._v("Appartamenti consigliati")]), _vm._v(" "), _c("div", {
+    staticClass: "mt-5 row card-container"
+  }, _vm._l(_vm.apartments, function (apartment) {
+    return _c("div", {
+      key: apartment.id,
+      staticClass: "col-12 col-sm-6 col-lg-3"
+    }, [_c("div", {
+      staticClass: "card"
+    }, [_c("div", {
+      staticClass: "card-img"
+    }, [_c("img", {
+      staticClass: "card-img-top img-fluid",
+      attrs: {
+        src: "storage/" + apartment.cover_img,
+        alt: apartment.summary
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "p-2 card-text d-flex flex-column align-items-center"
+    }, [_c("span", {
+      staticClass: "text-center fw-bold"
+    }, [_vm._v(_vm._s(apartment.summary))]), _vm._v(" "), _c("p", [_vm._v("\n              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi\n              nisi facere minus labore distinctio corporis veniam ab quos\n              velit quod.\n            ")]), _vm._v(" "), _c("button", {
+      staticClass: "w-50 text-light text-uppercase"
+    }, [_vm._v("dettagli")])])])]);
+  }), 0)])]);
 };
 
 var staticRenderFns = [function () {
@@ -5879,27 +5935,6 @@ var staticRenderFns = [function () {
   }, [_c("button", {
     staticClass: "text-light mt-4 w-50"
   }, [_vm._v("Inizia a viaggiare")])])])])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("section", {
-    staticClass: "mt-5 container"
-  }, [_c("h2", {
-    staticClass: "text-center text-white"
-  }, [_vm._v("Appartamenti consigliati")]), _vm._v(" "), _c("div", {
-    staticClass: "mt-5 row card-container"
-  }, [_c("div", {
-    staticClass: "col-12 col-sm-6 col-lg-3"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-img"
-  }, [_vm._v("card-img")]), _vm._v(" "), _c("div", {
-    staticClass: "p-2 card-text d-flex flex-column align-items-center"
-  }, [_c("p", [_vm._v("\n              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi\n              nisi facere minus labore distinctio corporis veniam ab quos\n              velit quod.\n            ")]), _vm._v(" "), _c("button", {
-    staticClass: "w-50 text-light text-uppercase"
-  }, [_vm._v("dettagli")])])])])])]);
 }];
 render._withStripped = true;
 
@@ -58953,9 +58988,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
