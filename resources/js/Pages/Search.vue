@@ -141,48 +141,20 @@
     </div>
     </div>
 <!-- PAGINAZIONE NON FUNZIONANTE  -->
-    <!-- <nav aria-label="Page navigation"  >
-        <ul class="pagination justify-content-center mb-0">
-            <li
-            class="page-item"
-            v-if="apartmentsResponse.current_page > 1"
-            >
-                <a
-                 class="page_link"
-                 aria-label="Previous"
-                 @click="getApartment(apartmentsResponse.current_page - 1)"
-                >
-                <span aria-hidden="true">&laquo;</span>
-                <span class="visually-hidden">Previous</span>
-                </a>
-            </li>
-            <li
-                :class="{'page-item': true, active: apartmentsResponse.current_page == page,}"
-                v-for="page in apartmentsResponse.last_page"
-                :key="page"
-                  >
-                <a class="page_link" @click="getApartment(page)">{{
-                      page
-                    }}</a>
-            </li>
-            <li
-                class="page-item"
-                v-if="
-                apartmentsResponse.current_page <
-                apartmentsResponse.last_page
-                "
-            >
-                <a
-                class="page_link"
-                aria-label="Next"
-                @click="getApartment(apartmentsResponse.current_page + 1)"
-                >
-                <span aria-hidden="true">&raquo;</span>
-                <span class="visually-hidden">Next</span>
-                </a>
-            </li>
-        </ul>
-     </nav> -->
+ <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center  mt-5">
+               <li class="page-item" v-if="apartmentsResponse.current_page > 1">
+                  <a class="page-link"  @click="searchApartments(apartmentsResponse.current_page - 1)">Previous</a>
+               </li>
+               <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
+                  <a class="page-link" href="#" @click.prevent="searchApartments(page)">{{ page }}</a>
+               </li>
+
+               <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
+                  <a class="page-link" href="#" @click.prevent="searchApartments(apartmentsResponse.current_page + 1)">Next</a>
+               </li>
+            </ul>
+         </nav>
 
   </div>
 </template>
@@ -218,7 +190,7 @@ export default {
   },
 
   methods: {
-    searchApartments() {
+    searchApartments(selectPage) {
       this.apartments = [];
 
       //console.log(this.checkedServices);
@@ -226,7 +198,7 @@ export default {
       axios
         .get("/api/apartments", {
           params: {
-            /* page: selectPage, */
+            page: selectPage,
             beds: this.beds,
             rooms: this.rooms,
             checkedServices: this.checkedServices,
@@ -237,9 +209,9 @@ export default {
         })
         .then((response) => {
           //console.log(response.data);
-          const results = response.data;
+
           this.apartmentsResponse = response.data;
-          this.apartments = response.data;
+          this.apartments = response.data.data;
 
             //mappa
             this.createMap();
@@ -450,26 +422,19 @@ button {
     color: white !important;
 }
 
-/*.content {
-  background-color: black;
-  color: white;
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  transition: all 0.7s;
-  opacity: 0.9;
-}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #B94545;
+    border-color: #B94545;
 
-.box:hover .content {
-  left: 0;
-}
+  }
 
-.content p {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  padding: 17px 0px;
-}*/
+  .page-link{
+    color:#B94545 ;
+  }
+
+  .page-link:focus {
+    box-shadow: 0 0 0 0.25rem #b945457b;
+  }
 </style>

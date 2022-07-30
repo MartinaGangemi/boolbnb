@@ -5343,14 +5343,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    searchApartments: function searchApartments() {
+    searchApartments: function searchApartments(selectPage) {
       var _this = this;
 
       this.apartments = []; //console.log(this.checkedServices);
 
       axios.get("/api/apartments", {
         params: {
-          /* page: selectPage, */
+          page: selectPage,
           beds: this.beds,
           rooms: this.rooms,
           checkedServices: this.checkedServices,
@@ -5360,9 +5360,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         //console.log(response.data);
-        var results = response.data;
         _this.apartmentsResponse = response.data;
-        _this.apartments = response.data; //mappa
+        _this.apartments = response.data.data; //mappa
 
         _this.createMap();
 
@@ -6197,7 +6196,54 @@ var render = function render() {
         }
       }
     }, [_vm._v("Visita")])], 1)]);
-  }), 0)])])]);
+  }), 0)])]), _vm._v(" "), _c("nav", {
+    attrs: {
+      "aria-label": "Page navigation example"
+    }
+  }, [_c("ul", {
+    staticClass: "pagination justify-content-center mt-5"
+  }, [_vm.apartmentsResponse.current_page > 1 ? _c("li", {
+    staticClass: "page-item"
+  }, [_c("a", {
+    staticClass: "page-link",
+    on: {
+      click: function click($event) {
+        return _vm.searchApartments(_vm.apartmentsResponse.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.apartmentsResponse.last_page, function (page) {
+    return _c("li", {
+      key: page.id,
+      "class": {
+        "page-item": true,
+        active: page == _vm.apartmentsResponse.current_page
+      }
+    }, [_c("a", {
+      staticClass: "page-link",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.searchApartments(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.apartmentsResponse.current_page < _vm.apartmentsResponse.last_page ? _c("li", {
+    staticClass: "page-item"
+  }, [_c("a", {
+    staticClass: "page-link",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.searchApartments(_vm.apartmentsResponse.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])]) : _vm._e()], 2)])]);
 };
 
 var staticRenderFns = [function () {
@@ -11396,7 +11442,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\nul[data-v-4026e891] {\n  padding: 0;\n  margin: 0;\n  clear: both;\n}\nli[data-v-4026e891] {\n  list-style-type: none;\n  list-style-position: outside;\n  padding: 10px;\n  float: left;\n}\ninput[type=checkbox][data-v-4026e891]:not(:checked),\ninput[type=checkbox][data-v-4026e891]:checked {\n  position: absolute;\n  left: -9999%;\n}\ninput[type=checkbox] + label[data-v-4026e891] {\n  display: inline-block;\n  width: 200px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 20px;\n  color: white;\n  background-color: #212529;\n  margin-bottom: 10px;\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[type=checkbox]:checked + label[data-v-4026e891] {\n  color: white;\n  background-color: #B94545;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 5px;\n}\n.btn-custom[data-v-4026e891] {\n  background-color: #B94545;\n}\n.custom-height[data-v-4026e891] {\n  min-height: calc(100vh - 170px);\n}\n.col-12 .card[data-v-4026e891] {\n  height: 260px;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  filter: drop-shadow(2px 4px 6px black);\n}\n.col-12 .card .card-img-top[data-v-4026e891] {\n  height: 150px;\n}\n.searchs[data-v-4026e891] {\n  position: relative;\n}\n.search-btn[data-v-4026e891] {\n  position: absolute;\n  width: 10%;\n  top: 0;\n  right: 10px;\n}\nbutton[data-v-4026e891] {\n  background-color: #b94545;\n  width: 30px;\n  height: 36px;\n  border: none;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n  width: 100%;\n  background-color: #212529 !important;\n  color: white !important;\n}\n\n/*.content {\n  background-color: black;\n  color: white;\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  padding: 20px;\n  transition: all 0.7s;\n  opacity: 0.9;\n}\n\n.box:hover .content {\n  left: 0;\n}\n\n.content p {\n  border-top: 1px solid white;\n  border-bottom: 1px solid white;\n  padding: 17px 0px;\n}*/", ""]);
+exports.push([module.i, "#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\nul[data-v-4026e891] {\n  padding: 0;\n  margin: 0;\n  clear: both;\n}\nli[data-v-4026e891] {\n  list-style-type: none;\n  list-style-position: outside;\n  padding: 10px;\n  float: left;\n}\ninput[type=checkbox][data-v-4026e891]:not(:checked),\ninput[type=checkbox][data-v-4026e891]:checked {\n  position: absolute;\n  left: -9999%;\n}\ninput[type=checkbox] + label[data-v-4026e891] {\n  display: inline-block;\n  width: 200px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 20px;\n  color: white;\n  background-color: #212529;\n  margin-bottom: 10px;\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[type=checkbox]:checked + label[data-v-4026e891] {\n  color: white;\n  background-color: #B94545;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 5px;\n}\n.btn-custom[data-v-4026e891] {\n  background-color: #B94545;\n}\n.custom-height[data-v-4026e891] {\n  min-height: calc(100vh - 170px);\n}\n.col-12 .card[data-v-4026e891] {\n  height: 260px;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  filter: drop-shadow(2px 4px 6px black);\n}\n.col-12 .card .card-img-top[data-v-4026e891] {\n  height: 150px;\n}\n.searchs[data-v-4026e891] {\n  position: relative;\n}\n.search-btn[data-v-4026e891] {\n  position: absolute;\n  width: 10%;\n  top: 0;\n  right: 10px;\n}\nbutton[data-v-4026e891] {\n  background-color: #b94545;\n  width: 30px;\n  height: 36px;\n  border: none;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n  width: 100%;\n  background-color: #212529 !important;\n  color: white !important;\n}\n.page-item.active .page-link[data-v-4026e891] {\n  z-index: 3;\n  color: #fff;\n  background-color: #B94545;\n  border-color: #B94545;\n}\n.page-link[data-v-4026e891] {\n  color: #B94545;\n}\n.page-link[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n}", ""]);
 
 // exports
 
@@ -58988,9 +59034,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
