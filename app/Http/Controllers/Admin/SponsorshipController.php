@@ -49,20 +49,36 @@ class SponsorshipController extends Controller
 
       
         
-            $result = $gateway->transaction()->sale([
-                'amount' => $sponsorship->price,
-                'paymentMethodNonce' => $nonce,
-                'options' => [
-                    'submitForSettlement' => true
-                ]
-            ]);
+        $result = $gateway->transaction()->sale([
+            'amount' => $sponsorship->price,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
 
-            if($result->success){
-                return redirect()->route('admin.apartments.index')->with('message', "Sponsorizzazione di \"$apartment->summary\" avvenuta con successo");
+        if($result->success){
+            if(empty($apartment->sponsorships->all())){
+                $today = date_create(date("Y-m-d H:i:s",));
+                $start = date_create(date("Y-m-d H:i:s"));
+                $stop = date_add($today, date_interval_create_from_date_string("$sponsorship->duration Hours"));
+                $apartment->sponsorships()->attach($sponsorship->id, ['sponsorship_start' => $start, 'sponsorship_end' => $stop]); 
             }else {
-            return redirect()->route('admin.apartments.index')->with('message', "Transazione fallita.");
+                $data = date("Y-m-d H:i:s");
+                foreach ($apartment->sponsorships as $item) {
+                    if ($item->sponsor->sponsorship_end > $data) {
+                        $data = $item->sponsor->sponsorship_end;
+                    }
+                }
+            $today = date_create($data);
+            $start = date_create($data);
+            $stop = date_add($today, date_interval_create_from_date_string("$sponsorship->duration Hours"));
+            $apartment->sponsorships()->attach($sponsorship->id, ['sponsorship_start' => $start, 'sponsorship_end' => $stop]);
             }
-       
+        }else{
+            return redirect()->route('admin.apartments.index')->with('message', "Transazione fallita.");
+        }
+        return redirect()->route('admin.apartments.index')->with('message', "Sponsorizzazione di \"$apartment->summary\" avvenuta con successo");
     }
 }
 

@@ -101,11 +101,14 @@
     <section class="mt-5 container">
      <h2 class="text-center text-white">Appartamenti consigliati</h2>
       <div class="mt-5 row card-container">
-        <div class="col-12 col-sm-6 col-lg-3">
+        <div class="col-12 col-sm-6 col-lg-3" v-for="apartment in apartments" :key="apartment.id">
           <div class="card">
-            <div class="card-img">card-img</div>
+            <div class="card-img">
+              <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
+            </div>
             <div class="p-2 card-text d-flex flex-column align-items-center">
               <!-- text -->
+             <span class="text-center fw-bold" >{{ apartment.summary }}</span>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
                 nisi facere minus labore distinctio corporis veniam ab quos
@@ -134,11 +137,35 @@ export default {
       rooms: 1,
       defaultDistance: 20,
       lat: 0,
-      lon: 0
+      lon: 0,
+      response_apartments: null,
     };
   },
 
   methods: {
+    getSponsoredApartments(selectPage) {
+      axios
+        .get("/api/apartment/sponsorship",{
+            params:{
+                 page: selectPage,
+            }
+        })
+        .then((response) => {
+          //console.log(response);
+          if (response.data.status_code === 404) {
+            this.loading = false;
+            this.$router.push({ name: "not-found" });
+          } else {
+            this.apartments = response.data.data;
+            this.response_apartments = response.data;
+            this.loading = false;
+            console.log(this.response_apartments)
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
     searchApartments() {
       this.apartments = [];
       axios
@@ -216,7 +243,14 @@ export default {
       //console.log(this.lat, this.lon, "latlon");
     },
   },
-};
+
+  mounted(){
+    this.getSponsoredApartments();
+  }
+}
+
+  
+
 </script>
 
 <style lang="scss" scoped>
