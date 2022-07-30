@@ -238,9 +238,8 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-          const results = response.data;
           this.apartmentsResponse = response.data;
-          this.apartments = response.data;
+          this.apartments = response.data.data;
 
             //mappa
             this.createMap();
@@ -342,7 +341,7 @@ export default {
   },
 
   mounted() {
-    this.searchApartments();
+    //this.searchApartments();
     this.createMap();
   },
 };

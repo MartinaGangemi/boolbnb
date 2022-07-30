@@ -5331,9 +5331,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         console.log(response.data);
-        var results = response.data;
         _this.apartmentsResponse = response.data;
-        _this.apartments = response.data; //mappa
+        _this.apartments = response.data.data; //mappa
 
         _this.createMap();
 
@@ -5417,7 +5416,7 @@ __webpack_require__.r(__webpack_exports__);
     this.apartments = this.$route.params.data;
   },
   mounted: function mounted() {
-    this.searchApartments();
+    //this.searchApartments();
     this.createMap();
   }
 });
