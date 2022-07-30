@@ -141,7 +141,7 @@
     </div>
     </div>
 <!-- PAGINAZIONE NON FUNZIONANTE  -->
-    <!-- <nav aria-label="Page navigation"  >
+    <nav aria-label="Page navigation"  >
         <ul class="pagination justify-content-center mb-0">
             <li
             class="page-item"
@@ -150,7 +150,7 @@
                 <a
                  class="page_link"
                  aria-label="Previous"
-                 @click="getApartment(apartmentsResponse.current_page - 1)"
+                 @click="searchApartments(apartmentsResponse.current_page - 1)"
                 >
                 <span aria-hidden="true">&laquo;</span>
                 <span class="visually-hidden">Previous</span>
@@ -161,7 +161,7 @@
                 v-for="page in apartmentsResponse.last_page"
                 :key="page"
                   >
-                <a class="page_link" @click="getApartment(page)">{{
+                <a class="page_link" @click="searchApartments(page)">{{
                       page
                     }}</a>
             </li>
@@ -175,14 +175,14 @@
                 <a
                 class="page_link"
                 aria-label="Next"
-                @click="getApartment(apartmentsResponse.current_page + 1)"
+                @click="searchApartments(apartmentsResponse.current_page + 1)"
                 >
                 <span aria-hidden="true">&raquo;</span>
                 <span class="visually-hidden">Next</span>
                 </a>
             </li>
         </ul>
-     </nav> -->
+     </nav>
 
   </div>
 </template>
@@ -218,7 +218,8 @@ export default {
   },
 
   methods: {
-    searchApartments() {
+
+    searchApartments(selectPage) {
       this.apartments = [];
 
       //console.log(this.checkedServices);
@@ -226,7 +227,7 @@ export default {
       axios
         .get("/api/apartments", {
           params: {
-            /* page: selectPage, */
+            page: selectPage,
             beds: this.beds,
             rooms: this.rooms,
             checkedServices: this.checkedServices,
@@ -236,7 +237,7 @@ export default {
           },
         })
         .then((response) => {
-          //console.log(response.data);
+          console.log(response.data);
           const results = response.data;
           this.apartmentsResponse = response.data;
           this.apartments = response.data;
@@ -341,6 +342,7 @@ export default {
   },
 
   mounted() {
+    this.searchApartments();
     this.createMap();
   },
 };

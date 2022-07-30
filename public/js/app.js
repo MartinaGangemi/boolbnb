@@ -5314,14 +5314,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    searchApartments: function searchApartments() {
+    searchApartments: function searchApartments(selectPage) {
       var _this = this;
 
       this.apartments = []; //console.log(this.checkedServices);
 
       axios.get("/api/apartments", {
         params: {
-          /* page: selectPage, */
+          page: selectPage,
           beds: this.beds,
           rooms: this.rooms,
           checkedServices: this.checkedServices,
@@ -5330,7 +5330,7 @@ __webpack_require__.r(__webpack_exports__);
           searchLon: this.lon
         }
       }).then(function (response) {
-        //console.log(response.data);
+        console.log(response.data);
         var results = response.data;
         _this.apartmentsResponse = response.data;
         _this.apartments = response.data; //mappa
@@ -5417,6 +5417,7 @@ __webpack_require__.r(__webpack_exports__);
     this.apartments = this.$route.params.data;
   },
   mounted: function mounted() {
+    this.searchApartments();
     this.createMap();
   }
 });
@@ -6162,7 +6163,64 @@ var render = function render() {
         }
       }
     }, [_vm._v("Visita")])], 1)]);
-  }), 0)])])]);
+  }), 0)])]), _vm._v(" "), _c("nav", {
+    attrs: {
+      "aria-label": "Page navigation"
+    }
+  }, [_c("ul", {
+    staticClass: "pagination justify-content-center mb-0"
+  }, [_vm.apartmentsResponse.current_page > 1 ? _c("li", {
+    staticClass: "page-item"
+  }, [_c("a", {
+    staticClass: "page_link",
+    attrs: {
+      "aria-label": "Previous"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.searchApartments(_vm.apartmentsResponse.current_page - 1);
+      }
+    }
+  }, [_c("span", {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("«")]), _vm._v(" "), _c("span", {
+    staticClass: "visually-hidden"
+  }, [_vm._v("Previous")])])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.apartmentsResponse.last_page, function (page) {
+    return _c("li", {
+      key: page,
+      "class": {
+        "page-item": true,
+        active: _vm.apartmentsResponse.current_page == page
+      }
+    }, [_c("a", {
+      staticClass: "page_link",
+      on: {
+        click: function click($event) {
+          return _vm.searchApartments(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _vm.apartmentsResponse.current_page < _vm.apartmentsResponse.last_page ? _c("li", {
+    staticClass: "page-item"
+  }, [_c("a", {
+    staticClass: "page_link",
+    attrs: {
+      "aria-label": "Next"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.searchApartments(_vm.apartmentsResponse.current_page + 1);
+      }
+    }
+  }, [_c("span", {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("»")]), _vm._v(" "), _c("span", {
+    staticClass: "visually-hidden"
+  }, [_vm._v("Next")])])]) : _vm._e()], 2)])]);
 };
 
 var staticRenderFns = [function () {
@@ -58953,9 +59011,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
