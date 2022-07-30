@@ -112,8 +112,8 @@
     <!-- lista appartamenti -->
     <div class=" row justify-content-center mt-2" >
       <!-- sezione mappa -->
-      <div class="row col-lg-9 pb-5 original-map">
-        <div id="map" class="my-round my-col" ref="mapRef"></div>
+      <div class="row col pb-5 original-map">
+        <div id="map" class="my-round " ref="mapRef"></div>
      <div class=" row col-lg-9 pb-5 bg-light text-dark cover-map" v-if="apartments <= [0]">
         <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
       </div>
@@ -124,8 +124,8 @@
 
 <!-- nuova card -->
 
-<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-center ">
-        <div class="card border-0  col-12 p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
+<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-between ">
+        <div class="card border-0  col-12 col-sm-6  p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
           :key="apartment.id"  style="width: 18rem;">
             <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
             <div class="card-body d-flex align-items-center">
@@ -398,13 +398,19 @@ input[type="checkbox"] + label {
 
 }
 
+input:focus {   box-shadow: 0 0 0 0.25rem #b945457b;   border-color: #b945457b; }
+input:focus {
+  box-shadow: 0 0 0 0.25rem #b945457b;
+  border-color: #b945457b;
+}
+
 input[type="checkbox"]:checked + label {
   color: white;
   background-color: #B94545;
 }
 
 .my-round {
-  border-radius: 20px;
+   border-radius: 5px;
 }
 
 
