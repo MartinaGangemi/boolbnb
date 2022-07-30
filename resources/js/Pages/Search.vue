@@ -1,160 +1,163 @@
 <template >
-
-
   <div class="custom-height bg-dark">
     <!-- form ricerca appartamento -->
-<div class="container ">
-    <h2 class="fw-bold text-center text-white pt-5">Cerca un appartamento</h2>
-        <div class="card bg-light">
-    <form @submit.prevent class="container mt-4 searchs">
-            <input
-                type="text"
-                class="form-control "
-                v-model="searchText"
-                @keyup="searchAddress"
-            />
-    <div class="">
+    <div class="container ">
+      <h2 class="fw-bold text-center text-white pt-5">Cerca un appartamento</h2>
+      <div class="card bg-light">
+        <form @submit.prevent class="container mt-4 searchs">
+          <input
+              type="text"
+              class="form-control "
+              v-model="searchText"
+              @keyup="searchAddress"
+          />
+          <div class="">
 
-        <button
-            type="submit"
-            class=" btn btn-custom search-btn fw-bold text-white"
-            @click="searchApartments"
-        >
-        <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+          <button
+                type="submit"
+                class="search-btn rounded-end text-uppercase text-center text-white"
+                @click="searchApartments"
+            >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
 
-    </div>
+          </div>
 
 
-            <!-- autoload da fixare -->
-            <div class="listAddress">
-                <div
-                v-for="(singleAddress, index) in addressResults"
-                :key="singleAddress.id"
-                >
-                <span @click="checkAddress(index)" v-if="!isHidden">{{
-                    singleAddress.address.freeformAddress
-                }}</span>
-                </div>
+          <!-- autoload  -->
+          <div class="listAddress">
+              <div
+              v-for="(singleAddress, index) in addressResults"
+              :key="singleAddress.id"
+              >
+              <span @click="checkAddress(index)" v-if="!isHidden">{{
+                  singleAddress.address.freeformAddress
+              }}</span>
+              </div>
+          </div>
+          <div class="text-center">
+
+          <div class="beds-rooms-commands mt-4">
+            <span class="me-2">
+              <label for="rooms"
+                >Distanza (km) <i class="fa-solid fa-map-location-dot"></i
+              ></label>
+              <input
+                type="number"
+                min="0"
+                step="5"
+                v-model="defaultDistance"
+                class="border border-danger rounded"
+                style="width: 50px"
+              />
+            </span>
+
+            <span class="me-2">
+              <label for="rooms"
+                >Nr. Stanze <i class="fa-solid fa-door-closed"></i
+              ></label>
+              <input
+                type="number"
+                min="1"
+                max="8"
+                v-model="rooms"
+                class="border border-danger rounded"
+                style="width: 50px"
+              />
+            </span>
+
+            <span>
+              <label for="rooms">Nr. Letti <i class="fa-solid fa-bed"></i></label>
+              <input
+                type="number"
+                min="1"
+                max="8"
+                v-model="beds"
+                class="border border-danger rounded"
+                style="width: 50px"
+              />
+            </span>
+          </div>
+          </div>
+          <!-- servizi -->
+          <div class="row mt-4 p-0 ">
+            <strong class="text-center mb-2">Seleziona almeno un servizio</strong>
+            <div class="row ">
+              <div
+                v-for="(service, index) in services"
+                :key="service.id"
+                class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark text-center "
+              >
+                <input
+                  class="text-dark checkbox"
+                  type="checkbox"
+                  :id="service"
+                  :name="services"
+                  :value="index+1"
+                  v-model="checkedServices"
+                />
+                <label class="form-check-label" :for="service">{{ service }}</label>
+              </div>
             </div>
+          </div>
 
-
-      <div class="text-center">
-
-      <div class="beds-rooms-commands mt-4">
-        <span class="me-2">
-          <label for="rooms"
-            >Distanza (km) <i class="fa-solid fa-map-location-dot"></i
-          ></label>
-          <input
-            type="number"
-            min="0"
-            step="5"
-            v-model="defaultDistance"
-            class="border border-danger rounded"
-            style="width: 50px"
-          />
-        </span>
-
-        <span class="me-2">
-          <label for="rooms"
-            >Nr. Stanze <i class="fa-solid fa-door-closed"></i
-          ></label>
-          <input
-            type="number"
-            min="1"
-            max="8"
-            v-model="rooms"
-            class="border border-danger rounded"
-            style="width: 50px"
-          />
-        </span>
-
-        <span>
-          <label for="rooms">Nr. Letti <i class="fa-solid fa-bed"></i></label>
-          <input
-            type="number"
-            min="1"
-            max="8"
-            v-model="beds"
-            class="border border-danger rounded"
-            style="width: 50px"
-          />
-        </span>
-      </div>
+        </form>
       </div>
 
-       <div class="row mt-4 p-0 ">
-        <strong class="text-center mb-2">Seleziona almeno un servizio</strong>
-        <div class="row ">
-          <div
-            v-for="(service, index) in services"
-            :key="service.id"
-            class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark text-center "
-          >
-            <input
-              class="text-dark checkbox"
-              type="checkbox"
-              :id="service"
-              :name="services"
-              :value="index+1"
-              v-model="checkedServices"
-            />
-            <label class="form-check-label" :for="service">{{ service }}</label>
+      <!-- lista appartamenti -->
+      <div class=" row justify-content-center mt-2" >
+        <!-- sezione mappa -->
+        <div class="row col pb-5 original-map">
+          <div id="map" class="my-round " ref="mapRef"></div>
+          <div class=" row col-lg-9 pb-5 bg-light text-dark cover-map" v-if="apartments <= [0]">
+            <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
           </div>
         </div>
       </div>
-
-    </form>
-    </div>
-
-    <!-- lista appartamenti -->
-    <div class=" row justify-content-center mt-2" >
-      <!-- sezione mappa -->
-       <div class="row col pb-5 original-map">
-        <div id="map" class="my-round " ref="mapRef"></div>
-     <div class=" row col-lg-9 pb-5 bg-light text-dark cover-map" v-if="apartments <= [0]">
-        <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
-      </div>
-      </div>
-
-
-
-
-<!-- nuova card -->
-
-<div class="col-12 d-flex gap-3 flex-wrap card-wrapper  justify-content-between ">
-        <div class="card border-0  col-12 col-sm-6  p-0 d-flex align-content-stretch flex-wrap  justify-content-center" v-for="apartment in apartments"
+      <!-- nuova card -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="apartment in apartments"
           :key="apartment.id"  style="width: 18rem;">
-            <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
-            <div class="card-body d-flex align-items-center">
-                <span class="text-center fw-bold" >{{ apartment.summary }}</span>
+          <div class="card">
+               <div class="card-img">
+                <img  :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
+              </div>
+               <div class="card-body py-3 text-center">
+                <h6 class="text-center fw-bold" >{{ apartment.summary }}</h6>
+                 <div>
+                 <span class=" me-2"><i class="fa-solid fa-bed"></i> :{{apartment.beds}}</span>
+                  <span><i class="fa-solid fa-toilet"></i>: {{apartment.bathrooms}} </span>
+
+                </div>
+
                  <router-link
-              class="ms-1 btn btn-custom text-light"
+              class="ms-1 btn btn-custom text-light mt-2"
               :to="{ name: 'apartment', params: { id: apartment.id } }"
               >Visita</router-link
             >
-              </div>
+                </div>
+          </div>
         </div>
-    </div>
+        </div>
+        
 
-    </div>
+      
     </div>
 <!-- PAGINAZIONE NON FUNZIONANTE  -->
- <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center  mt-5">
-               <li class="page-item" v-if="apartmentsResponse.current_page > 1">
-                  <a class="page-link"  @click="searchApartments(apartmentsResponse.current_page - 1)">Previous</a>
-               </li>
-               <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
-                  <a class="page-link" href="#" @click.prevent="searchApartments(page)">{{ page }}</a>
-               </li>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center  mt-5">
+        <li class="page-item" v-if="apartmentsResponse.current_page > 1">
+          <a class="page-link"  @click="searchApartments(apartmentsResponse.current_page - 1)">Previous</a>
+        </li>
+        <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
+          <a class="page-link" href="#" @click.prevent="searchApartments(page)">{{ page }}</a>
+        </li>
 
-               <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
-                  <a class="page-link" href="#" @click.prevent="searchApartments(apartmentsResponse.current_page + 1)">Next</a>
-               </li>
-            </ul>
-         </nav>
+        <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
+          <a class="page-link" href="#" @click.prevent="searchApartments(apartmentsResponse.current_page + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
 
   </div>
 </template>
@@ -377,17 +380,22 @@ input[type="checkbox"]:checked + label {
 .custom-height{
 min-height: calc(100vh  - 170px) ;
 }
-.col-12{
-        .card{
-            height: 260px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            filter: drop-shadow(2px 4px 6px black);
-            .card-img-top{
-                height: 150px;
-            }
-        }
-}
+
+.card{
+    //height: 280px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+  .card-img{
+    height: 160px;
+      img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
 .searchs{
     position: relative;
 }

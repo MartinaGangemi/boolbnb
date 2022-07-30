@@ -87,7 +87,13 @@
             </p>
 
             <div class="d-flex justify-content-center mb-4">
-              <button class="text-light mt-4 w-50">Inizia a viaggiare</button>
+              <router-link
+                  class="btn btn-custom text-uppercase text-light"
+                  :to="{
+                    name: 'search', }"
+                >
+                  Viaggia
+                </router-link>
             </div>
           </div>
         </div>
@@ -100,8 +106,8 @@
     <!-- appartamenti sponsorizzati -->
     <section class="mt-5 container">
      <h2 class="text-center text-white">Appartamenti consigliati</h2>
-      <div class="mt-5 row card-container">
-        <div class="col-12 col-sm-6 col-lg-3" v-for="apartment in apartments" :key="apartment.id">
+      <div class="mt-5 row g-2 card-container">
+        <div class="col-12 col-sm-6 col-lg-3" v-for="apartment in sponsoredApartments" :key="apartment.id">
           <div class="card">
             <div class="card-img">
               <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
@@ -109,16 +115,46 @@
             <div class="p-2 card-text d-flex flex-column align-items-center">
               <!-- text -->
              <span class="text-center fw-bold" >{{ apartment.summary }}</span>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
-                nisi facere minus labore distinctio corporis veniam ab quos
-                velit quod.
-              </p>
-              <button class="w-50 text-light text-uppercase">dettagli</button>
+              <div class="description-apartment">
+                {{trimText(apartment.description)}}
+                <div class="my-2 text-center">
+                 <span class=" me-2"><i class="fa-solid fa-bed"></i> :{{apartment.beds}}</span>
+                  <span><i class="fa-solid fa-toilet"></i>: {{apartment.bathrooms}} </span>
+                </div>
+              </div>
+
+              <router-link
+                  class="btn btn-custom text-uppercase text-light"
+                  :to="{
+                    name: 'apartment',
+                    params: {
+                      id: apartment.id,
+                    },
+                  }"
+                >
+                  Visualizza dettagli
+                </router-link>
+            
             </div>
           </div>
         </div>
       </div>
+      <!-- numero pagine -->
+         <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center  mt-5">
+               <li class="page-item" v-if="response_apartments.current_page > 1">
+                  <a class="page-link"  @click="getSponsoredApartments(response_apartments.current_page - 1)">Previous</a>
+               </li>
+               <li :class="{'page-item' : true , 'active' : page == response_apartments.current_page  }" v-for="page in response_apartments.last_page" :key='page.id'>
+                  <a class="page-link" href="#" @click.prevent="getSponsoredApartments(page)">{{ page }}</a>
+               </li>
+
+               <li class="page-item" v-if="response_apartments.current_page < response_apartments.last_page">
+                  <a class="page-link" href="#" @click.prevent="getSponsoredApartments(response_apartments.current_page + 1)">Next</a>
+               </li>
+            </ul>
+         </nav>
+
     </section>
   </div>
 </template>
@@ -131,7 +167,7 @@ export default {
     return {
       addressResults: [],
       searchText: "",
-      apartments: [],
+      sponsoredApartments: [],
       error: false,
       beds: 1,
       rooms: 1,
@@ -143,6 +179,13 @@ export default {
   },
 
   methods: {
+     trimText(text){
+        if(text.length >70 ){
+         return text.slice(0,70) + '...'
+        }
+        return text;
+      
+    },
     getSponsoredApartments(selectPage) {
       axios
         .get("/api/apartment/sponsorship",{
@@ -156,7 +199,7 @@ export default {
             this.loading = false;
             this.$router.push({ name: "not-found" });
           } else {
-            this.apartments = response.data.data;
+            this.sponsoredApartments = response.data.data;
             this.response_apartments = response.data;
             this.loading = false;
             console.log(this.response_apartments)
@@ -362,6 +405,40 @@ button {
         transform:translateX(25%);
     }
 }
+
+.btn-custom{
+    background-color: #B94545;
+}
+
+.card-img{
+  height: 200px;
+  img{
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.description-apartment{
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+//paginate
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #B94545;
+    border-color: #B94545;
+  
+  }
+  .page-link{
+    color:#B94545 ;
+  }
+  .page-link:focus {
+    box-shadow: 0 0 0 0.25rem #b945457b;
+  }
+
+
 
 </style>
 
