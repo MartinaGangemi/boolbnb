@@ -5240,12 +5240,13 @@ __webpack_require__.r(__webpack_exports__);
         console.error(e);
       });
     },
-    searchApartments: function searchApartments() {
+    searchApartments: function searchApartments(selectPage) {
       var _this2 = this;
 
       this.apartments = [];
       axios.get("/api/apartments", {
         params: {
+          page: selectPage,
           beds: this.beds,
           rooms: this.rooms,
           defaultDistance: this.defaultDistance * 1000,
@@ -5254,22 +5255,18 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         //console.log(response.data);
-        var results = response.data;
+        var results = response.data.data;
         _this2.apartmentsResponse = response.data; //filtro appartamenti per città
 
         results.forEach(function (result) {
-          if (result.address.toLowerCase().includes(_this2.searchText.toLowerCase()) && _this2.searchText != "") {
-            _this2.apartments.push(result);
+          _this2.apartments.push(result);
 
-            _this2.$router.push({
-              name: "search",
-              params: {
-                data: _this2.apartments
-              }
-            });
-          } else {
-            _this2.error = true;
-          }
+          _this2.$router.push({
+            name: "search",
+            params: {
+              data: _this2.apartments
+            }
+          });
         });
       })["catch"](function (e) {
         console.error(e);

@@ -166,11 +166,12 @@ export default {
           console.error(e);
         });
     },
-    searchApartments() {
+    searchApartments(selectPage) {
       this.apartments = [];
       axios
         .get("/api/apartments", {
             params: {
+              page: selectPage,
               beds: this.beds,
               rooms: this.rooms,
               defaultDistance: this.defaultDistance * 1000,
@@ -180,24 +181,17 @@ export default {
         })
         .then((response) => {
           //console.log(response.data);
-          const results = response.data;
+          const results = response.data.data;
           this.apartmentsResponse = response.data;
           //filtro appartamenti per città
           results.forEach((result) => {
-            if (
-              result.address
-                .toLowerCase()
-                .includes(this.searchText.toLowerCase()) &&
-              this.searchText != ""
-            ) {
+
               this.apartments.push(result);
               this.$router.push({
                 name: "search",
                 params: { data: this.apartments },
               });
-            } else {
-              this.error = true;
-            }
+
           });
         })
 
@@ -249,7 +243,7 @@ export default {
   }
 }
 
-  
+
 
 </script>
 

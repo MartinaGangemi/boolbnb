@@ -313,7 +313,8 @@ export default {
   },
 
   mounted() {
-    this.createMap();
+ this.createMap();
+
   },
 };
 </script>
