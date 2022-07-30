@@ -40,14 +40,21 @@
 
 
                 </div>
-                <div class="text-center">
 
-                    <a class="btn btn-sm btn-customs text-white" id="message-trigger"
-                        href="{{ route('admin.messages.index', $apartment->slug) }}">View Messages</a>
+                <div class="d-flex">
+
+                    <div class="text-center w-100 mb-1">
+
+                        <a class="btn p-custom btn-customs text-white" id="message-trigger"
+                            href="{{ route('admin.messages.index', $apartment->slug) }}">View Messages</a>
+                    </div>
+                    <div class="text-center  w-100">
+                        <a class="btn p-custom btn-primary text-white" id="message-trigger"
+                        href="{{ route('admin.sponsorships.index', $apartment->slug) }}">Sponsorizza</a>
+
+                    </div>
+
                 </div>
-
-                    <a class="btn btn-sm btn-primary text-white" id="message-trigger"
-                    href="{{ route('admin.sponsorships.index', $apartment->slug) }}">Sponsorizza</a>
 
             </div>
         </div>
@@ -56,3 +63,12 @@
 
     </div>
 @endsection
+
+
+<style>
+
+.p-custom{
+    width: 130px !important;
+}
+
+</style>

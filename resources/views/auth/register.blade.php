@@ -11,10 +11,10 @@
         </ul>
     </div>
 @endif
-<div class="row justify-content-center ">
-    <div class="bg"></div>
+<div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
+<div class="row justify-content-center ">
     <div class="col-md-12 mt-5">
         <div class="card card_dark ">
                 <div class="card-header">{{ __('Registrati') }}</div>
@@ -126,7 +126,7 @@
 
 <style>
     .register-cont {
-      min-height: calc(100vh  - 227px) ;
+      min-height: calc(100vh  - 179px) ;
   }
   .card_dark{
   background-color: #212529 !important;
