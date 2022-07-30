@@ -145,6 +145,10 @@
                 });
             })
         }
+
+
+       
 </script>
+@stack('payment')
 </body>
 </html>

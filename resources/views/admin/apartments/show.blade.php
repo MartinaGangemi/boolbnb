@@ -12,6 +12,7 @@
             <div class="card-body">
                 <p>{{ $apartment->description }}</p>
 
+
                 <div class="d-flex pb-4 gap-2">
                     <div class="col-6 ">
                         <strong><i class="fa-solid fa-map-location"></i> Address : </strong><br><span>{{ $apartment->city }}
@@ -44,6 +45,10 @@
                     <a class="btn btn-sm btn-customs text-white" id="message-trigger"
                         href="{{ route('admin.messages.index', $apartment->slug) }}">View Messages</a>
                 </div>
+
+                    <a class="btn btn-sm btn-primary text-white" id="message-trigger"
+                    href="{{ route('admin.sponsorships.index', $apartment->slug) }}">Sponsorizza</a>
+
             </div>
         </div>
 

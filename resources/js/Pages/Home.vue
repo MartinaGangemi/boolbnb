@@ -187,7 +187,7 @@ export default {
       const link =
         `https://api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=oACbG3tI0HEQEXTTTBi1BjRveNyHAv75&typeahead=true`;
+        `.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
         //console.log(results);

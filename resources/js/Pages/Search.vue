@@ -267,7 +267,7 @@ export default {
       }
 
       let map = tt.map({
-        key: "Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT",
+        key: "psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
@@ -309,7 +309,7 @@ export default {
       const link =
         `https://kr-api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=Jpqe16Wf8nfHE1cJGvGsx04P06GgVcIT&typeahead=true`;
+        `.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
         //console.log(results);
