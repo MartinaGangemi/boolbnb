@@ -47,34 +47,19 @@ class SponsorshipController extends Controller
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
 
-        $resultCustomer = $gateway->customer()->create([
-            'email' => Auth::user()->email,
-        ]);
-        //dd($resultCustomer->customer->id);
-        $customerId = $resultCustomer->customer->id;
-
-        $resultCreate = $gateway->paymentMethod()->create([
-            'customerId' => $customerId,
-            'paymentMethodNonce' => $nonce,
-            'options' => [
-                'verifyCard' => true,
-            ]
-        ]);
-
-        dd($resultCreate);
-
-        if ($resultCreate->success) {
+      
+        
             $result = $gateway->transaction()->sale([
-                'amount' => $amount,
+                'amount' => $sponsorship->price,
                 'paymentMethodNonce' => $nonce,
                 'options' => [
                     'submitForSettlement' => true
                 ]
             ]);
 
-            
-            return redirect()->route('admin.apartments.index')->with('message', "Sponsorizzazione di \"$apartment->title\" avvenuta con successo");
-            } else {
+            if($result->success){
+                return redirect()->route('admin.apartments.index')->with('message', "Sponsorizzazione di \"$apartment->summary\" avvenuta con successo");
+            }else {
             return redirect()->route('admin.apartments.index')->with('message', "Transazione fallita.");
             }
        
