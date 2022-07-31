@@ -236,7 +236,7 @@ export default {
             //mappa
             this.createMap();
 
-            this.searchText = "";
+
           })
         .catch((e) => {
           console.error(e);

@@ -5383,8 +5383,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.apartments = response.data.data; //mappa
 
         _this.createMap();
-
-        _this.searchText = "";
       })["catch"](function (e) {
         console.error(e);
       });
@@ -5930,7 +5928,7 @@ var render = function render() {
   }, _vm._l(_vm.sponsoredApartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
-      staticClass: "col-12 col-sm-6 col-lg-4 col-xl-3"
+      staticClass: "col-12 col-sm-6 col-lg-6 col-xl-3"
     }, [_c("div", {
       staticClass: "card border-0"
     }, [_vm._m(1, true), _vm._v(" "), _c("div", {
