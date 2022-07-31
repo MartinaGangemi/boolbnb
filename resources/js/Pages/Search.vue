@@ -255,8 +255,12 @@ export default {
       } else if (this.defaultDistance <= 40){
         zoomMap = 8
       } else if (this.defaultDistance <= 80){
-        zoomMap = 6
+        zoomMap = 7
       }else if (this.defaultDistance <= 160){
+      zoomMap = 6
+      }else if (this.defaultDistance <= 360){
+        zoomMap = 5
+      }else if (this.defaultDistance <= 700){
         zoomMap = 4
       }
 

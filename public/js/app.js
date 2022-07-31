@@ -5396,8 +5396,12 @@ __webpack_require__.r(__webpack_exports__);
       } else if (this.defaultDistance <= 40) {
         zoomMap = 8;
       } else if (this.defaultDistance <= 80) {
-        zoomMap = 6;
+        zoomMap = 7;
       } else if (this.defaultDistance <= 160) {
+        zoomMap = 6;
+      } else if (this.defaultDistance <= 360) {
+        zoomMap = 5;
+      } else if (this.defaultDistance <= 700) {
         zoomMap = 4;
       }
 
@@ -59146,9 +59150,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

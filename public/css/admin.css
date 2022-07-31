@@ -20494,6 +20494,7 @@ readers do not read off random characters that represent icons */
 
 img {
   height: 100%;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -20833,4 +20834,8 @@ Animations
   40%, 60% {
     transform: translate3d(3px, 0, 0);
   }
+}
+.apartment-img {
+  height: 500px;
+  width: 100%;
 }

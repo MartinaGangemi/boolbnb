@@ -16,6 +16,7 @@
 
 img{
     height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -363,4 +364,9 @@ Animations
   60% {
     transform: translate3d(3px, 0, 0);
   }
+}
+
+.apartment-img {
+  height: 500px;
+  width: 100%;
 }
