@@ -250,16 +250,7 @@ h2 {
   position: relative;
   text-transform: uppercase;
 }
-h2:after {
-  border-bottom: solid 2px #b94545;
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 20%;
-  top: 40px;
-  margin: 0 auto;
-}
+
 
 button {
   background-color: #b94545;

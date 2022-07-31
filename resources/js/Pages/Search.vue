@@ -1,5 +1,5 @@
 <template >
-  <div class="custom-height bg-dark">
+  <div class="custom-height bg-dash">
     <!-- form ricerca appartamento -->
     <div class="container ">
       <h2 class="fw-bold text-center text-white pt-5">Cerca un appartamento</h2>
@@ -330,6 +330,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+.bg-dash{
+background-color: #2e3236  ;
+}
+
 #map {
   height: 35vh;
 }
@@ -436,7 +442,7 @@ button {
     z-index: 4;
     transition: 4s;
     width: 100%;
-    background-color: #212529 !important;
+    background-color: #2e3236 !important;
     color: white !important;
 }
 
