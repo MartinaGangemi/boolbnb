@@ -34,8 +34,8 @@
                             <div class="form-check col-sm-12 col-lg-6 mb-3">
                                 <input class="form-check-input" type="hidden" value="0" id="visible" name="visible">
                                 <input class="form-check-input" type="checkbox" value="1" id="visible"
-                                    name="visible">
-                                <label class="form-check-label yellow-label" for="visible">Spunta se vui rendere visibile l'appartamento</label>
+                                    name="visible" value="{{$newApartment->visible}}" {{ $newApartment->visible ? 'checked' : '' }}>
+                                <label class="form-check-label yellow-label" for="visible">Spunta se vuoi nascondere l'appartamento</label>
                             </div>
                             {{-- services --}}
                           <!--chechbox services-->

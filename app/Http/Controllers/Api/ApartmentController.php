@@ -72,7 +72,7 @@ class ApartmentController extends Controller
 
         $apartmentsFinal = Apartment::with('services')->where('beds', '>=', $beds)->where('visible', 'visible==true', $visible)->where('rooms', '>=', $rooms)->whereHas('services', function ($query) use ($checkedServices) {
             $query->whereIn('id', $checkedServices);
-        }, '=', count($checkedServices))->whereIn('id', $idArray)->orderByDesc('id')->paginate(6);
+        }, '=', count($checkedServices))->whereIn('id', $idArray)->orderByDesc('id')->paginate(8);
 
         return $apartmentsFinal;
     }
@@ -123,7 +123,7 @@ class ApartmentController extends Controller
                 }
             }
         }
-        return Apartment::with('services', 'sponsorships')->whereIn('id', $sponsoredApartments)->paginate(6);
+        return Apartment::with('services', 'sponsorships')->whereIn('id', $sponsoredApartments)->paginate(4);
     }
 }
 

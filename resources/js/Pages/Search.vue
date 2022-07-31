@@ -115,15 +115,15 @@
         </div>
       </div>
       <!-- nuova card -->
-        <div class="row">
+        <div class="row  ">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="apartment in apartments"
-          :key="apartment.id"  style="width: 18rem;">
+          :key="apartment.id"  >
           <div class="card">
                <div class="card-img">
                 <img  :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
               </div>
                <div class="card-body py-3 text-center">
-                <h6 class="text-center fw-bold" >{{ apartment.summary }}</h6>
+                <h6 class="text-center fw-bold" > {{ trimTitle(apartment.summary) }}</h6>
                  <div>
                  <span class=" me-2"><i class="fa-solid fa-bed"></i> :{{apartment.beds}}</span>
                   <span><i class="fa-solid fa-toilet"></i>: {{apartment.bathrooms}} </span>
@@ -131,7 +131,7 @@
                 </div>
 
                  <router-link
-              class="ms-1 btn btn-custom text-light mt-2"
+              class=" btn btn-custom text-light mt-2"
               :to="{ name: 'apartment', params: { id: apartment.id } }"
               >Visita</router-link
             >
@@ -139,9 +139,9 @@
           </div>
         </div>
         </div>
-        
 
-      
+
+
     </div>
 <!-- PAGINAZIONE NON FUNZIONANTE  -->
     <nav aria-label="Page navigation example">
@@ -193,6 +193,13 @@ export default {
   },
 
   methods: {
+
+    trimTitle(text){
+        if(text.length >38 ){
+         return text.slice(0,26) + '...'
+        }
+        return text;
+    },
     searchApartments(selectPage) {
       this.apartments = [];
 
@@ -338,7 +345,6 @@ ul {
 li{
   list-style-type: none;
   list-style-position: outside;
-  padding: 10px;
   float: left;
 }
 input[type="checkbox"]:not(:checked),
@@ -380,6 +386,9 @@ input[type="checkbox"]:checked + label {
 .custom-height{
 min-height: calc(100vh  - 170px) ;
 }
+
+
+
 
 .card{
     //height: 280px;

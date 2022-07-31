@@ -49,11 +49,9 @@ class ApartmentController extends Controller
     public function store(ApartmentRequest $request)
     {
         // Validazione dati-->controlla ApartmentRequest
-        $data = $request->validated();
-        //dd($data);
 
-        //$apiQuery =  str_replace(' ', '-', $data['city']) . '-' .  str_replace(' ', '-', $data['address']) . '-' .  str_replace(' ', '-', $data['number']) ;
-        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN');
+        $data = $request->validated();
+
         $apiQuery = str_replace(' ', '-', $data['address']);
         $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN');
         $response = json_decode($response);
@@ -67,7 +65,6 @@ class ApartmentController extends Controller
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
         $newApartment = new Apartment();
-
         $newApartment->fill($data);
         $newApartment->save();
 

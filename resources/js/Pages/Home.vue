@@ -112,11 +112,14 @@
             <div class="card-img">
               <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
             </div>
-            <div class="p-2 card-text d-flex flex-column align-items-center">
+            <div class="p-2 card-body d-flex flex-column align-items-center">
               <!-- text -->
-             <span class="text-center fw-bold" >{{ apartment.summary }}</span>
-              <div class="description-apartment">
+             <span class="text-center fw-bold" >{{ trimTitle(apartment.summary) }}</span>
+              <div class="description-apartment col-12">
+                <span>
                 {{trimText(apartment.description)}}
+
+                </span>
                 <div class="my-2 text-center">
                  <span class=" me-2"><i class="fa-solid fa-bed"></i> :{{apartment.beds}}</span>
                   <span><i class="fa-solid fa-toilet"></i>: {{apartment.bathrooms}} </span>
@@ -134,18 +137,18 @@
                 >
                   Visualizza dettagli
                 </router-link>
-            
+
             </div>
           </div>
         </div>
       </div>
       <!-- numero pagine -->
          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center  mt-5">
+            <ul class="pagination justify-content-center  mt-5 fw-bold ">
                <li class="page-item" v-if="response_apartments.current_page > 1">
                   <a class="page-link"  @click="getSponsoredApartments(response_apartments.current_page - 1)">Previous</a>
                </li>
-               <li :class="{'page-item' : true , 'active' : page == response_apartments.current_page  }" v-for="page in response_apartments.last_page" :key='page.id'>
+               <li :class="{'page-item' : true , 'active' : page == response_apartments.current_page  } " v-for="page in response_apartments.last_page" :key='page.id'>
                   <a class="page-link" href="#" @click.prevent="getSponsoredApartments(page)">{{ page }}</a>
                </li>
 
@@ -179,12 +182,20 @@ export default {
   },
 
   methods: {
+
+    trimTitle(text){
+ if(text.length >38){
+         return text.slice(0,30) + '...'
+        }
+        return text;
+    },
+
      trimText(text){
         if(text.length >70 ){
          return text.slice(0,70) + '...'
         }
         return text;
-      
+
     },
     getSponsoredApartments(selectPage) {
       axios
@@ -410,6 +421,8 @@ button {
     background-color: #B94545;
 }
 
+
+
 .card-img{
   height: 200px;
   img{
@@ -429,7 +442,7 @@ button {
     color: #fff;
     background-color: #B94545;
     border-color: #B94545;
-  
+
   }
   .page-link{
     color:#B94545 ;
