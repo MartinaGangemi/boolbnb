@@ -15,16 +15,16 @@
 
                 <div class="d-flex pb-4 gap-2">
                     <div class="col-6 ">
-                        <strong><i class="fa-solid fa-map-location"></i> Address : </strong><br><span>{{ $apartment->city }}
+                        <strong><i class="fa-solid fa-map-location"></i> Indirizzo : </strong><br><span>{{ $apartment->city }}
                             {{ $apartment->address }} {{ $apartment->number }}</span><br>
-                        <strong><i class="fa-solid fa-door-closed"></i> Rooms : </strong><br><span>{{ $apartment->rooms }}</span><br>
-                        <strong><i class="fa-solid fa-bed"></i> Beds : </strong><br><span>{{ $apartment->beds }}</span><br>
+                        <strong><i class="fa-solid fa-door-closed"></i> Stanze : </strong><br><span>{{ $apartment->rooms }}</span><br>
+                        <strong><i class="fa-solid fa-bed"></i> Letti : </strong><br><span>{{ $apartment->beds }}</span><br>
 
                     </div>
 
                     <div class="col-6">
-                        <strong><i class="fa-solid fa-toilet"></i> Bathrooms : </strong><br><span>{{ $apartment->bathrooms }}</span><br>
-                        <strong><i class="fa-solid fa-ruler-combined"></i> Square Meters :
+                        <strong><i class="fa-solid fa-toilet"></i> Bagni : </strong><br><span>{{ $apartment->bathrooms }}</span><br>
+                        <strong><i class="fa-solid fa-ruler-combined"></i> Metri quadri :
                         </strong><br><span>{{ $apartment->square_meters }}</span><br>
                         <strong>
                             <i class="fa-solid fa-list"></i>  Servizi : </strong><br>

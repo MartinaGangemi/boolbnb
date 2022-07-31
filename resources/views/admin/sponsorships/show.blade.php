@@ -2,10 +2,10 @@
 @section('content')
 
 <div class="form-container">
- 
+
 
   <header>
-    <h1>Payment Method</h1>
+    <h1>Metodo di pagamento</h1>
   </header>
 
   <form id="my-sample-form" action="{{route('admin.sponsorships.checkout',[$apartment->id , $sponsorship->id])}}" method="post" class="scale-down">
@@ -17,14 +17,14 @@
     </div>
   @endif
     <div class="cardinfo-card-number">
-      <label class="cardinfo-label" for="card-number">Card Number</label>
+      <label class="cardinfo-label" for="card-number">Numero Carta</label>
       <div class='input-wrapper' id="card-number"></div>
       <div id="card-image"></div>
     </div>
 
     <div class="cardinfo-wrapper">
       <div class="cardinfo-exp-date">
-        <label class="cardinfo-label" for="expiration-date">Valid Thru</label>
+        <label class="cardinfo-label" for="expiration-date">Scadenza</label>
         <div class='input-wrapper' id="expiration-date"></div>
       </div>
 
@@ -56,7 +56,7 @@ braintree.client.create({
     return;
   }
 
-  // Create input fields and add text styles  
+  // Create input fields and add text styles
   braintree.hostedFields.create({
     client: clientInstance,
     styles: {
@@ -136,7 +136,7 @@ braintree.client.create({
         $(form).removeClass().addClass(event.cards[0].type);
         $('#card-image').removeClass().addClass(event.cards[0].type);
         $('header').addClass('header-slide');
-        
+
         // Change the CVV length for AmericanExpress cards
         if (event.cards[0].code.size === 4) {
           hostedFieldsInstance.setAttribute({
@@ -144,7 +144,7 @@ braintree.client.create({
             attribute: 'placeholder',
             value: '1234'
           });
-        } 
+        }
       } else {
         hostedFieldsInstance.setAttribute({
           field: 'cvv',

@@ -5740,42 +5740,42 @@ var staticRenderFns = [function () {
 
   return _c("strong", [_c("i", {
     staticClass: "fa-solid fa-map-location"
-  }), _vm._v(" Address : ")]);
+  }), _vm._v(" indirizzo : ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c("strong", [_c("i", {
     staticClass: "fa-solid fa-door-closed"
-  }), _vm._v(" Rooms : ")]);
+  }), _vm._v(" Stanze : ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c("strong", [_c("i", {
     staticClass: "fa-solid fa-bed"
-  }), _vm._v(" Beds : ")]);
+  }), _vm._v(" Letti : ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c("strong", [_c("i", {
     staticClass: "fa-solid fa-toilet"
-  }), _vm._v(" Bathrooms : ")]);
+  }), _vm._v(" Bagni : ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c("strong", [_c("i", {
     staticClass: "fa-solid fa-ruler-combined"
-  }), _vm._v(" Square Meters : ")]);
+  }), _vm._v(" Metri quadri : ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c("strong", [_c("i", {
     staticClass: "fa-solid fa-list"
-  }), _vm._v(" Services : ")]);
+  }), _vm._v(" Servizi : ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -5910,7 +5910,7 @@ var render = function render() {
     staticClass: "col-12 col-lg-4 text-description d-flex flex-column justify-content-end mt-4"
   }, [_c("h3", {
     staticClass: "text-uppercase"
-  }, [_vm._v("Benvenuti su Fablo B&B")]), _vm._v(" "), _c("p", [_vm._v("\n            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam\n            cum neque odio at a obcaecati doloremque fuga veritatis, non\n            provident?\n          ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Benvenuti su Fablo B&B")]), _vm._v(" "), _c("p", [_vm._v('\n          Viaggiare non è solo spostarsi per conoscere posti nuovi. Viaggiare è scoprire ciò che non sappiamo ancora, è conoscere altri modi di intendere il mondo e imparare lingue sconosciute.\n          Viaggiare è espandere la nostra mente allargandone gli orizzonti, scoprendo che altri "noi" vivono in luoghi diversi dal nostro.\n          È crescere, arricchirsi, esercitare l\'empatia e la gioia della conoscenza.\n          Per questo alloggiare in un Fablo B&B, a contatto con chi vive e abita i luoghi che scoprirete, è il modo più vero e autentico di viaggiare.\n          ')]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-content-center mb-4"
   }, [_c("router-link", {
     staticClass: "btn btn-custom text-uppercase text-light",
@@ -5979,7 +5979,7 @@ var render = function render() {
         return _vm.getSponsoredApartments(_vm.response_apartments.current_page - 1);
       }
     }
-  }, [_vm._v("Previous")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.response_apartments.last_page, function (page) {
+  }, [_vm._v("Precedente")])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.response_apartments.last_page, function (page) {
     return _c("li", {
       key: page.id,
       "class": {
@@ -6011,7 +6011,7 @@ var render = function render() {
         return _vm.getSponsoredApartments(_vm.response_apartments.current_page + 1);
       }
     }
-  }, [_vm._v("Next")])]) : _vm._e()], 2)])])]);
+  }, [_vm._v("Successiva")])]) : _vm._e()], 2)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -6414,14 +6414,14 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_vm.loading ? _c("div", {}, [_vm._v("\n        Loading..\n    ")]) : _c("div", _vm._l(_vm.sponsors, function (sponsor) {
+  }, [_vm.loading ? _c("div", {}, [_vm._v("\n        Caricamento...\n    ")]) : _c("div", _vm._l(_vm.sponsors, function (sponsor) {
     return _c("div", {
       key: sponsor.id
     }, [_vm._v("\n            " + _vm._s(sponsor.price) + "\n            "), _c("a", {
       attrs: {
         href: ""
       }
-    }, [_vm._v("buy now")])]);
+    }, [_vm._v("Compra Ora")])]);
   }), 0)]);
 };
 

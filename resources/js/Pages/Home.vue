@@ -81,9 +81,10 @@
           >
             <h3 class="text-uppercase">Benvenuti su Fablo B&B</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              cum neque odio at a obcaecati doloremque fuga veritatis, non
-              provident?
+            Viaggiare non è solo spostarsi per conoscere posti nuovi. Viaggiare è scoprire ciò che non sappiamo ancora, è conoscere altri modi di intendere il mondo e imparare lingue sconosciute.
+            Viaggiare è espandere la nostra mente allargandone gli orizzonti, scoprendo che altri "noi" vivono in luoghi diversi dal nostro.
+            È crescere, arricchirsi, esercitare l'empatia e la gioia della conoscenza.
+            Per questo alloggiare in un Fablo B&B, a contatto con chi vive e abita i luoghi che scoprirete, è il modo più vero e autentico di viaggiare.
             </p>
 
             <div class="d-flex justify-content-center mb-4">
@@ -153,14 +154,14 @@
          <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center  mt-5 fw-bold ">
                <li class="page-item" v-if="response_apartments.current_page > 1">
-                  <a class="page-link"  @click="getSponsoredApartments(response_apartments.current_page - 1)">Previous</a>
+                  <a class="page-link"  @click="getSponsoredApartments(response_apartments.current_page - 1)">Precedente</a>
                </li>
                <li :class="{'page-item' : true , 'active' : page == response_apartments.current_page  } " v-for="page in response_apartments.last_page" :key='page.id'>
                   <a class="page-link" href="#" @click.prevent="getSponsoredApartments(page)">{{ page }}</a>
                </li>
 
                <li class="page-item" v-if="response_apartments.current_page < response_apartments.last_page">
-                  <a class="page-link" href="#" @click.prevent="getSponsoredApartments(response_apartments.current_page + 1)">Next</a>
+                  <a class="page-link" href="#" @click.prevent="getSponsoredApartments(response_apartments.current_page + 1)">Successiva</a>
                </li>
             </ul>
          </nav>

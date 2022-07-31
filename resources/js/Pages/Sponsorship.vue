@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <div class="" v-if="loading">
-            Loading..
+            Caricamento...
         </div>
         <div v-else>
             <div v-for="sponsor in sponsors" :key="sponsor.id">
                 {{sponsor.price}}
-                <a href="">buy now</a>
+                <a href="">Compra Ora</a>
             </div>
         </div>
     </div>

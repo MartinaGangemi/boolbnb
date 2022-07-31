@@ -13,23 +13,23 @@
         <div class="col-12 col-sm-6">
           <!-- informazioni appartamento -->
           <p>{{ apartment.description }}</p>
-          <strong><i class="fa-solid fa-map-location"></i> Address : </strong
+          <strong><i class="fa-solid fa-map-location"></i> indirizzo : </strong
           ><span>{{ apartment.address }}</span
           ><br />
-          <strong><i class="fa-solid fa-door-closed"></i> Rooms : </strong
+          <strong><i class="fa-solid fa-door-closed"></i> Stanze : </strong
           ><span>{{ apartment.rooms }}</span
           ><br />
-          <strong><i class="fa-solid fa-bed"></i> Beds : </strong
+          <strong><i class="fa-solid fa-bed"></i> Letti : </strong
           ><span>{{ apartment.beds }}</span
           ><br />
-          <strong><i class="fa-solid fa-toilet"></i> Bathrooms : </strong
+          <strong><i class="fa-solid fa-toilet"></i> Bagni : </strong
           ><span>{{ apartment.bathrooms }}</span
           ><br />
           <strong
-            ><i class="fa-solid fa-ruler-combined"></i> Square Meters : </strong
+            ><i class="fa-solid fa-ruler-combined"></i> Metri quadri : </strong
           ><span>{{ apartment.square_meters }}</span
           ><br />
-          <strong><i class="fa-solid fa-list"></i> Services : </strong>
+          <strong><i class="fa-solid fa-list"></i> Servizi : </strong>
           <ul class="d-inline-block list-inline">
             <li
               class="list-inline-item"

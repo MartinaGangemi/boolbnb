@@ -72,7 +72,7 @@
 
                         <div class="row mt-3">
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="address" class="form-label">address</label>
+                                <label for="address" class="form-label">Idirizzo</label>
                                 <span class="required">*</span>
                                 <input class="form-control" id="address" name="address"
                                     value="{{ old('address', $apartment->address) }}" placeholder="Es: Viale Gaetano Arturo Crocco " required minlength="4" onkeyup="searchAddress()">
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="square_meters" class="form-label">Metriquadri</label>
+                                <label for="square_meters" class="form-label">Metri quadri</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="square_meters" name="square_meters"
                                     value="{{ old('square_meters', $apartment->square_meters) }}"

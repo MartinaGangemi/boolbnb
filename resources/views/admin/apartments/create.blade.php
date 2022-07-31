@@ -115,7 +115,7 @@
                             </div>
                             {{-- square_mt --}}
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="square_meters" class="form-label">Metriquadri</label>
+                                <label for="square_meters" class="form-label">Metri quadri</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="square_meters" name="square_meters"
                                     value="{{ old('square_meters', $newApartment->square_meters) }}"
