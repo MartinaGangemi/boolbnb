@@ -5918,15 +5918,15 @@ var render = function render() {
     staticClass: "mt-5 container"
   }, [_c("h2", {
     staticClass: "text-center text-white"
-  }, [_vm._v("Appartamenti consigliati")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("I preferiti di Fablo B&B")]), _vm._v(" "), _c("div", {
     staticClass: "mt-5 row g-2 card-container"
   }, _vm._l(_vm.sponsoredApartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
       staticClass: "col-12 col-sm-6 col-lg-3"
     }, [_c("div", {
-      staticClass: "card"
-    }, [_c("div", {
+      staticClass: "card border-0"
+    }, [_vm._m(1, true), _vm._v(" "), _c("div", {
       staticClass: "card-img"
     }, [_c("img", {
       staticClass: "card-img-top img-fluid",
@@ -6021,6 +6021,15 @@ var staticRenderFns = [function () {
       src: "https://www.imghoteles.com/wp-content/uploads/sites/1709/nggallery/desktop-pics//fott1.jpg",
       alt: ""
     }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("span", {
+    staticClass: "position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark"
+  }, [_c("i", {
+    staticClass: "fa-solid fa-crown text-warning fs-5"
   })]);
 }];
 render._withStripped = true;
@@ -6262,7 +6271,11 @@ var render = function render() {
       staticClass: "col-12 col-sm-6 col-md-4 col-lg-3"
     }, [_c("div", {
       staticClass: "card"
-    }, [_c("div", {
+    }, [apartment.sponsorships ? _c("span", {
+      staticClass: "position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark"
+    }, [_c("i", {
+      staticClass: "fa-solid fa-crown text-warning fs-5"
+    })]) : _vm._e(), _vm._v(" "), _c("div", {
       staticClass: "card-img"
     }, [_c("img", {
       attrs: {
@@ -11517,7 +11530,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow-y: scroll;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}\n.bg[data-v-6a63e488] {\n  -webkit-animation: slide-6a63e488 3s ease-in-out infinite alternate;\n          animation: slide-6a63e488 3s ease-in-out infinite alternate;\n  background-image: linear-gradient(-60deg, #B94545 50%, #202023 50%);\n  bottom: 0;\n  left: -50%;\n  opacity: 0.5;\n  position: fixed;\n  right: -50%;\n  top: 0;\n  z-index: -1;\n}\n.bg2[data-v-6a63e488] {\n  animation-direction: alternate-reverse;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n}\n.bg3[data-v-6a63e488] {\n  -webkit-animation-duration: 5s;\n          animation-duration: 5s;\n}\n.contentsd[data-v-6a63e488] {\n  color: white;\n  padding: 10vmin;\n  text-align: center;\n}\n@-webkit-keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n@keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n.btn-custom[data-v-6a63e488] {\n  background-color: #B94545;\n}\n.card-img[data-v-6a63e488] {\n  height: 200px;\n}\n.card-img img[data-v-6a63e488] {\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.description-apartment[data-v-6a63e488] {\n  height: 120px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.page-item.active .page-link[data-v-6a63e488] {\n  z-index: 3;\n  color: #fff;\n  background-color: #B94545;\n  border-color: #B94545;\n}\n.page-link[data-v-6a63e488] {\n  color: #B94545;\n}\n.page-link[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n}", ""]);
+exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow-y: scroll;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.start-custom[data-v-6a63e488] {\n  left: 25px !important;\n}\n.top-custom[data-v-6a63e488] {\n  top: 25px !important;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}\n.bg[data-v-6a63e488] {\n  -webkit-animation: slide-6a63e488 3s ease-in-out infinite alternate;\n          animation: slide-6a63e488 3s ease-in-out infinite alternate;\n  background-image: linear-gradient(-60deg, #B94545 50%, #202023 50%);\n  bottom: 0;\n  left: -50%;\n  opacity: 0.5;\n  position: fixed;\n  right: -50%;\n  top: 0;\n  z-index: -1;\n}\n.bg2[data-v-6a63e488] {\n  animation-direction: alternate-reverse;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n}\n.bg3[data-v-6a63e488] {\n  -webkit-animation-duration: 5s;\n          animation-duration: 5s;\n}\n.contentsd[data-v-6a63e488] {\n  color: white;\n  padding: 10vmin;\n  text-align: center;\n}\n@-webkit-keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n@keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n.btn-custom[data-v-6a63e488] {\n  background-color: #B94545;\n}\n.card-img[data-v-6a63e488] {\n  height: 200px;\n}\n.card-img img[data-v-6a63e488] {\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.description-apartment[data-v-6a63e488] {\n  height: 120px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.page-item.active .page-link[data-v-6a63e488] {\n  z-index: 3;\n  color: #fff;\n  background-color: #B94545;\n  border-color: #B94545;\n}\n.page-link[data-v-6a63e488] {\n  color: #B94545;\n}\n.page-link[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n}", ""]);
 
 // exports
 

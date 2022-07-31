@@ -119,6 +119,11 @@
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="apartment in apartments"
           :key="apartment.id"  >
           <div class="card">
+            <span v-if="apartment.sponsorships" class="position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark">
+              <i class="fa-solid fa-crown text-warning fs-5"></i>
+
+
+            </span>
                <div class="card-img">
                 <img  :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
               </div>

@@ -105,10 +105,16 @@
 
     <!-- appartamenti sponsorizzati -->
     <section class="mt-5 container">
-     <h2 class="text-center text-white">Appartamenti consigliati</h2>
+     <h2 class="text-center text-white">I preferiti di Fablo B&B</h2>
       <div class="mt-5 row g-2 card-container">
         <div class="col-12 col-sm-6 col-lg-3" v-for="apartment in sponsoredApartments" :key="apartment.id">
-          <div class="card">
+
+          <div class="card border-0">
+            <span class="position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark">
+              <i class="fa-solid fa-crown text-warning fs-5"></i>
+
+
+            </span>
             <div class="card-img">
               <img class="card-img-top img-fluid" :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
             </div>
@@ -320,6 +326,16 @@ export default {
     cursor: pointer;
   }
 }
+
+
+
+.start-custom {
+    left: 25px !important;
+}
+.top-custom {
+    top: 25px !important;
+}
+
 .my_back {
   background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)),
     url("https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg");
