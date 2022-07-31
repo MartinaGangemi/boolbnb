@@ -14,9 +14,9 @@
 <div class="bg"></div>
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
-<div class="row justify-content-center ">
-    <div class="col-md-12 mt-5">
-        <div class="card card_dark ">
+<div class="row justify-content-center">
+    <div class="col-md-12 mt-5 d-flex justify-content-center">
+        <div class="card card_dark mt-4">
                 <div class="card-header">{{ __('Registrati') }}</div>
 
                 <div class="card-body">
@@ -130,7 +130,8 @@
   }
   .card_dark{
   background-color: #212529 !important;
-  color: white
+  color: white;
+  width: 850px;
 }
 .btn-customs{
   background: #B94545 !important;

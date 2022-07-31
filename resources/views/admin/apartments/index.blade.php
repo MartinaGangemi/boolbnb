@@ -27,9 +27,9 @@
                             <h5>{{$apartment->summary}}</h5>
                             <small><i class="fa-solid fa-map-location"></i> : {{$apartment->address}}</small>
                             @if ($apartment->visible == true)
-                            <div> Non visibile sul sito</div>
+                            <div style="font-size:13px" class="text-danger"> Non visibile sul sito</div>
                             @else
-                            <div>Visibile sul sito</div>
+                            <div style="font-size:13px" class="text-success">Visibile sul sito</div>
                             @endif
                         </div>
 

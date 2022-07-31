@@ -5599,7 +5599,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "card"
   }, [_c("h1", {
-    staticClass: "text-uppercase text-center"
+    staticClass: "text-uppercase text-center p-4"
   }, [_vm._v(_vm._s(_vm.apartment.summary))]), _vm._v(" "), _c("div", {
     staticClass: "row apartment-information m-1 d-flex"
   }, [_c("div", {
@@ -5724,7 +5724,7 @@ var render = function render() {
       }
     }
   })]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary",
+    staticClass: "btn text-white",
     on: {
       click: function click($event) {
         return _vm.saveMessage();
@@ -5826,9 +5826,12 @@ var render = function render() {
     staticClass: "row justify-content-center align-items-center row-form"
   }, [_c("div", {
     staticClass: "col-7 text-center"
-  }, [_c("h1", {
-    staticClass: "display-1"
-  }, [_vm._v("Fablo B&B")]), _vm._v(" "), _c("form", {
+  }, [_c("img", {
+    attrs: {
+      src: "img/logo.svg",
+      alt: ""
+    }
+  }), _vm._v(" "), _c("form", {
     staticClass: "mt-4 d-flex flex-column align-items-center",
     on: {
       submit: function submit($event) {
@@ -5904,7 +5907,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row justify-content-center py-3"
   }, [_c("div", {
-    staticClass: "row row-cols-2 my-5 justify-content-between"
+    staticClass: "row row-cols-2 my-5 justify-content-between align-items-center"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "col-12 col-lg-4 text-description d-flex flex-column justify-content-end mt-4"
   }, [_c("h3", {
@@ -5942,7 +5945,7 @@ var render = function render() {
       staticClass: "p-2 card-body d-flex flex-column align-items-center"
     }, [_c("div", {
       staticClass: "description-apartment col-12"
-    }, [_c("span", {
+    }, [_c("h5", {
       staticClass: "text-center fw-bold"
     }, [_vm._v(_vm._s(_vm.trimTitle(apartment.summary)))]), _vm._v(" "), _c("span", [_vm._v("\n              " + _vm._s(_vm.trimText(apartment.description)) + "\n\n              ")]), _vm._v(" "), _c("div", {
       staticClass: "my-2 text-center"
@@ -6061,7 +6064,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "container"
   }, [_c("h2", {
-    staticClass: "fw-bold text-center text-white pt-5"
+    staticClass: "fw-bold text-center text-white pt-5 pb-5"
   }, [_vm._v("Cerca un appartamento")]), _vm._v(" "), _c("div", {
     staticClass: "card bg-light"
   }, [_c("form", {
@@ -6200,7 +6203,7 @@ var render = function render() {
   })])])]), _vm._v(" "), _c("div", {
     staticClass: "row mt-4 p-0"
   }, [_c("strong", {
-    staticClass: "text-center mb-2"
+    staticClass: "text-center mb-4"
   }, [_vm._v("Seleziona almeno un servizio")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, _vm._l(_vm.services, function (service, index) {
@@ -6312,7 +6315,7 @@ var render = function render() {
       "aria-label": "Page navigation example"
     }
   }, [_c("ul", {
-    staticClass: "pagination justify-content-center mt-5"
+    staticClass: "pagination justify-content-center mt-5 pb-4"
   }, [_vm.apartmentsResponse.current_page > 1 ? _c("li", {
     staticClass: "page-item"
   }, [_c("a", {
@@ -11515,7 +11518,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".message_sent[data-v-2ed98ed9] {\n  position: absolute;\n  bottom: 0;\n  left: 50%;\n  transform: translate(-50%, 0);\n  transition: all 1s;\n}\nimg[data-v-2ed98ed9] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.apartment-img[data-v-2ed98ed9] {\n  height: 500px;\n  width: 100%;\n}\nh2[data-v-2ed98ed9] {\n  position: relative;\n  text-transform: uppercase;\n}\nbutton[data-v-2ed98ed9] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n#map[data-v-2ed98ed9] {\n  height: 400px;\n}", ""]);
+exports.push([module.i, ".message_sent[data-v-2ed98ed9] {\n  position: absolute;\n  bottom: 0;\n  left: 50%;\n  transform: translate(-50%, 0);\n  transition: all 1s;\n}\nimg[data-v-2ed98ed9] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.apartment-img[data-v-2ed98ed9] {\n  height: 500px;\n  width: 100%;\n}\nh2[data-v-2ed98ed9] {\n  position: relative;\n  text-transform: uppercase;\n}\nbutton[data-v-2ed98ed9] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\nbutton[data-v-2ed98ed9]:hover {\n  background-color: #833131;\n}\n#map[data-v-2ed98ed9] {\n  height: 400px;\n}", ""]);
 
 // exports
 
@@ -11534,7 +11537,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow-y: scroll;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.start-custom[data-v-6a63e488] {\n  left: 25px !important;\n}\n.top-custom[data-v-6a63e488] {\n  top: 25px !important;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}\n.bg[data-v-6a63e488] {\n  -webkit-animation: slide-6a63e488 3s ease-in-out infinite alternate;\n          animation: slide-6a63e488 3s ease-in-out infinite alternate;\n  background-image: linear-gradient(-60deg, #B94545 50%, #202023 50%);\n  bottom: 0;\n  left: -50%;\n  opacity: 0.5;\n  position: fixed;\n  right: -50%;\n  top: 0;\n  z-index: -1;\n}\n.bg2[data-v-6a63e488] {\n  animation-direction: alternate-reverse;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n}\n.bg3[data-v-6a63e488] {\n  -webkit-animation-duration: 5s;\n          animation-duration: 5s;\n}\n.contentsd[data-v-6a63e488] {\n  color: white;\n  padding: 10vmin;\n  text-align: center;\n}\n@-webkit-keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n@keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n.btn-custom[data-v-6a63e488] {\n  background-color: #B94545;\n}\n.card-img[data-v-6a63e488] {\n  height: 200px;\n}\n.card-img img[data-v-6a63e488] {\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.description-apartment[data-v-6a63e488] {\n  height: 150px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.page-item.active .page-link[data-v-6a63e488] {\n  z-index: 3;\n  color: #fff;\n  background-color: #B94545;\n  border-color: #B94545;\n}\n.page-link[data-v-6a63e488] {\n  color: #B94545;\n}\n.page-link[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n}", ""]);
+exports.push([module.i, ".row-form[data-v-6a63e488] {\n  height: 500px;\n}\n.list-address[data-v-6a63e488] {\n  background-color: rgba(255, 255, 255, 0.527);\n  color: black;\n  max-height: 100px;\n  overflow-y: scroll;\n  margin-top: 0.5rem;\n  width: 100%;\n  position: absolute;\n  top: 30px;\n  text-align: left;\n}\n.list-address span[data-v-6a63e488] {\n  cursor: pointer;\n}\n.start-custom[data-v-6a63e488] {\n  left: 25px !important;\n}\n.top-custom[data-v-6a63e488] {\n  top: 25px !important;\n}\n.my_back[data-v-6a63e488] {\n  background: linear-gradient(rgba(0, 0, 0, 0.494), rgba(0, 0, 0, 0.679)), url(\"https://house-diaries.com/wp-content/uploads/2020/11/25337.jpg\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  filter: drop-shadow(2px 4px 6px black);\n}\ninput[data-v-6a63e488] {\n  height: 40px;\n}\ninput[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\nh1[data-v-6a63e488] {\n  text-shadow: 4px 4px #b94545;\n  color: rgba(255, 255, 255, 0.827);\n}\nform[data-v-6a63e488] {\n  position: relative;\n}\n.search-btn[data-v-6a63e488] {\n  position: absolute;\n  width: 20%;\n  top: 0;\n  right: 0;\n}\n.search-btn[data-v-6a63e488]:hover {\n  background-color: #833131;\n}\nh2[data-v-6a63e488] {\n  position: relative;\n  text-transform: uppercase;\n}\nh2[data-v-6a63e488]:after {\n  border-bottom: solid 2px #b94545;\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  width: 10%;\n  top: 40px;\n  margin: 0 auto;\n}\nbutton[data-v-6a63e488] {\n  background-color: #b94545;\n  width: 40%;\n  height: 40px;\n  border: none;\n}\n.img-home[data-v-6a63e488] {\n  filter: drop-shadow(2px 4px 6px black);\n}\n.error-search[data-v-6a63e488] {\n  top: 50px;\n}\n.bg[data-v-6a63e488] {\n  -webkit-animation: slide-6a63e488 3s ease-in-out infinite alternate;\n          animation: slide-6a63e488 3s ease-in-out infinite alternate;\n  background-image: linear-gradient(-60deg, #B94545 50%, #202023 50%);\n  bottom: 0;\n  left: -50%;\n  opacity: 0.5;\n  position: fixed;\n  right: -50%;\n  top: 0;\n  z-index: -1;\n}\n.bg2[data-v-6a63e488] {\n  animation-direction: alternate-reverse;\n  -webkit-animation-duration: 4s;\n          animation-duration: 4s;\n}\n.bg3[data-v-6a63e488] {\n  -webkit-animation-duration: 5s;\n          animation-duration: 5s;\n}\n.contentsd[data-v-6a63e488] {\n  color: white;\n  padding: 10vmin;\n  text-align: center;\n}\n@-webkit-keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n@keyframes slide-6a63e488 {\n0% {\n    transform: translateX(-25%);\n}\n100% {\n    transform: translateX(25%);\n}\n}\n.btn-custom[data-v-6a63e488] {\n  background-color: #B94545;\n}\n.card-img[data-v-6a63e488] {\n  height: 200px;\n}\n.card-img img[data-v-6a63e488] {\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.description-apartment[data-v-6a63e488] {\n  height: 150px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.page-item.active .page-link[data-v-6a63e488] {\n  z-index: 3;\n  color: #fff;\n  background-color: #B94545;\n  border-color: #B94545;\n}\n.page-link[data-v-6a63e488] {\n  color: #B94545;\n}\n.page-link[data-v-6a63e488]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n}", ""]);
 
 // exports
 
@@ -59145,9 +59148,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

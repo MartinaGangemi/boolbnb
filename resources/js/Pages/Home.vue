@@ -5,7 +5,7 @@
       <div class="container text-light py-5">
         <div class="row justify-content-center align-items-center row-form">
           <div class="col-7 text-center">
-            <h1 class="display-1">Fablo B&B</h1>
+            <img :src="'img/logo.svg'" alt="">
             <!-- ricerca -->
             <form
               @submit.prevent
@@ -60,7 +60,7 @@
     <div class="bg bg3"></div>
     <section id="site_main" class="container mt-5 bg_light contentsd">
       <div class="row justify-content-center py-3">
-        <div class="row row-cols-2 my-5 justify-content-between">
+        <div class="row row-cols-2 my-5 justify-content-between align-items-center">
           <div class="col-12 col-lg-8 text">
             <img
               class="img-home img-fluid"
@@ -120,9 +120,9 @@
             </div>
             <div class="p-2 card-body d-flex flex-column align-items-center">
               <!-- text -->
-             
+
               <div class="description-apartment col-12">
-                <span class="text-center fw-bold" >{{ trimTitle(apartment.summary) }}</span>
+                <h5 class="text-center fw-bold" >{{ trimTitle(apartment.summary) }}</h5>
                 <span>
                 {{trimText(apartment.description)}}
 
@@ -373,6 +373,9 @@ form {
   width: 20%;
   top: 0;
   right: 0;
+  &:hover {
+    background-color: #833131;
+  }
 }
 
 h2 {

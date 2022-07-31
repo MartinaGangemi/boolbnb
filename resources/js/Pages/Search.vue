@@ -2,7 +2,7 @@
   <div class="custom-height bg-dash">
     <!-- form ricerca appartamento -->
     <div class="container ">
-      <h2 class="fw-bold text-center text-white pt-5">Cerca un appartamento</h2>
+      <h2 class="fw-bold text-center text-white pt-5 pb-5">Cerca un appartamento</h2>
       <div class="card bg-light">
         <form @submit.prevent class="container mt-4 searchs">
           <input
@@ -81,8 +81,8 @@
           </div>
           <!-- servizi -->
           <div class="row mt-4 p-0 ">
-            <strong class="text-center mb-2">Seleziona almeno un servizio</strong>
-            <div class="row ">
+            <strong class="text-center mb-4">Seleziona almeno un servizio</strong>
+            <div class="row">
               <div
                 v-for="(service, index) in services"
                 :key="service.id"
@@ -153,7 +153,7 @@
     </div>
 <!-- PAGINAZIONE NON FUNZIONANTE  -->
     <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center  mt-5">
+      <ul class="pagination justify-content-center  mt-5 pb-4">
         <li class="page-item" v-if="apartmentsResponse.current_page > 1">
           <a class="page-link"  @click="searchApartments(apartmentsResponse.current_page - 1)">Previous</a>
         </li>

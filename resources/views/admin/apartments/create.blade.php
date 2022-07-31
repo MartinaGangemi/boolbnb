@@ -123,7 +123,7 @@
                             </div>
                         </div>
                         {{-- Questo deve stare qui se no il form non funziona --}}
-                        <button type="submit" class="btn btn-success mt-5 w-100">Aggiungi il tuo appartamento</button>
+                        <button type="submit" style="background-color:#b94545;" class="btn mt-5 w-100 text-white">Aggiungi il tuo appartamento</button>
                     </form>
 
 

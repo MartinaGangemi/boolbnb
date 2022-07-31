@@ -8,7 +8,7 @@
     <div class="bg bg3"></div>
     <div class="row justify-content-center contentsd">
         <div class="col-md-8 mt-5">
-            <div class="card card_dark ">
+            <div class="card card_dark mt-4">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

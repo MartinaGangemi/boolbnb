@@ -7,10 +7,10 @@
     <div class="container mt-5">
         <div class="card ">
 
-      <h1 class="text-uppercase  text-center">{{ apartment.summary }}</h1>
+      <h1 class="text-uppercase  text-center p-4">{{ apartment.summary }}</h1>
 
-      <div class="row apartment-information m-1 d-flex ">
-        <div class="col-12 col-sm-6 ">
+      <div class="row apartment-information m-1 d-flex">
+        <div class="col-12 col-sm-6">
           <!-- informazioni appartamento -->
           <p>{{ apartment.description }}</p>
           <strong><i class="fa-solid fa-map-location"></i> Address : </strong
@@ -95,7 +95,7 @@
                 ></textarea>
               </div>
 
-              <button class="btn btn-primary" @click="saveMessage()">
+              <button class="btn text-white" @click="saveMessage()">
                 Invia
               </button>
             </div>
@@ -257,6 +257,9 @@ button {
   width: 40%;
   height: 40px;
   border: none;
+  &:hover {
+    background-color: #833131;
+  }
 }
 
 #map {
