@@ -5238,18 +5238,10 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         //console.log(response);
-        if (response.data.status_code === 404) {
-          _this.loading = false;
-
-          _this.$router.push({
-            name: "not-found"
-          });
-        } else {
-          _this.sponsoredApartments = response.data.data;
-          _this.response_apartments = response.data;
-          _this.loading = false;
-          console.log(_this.response_apartments);
-        }
+        _this.sponsoredApartments = response.data.data;
+        _this.response_apartments = response.data;
+        _this.loading = false;
+        console.log(_this.response_apartments);
       })["catch"](function (e) {
         console.error(e);
       });
@@ -5349,6 +5341,8 @@ __webpack_require__.r(__webpack_exports__);
       searchLat: 0,
       searchLon: 0,
       defaultDistance: 20,
+      sponsoredApartments: "",
+      response_apartments: "",
       beds: 1,
       rooms: 1
     };
@@ -6270,8 +6264,8 @@ var render = function render() {
       key: apartment.id,
       staticClass: "col-12 col-sm-6 col-md-4 col-lg-3"
     }, [_c("div", {
-      staticClass: "card"
-    }, [apartment.sponsorships ? _c("span", {
+      staticClass: "card border-0"
+    }, [apartment.sponsorships > [0] ? _c("span", {
       staticClass: "position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark"
     }, [_c("i", {
       staticClass: "fa-solid fa-crown text-warning fs-5"
@@ -11549,7 +11543,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".bg-dash[data-v-4026e891] {\n  background-color: #2e3236;\n}\n#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\nul[data-v-4026e891] {\n  padding: 0;\n  margin: 0;\n  clear: both;\n}\nli[data-v-4026e891] {\n  list-style-type: none;\n  list-style-position: outside;\n  float: left;\n}\ninput[type=checkbox][data-v-4026e891]:not(:checked),\ninput[type=checkbox][data-v-4026e891]:checked {\n  position: absolute;\n  left: -9999%;\n}\ninput[type=checkbox] + label[data-v-4026e891] {\n  display: inline-block;\n  width: 200px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 20px;\n  color: white;\n  background-color: #212529;\n  margin-bottom: 10px;\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[type=checkbox]:checked + label[data-v-4026e891] {\n  color: white;\n  background-color: #B94545;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 5px;\n}\n.btn-custom[data-v-4026e891] {\n  background-color: #B94545;\n}\n.custom-height[data-v-4026e891] {\n  min-height: calc(100vh - 170px);\n}\n.card[data-v-4026e891] {\n  border-radius: 5px;\n  margin-bottom: 20px;\n  filter: drop-shadow(2px 4px 6px black);\n}\n.card-img[data-v-4026e891] {\n  height: 160px;\n}\n.card-img img[data-v-4026e891] {\n  height: 100%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.searchs[data-v-4026e891] {\n  position: relative;\n}\n.search-btn[data-v-4026e891] {\n  position: absolute;\n  width: 10%;\n  top: 0;\n  right: 10px;\n}\nbutton[data-v-4026e891] {\n  background-color: #b94545;\n  width: 30px;\n  height: 36px;\n  border: none;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n  width: 100%;\n  background-color: #2e3236 !important;\n  color: white !important;\n}\n.page-item.active .page-link[data-v-4026e891] {\n  z-index: 3;\n  color: #fff;\n  background-color: #B94545;\n  border-color: #B94545;\n}\n.page-link[data-v-4026e891] {\n  color: #B94545;\n}\n.page-link[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n}", ""]);
+exports.push([module.i, ".start-custom[data-v-4026e891] {\n  left: 25px !important;\n}\n.top-custom[data-v-4026e891] {\n  top: 24px !important;\n}\n.bg-dash[data-v-4026e891] {\n  background-color: #2e3236;\n}\n#map[data-v-4026e891] {\n  height: 35vh;\n}\n#map2[data-v-4026e891] {\n  height: 35vh;\n}\nul[data-v-4026e891] {\n  padding: 0;\n  margin: 0;\n  clear: both;\n}\nli[data-v-4026e891] {\n  list-style-type: none;\n  list-style-position: outside;\n  float: left;\n}\ninput[type=checkbox][data-v-4026e891]:not(:checked),\ninput[type=checkbox][data-v-4026e891]:checked {\n  position: absolute;\n  left: -9999%;\n}\ninput[type=checkbox] + label[data-v-4026e891] {\n  display: inline-block;\n  width: 200px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 20px;\n  color: white;\n  background-color: #212529;\n  margin-bottom: 10px;\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n  border-color: rgba(185, 69, 69, 0.4823529412);\n}\ninput[type=checkbox]:checked + label[data-v-4026e891] {\n  color: white;\n  background-color: #B94545;\n}\n.my-round[data-v-4026e891] {\n  border-radius: 5px;\n}\n.btn-custom[data-v-4026e891] {\n  background-color: #B94545;\n}\n.custom-height[data-v-4026e891] {\n  min-height: calc(100vh - 170px);\n}\n.card[data-v-4026e891] {\n  border-radius: 5px;\n  margin-bottom: 20px;\n  filter: drop-shadow(2px 4px 6px black);\n}\n.card-img[data-v-4026e891] {\n  height: 160px;\n}\n.card-img img[data-v-4026e891] {\n  height: 100%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.searchs[data-v-4026e891] {\n  position: relative;\n}\n.search-btn[data-v-4026e891] {\n  position: absolute;\n  width: 10%;\n  top: 0;\n  right: 10px;\n}\nbutton[data-v-4026e891] {\n  background-color: #b94545;\n  width: 30px;\n  height: 36px;\n  border: none;\n}\n.listAddress[data-v-4026e891] {\n  max-height: 130px;\n  overflow-y: scroll;\n}\n.original-map[data-v-4026e891] {\n  position: relative;\n  z-index: 1;\n}\n.cover-map[data-v-4026e891] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 4;\n  transition: 4s;\n  width: 100%;\n  background-color: #2e3236 !important;\n  color: white !important;\n}\n.page-item.active .page-link[data-v-4026e891] {\n  z-index: 3;\n  color: #fff;\n  background-color: #B94545;\n  border-color: #B94545;\n}\n.page-link[data-v-4026e891] {\n  color: #B94545;\n}\n.page-link[data-v-4026e891]:focus {\n  box-shadow: 0 0 0 0.25rem rgba(185, 69, 69, 0.4823529412);\n}", ""]);
 
 // exports
 
