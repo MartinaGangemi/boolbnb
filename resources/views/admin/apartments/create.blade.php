@@ -34,8 +34,8 @@
                             <div class="form-check col-sm-12 col-lg-6 mb-3">
                                 <input class="form-check-input" type="hidden" value="0" id="visible" name="visible">
                                 <input class="form-check-input" type="checkbox" value="1" id="visible"
-                                    name="visible">
-                                <label class="form-check-label yellow-label" for="visible">Spunta se vui rendere visibile l'appartamento</label>
+                                    name="visible" value="{{$newApartment->visible}}" {{ $newApartment->visible ? 'checked' : '' }}>
+                                <label class="form-check-label yellow-label" for="visible">Spunta se vuoi nascondere l'appartamento</label>
                             </div>
                             {{-- services --}}
                           <!--chechbox services-->
@@ -115,7 +115,7 @@
                             </div>
                             {{-- square_mt --}}
                             <div class=" col-sm-12 col-lg-6">
-                                <label for="square_meters" class="form-label">Metriquadri</label>
+                                <label for="square_meters" class="form-label">Metri quadri</label>
                                 <span class="required">*</span>
                                 <input type="number" class="form-control" id="square_meters" name="square_meters"
                                     value="{{ old('square_meters', $newApartment->square_meters) }}"
@@ -123,7 +123,7 @@
                             </div>
                         </div>
                         {{-- Questo deve stare qui se no il form non funziona --}}
-                        <button type="submit" class="btn btn-success mt-5 w-100">Aggiungi il tuo appartamento</button>
+                        <button type="submit" style="background-color:#b94545;" class="btn mt-5 w-100 text-white">Aggiungi il tuo appartamento</button>
                     </form>
 
 

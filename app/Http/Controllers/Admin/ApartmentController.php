@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apartment;
 use App\Models\Service;
-use App\User;
+use App\Models\User;
+use Illuminate\Validation\Rule;
+use App\Models\Sponsorship;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ApartmentRequest;
 
@@ -47,25 +49,22 @@ class ApartmentController extends Controller
     public function store(ApartmentRequest $request)
     {
         // Validazione dati-->controlla ApartmentRequest
-        $data = $request->validated();
-        //dd($data);
 
-        //$apiQuery =  str_replace(' ', '-', $data['city']) . '-' .  str_replace(' ', '-', $data['address']) . '-' .  str_replace(' ', '-', $data['number']) ;
-        //$response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $data = $request->validated();
+
         $apiQuery = str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN');
         $response = json_decode($response);
 
 
         $data['lat'] = $response->results[0]->position->lat;
         $data['lon'] = $response->results[0]->position->lon;
-
+        $currentId = Apartment::orderBy('id', 'desc')->first()->id + 1;
         $data['user_id'] = Auth::id();
-        $slug = Apartment::generateSlug($request->summary);
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id().'-'.$currentId ;
         $data['slug'] = $slug;
         $data['cover_img'] = Storage::put('storage', $request->cover_img);
         $newApartment = new Apartment();
-
         $newApartment->fill($data);
         $newApartment->save();
 
@@ -86,8 +85,9 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
-        return view('admin.apartments.show', compact('apartment'));
+        $services =  $apartment['services'];
+        $sponsorships = Sponsorship::all();
+        return view('admin.apartments.show', compact('apartment','sponsorships','services'));
     }
 
     /**
@@ -119,6 +119,8 @@ class ApartmentController extends Controller
      */
     public function update(ApartmentRequest $request, User $id, Apartment $apartment)
     {
+
+
         // Validazione dati-->controlla ApartmentRequest
         $data = $request->validated();
         //dd($data);
@@ -126,22 +128,23 @@ class ApartmentController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data = $request->all();
 
-        if (array_key_exists('cover_img', $data)) {
-            $data['cover_img'] = Storage::put('storage', $request->cover_img);
-        }
 
 
         $apiQuery =str_replace(' ', '-', $data['address']);
-        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB');
+        $response = file_get_contents('https://api.tomtom.com/search/2/geocode/' . $apiQuery . '.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN');
         $response = json_decode($response);
 
 
         $data['lat'] = $response->results[0]->position->lat;
         $data['lon'] = $response->results[0]->position->lon;
+        if (array_key_exists('cover_img', $data)) {
+            $data['cover_img'] = Storage::put('storage', $request->cover_img);
+        }
+
 
         $apartment->fill($data);
-
-        $slug = Apartment::generateSlug($request->summary);
+        $currentId = Apartment::orderBy('id', 'desc')->first()->id + 1;
+        $slug = Apartment::generateSlug($request->summary ).'-'.Auth::id().'-'.$currentId ;
         $data['slug'] = $slug;
         $apartment->update($data);
 

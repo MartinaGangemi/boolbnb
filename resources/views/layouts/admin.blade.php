@@ -49,6 +49,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
+
+
                         @endif
                     @else
                         <li class="nav-item dropdown">
@@ -65,6 +67,9 @@
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     Admin
                                 </a>
+                                {{-- <a class="dropdown-item" href="{{ route('admin.messages') }}">
+                                    Messaggi
+                                </a> --}}
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -79,11 +84,11 @@
 
     <!-- navbar menu admin -->
 
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-12 d-md-block bg-dark sidebar collapse">
         <div class="sidebar-sticky pt-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.apartments.index')}}">
+                    <a class="nav-link text-customs" href="{{route('admin.apartments.index')}}">
                         Dashboard
                     </a>
                 </li>
@@ -97,9 +102,11 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main class="pb-4">
         @yield('content')
     </main>
+    <script  src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps-web.min.js"></script>
+    <script  src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/services/services-web.min.js"></script>
 
     @stack('check')
     <script>
@@ -140,6 +147,10 @@
                 });
             })
         }
+
+
+       
 </script>
+@stack('payment')
 </body>
 </html>

@@ -9,8 +9,9 @@
 
     @endif
 
-    <a class="btn btn-primary text-white my-3" href="{{route('admin.apartments.create')}}">Crea un nuovo appartamento</a>
-
+    <div class="text-center">
+        <a class="btn btn-customs text-white my-3 " href="{{route('admin.apartments.create')}}">Crea un nuovo appartamento</a>
+    </div>
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5  gy-3">
         @foreach($apartments as $apartment)
 
@@ -25,6 +26,11 @@
                         <div class="card-text">
                             <h5>{{$apartment->summary}}</h5>
                             <small><i class="fa-solid fa-map-location"></i> : {{$apartment->address}}</small>
+                            @if ($apartment->visible == true)
+                            <div style="font-size:13px" class="text-danger"> Non visibile sul sito</div>
+                            @else
+                            <div style="font-size:13px" class="text-success">Visibile sul sito</div>
+                            @endif
                         </div>
 
                         <div class="options text-center">

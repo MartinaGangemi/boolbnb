@@ -32,7 +32,7 @@ class ApartmentRequest extends FormRequest
             'square_meters' => 'required|numeric|min:9',
             'cover_img' => 'image|mimes:jpeg,jpg,png',
             'description' => 'required|min:50|max:255',
-            //'city' => 'required|string|min:3',
+            'visible' => 'nullable|boolean|',
             'address' => 'required|string|min:6',
             //'number' => 'required|numeric|min:1',
             'services' => 'required|exists:services,id',

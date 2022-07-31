@@ -67,6 +67,9 @@
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     Admin
                                 </a>
+                                {{-- <a class="dropdown-item" href="{{ route('admin.messages') }}">
+                                    Messaggi
+                                </a> --}}
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -79,7 +82,7 @@
         </div>
     </nav>
 
-    <main class="pb-4">
+    <main class="">
         @yield('content')
     </main>
 
@@ -99,11 +102,13 @@
     <script>
         let validate = function() {
             if (document.getElementById('password').value ==
-                document.getElementById('password-confirm').value) {
+                document.getElementById('password-confirm').value ) {
                 document.getElementById('message').style.color = 'green';
                 document.getElementById('message').innerHTML = 'Le password combaciano';
                 document.getElementById('submit_button').removeAttribute('disabled')
-            } else {
+            }
+
+            else {
                 document.getElementById('submit_button').setAttribute('disabled', 'disabled')
                 document.getElementById('message').style.color = 'red';
                 document.getElementById('message').innerHTML = 'Le password non combaciano';

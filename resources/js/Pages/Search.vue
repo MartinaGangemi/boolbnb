@@ -1,144 +1,172 @@
-<template>
-  <div class="container-fluid mt-4">
+<template >
+  <div class="custom-height bg-dash">
     <!-- form ricerca appartamento -->
-    <form @submit.prevent>
-      <input
-        type="text"
-        class="form-control"
-        v-model="searchText"
-        @keyup="searchAddress"
-      />
-      <!-- autoload da fixare -->
-      <div
-        v-for="(singleAddress, index) in addressResults"
-        :key="singleAddress.id"
-      >
-        <span @click="checkAddress(index)" v-if="!isHidden">{{
-          singleAddress.address.freeformAddress
-        }}</span>
-      </div>
-      <div class="beds-rooms-commands mt-4">
-
-        <span class="me-2">
-          <label for="rooms">Distanza (km) <i class="fa-solid fa-map-location-dot"></i></label>
+    <div class="container ">
+      <h2 class="fw-bold text-center text-white pt-5 pb-5">Cerca un appartamento</h2>
+      <div class="card bg-light">
+        <form @submit.prevent class="container mt-4 searchs">
           <input
-              type="number"
-              min="0"
-              v-model="defaultDistance"
-              class="border border-danger rounded"
-              style="width: 50px"
+              type="text"
+              class="form-control "
+              v-model="searchText"
+              @keyup="searchAddress"
           />
-        </span>
+          <div class="">
 
-        <span class="me-2">
-          <label for="rooms">Nr. Stanze <i class="fa-solid fa-door-closed"></i></label>
-          <input
-            type="number"
-            min="1"
-            max="8"
-            v-model="nRooms"
-            class="border border-danger rounded"
-            style="width: 50px"
-          />
-        </span>
-
-        <span>
-          <label for="rooms">Nr. Letti <i class="fa-solid fa-bed"></i></label>
-          <input
-            type="number"
-            min="1"
-            max="8"
-            v-model="nBeds"
-            class="border border-danger rounded"
-            style="width: 50px"
-          />
-        </span>
-
-      </div>
-
-
-   <div class="row mt-4 p-0">
-         <strong>Seleziona almeno un servizio</strong>
-        <div class="row">
-            <div  v-for="service in services"
-                    :key="service.id" class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark">
-                <input class="text-dark" type="checkbox"  :id="service" :name="services"  :value="service" >
-                 <label class="form-check-label" :for="service">{{service}}</label>
-
-            </div>
-
-        </div>
-    </div>
-
-      <button
-        type="submit"
-        class="my-4 btn btn-dark w-100 fw-bold fs-2 text-white"
-        @click="searchApartments"
-      >
-        cerca appartamento
-      </button>
-    </form>
-
-    <!-- lista appartamenti -->
-    <div class="row justify-content-center" style="padding-bottom: 2000px">
-      <!-- sezione mappa -->
-      <div class="sticky-top row col-lg-9 pb-5">
-        <div id="map" class="my-round my-col" ref="mapRef"></div>
-      </div>
-
-
-      <div class="col col-md-12 col-lg-10 mb-2 p-3 gap-2 d-flex flex-wrap">
-        <div
-          class="box p-0 shadow"
-          v-for="apartment in apartments"
-          :key="apartment.id"
-        >
-          <div class="card_img d-flex justify-content-center">
-            <img
-              :src="'storage/' + apartment.cover_img"
-              :alt="apartment.slug"
-            />
-          </div>
-
-          <div class="card-body">
-            <h4 class="card-title">{{ apartment.summary }}</h4>
-            <p class="card-text"></p>
-            <router-link
-              class="btn btn-light"
-              :to="{ name: 'apartment', params: { id: apartment.id } }"
-              >Read More</router-link
+          <button
+                type="submit"
+                class="search-btn rounded-end text-uppercase text-center text-white"
+                @click="searchApartments"
             >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+
           </div>
 
-          <!-- card overflow -->
-          <!-- <div class="content text-center">
-          <h3>{{ apartment.summary }}</h3>
 
-          <p>
-            {{ apartment.description }}
-          </p>
+          <!-- autoload  -->
+          <div class="listAddress">
+              <div
+              v-for="(singleAddress, index) in addressResults"
+              :key="singleAddress.id"
+              >
+              <span @click="checkAddress(index)" v-if="!isHidden">{{
+                  singleAddress.address.freeformAddress
+              }}</span>
+              </div>
+          </div>
+          <div class="text-center">
 
-          <a class="btn btn-light" :href="'admin/apartments/' + apartment.slug">vedere</a>
-        </div> -->
+          <div class="beds-rooms-commands mt-4">
+            <span class="me-2">
+              <label for="rooms"
+                >Distanza (km) <i class="fa-solid fa-map-location-dot"></i
+              ></label>
+              <input
+                type="number"
+                min="0"
+                step="5"
+                v-model="defaultDistance"
+                class="border border-danger rounded"
+                style="width: 50px"
+              />
+            </span>
+
+            <span class="me-2">
+              <label for="rooms"
+                >Nr. Stanze <i class="fa-solid fa-door-closed"></i
+              ></label>
+              <input
+                type="number"
+                min="1"
+                max="8"
+                v-model="rooms"
+                class="border border-danger rounded"
+                style="width: 50px"
+              />
+            </span>
+
+            <span>
+              <label for="rooms">Nr. Letti <i class="fa-solid fa-bed"></i></label>
+              <input
+                type="number"
+                min="1"
+                max="8"
+                v-model="beds"
+                class="border border-danger rounded"
+                style="width: 50px"
+              />
+            </span>
+          </div>
+          </div>
+          <!-- servizi -->
+          <div class="row mt-4 p-0 ">
+            <strong class="text-center mb-4">Seleziona almeno un servizio</strong>
+            <div class="row">
+              <div
+                v-for="(service, index) in services"
+                :key="service.id"
+                class="col-12 col-sm-6 col-md-4 col-lg-3 text-dark text-center "
+              >
+                <input
+                  class="text-dark checkbox"
+                  type="checkbox"
+                  :id="service"
+                  :name="services"
+                  :value="index+1"
+                  v-model="checkedServices"
+                />
+                <label class="form-check-label" :for="service">{{ service }}</label>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- lista appartamenti -->
+      <div class=" row justify-content-center mt-2" >
+        <!-- sezione mappa -->
+        <div class="row col pb-5 original-map">
+          <div id="map" class="my-round " ref="mapRef"></div>
+          <div class=" row col-lg-9 pb-5 bg-light text-dark cover-map" v-if="apartments <= [0]">
+            <div id="map2" class="display-5 fw-bold d-flex justify-content-center align-items-center text-center"> Caricamento...⏲️ </div>
+          </div>
         </div>
       </div>
-    </div>
+      <!-- nuova card -->
+        <div class="row  ">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="apartment in apartments"
+          :key="apartment.id"  >
+          <div class="card border-0">
 
-    <!-- numero pagine -->
-    <!-- <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center  mt-5">
+          <span  v-if="apartment.sponsorships > [0]"  class="position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark" >
+              <i class="fa-solid fa-crown text-warning fs-5"></i>
+
+          </span>
+
+
+
+               <div class="card-img">
+                <img  :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
+              </div>
+               <div class="card-body py-3 text-center">
+                <h6 class="text-center fw-bold" > {{ trimTitle(apartment.summary) }}</h6>
+                 <div>
+                 <span class=" me-2"><i class="fa-solid fa-bed"></i> :{{apartment.beds}}</span>
+                  <span><i class="fa-solid fa-toilet"></i>: {{apartment.bathrooms}} </span>
+
+                </div>
+
+                 <router-link
+              class=" btn btn-custom text-light mt-2"
+              :to="{ name: 'apartment', params: { id: apartment.id } }"
+              >Visita</router-link
+            >
+                </div>
+          </div>
+        </div>
+        </div>
+
+
+
+    </div>
+<!-- PAGINAZIONE NON FUNZIONANTE  -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center  mt-5 pb-4">
         <li class="page-item" v-if="apartmentsResponse.current_page > 1">
-            <a class="page-link"  @click="getAllApartments(apartmentsResponse.current_page - 1)">Previous</a>
+          <a class="page-link"  @click="searchApartments(apartmentsResponse.current_page - 1)">Previous</a>
         </li>
         <li :class="{'page-item' : true , 'active' : page == apartmentsResponse.current_page  }" v-for="page in apartmentsResponse.last_page" :key='page.id'>
-            <a class="page-link" href="#" @click.prevent="getAllApartments(page)">{{ page }}</a>
+          <a class="page-link" href="#" @click.prevent="searchApartments(page)">{{ page }}</a>
         </li>
 
         <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
-            <a class="page-link" href="#" @click.prevent="getAllApartments(apartmentsResponse.current_page + 1)">Next</a>
+          <a class="page-link" href="#" @click.prevent="searchApartments(apartmentsResponse.current_page + 1)">Next</a>
         </li>
-    </ul>
-    </nav> -->
+      </ul>
+    </nav>
+
   </div>
 </template>
 
@@ -151,125 +179,97 @@ export default {
       apartments: [],
       apartmentsResponse: "",
       searchText: "",
-      services:['Wifi','Parcheggio interno','Belvedere','Asciugacapelli','TV', 'Climatizzatore', 'Microonde'],
-      checkedServices:[],
+      services: [
+        "Wifi",
+        "Parcheggio interno",
+        "Belvedere",
+        "Asciugacapelli",
+        "TV",
+        "Climatizzatore",
+        "Microonde",
+      ],
+      checkedServices: [],
       addressResults: [],
       lat: 0,
       lon: 0,
       searchLat: 0,
       searchLon: 0,
       defaultDistance: 20,
-      nBeds: 1,
-      nRooms: 1,
+      sponsoredApartments:"",
+      response_apartments:"",
+      beds: 1,
+      rooms: 1,
     };
   },
 
   methods: {
-    searchApartments() {
+
+    trimTitle(text){
+        if(text.length >38 ){
+         return text.slice(0,26) + '...'
+        }
+        return text;
+    },
+    searchApartments(selectPage) {
       this.apartments = [];
 
+      //console.log(this.checkedServices);
+
       axios
-        .get("/api/apartments")
+        .get("/api/apartments", {
+          params: {
+            page: selectPage,
+            beds: this.beds,
+            rooms: this.rooms,
+            checkedServices: this.checkedServices,
+            defaultDistance: this.defaultDistance * 1000,
+            searchLat: this.lat,
+            searchLon: this.lon
+          },
+        })
         .then((response) => {
           //console.log(response.data);
-          const results = response.data.data;
+
           this.apartmentsResponse = response.data;
-
-          const link =
-            "https://kr-api.tomtom.com/search/2/geocode/" +
-            this.searchText +
-            ".json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true";
-
-          axios.get(link).then((searchResponse) => {
-            let searchResults = searchResponse.data.results;
-
-            //console.log('Risultati di ricerca: ' , searchResults[0].position);
-            this.searchLat = searchResults[0].position.lat;
-            this.searchLon = searchResults[0].position.lon;
-
-            results.forEach((result) => {
-              //console.log("Risultato: ", result);
-
-              const distance = this.getDistanceFromLatLonInKm(
-                result.lat,
-                result.lon,
-                this.searchLat,
-                this.searchLon
-              );
-              //console.log(distance);
-
-              if (distance <= this.defaultDistance && result.rooms >= this.nRooms &&
-              result.beds >= this.nBeds) {
-
-                this.apartments.push(result);
-
-              }
-
-            });
-
-            //console.log("Lista appartamenti: ", this.apartments);
-
-            this.apartments.sort(function(apartment1, apartment2) {
-
-                //console.log("1: ", apartment1, " 2: ", apartment2);
-
-                /* let distance1 = this.getDistanceFromLatLonInKm(
-                    apartment1.lat,
-                    apartment1.lon,
-                    this.searchLat,
-                    this.searchLon
-                );
-
-                let distance2 = this.getDistanceFromLatLonInKm(
-                    apartment2.lat,
-                    apartment2.lon,
-                    this.searchLat,
-                    this.searchLon
-                ); */
-
-                //console.log("1: ", distance1, " 2: ", distance2);
-
-                return 0;
-
-            })
+          this.apartments = response.data.data;
 
             //mappa
             this.createMap();
 
-            this.searchText = "";
-          });
-        })
+
+          })
         .catch((e) => {
           console.error(e);
         });
+
+
     },
 
-    getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-      let R = 6371; // Radius of the earth in km
-      let dLat = this.deg2rad(lat2 - lat1); // deg2rad below
-      let dLon = this.deg2rad(lon2 - lon1);
-      let a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(this.deg2rad(lat1)) *
-          Math.cos(this.deg2rad(lat2)) *
-          Math.sin(dLon / 2) *
-          Math.sin(dLon / 2);
-      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      let d = R * c; // Distance in km
-      return d;
-    },
-
-    deg2rad(deg) {
-      return deg * (Math.PI / 180);
-    },
 
     createMap() {
+
+      //zoom per la mappa
+      let zoomMap = 0
+      if(this.defaultDistance <= 20){
+        zoomMap = 15
+      } else if (this.defaultDistance <= 40){
+        zoomMap = 8
+      } else if (this.defaultDistance <= 80){
+        zoomMap = 7
+      }else if (this.defaultDistance <= 160){
+      zoomMap = 6
+      }else if (this.defaultDistance <= 360){
+        zoomMap = 5
+      }else if (this.defaultDistance <= 700){
+        zoomMap = 4
+      }
+
       let map = tt.map({
-        key: "zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB",
+        key: "psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN",
         container: "map",
         style: "tomtom://vector/1/basic-main",
         center: [this.apartments[0].lon, this.apartments[0].lat],
-        zoom: 17,
+        zoom: zoomMap,
       });
 
       map.addControl(new tt.FullscreenControl());
@@ -283,12 +283,12 @@ export default {
         //  let lat = this.apartments[0].lat
         //  let lon = this.apartments[0].lon
         let coordinates = [lonMarker, latMarker];
-        console.log(coordinates);
+        // console.log(coordinates);
 
         //marker
 
         let marker = new tt.Marker().setLngLat(coordinates).addTo(map);
-        console.log(marker);
+        // console.log(marker);
         let popup = new tt.Popup({ offset: popupOffset }).setHTML(
           apartment.summary
         );
@@ -307,7 +307,7 @@ export default {
       const link =
         `https://kr-api.tomtom.com/search/2/geocode/` +
         this.searchText +
-        `.json?key=zGXvHBjS1KlaiUjP2EEuWGTzWzjTGrEB&typeahead=true`;
+        `.json?key=psWmQcjzXO6qcmJWIp1XA7yeL0JCHDGN&typeahead=true`;
       axios.get(link).then((response) => {
         let results = response.data.results;
         //console.log(results);
@@ -335,82 +335,159 @@ export default {
   },
 
   created() {
-    this.apartments = this.$route.params.data;
+    this.lat = this.$route.params.data[0];
+    this.lon = this.$route.params.data[1];
+    this.apartmentsResponse = this.$route.params.data[2];
+    this.apartments = this.$route.params.data.slice(3);
   },
 
+
   mounted() {
-    this.createMap();
+ this.createMap();
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+
+.start-custom {
+    left: 25px !important;
+}
+.top-custom {
+    top: 24px !important;
+}
+
+
+
+.bg-dash{
+background-color: #2e3236  ;
+}
+
 #map {
   height: 35vh;
 }
+#map2 {
+  height: 35vh;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+li{
+  list-style-type: none;
+  list-style-position: outside;
+  float: left;
+}
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999%;
+}
+input[type="checkbox"] + label {
+  display: inline-block;
+  width: 200px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+  background-color: #212529;
+  margin-bottom: 10px;
+}
+
+input:focus {   box-shadow: 0 0 0 0.25rem #b945457b;   border-color: #b945457b; }
+input:focus {
+  box-shadow: 0 0 0 0.25rem #b945457b;
+  border-color: #b945457b;
+}
+
+input[type="checkbox"]:checked + label {
+  color: white;
+  background-color: #B94545;
+}
 
 .my-round {
-  border-radius: 20px;
+   border-radius: 5px;
+
 }
 
-.fixed {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: 5px;
-  background-color: #cae8ca;
-  border: 2px solid #4caf50;
+.btn-custom{
+    background-color: #B94545;
 }
 
-.box {
-  height: 500px;
-  width: 400px;
-  background: rgb(159, 35, 39);
-  background: linear-gradient(
-    352deg,
-    rgb(165, 37, 41) 11%,
-    rgba(2, 0, 36, 1) 100%
-  );
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  color: #ffffff;
+.custom-height{
+min-height: calc(100vh  - 170px) ;
 }
 
-.box .card {
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-}
 
-.card_img {
-  height: 40%;
-}
 
-.card_img img {
-  height: 100%;
-}
 
-/*.content {
-  background-color: black;
-  color: white;
+.card{
+    //height: 280px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+  .card-img{
+    height: 160px;
+      img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+.searchs{
+    position: relative;
+}
+.search-btn {
   position: absolute;
+  width: 10%;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  transition: all 0.7s;
-  opacity: 0.9;
+  right: 10px;
+}
+button {
+  background-color: #b94545;
+  width: 30px;
+  height: 36px;
+  border: none;
+}
+.listAddress {
+  max-height: 130px;
+  overflow-y: scroll;
 }
 
-.box:hover .content {
-  left: 0;
+.original-map{
+    position: relative;
+    z-index: 1;
+}
+.cover-map{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transition: 4s;
+    width: 100%;
+    background-color: #2e3236 !important;
+    color: white !important;
 }
 
-.content p {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  padding: 17px 0px;
-}*/
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #B94545;
+    border-color: #B94545;
+
+  }
+
+  .page-link{
+    color:#B94545 ;
+  }
+
+  .page-link:focus {
+    box-shadow: 0 0 0 0.25rem #b945457b;
+  }
 </style>
