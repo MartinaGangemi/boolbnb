@@ -5202,6 +5202,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "Home",
   data: function data() {
     return {
+      apartments: [],
+      apartmentsResponse: "",
       addressResults: [],
       searchText: "",
       sponsoredApartments: [],
@@ -5266,13 +5268,18 @@ __webpack_require__.r(__webpack_exports__);
 
         results.forEach(function (result) {
           _this2.apartments.push(result);
+        });
+        var searchResults = _this2.apartments;
+        searchResults.unshift(_this2.apartmentsResponse);
+        searchResults.unshift(_this2.lon);
+        searchResults.unshift(_this2.lat);
+        console.log(searchResults);
 
-          _this2.$router.push({
-            name: "search",
-            params: {
-              data: _this2.apartments
-            }
-          });
+        _this2.$router.push({
+          name: "search",
+          params: {
+            data: searchResults
+          }
         });
       })["catch"](function (e) {
         console.error(e);
@@ -5454,7 +5461,10 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    this.apartments = this.$route.params.data;
+    this.lat = this.$route.params.data[0];
+    this.lon = this.$route.params.data[1];
+    this.apartmentsResponse = this.$route.params.data[2];
+    this.apartments = this.$route.params.data.slice(3);
   },
   mounted: function mounted() {
     this.createMap();
@@ -59135,9 +59145,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\LARAVEL\boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel\boolbnb-5\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

@@ -175,6 +175,8 @@ export default {
 
   data() {
     return {
+      apartments: [],
+      apartmentsResponse: "",
       addressResults: [],
       searchText: "",
       sponsoredApartments: [],
@@ -243,14 +245,19 @@ export default {
           this.apartmentsResponse = response.data;
           //filtro appartamenti per città
           results.forEach((result) => {
-
               this.apartments.push(result);
-              this.$router.push({
-                name: "search",
-                params: { data: this.apartments },
-              });
-
           });
+          
+          const searchResults = this.apartments;
+          searchResults.unshift(this.apartmentsResponse);
+          searchResults.unshift(this.lon);
+          searchResults.unshift(this.lat);
+          console.log(searchResults);
+
+          this.$router.push({
+                name: "search",
+                params: { data: searchResults},
+              });
         })
 
         .catch((e) => {

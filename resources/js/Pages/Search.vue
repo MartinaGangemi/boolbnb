@@ -331,8 +331,12 @@ export default {
   },
 
   created() {
-    this.apartments = this.$route.params.data;
+    this.lat = this.$route.params.data[0];
+    this.lon = this.$route.params.data[1];
+    this.apartmentsResponse = this.$route.params.data[2];
+    this.apartments = this.$route.params.data.slice(3);
   },
+
 
   mounted() {
  this.createMap();
