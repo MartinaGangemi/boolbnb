@@ -120,8 +120,9 @@
             </div>
             <div class="p-2 card-body d-flex flex-column align-items-center">
               <!-- text -->
-             <span class="text-center fw-bold" >{{ trimTitle(apartment.summary) }}</span>
+             
               <div class="description-apartment col-12">
+                <span class="text-center fw-bold" >{{ trimTitle(apartment.summary) }}</span>
                 <span>
                 {{trimText(apartment.description)}}
 
@@ -447,7 +448,7 @@ button {
   }
 }
 .description-apartment{
-  height: 120px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
