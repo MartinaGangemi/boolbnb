@@ -212,15 +212,12 @@ export default {
         })
         .then((response) => {
           //console.log(response);
-          if (response.data.status_code === 404) {
-            this.loading = false;
-            this.$router.push({ name: "not-found" });
-          } else {
+
             this.sponsoredApartments = response.data.data;
             this.response_apartments = response.data;
             this.loading = false;
             console.log(this.response_apartments)
-          }
+
         })
         .catch((e) => {
           console.error(e);

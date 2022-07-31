@@ -118,12 +118,15 @@
         <div class="row  ">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="apartment in apartments"
           :key="apartment.id"  >
-          <div class="card">
-            <span v-if="apartment.sponsorships" class="position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark">
+          <div class="card border-0">
+
+          <span  v-if="apartment.sponsorships > [0]"  class="position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark" >
               <i class="fa-solid fa-crown text-warning fs-5"></i>
 
+          </span>
 
-            </span>
+
+
                <div class="card-img">
                 <img  :src="'storage/' + apartment.cover_img" :alt="apartment.summary">
               </div>
@@ -192,6 +195,8 @@ export default {
       searchLat: 0,
       searchLon: 0,
       defaultDistance: 20,
+      sponsoredApartments:"",
+      response_apartments:"",
       beds: 1,
       rooms: 1,
     };
@@ -236,6 +241,8 @@ export default {
         .catch((e) => {
           console.error(e);
         });
+
+
     },
 
 
@@ -335,6 +342,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+.start-custom {
+    left: 25px !important;
+}
+.top-custom {
+    top: 24px !important;
+}
+
 
 
 .bg-dash{
