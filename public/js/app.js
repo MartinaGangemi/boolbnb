@@ -5930,7 +5930,7 @@ var render = function render() {
   }, _vm._l(_vm.sponsoredApartments, function (apartment) {
     return _c("div", {
       key: apartment.id,
-      staticClass: "col-12 col-sm-6 col-lg-3"
+      staticClass: "col-12 col-sm-6 col-lg-4 col-xl-3"
     }, [_c("div", {
       staticClass: "card border-0"
     }, [_vm._m(1, true), _vm._v(" "), _c("div", {
@@ -59148,9 +59148,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/Final-Project/boolbnb/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\MAMP\htdocs\Laravel\prove-g\prova-boolbnb\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

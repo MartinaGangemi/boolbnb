@@ -107,7 +107,7 @@
     <section class="mt-5 container">
      <h2 class="text-center text-white">I preferiti di Fablo B&B</h2>
       <div class="mt-5 row g-2 card-container">
-        <div class="col-12 col-sm-6 col-lg-3" v-for="apartment in sponsoredApartments" :key="apartment.id">
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3" v-for="apartment in sponsoredApartments" :key="apartment.id">
 
           <div class="card border-0">
             <span class="position-absolute fw-bold top-custom start-custom translate-middle badge p-3 bg-dark">
@@ -247,7 +247,7 @@ export default {
           results.forEach((result) => {
               this.apartments.push(result);
           });
-          
+
           const searchResults = this.apartments;
           searchResults.unshift(this.apartmentsResponse);
           searchResults.unshift(this.lon);
